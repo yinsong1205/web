@@ -1,0 +1,42 @@
+{
+	"total": 100,
+	"page": 1,
+	"rows": [
+  {
+    "name": "系统管理员",
+    "relName": "admin",
+    "company": "仓储一部",
+    "createTime": "2017-07-18"
+  },
+  {
+    "name": "采购部管理员",
+    "relName": "wkwejf",
+    "company": "采购一部",
+    "createTime": "2017-07-18"
+  },
+  {
+    "name": "测试员",
+    "relName": "rwrew",
+    "company": "小笨鸟总部",
+    "createTime": "2017-07-18"
+  },
+  {
+    "name": "技术员",
+    "relName": "asda",
+    "company": "采购一部",
+    "createTime": "2017-07-18"
+  },
+  {
+    "name": "技术部",
+    "relName": "1024",
+    "company": "仓储一部",
+    "createTime": "2017-07-18"
+  },
+  {
+    "name": "财务部",
+    "relName": "asd",
+    "company": "仓储一部",
+    "createTime": "2017-07-18"
+  }
+]
+}

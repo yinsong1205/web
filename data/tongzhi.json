@@ -1,0 +1,55 @@
+{
+	"items": [
+  {
+    "number": "59af5012b",
+    "company": "华为",
+    "Tarate": "14%",
+    "RefundRate": "12%",
+    "name": "手机",
+    "quantity": "10",
+    "unit": "台",
+    "money": "1000.00",
+    "anotherNumber": "2",
+    "numbers": "01019299919299"
+  },
+  {
+    "number": "59af5012b",
+    "company": "华为",
+    "Tarate": "14%",
+    "RefundRate": "12%",
+    "name": "手机",
+    "quantity": "10",
+    "unit": "台",
+    "money": "1000.00",
+    "anotherNumber": "2",
+    "numbers": "01019299919299"
+  },
+  {
+    "number": "59af50",
+    "company": "华为",
+    "Tarate": "173%",
+    "RefundRate": "12%",
+    "name": "手机",
+    "quantity": "10",
+    "unit": "台",
+    "money": "4000.00",
+    "anotherNumber": "4",
+    "numbers": "01019299919299"
+  },
+  {
+    "number": "59af501",
+    "company": "小米",
+    "Tarate": "17%",
+    "RefundRate": "15%",
+    "name": "手机",
+    "quantity": "10",
+    "unit": "台",
+    "money": "2000.00",
+    "anotherNumber": "3",
+    "numbers": "010192999192969"
+  }
+],
+	"has_more": true,
+	"quota_max": 300,
+	"quota_remaining": 283
+}

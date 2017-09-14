@@ -1,0 +1,153 @@
+[
+	{
+		"name" : "系统管理",
+		"open" : true,
+		"leftIcon" : "l fa fa-cogs",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "模块管理"
+			},
+			{
+				"name" : "用户管理"
+			},
+			{
+				"name" : "角色管理"
+			},
+			{
+				"name" : "组织机构管理"
+			}]
+	},
+	{
+		"name" : "合同管理",
+		"leftIcon" : "l fa fa-newspaper-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "采购合同管理"
+			},
+			{
+				"name" : "出口合同管理"
+			}
+		]
+	},
+	{
+		"name" : "退税申报",
+		"open" : true,
+		"leftIcon" : "l fa fa-telegram",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "批次管理"
+			},
+			{
+				"name" : "预申报"
+			},
+			{
+				"name" : "正式申报"
+			},
+			{
+				"name" : "申报管理"
+			}
+		]
+	},
+	{
+		"name" : "统计分析",
+		"leftIcon" : "l fa fa-bar-chart",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "报关单统计"
+			},
+			{
+				"name" : "合同统计"
+			},
+			{
+				"name" : "物资统计"
+			},
+			{
+				"name" : "申报统计"
+			}
+		]
+	},
+	{
+		"name" : "报关单管理",
+		"open" : true,
+		"leftIcon" : "l fa fa-linode",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "预录入报关单"
+			},
+			{
+				"name" : "报关单管理"
+			}
+		]
+	},
+	{
+		"name" : "票据管理",
+		"leftIcon" : "l fa fa-ticket",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "开票通知"
+			},
+			{
+				"name" : "发票管理"
+			},
+			{
+				"name" : "备案管理"
+			}
+		]
+	},
+	{
+		"name" : "付款物流",
+		"leftIcon" : "l fa fa-paypal",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "采购合同付款管理"
+			},
+			{
+				"name" : "物流合同付款管理"
+			},
+			{
+				"name" : "物流管理"
+			}
+		]
+	},
+	{
+		"name" : "预警管理",
+		"open" : true,
+		"leftIcon" : "l fa fa-exclamation-triangle",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "工期预警"
+			},
+			{
+				"name" : "任务预警"
+			}
+		]
+	},
+	{
+		"name" : "外汇核销",
+		"leftIcon" : "l fa fa-exchange",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "外汇核销"
+			}
+		]
+	},
+	{
+		"name" : "企业管理",
+		"leftIcon" : "l fa fa-building",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "入驻企业"
+			}
+		]
+	}
+]

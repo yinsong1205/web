@@ -1,0 +1,67 @@
+{
+	"items": [
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "黑",
+    "black": "是",
+    "active": "截止期限过期"
+  },
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "白",
+    "black": "否",
+    "active": "正常"
+  },
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "黑",
+    "black": "是",
+    "active": "截止期限过期"
+  },
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "黑",
+    "black": "是",
+    "active": "截止期限过期"
+  },
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "黑",
+    "black": "是",
+    "active": "截止期限过期"
+  },
+  {
+    "company": "北京东方天旭国际贸易",
+    "seanumber": "2017030021",
+    "number": "20170354646301",
+    "type": "生产",
+    "source": "导入",
+    "level": "黑",
+    "black": "是",
+    "active": "截止期限过期"
+  }
+],
+	"has_more": true,
+	"quota_max": 300,
+	"quota_remaining": 283
+}

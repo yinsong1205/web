@@ -1,0 +1,51 @@
+/*
+
+
+***********************user.json文件***********************
+{label : '登录名', name : 'name', align: 'center'},
+{label : '真实姓名', name : 'relName', align: 'center'},
+{label : '邮箱地址 ', name : 'email', align: 'center'},
+{label : '电话', name : 'tel', align: 'center'},
+{label : '权限级别', name : 'authorLevel', align: 'center'},
+{label : '所属单位', name : 'company', align: 'center'},
+{label : '角色', name : 'roleName', align: 'center'},
+{label : '账户状态', name : 'status', align: 'center'},
+{label : '创建时间', name : 'createTime', align: 'center'}
+
+gridArrayData.push({
+	name: item.name,
+	authorLevel: item.authorLevel,
+	company: item.company,
+	roleName: item.roleName,
+	status: item.status,
+	createTime: item.createTime,
+	relName: item.relName,
+	email: item.email,
+	tel: item.tel
+});
+
+
+{
+	id : '{{objectId()}}',
+	name: '{{firstName()}} {{surname()}}',
+	number:'{{integer(1, 50)}}',
+	relName : '{{firstName()}} {{surname()}}',
+	company: '{{company().toUpperCase()}}',
+	email: '{{email()}}',
+	tel : '+1 {{phone()}}',
+	authorLevel : '',
+	roleName : '',
+	status : '{{random("可用", "不可用")}}',
+	createTime : '{{date(new Date(2017, 0, 1), new Date(), "YYYY-MM-dd")}}'
+}
+
+***********************user.json***********************
+{
+code : '{{objectId()}}',
+name : '{{firstName()}}',
+description : '{{firstName()}}',
+ssjg : '{{random("总部","分部")}}',
+swjgdm : '{{random("YB", "CC", "CG","RS","KF)}}',
+}
+
+*/

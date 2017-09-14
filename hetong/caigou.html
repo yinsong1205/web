@@ -1,0 +1,777 @@
+<!-- 采购合同管理 -->
+<div class="container-fluid">
+	<div class="col-sm-12 plr0 height100 gridBox" id="caigou_gridBox">
+		<table id="caigou_jqGrid"></table>
+		<div id="caigou_jqGridPager"></div>
+	</div>
+</div>
+<style type="text/css"> 
+
+#otherInfo {position:absolute; bottom:-30px; left:0; width:100%; z-index:10; }
+#otherInfo .btn {padding:0 10px;}
+#otherInfo .btn i {font-size:14px; }
+
+</style>
+
+<!-- 新增弹窗 -->
+<div id="caigou_jqGrid_formBox" class="layerFormBox" style="padding:0;">
+	<input type="hidden" name="list"  />
+	<div class="container-fluid">
+		<div class="row kuangLine otherBox">
+			<div class="col-sm-12">
+				<p class="titCon">基本信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>合同名称:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="name"
+							placeholder="合同名称  ">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>合同编号 :</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="id"
+							placeholder="合 同 编 号 "  value="59b5e9a8dc254b4cd74a49f2">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>签订日期:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="qdTime"
+							placeholder="签订日期" onclick="WdatePicker();">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">开始日期 :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="开始日期 " onclick="WdatePicker();">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">截止日期   :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="截 止 日 期 " onclick="WdatePicker();">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>业务类型   :</label>
+					<div class="col-sm-6">
+						<!-- <input type="email" class="form-control input-sm" 
+							placeholder="业务类型   ">-->
+						<select name="" id="" class="form-control input-sm" placeholder="业务类型   "> 
+							<option value="all">外综服务</option>
+							<option value="one">一般贸易</option>
+							<option value="two">承包工程</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">币        制    :</label>
+					<div class="col-sm-6">
+						<!-- <input type="email" class="form-control input-sm" 
+							placeholder="币        制    "> -->
+						<select name="" id="" class="form-control input-sm" placeholder="币        制"> 
+							<option value="all">人民币</option>
+							<option value="one">美元</option>
+							<option value="two">欧元</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">成 交 金 额    :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="money"
+							placeholder="成 交 金 额 ">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>目 的 港    :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="目 的 港    ">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">发货单位:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="发货单位">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">发货单位代码:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="发货单位代码">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>出口口岸:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="出口口岸">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">运输方式 :</label>
+					<div class="col-sm-6">
+						<!-- <input type="email" class="form-control input-sm" 
+							placeholder="运输方式 "> -->
+						<select name="" id="" class="form-control input-sm" placeholder="运输方式   "> 
+							<option value="all">海洋运输</option>
+							<option value="one">美元</option>
+							<option value="two">欧元</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">结 汇 方 式:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="结 汇 方 式">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">备       案:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="备       案">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">批准文号:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="批准文号">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">成  交 方 式 :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="成  交 方 式 ">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">经营单位:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="经营单位">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">装 运  期 :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="装 运  期 ">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">装   运   港:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="装   运   港">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">许 可 证:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="许 可 证">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">件        数:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" 
+							placeholder="件        数">
+					</div>
+				</div>
+			</form>
+			<p id="otherInfo" class="text-center"><button class="btn btn-default btn-sm "><i class="fa fa-angle-double-down"></i>&nbsp;更多</button></p>
+		</div>
+		
+		<!-- 联系人信息 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">联系人信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right"><span>*</span>外商(甲方):</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="caigouName"
+								placeholder="外商(甲方) ">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right"><span>*</span>签  订  人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="签  订  人 ">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="联系电话  ">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="地         址 ">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right"><span>*</span>入驻企业:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="gonghuoName"
+								placeholder="入驻企业">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right"><span>*</span>签  订  人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="签  订  人 ">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="联系电话  ">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" 
+								placeholder="地         址 ">
+						</div>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+		<!-- 单位信息 -->
+		
+		<!-- 备注 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">备注信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-12 beizhu">
+					<label  class="col-sm-2 control-label text-right">地         址:</label>
+					<div class="col-sm-8">
+						<textarea class="form-control" rows="3" placeholder="备注信息"></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 备注 -->
+		
+		<!-- 附件 -->
+		<div class="row yincang">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="caigou_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span>*</span>附件文件:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+				<!-- <div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>形式发票:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>招标文件:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div> -->
+			</form>
+		</div>
+		<!-- 附件 -->
+		
+		<p class="text-center saveOrCacelBtn"> 
+			<button type="button" class="btn btn-info btn-sm" id="caigou_save_btn">保存</button>		
+			<button type="button" class="btn btn-info btn-sm" id="caigou_resetBtn">重置</button>		
+			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+		</p>
+		
+	</div>
+</div>
+
+<!-- 物资清单 -->
+<div class="layerFormBox" id="caigou_wuzi" style="padding:0; width:100%; height:100%;">
+	<table id="caigou_wz_jqGrid"></table>
+	<div id="caigou_wz_jqGridPager"></div>
+</div>
+<!-- 导入合同 -->
+<div class="layerFormBox import_formBox" id="caigou_import_formBox"> 
+	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<div class="col-sm-8">
+				<span class="btn btn-default btn-sm fileinput-button">
+					<i class="glyphicon glyphicon-plus"></i>
+					<span>添加合同附件</span>
+					<input type="file" name="files[]" multiple>
+				</span>
+			</div>
+		</div>
+		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+	</form>
+	<p class="text-center saveOrCacelBtn"> 
+		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
+</div>
+<!-- 报表统计 -->
+<div class="layerFormBox" id="caigou_tongji_formBox"> 
+	<div class="container-fluid tongji">
+		<div class="row">
+			<form class="form-inline">
+				<div class="form-group">
+					<select name="ywlx" id="" class="form-control input-sm">
+						<option value="" selected="selected">统计方式</option>
+						<option value="">年统计</option>
+						<option value="">月统计</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				</div>
+				<i class="fa fa-minus"></i>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				</div>
+				<button type="button" class="btn btn-info btn-sm">查询</button>
+				<button type="reset" class="btn btn-info btn-sm">重置</button>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered"> 
+					<thead>
+						<tr>
+							<th>时间(年/月)</th>
+							<th>合同名称</th>
+							<th>合同金额</th>
+							<th>币制</th>
+							<th>签订日期</th>
+							<th>结款状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+						<tr>
+							<td>钢铁采购合同</td>
+							<td>12154</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2016</td>
+							<td>零部件采购合同</td>
+							<td>92354</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+						<tr>
+							<td>物资采购合同</td>
+							<td>423514</td>
+							<td>美元</td>
+							<td>2017-09-08</td>
+							<td>未结清</td>
+						</tr>
+						<tr>
+							<td>合计</td>
+							<td colspan="5" class="text-right">总记录数：4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+	$(function() {
+		
+		//-------------------------------//
+		var layerIndex = null; //弹窗id,关闭所用
+		var flag = ''; //添加修改标记
+		var dataUrl = 'data/caigou.json';//数据源链接
+		var gridId = 'caigou_jqGrid'; //表格id
+		var gridPager = 'caigou_jqGridPager'; //表格分页id
+		var formBoxId = 'caigou_jqGrid_formBox'; //添加修改窗口元素id
+		var layerCloseClassName = 'qx';
+		var dataSaveBtn = 'caigou_save_btn'; //弹窗保存id
+		var gridBoxId = 'caigou_gridBox';//表格尺寸
+		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+		var gridWidth = $('#'+gridBoxId).width();
+		var gridHeight = $('#'+gridBoxId).height()-118;
+		
+		var colModel = [
+				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
+				{label : '合同名称', name : 'name', align: 'left', width:100 },
+				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60,
+					searchoptions : {
+						dataInit: function(e){
+							$(e).on('click',function(){
+								WdatePicker({
+									dateFmt : 'yyyy-MM',
+									readOnly : true
+								});
+							});
+						}
+					}
+				},
+				{label : '采购方', name : 'caigouName', align: 'left', width:150,
+					searchoptions: {
+						sopt : ['cn']
+					}
+				},
+				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
+				{label : '合同金额', name : 'money', align: 'center',width:50},
+				{label : '物资清单', name : 'list', align: 'center',width:40,search:false}
+		];
+		/**
+			id:
+			name:
+			qdTime:
+			caigouName:
+			gonghuoName:
+			money:
+			list:
+		*/
+		
+		$('#'+gridId).jqGrid({
+			width: gridWidth,
+			height: gridHeight,
+			url: dataUrl,
+			datatype: "json",
+			loadonce: true, //加载到本地操作
+			rownumbers: true, //显示顺序编号
+			multiselect: true, //定义多选
+			viewrecords: true, //显示总记录数
+			sortname: 'name', //排序字段
+			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+			altRows : true, //设置表格隔行变色
+			rowNum: 12, //每页显示的记录数
+			rowList:[10,12,15,18,20,25], //
+			rownumWidth: 30, 
+			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+			//emptyrecords: "No records to view",
+			//loadtext: "Loading...",
+			pager: '#'+gridPager,
+			colModel: colModel
+			//jsonReader : jsonReader
+			
+		}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+			edit:false,add:false,del:false,search:false,refresh:false
+		}).navButtonAdd('#'+gridPager,{
+			//caption: '新增',
+			caption: '',
+			title : '新增',
+			buttonicon : 'glyphicon-plus',
+			onClickButton : function(){addLayer();}, //调用添加的函数
+			position : 'last'
+			
+		}).navButtonAdd('#'+gridPager,{
+			//caption: '导入合同',
+			caption: '',
+			title : '导入合同',
+			buttonicon : 'fa fa-upload',
+			onClickButton : function(){importLayer();}, //调用导入合同函数
+			position : 'last'
+			
+		}).navButtonAdd('#'+gridPager,{
+			//caption: '统计',
+			caption: '',
+			title : '报表统计',
+			buttonicon : 'fa fa-bar-chart-o',
+			onClickButton : function(){tongjiLayer(); }, //调用报表统计函数
+			position : 'last'
+			
+		}).navButtonAdd('#'+gridPager,{
+			//caption: '删除',
+			caption: '',
+			title : '删除',
+			buttonicon : 'glyphicon-trash',
+			//onClickButton : deleteLayer(gridId), //调用删除的函数
+			onClickButton : function(){ deleteLayer(gridId); },
+			position : 'last'
+			
+		}).navSeparatorAdd('#'+gridPager,{
+			sepcontent: '',
+			sepclass : "ui-separator"
+		});
+		
+		//表格添加搜索框按钮
+		$('#'+gridId).jqGrid('filterToolbar');
+		//修改工具条
+		changeSearch(); 
+		
+		//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+		
+		//弹框保存按钮
+		$(document).on('click','#'+dataSaveBtn,function(){
+			if(flag == 'add'){
+				var data = getFormData(formBoxId);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				if(result){
+					layer.msg('添加成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					
+					jQuery('#'+gridId).setSelection(currentNumber,true);
+					
+				}else{
+					layer.msg('添加失败!',{time:layerCloseTime});
+				}
+			}else if(flag == 'update'){
+				
+				//删除
+				var rowIds = getSelectedRow(gridId);
+				jQuery('#'+gridId).delRowData(rowIds[0]);
+				//添加
+				var data = getFormData(formBoxId);
+				console.log(data);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				
+				if(result){
+					layer.msg('更新成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					jQuery('#'+gridId).setSelection(currentNumber,true);
+				}else{
+					layer.msg('更新失败!',{time:layerCloseTime});
+				}
+			}
+			
+		});
+		
+		//弹框取消按钮
+		$('.'+layerCloseClassName).on('click',function(){
+			layer.close(layerIndex);
+		});
+		
+		//左下角新增按钮
+		function addLayer(){
+			flag = 'add';
+			$('#'+formBoxId+' .form-control:not(select)').val('');
+			layerIndex = layer.open({
+				type: 1,
+				title : '添加采购合同',
+				area: ['98%', '98%'], //宽高
+				content: $('#'+formBoxId)
+			});
+		}
+		
+		//左下角编辑按钮
+		function updateLayer(){
+			flag = 'update';
+			var setting = {
+				gridId : gridId,
+				formBoxId : formBoxId,
+				title : '修改采购合同',
+				area : ['98%', '98%']
+			};
+			layerIndex = updateGridData(setting);
+		}
+		
+		//左下角删除按钮
+		function deleteLayer(gridId){
+			deleteGridData(gridId);
+		}
+		
+		
+		//-------------------------------//
+		
+		//导入合同
+		function importLayer(){
+			commIndex = layer.open({
+				type: 1,
+				title : "导入合同",
+				area: ['80%', '60%'], //宽高
+				content: $('#caigou_import_formBox')
+			});
+		}
+		
+		//报表统计
+		function tongjiLayer(){
+			commIndex = layer.open({
+				type: 1,
+				title : "报表统计",
+				area: ['80%', '65%'], //宽高
+				content: $('#caigou_tongji_formBox')
+			});
+		}
+		
+		//重置按钮
+		$('#caigou_resetBtn').on('click',function(){
+			console.log(123);
+			$('#caigou_jqGrid_formBox :input').val('');
+		});
+		/*上传文件的表单*/
+		 $("#caigou_fileupload").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+		/*上传文件的表单*/
+		 $("#caigou_import_formBox").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+		
+		
+		//弹窗中更多
+		$('#otherInfo button').on('click',function(){
+			$('.yincang').slideToggle();
+		});
+		
+		
+		//物资清单
+		var wzFlag = false;
+		$(document).on('click','.caigou_wzqd',function(){
+			
+			commIndex = layer.open({
+				type: 1,
+				title : '物资清单列表',
+				area: ['80%', '80%'], //宽高
+				content: $('#caigou_wuzi')
+			});
+			
+			var caigouWidth =  $('#caigou_wuzi').width()-2;
+			var caigouHeight =  $('#caigou_wuzi').height()-122;
+			
+			$("#caigou_wz_jqGrid").jqGrid({
+				url: 'data/wuzi.json',
+				// we set the changes to be made at client side using predefined word clientArray
+				editurl: 'clientArray',
+				datatype: "json",
+				sortname: 'name',
+				sortorder: 'asc',
+				loadonce: true,
+				viewrecords: true,
+				multiselect: true,
+				rownumbers: true,
+				altRows : true,
+				width: caigouWidth,
+				height: caigouHeight,
+				rowNum: 8,
+				colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+					{label : '数量', name : 'number', align: 'center', width:80,search: false},
+					{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
+					{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
+					{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+					{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+					{label : '供货方', name : 'company', align: 'center',width:150},
+					],
+				
+				pager: "#caigou_wz_jqGridPager"
+			
+			});
+			$('#caigou_wz_jqGrid').jqGrid('filterToolbar');
+			if(!wzFlag){
+				/*
+				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+					edit:false,add:false,del:false,search:false,refresh:false
+				}).navButtonAdd('#caigou_wz_jqGridPager',{
+					//caption: '新增',
+					caption: '',
+					title : '新增',
+					buttonicon : 'glyphicon-plus',
+					onClickButton : addLayer, //调用添加的函数
+					position : 'last'
+					
+				}).navButtonAdd('#caigou_wz_jqGridPager',{
+					//caption: '删除',
+					caption: '',
+					title : '删除',
+					buttonicon : 'glyphicon-trash',
+					onClickButton : deleteLayer, //调用删除的函数
+					position : 'last'
+					
+				}).navButtonAdd('#caigou_wz_jqGridPager',{
+					//caption: '导入合同',
+					caption: '',
+					title : '导入合同',
+					buttonicon : 'fa fa-share',
+					onClickButton : importLayer, //调用导入合同函数
+					position : 'last'
+					
+				}).navSeparatorAdd("#caigou_wz_jqGridPager",{
+					sepcontent: '',
+					sepclass : "ui-separator"
+				});
+				*/
+				changeSearch(); //修改工具条
+				
+				wzFlag = true;
+			}
+			
+		});
+	});
+</script>
+
+	
+

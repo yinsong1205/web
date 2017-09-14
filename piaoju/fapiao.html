@@ -1,0 +1,346 @@
+<!--预录入报关单  -->
+<div class="container-fluid">
+    <div class="col-sm-12 plr0 height100 gridBox" id="fapiao_gridBox">
+        <table id="fapiao_jqGrid"></table>
+        <div id="fapiao_jqGridPager"></div>
+    </div>
+</div>
+
+<!-- 新增弹窗 -->
+<div id="fapiao_formBox" class="layerFormBox">
+    <form class="form-horizontal layerForm">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-xs-3 control-label">
+                角色CODE:
+            </label>
+            <div class="col-xs-8">
+                <input type="text" id="fapiao_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">
+                角色名称:
+            </label>
+            <div class="col-xs-8">
+                <input type="text" id="fapiao_name" name="name" class="form-control input-sm"  placeholder="角色名称">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">
+                创建时间:
+            </label>
+            <div class="col-xs-8">
+                <input type="text" id="fapiao_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
+            </div>      
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">
+                所属机构:
+            </label>
+            <div class="col-xs-8">
+                <select id="fapiao_company" name="company" class="form-control input-sm">
+                    <option value="小笨鸟总部" selected="true">小笨鸟总部</option>
+                    <option value="运保一部" >运保一部</option>
+                </select>
+            </div>
+        </div>
+        <p class="text-center">
+            <button type="button" class="saveBtn btn btn-info btn-sm" id="fapiao_save_btn">
+                保存
+            </button>
+            <button type="reset" class="saveBtn btn btn-info btn-sm">
+                重置
+            </button>
+            <button type="button" class="saveBtn btn btn-info btn-sm" id="fapiao_cacle_btn">
+                取消
+            </button>
+        </p>
+    </form>
+</div>
+<script type="text/javascript">
+
+    
+$(function(){
+    var dataUrl = 'data/fapiao.json';
+    var index = null;
+    var flag = '';
+    var rowNumber = 1000000;
+    //标题按钮
+    var fxUtils = new FXUtils(); 
+    var arr = [
+        {"text":"新 增","id":"fapiao_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
+        {"text":"修 改","id":"fapiao_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
+        {"text":"删 除","id":"fapiao_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
+    ];
+
+    //表格数据
+    var gridWidth = $('#fapiao_gridBox').width();
+    var gridHeight = $('#fapiao_gridBox').height()-150;
+    $("#fapiao_jqGrid").jqGrid({
+        
+        hidegrid : false, 
+        altRows : true, 
+        colModel: [{label : '发票代码', name : 'number', align: 'center', width: 120},
+            {label : '发票号码', name : 'anotherNumber', align: 'center', width:80},
+            {label : '通知单号 ', name : 'tongzhi', align: 'left', width:80},
+            {label : '相关单', name : 'baoguan', align: 'center', width:80},
+            {label : '销方名称', name : 'company', align: 'left', width:80},
+            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 80}
+            ],
+
+        viewrecords: true,
+        loadonce:true,
+        width: gridWidth,
+        //width: 'auto',
+        //width : '100%',
+        height: gridHeight,
+        //height : 'auto',
+        rowNum: 11,
+        rowList:[10,15,20,25],
+        datatype: 'local',
+        pager: "#fapiao_jqGridPager",
+        caption: fxUtils.addBtn(arr),
+        multiselect: true,
+        rownumbers: true,
+        rownumWidth: 30,
+        recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+        //emptyrecords: "No records to view",
+        //loadtext: "Loading...",
+        
+    });
+    //搜索框按钮,开启搜索框需要重新调整高度
+    $('#fapiao_jqGrid').jqGrid('filterToolbar');
+    
+    fetchGridData();
+    
+    //editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+    
+    
+    
+    //弹框取消按钮
+    $('#fapiao_cacle_btn').on('click',function(){
+        layer.close(index);
+    });
+    
+    
+    
+    //弹框保存按钮
+    $(document).on('click','#fapiao_save_btn',function(){
+        //var total = jQuery("#fapiao_jqGrid").jqGrid('getGridParam', 'records'); 
+        ////console.log(total);
+        //addRowData
+        //rowid,data, position, srcrowid
+        //console.log(flag);
+        if(flag == 'add'){
+            var data = {
+                    "name": $.trim($('#fapiao_name').val()),
+                    "relName": $.trim($('#fapiao_relName').val()),
+                    "company": $.trim($('#fapiao_company').val()),
+                    "createTime": $.trim($('#fapiao_createTime').val())
+            };
+            var currentNumber = rowNumber++;
+            var result = jQuery("#fapiao_jqGrid").addRowData(currentNumber,data,'first');
+            
+            if(result){
+                layer.msg('添加成功');
+                layer.close(index);
+                
+                jQuery("#fapiao_jqGrid").setSelection(currentNumber,true);
+                
+            }else{
+                layer.msg('添加失败!');
+            }
+        }else if(flag == 'update'){
+            
+            //删除
+            var rowIds = getSelectedRow();
+            jQuery("#fapiao_jqGrid").delRowData(rowIds[0]);
+            //添加
+            var data = {
+                    "name": $.trim($('#fapiao_name').val()),
+                    "relName": $.trim($('#fapiao_relName').val()),
+                    "company": $.trim($('#fapiao_company').val()),
+                    "cteateTime": $.trim($('#fapiao_cteateTime').val())
+            };
+            var currentNumber = rowNumber++;
+            var result = jQuery("#fapiao_jqGrid").addRowData(currentNumber,data,'first');
+            
+            if(result){
+                layer.msg('更新成功');
+                layer.close(index);
+                jQuery("#fapiao_jqGrid").setSelection(currentNumber,true);
+            }else{
+                layer.msg('更新失败!');
+            }
+        }
+        
+    });
+    
+    
+    //表头新增按钮
+    $(document).on('click','#fapiao_add_btn',function(){
+        flag = 'add';
+        $('.form-control').val('');
+        index = parent.layer.open({
+            type: 1,
+            title : '添加模块',
+            area: ['60%', '70%'], //宽高
+            content: $('#fapiao_formBox')
+        });
+    });
+    
+    //表头编辑按钮
+    $(document).on('click','#fapiao_update_btn',function(){
+        flag = 'update';
+        var rowIds = getSelectedRow();
+        
+        if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+            
+            var rowData = $("#fapiao_jqGrid").getRowData(rowIds[0]);
+            
+            //console.log(rowData);
+            
+            $('#fapiao_number').val(rowData.number),
+            $('#fapiao_relName').val(rowData.relName),
+            $('#fapiao_company').val(rowData.company),
+            $('#fapiao_createTime').val(rowData.createTime)
+            title = '修改模块';
+            index = layer.open({
+                type: 1,
+                title : title,
+                area: ['60%', '70%'], //宽高
+                content: $('#fapiao_formBox')
+            });
+        }else{
+            layer.msg('同时只能选择一条记录!');
+        }
+    });
+    
+    //表头删除按钮
+    $(document).on('click','#fapiao_delete_btn',function(){
+        var rowIds = getSelectedRow();
+        var len = rowIds.length;
+        if(rowIds && $.isArray(rowIds) && rowIds.length>0){
+            //删除
+            var deletindex = layer.confirm('确定要删除吗？', {
+              btn: ['确定','取消'] //按钮
+            }, function(){
+                for(var i=0; i<len; i++){
+                    jQuery("#fapiao_jqGrid").delRowData(rowIds[0]);  
+                }
+                layer.msg('删除成功', {icon: 1});
+            }, function(){
+                layer.close(deletindex);
+            });
+            
+        }else{
+            layer.msg('请选择记录!');
+        }
+        
+    });
+    
+    /* function addLayer(option){
+        
+        flag = option;
+        
+        var title = '添加模块';
+        if(option == 'add'){
+            title = '添加模块';
+            $('.form-control').val('');
+            index = parent.layer.open({
+                type: 1,
+                title : title,
+                area: ['40%', '70%'], 
+                content: $('#fapiao_formBox')
+            });
+            
+        }else if(option == 'edit'){
+            
+            //getRowData
+            var rowIds = getSelectedRow();
+            
+            if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+                
+                var rowData = $("#fapiao_jqGrid").getRowData(rowIds[0]);
+                
+                //console.log(rowData);
+                
+                $('#fapiao_title').val(rowData.title),
+                $('#fapiao_parent').val(rowData.parent),
+                $('#fapiao_url').val(rowData.url),
+                $('#fapiao_priority').val(rowData.priority)
+                title = '修改模块';
+                index = layer.open({
+                    type: 1,
+                    title : title,
+                    area: ['40%', '70%'], 
+                    content: $('#fapiao_formBox')
+                });
+            }else{
+                layer.msg('同时只能选择一条记录!');
+            }
+            
+        }
+        
+    } */
+    
+    //获取json数据
+    function fetchGridData() {
+
+        var gridArrayData = [];
+        // show loading message
+        $("#fapiao_jqGrid")[0].grid.beginReq();
+        $.ajax({
+            url: dataUrl,
+            success: function(result) {
+                for (var i = 0; i < result.items.length; i++) {
+                    var item = result.items[i];
+                    
+                    gridArrayData.push({
+                        number: item.number,
+                        anotherNumber: item.anotherNumber,
+                        tongzhi: item.tongzhi,
+                        baoguan: item.baoguan,
+                        company: item.company,
+                        lastNumber: item.lastNumber
+                    });
+
+                }
+                // set the new data
+                $("#fapiao_jqGrid").jqGrid('setGridParam', {
+                    data: gridArrayData
+                });
+                // hide the show message
+                $("#fapiao_jqGrid")[0].grid.endReq();
+                // refresh the grid
+                $("#fapiao_jqGrid").trigger('reloadGrid');
+            }
+        });
+    }
+    //格式化标题
+    function formatTitle(cellValue, options, rowObject) {
+        return cellValue.substring(0, 50) + "...";
+    };
+    //格式化链接
+    function formatLink(cellValue, options, rowObject) {
+        return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
+    };
+    //获取选择的行
+    function getSelectedRow() {
+        var grid = $("#fapiao_jqGrid");
+        var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
+
+       return rowKeys;
+    }
+    
+    
+    changeSearch(); //修改工具条
+    
+});
+
+
+    
+</script>
+
+
+

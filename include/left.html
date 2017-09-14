@@ -1,0 +1,134 @@
+<!-- 左侧菜单 -->
+<div class="menus clearfix">
+	<p class="intro text-center">功能菜单</p>
+	<ul class="list-unstyled" id="menuList"></ul>
+</div>
+
+<script> 
+	$(function(){
+		//初始化菜单
+		$.get('data/menu.json',function(data){
+			if(data && $.isArray(data) && data.length>0){
+				var $menuList = $('#menuList');
+				$.each(data,function(i,e){
+					
+					var $li = $('<li></li>');
+					
+					var $a = $('<a></a>');
+					var aProperties = {
+							"href" : "javascript:;",
+							"class" : "clearfix",
+					};
+					$a.attr(aProperties);
+					$a.text(e.name);
+					
+					var $leftI = $('<i></i>');
+					$leftI.attr('class',e.leftIcon);
+					var $rightI = $('<i></i>');
+					$rightI.attr('class',e.rightIcon);
+					
+					$a.prepend($leftI);
+					$a.append($rightI);
+					
+					$li.append($a);
+					
+					if(e.children && $.isArray(e.children) && e.children.length>0){
+						var $dl = $('<dl></dl>');
+						$.each(e.children,function(i,el){
+							var $dd = $('<dd></dd>');
+							
+							var $a = $('<a></a>');
+							var aProperties = {
+								"href" : "javascript:;",
+								"data-href" : el.url
+							};
+							$a.attr(aProperties);
+							$a.text(el.name);
+							
+							$dd.append($a);
+							$dl.append($dd);
+						});
+						$li.append($dl);
+					}
+					
+					$menuList.append($li);
+					
+				});
+			}
+		});
+		
+		//左侧菜单鼠标移入移出
+		$('#menuList').on('mouseenter','li',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			$(this).siblings().find('dl').hide();
+			$(this).find('dl').show();
+		}).on('mouseleave','li',function(){
+			$(this).removeClass('active');
+			$(this).find('dl').hide();
+		});
+		
+		//左侧菜单点击
+		$('#menuList').on('click','li dl dd a',function(){
+			//隐藏dl和去掉li的当前样式
+			$(this).parents('dl').hide();
+			$(this).parents('li').removeClass('active');
+			
+			//获取标题和链接
+			var title = $.trim($(this).text());
+			var href = $.trim($(this).attr('data-href'));
+			
+			//标记,右侧是否已经存在
+			var flag = false; 
+			var $tabs = $('#fkTabs ul');
+			var $tabsLi = $tabs.find('li');
+			$.each($tabsLi,function(i,e){
+				var newhref = $.trim($(e).find('a').attr('data-href'));
+				if(newhref === href){
+					//去掉右侧所有li标签的当前样式
+					$tabsLi.removeClass('active');
+					$(e).addClass('active');
+					//右侧比较内容显示
+					var index = $(e).index();
+					var $mainCon = $('#main .con');
+					$mainCon.eq(index).addClass('active').siblings().removeClass('active');
+					flag = true;
+				}
+			});
+			
+			//如果不存在
+			if(!flag){
+				//去掉右侧所有li标签的当前样式
+				$tabsLi.removeClass('active');
+				//创建元素
+				var $li = $('<li></li>');
+				$li.attr('class','active');
+				var $a = $('<a></a>');
+				$a.attr('href','javascript:;');
+				$a.attr('data-href',href);
+				$a.text(title);
+				var $i = $('<i></i>');
+				$i.attr('class','fa fa-close');
+				$li.append($a);
+				$li.append($i);
+				//向右侧tab添加元素
+				$tabs.append($li);
+				//右侧内容区加载页面
+				var $main = $('#main');
+				$main.find('.con').removeClass('active');
+				var $con = $('<div></div>');
+				$con.attr('class','con active');
+				$main.append($con.load(href));
+			}
+			
+		});
+/*		$('#menuList').on('click','li>a',function(){
+			var href = $(this).attr('href');
+			if(href != 'javascript:;'){
+				console.log(1);	
+			}else{
+				console.log(2);
+			}	
+				
+		})*/
+	});
+</script>

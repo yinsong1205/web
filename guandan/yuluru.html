@@ -1,0 +1,1007 @@
+<!--预录入报关单  -->
+<style type="text/css">
+#yulu_formBox .text-center{
+text-align: center;
+}
+#yulu_formBox .text-left{
+text-align: left;
+}
+#yulu_formBox .index {
+	z-index: 23452523;
+}
+.table {
+	border: 1px solid #ccc;
+}
+/* .table td{
+	border: 1px solid #ccc;
+}
+.table th{
+	border: 1px solid #ccc;
+} */
+.thead{
+	width: 100%;
+}
+.yulu_ul {
+	list-style: none;
+}
+.text-center{
+	text-align: center;
+}
+.index {
+	border: 1px solid #ccc;
+}
+.head {
+	padding-top: 5px;
+}
+.form-group {
+	/*border: 1px solid #ccc !important;*/
+	/* background: #D9DEF7; */
+}
+.form-group label{
+	margin-top: 2px;
+}
+.form-group .form-control {
+	vertical-align:middle !important; 
+	margin-top: 5px;
+}
+</style>
+<div class="container-fluid">
+	<div class="col-sm-12 plr0 height100 gridBox" id="yulu_gridBox">
+		<table id="yulu_jqGrid"></table>
+		<div id="yulu_jqGridPager"></div>
+	</div>
+</div>
+
+<!-- 新增弹窗 -->
+<div id="yulu_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm col-xs-12">
+		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
+		<div class="col-xs-12 index">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="yulu_number" name="number" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					<span class="necessary">*</span>海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口口岸
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_bus" name="bus" class="form-control input-sm"  placeholder="出口口岸">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+				</div>		
+			</div>
+			<div id="yulu_ul col-xs-12">
+				<table class="table col-xs-12">
+					<thead class="thead">
+						<tr>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>商品名称 规格型号</th>
+							<th>数量及单位</th>
+							<th>最终目的国（地区）</th>
+							<th>单价</th>
+							<th>总价</th>
+							<th>币值</th>
+							<th>征免</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					税费征收情况
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="税费征收情况"></textarea>.
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					录入员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="录入员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					兹上证明无讹并承担法律责任
+				</label>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					海关审单批注及放行日期（签章）
+				</label>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					报关员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="报关员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审单
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审单">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审价
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审价">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					单位地址
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="单位地址">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					征税
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="征税">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					统计
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="统计">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					邮编
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="邮编">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					电话
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="电话">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					填制日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="填制日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					查验
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="查验">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					放行
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="放行">
+				</div>		
+			</div>
+
+		</div>
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="yulu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yulu_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 导入合同 -->
+<div class="layerFormBox" id="yulu_import_formBox"> 
+	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<div class="col-sm-8">
+				<span class="btn btn-default btn-sm fileinput-button">
+					<i class="glyphicon glyphicon-plus"></i>
+					<span>添加合同附件</span>
+					<input type="file" name="files[]" multiple='multiple'>
+				</span>
+			</div>
+		</div>
+		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+	</form>
+	<p class="text-center saveOrCacelBtn"> 
+		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
+</div>
+<!-- 报表统计 -->
+<div class="layerFormBox" id="yulu_tongji_formBox"> 
+	<div class="container-fluid tongji">
+		<div class="row">
+			<form class="form-inline">
+				<div class="form-group">
+					<select name="ywlx" id="" class="form-control input-sm">
+						<option value="" selected="selected">统计方式</option>
+						<option value="">年统计</option>
+						<option value="">月统计</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				</div>
+				<i class="fa fa-minus"></i>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				</div>
+				<button type="button" class="btn btn-info btn-sm">查询</button>
+				<button type="reset" class="btn btn-info btn-sm">重置</button>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered"> 
+					<thead>
+						<tr>
+							<th>时间(年/月)</th>
+							<th>出口口岸</th>
+							<th>运抵国</th>
+							<th>指运港</th>
+							<th>成交方式</th>
+							<th>贸易性质</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2015</td>
+							<td>洋山港</td>
+							<td>乌克兰</td>
+							<td>乌克兰港</td>
+							<td>FOB</td>
+							<td>对外出口</td>
+						</tr>
+						<tr>
+							<td>天津港</td>
+							<td>乌克兰</td>
+							<td>乌克兰港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2016</td>
+							<td>天津港</td>
+							<td>美国</td>
+							<td>美国港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td>天津港</td>
+							<td>美国</td>
+							<td>美国港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td>合计</td>
+							<td colspan="5" class="text-right">总记录数：4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
+	</div>
+</div>
+<script type="text/javascript">
+
+	
+$(function(){
+	var index = null;
+	var dataUrl = 'data/yuluru.json';
+	var flag = '';
+	var rowNumber = 1000000;
+
+	//表格数据
+	var gridWidth = $('#yulu_gridBox').width();
+	var gridHeight = $('#yulu_gridBox').height()-122;
+	$("#yulu_jqGrid").jqGrid({
+		
+		hidegrid : false, 
+		altRows : true, 
+		colModel: [{label : '预录入编号', name : 'number', align: 'center', width: 170},
+			{label : '出口口岸', name : 'bus', align: 'center', width:100},
+			{label : '出口日期 ', name : 'outTime', align: 'left', width:120},
+			{label : '申报日期', name : 'anotherTime', align: 'center', width:120},
+			{label : '运抵国', name : 'company', align: 'center', width: 120},
+			{label : '指运港', name : 'anotherBus', align: 'center', width:120},
+			{label : '成交方式 ', name : 'pay', align: 'left', width:80},
+			{label : '贸易性质', name : 'property', align: 'center', width:120},
+			{label : '附件', name : 'accessory', align: 'center', width:120}
+			],
+
+		viewrecords: true,
+		loadonce:true,
+		width: gridWidth,
+		//width: 'auto',
+		//width : '100%',
+		height: gridHeight,
+		//height : 'auto',
+		rowNum: 11,
+		rowList:[10,15,20,25],
+		datatype: 'local',
+		pager: "#yulu_jqGridPager",
+		// caption: fxUtils.addBtn(arr),
+		multiselect: true,
+		rownumbers: true,
+		rownumWidth: 30,
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+	    //emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		
+	}).navGrid('#yulu_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+			edit:false,add:false,del:false,search:false,refresh:false
+		}).navButtonAdd('#yulu_jqGridPager',{
+				//caption: '新增',
+			caption: '',
+			title : '新增',
+			buttonicon : 'glyphicon-plus',
+			onClickButton : yulu_addLayer, //调用添加的函数
+			position : 'last'
+		}).navButtonAdd('#yulu_jqGridPager',{
+			//caption: '删除',
+			caption: '',
+			title : '删除',
+			buttonicon : 'glyphicon-trash',
+			onClickButton : yulu_deleteLayer, //调用删除的函数
+			position : 'last'	
+		}).navButtonAdd('#yulu_jqGridPager',{
+			//caption: '导入合同',
+			caption: '',
+			title : '导入合同',
+			buttonicon : 'fa fa-upload',
+			onClickButton : yulu_importLayer, //调用导入合同函数
+			position : 'last'
+		}).navButtonAdd('#yulu_jqGridPager',{
+			//caption: '统计',
+			caption: '',
+			title : '报表统计',
+			buttonicon : 'fa fa-bar-chart-o',
+			onClickButton : yulu_tongjiLayer, //调用报表统计函数
+			position : 'last'
+		}).navSeparatorAdd("#yulu_jqGridPager",{
+			sepcontent: '',
+			sepclass : "ui-separator"
+		});
+	//搜索框按钮,开启搜索框需要重新调整高度
+	$('#yulu_jqGrid').jqGrid('filterToolbar');
+	
+	fetchGridData();
+	
+	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+	
+	$('#glyphicon').fileupload();
+	
+	//弹框取消按钮
+	$('.qx').on('click',function(){
+		layer.close(index);
+	});
+
+/*上传文件的表单*/
+		 $("#yulu_fileupload").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+		/*上传文件的表单*/
+		 $("#yulu_import_formBox").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+	
+	
+	//弹框保存按钮
+	$(document).on('click','#yulu_save_btn',function(){
+		if(flag == 'add'){
+			var data = {
+					"number": $.trim($('#yulu_number').val()),
+				    "bus": $.trim($('#yulu_bus').val()),
+				    "outTime": $.trim($('#yulu_outTime').val()),
+				    "anotherTime": $.trim($('#yulu_anotherTime').val()),
+				    "company": $.trim($('#yulu_company').val()),
+				    "anotherBus": $.trim($('#yulu_anotherBus').val()),
+				    "pay": $.trim($('#yulu_pay').val()),
+				    "property": $.trim($('#yulu_property').val()),
+				    "accessory": $.trim($('#yulu_accessory').val())
+			};
+			var currentNumber = rowNumber++;
+			var result = jQuery("#yulu_jqGrid").addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('添加成功');
+				layer.close(index);
+				
+				jQuery("#yulu_jqGrid").setSelection(currentNumber,true);
+				
+			}else{
+				layer.msg('添加失败!');
+			}
+		}else if(flag == 'update'){
+			
+			//删除
+			var rowIds = getSelectedRow();
+			jQuery("#yulu_jqGrid").delRowData(rowIds[0]);
+			//添加
+			var data = {
+					"number": $.trim($('#yulu_number').val()),
+				    "bus": $.trim($('#yulu_bus').val()),
+				    "outTime": $.trim($('#yulu_outTime').val()),
+				    "anotherTime": $.trim($('#yulu_anotherTime').val()),
+				    "company": $.trim($('#yulu_company').val()),
+				    "anotherBus": $.trim($('#yulu_anotherBus').val()),
+				    "pay": $.trim($('#yulu_pay').val()),
+				    "property": $.trim($('#yulu_property').val()),
+				    "accessory": $.trim($('#yulu_accessory').val())
+			};
+			var currentNumber = rowNumber++;
+			var result = jQuery("#yulu_jqGrid").addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('更新成功');
+				layer.close(index);
+				jQuery("#yulu_jqGrid").setSelection(currentNumber,true);
+			}else{
+				layer.msg('更新失败!');
+			}
+		}
+		
+	});
+	//左下角新增按钮
+	function yulu_addLayer(){
+			flag = 'add';
+			$('.form-control').val('');
+			index = layer.open({
+				type: 1,
+				title : '添加模块',
+				area: ['98%', '98%'], //宽高
+				content: $('#yulu_formBox')
+		});
+	}
+	
+	//左下角编辑按钮
+	function yulu_updateLayer(){
+		flag = 'update';
+		var rowIds = getSelectedRow();
+		
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			
+			var rowData = $("#yulu_jqGrid").getRowData(rowIds[0]);
+			
+			//console.log(rowData);
+			$('#yulu_number').val(rowData.number),
+		    $('#yulu_bus').val(rowData.bus),
+		    $('#yulu_anotherTime').val(rowData.anotherTime),
+		    $('#yulu_company').val(rowData.company),
+		    $('#yulu_anotherBus').val(rowData.anotherBus),
+		    $('#yulu_pay').val(rowData.pay),
+		    $('#yulu_outTime').val(rowData.outTime),
+		    $('#yulu_property').val(rowData.property),
+		    $('#yulu_accessory').val(rowData.accessory)
+			title = '修改模块';
+			index = layer.open({
+				type: 1,
+				title : title,
+				area: ['60%', '70%'], //宽高
+				content: $('#yulu_formBox')
+			});
+		}else{
+			layer.msg('同时只能选择一条记录!');
+		}
+	};
+	
+	//左下角删除按钮
+	function yulu_deleteLayer(){
+		var rowIds = getSelectedRow();
+		var len = rowIds.length;
+		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
+			//删除
+			var deletindex = layer.confirm('确定要删除吗？', {
+			  btn: ['确定','取消'] //按钮
+			}, function(){
+				for(var i=0; i<len; i++){
+					jQuery("#yulu_jqGrid").delRowData(rowIds[0]);  
+				}
+			    layer.msg('删除成功', {icon: 1});
+			}, function(){
+			  	layer.close(deletindex);
+			});
+			
+		}else{
+			layer.msg('请选择记录!');
+		}
+		
+	};
+	
+	//导入合同
+	function yulu_importLayer(){
+		index = layer.open({
+			type: 1,
+			title : "导入合同",
+			area: ['80%', '60%'], //宽高
+			content: $('#yulu_import_formBox')
+		});
+	}
+	//报表统计
+	function yulu_tongjiLayer(){
+		index = layer.open({
+			type: 1,
+			title : "报表统计",
+			area: ['80%', '65%'], //宽高
+			content: $('#yulu_tongji_formBox')
+		});
+	}
+	//获取json数据
+	function fetchGridData() {
+
+		var gridArrayData = [];
+		// show loading message
+		$("#yulu_jqGrid")[0].grid.beginReq();
+		$.ajax({
+			url: dataUrl,
+			success: function(result) {
+				for (var i = 0; i < result.items.length; i++) {
+					var item = result.items[i];
+					
+					gridArrayData.push({
+						number: item.number,
+						bus: item.bus,
+						outTime: item.outTime,
+						anotherTime: item.anotherTime,
+						company: item.company,
+						anotherBus: item.anotherBus,
+						pay: item.pay,
+						property: item.property,
+						accessory: item.accessory
+					});
+
+				}
+				// set the new data
+				$("#yulu_jqGrid").jqGrid('setGridParam', {
+					data: gridArrayData
+				});
+				// hide the show message
+				$("#yulu_jqGrid")[0].grid.endReq();
+				// refresh the grid
+				$("#yulu_jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	//格式化标题
+	function formatTitle(cellValue, options, rowObject) {
+		return cellValue.substring(0, 50) + "...";
+	};
+	//格式化链接
+	function formatLink(cellValue, options, rowObject) {
+		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
+	};
+	//获取选择的行
+	function getSelectedRow() {
+	    var grid = $("#yulu_jqGrid");
+	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
+
+	   return rowKeys;
+	}
+	
+	
+	changeSearch(); //修改工具条
+
+});
+
+
+	
+</script>
+	
+<!-- 可用的模板来显示文件上传 id是必须不可修改 如果不是图片类型的文件显示默认的文件图标-->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+	<li class="col-md-2 template-upload fade" style="padding:10px">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img src="../images/word.png"/>
+				{% } %}
+				{% if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="../images/xls.png"/>
+				{% } %}
+				{% if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="../images/pdf.png"/>
+				{% } %}
+				{% if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="../images/ppt.png"/>
+				{% } %}
+			</span>
+            <div style="margin-bottom:10px;margin-top:8px;" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>	
+		</div>
+		
+		{% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-info btn-sm start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>上传</span>
+                </button>
+        {% } %}
+        {% if (!i) { %}
+             <button class="btn btn-sm btn-warning cancel">
+                 <i class="glyphicon glyphicon-ban-circle"></i>
+                 <span>删除</span>
+             </button>
+        {% } %}		
+	</li>	
+{% } %}
+</script>
+<!-- 模板来显示文件可供下载 -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <li class="col-md-2 template-download fade" style="padding:10px;margin-bottom:10px; margin-left:0">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;height:122px;overflow:hidden;"  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img width="150" height="150" src="../images/word.png"/>
+				{% }else if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="../images/xls.png"/>
+				{% }else if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="../images/pdf.png"/>
+				{% }else if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="../images/ppt.png"/>
+				{% }else { %}
+					<img width="150" height="150" src="{%=file.thumbnailUrl%}">
+				{% } %}
+			</span>
+			<p>{%=(file.name).substring(0,8)%}&bull;&bull;&bull;</p>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>				
+		</div>
+		
+		<a class="btn btn-info btn-sm " href="{%=file.url%}" download="{%=file.url%}">
+             <i class="glyphicon glyphicon-download"></i>
+             <span>下载</span>
+		</a>
+		{% if (file.deleteUrl) { %}
+            <button class="btn btn-danger btn-sm delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>删除</span>
+            </button>
+            
+        {% } else { %}
+            <button class="btn btn-warning  btn-sm  cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>删除</span>
+            </button>
+        {% } %}
+	</li>
+{% } %}
+</script>

@@ -1,0 +1,40 @@
+{
+	"items": [
+  {
+    "number": "010134566010131131",
+    "bus": "洋山港",
+    "outTime": "2017/07/18",
+    "anotherTime": "2017/07/18",
+    "company": "乌克兰",
+    "anotherBus": "乌克兰港",
+    "pay": "FOB",
+    "property": "对外出口",
+    "accessory": "jpg"
+  },
+  {
+    "number": "01013456601013dddd",
+    "bus": "天津港",
+    "outTime": "2017/07/18",
+    "anotherTime": "2017/07/18",
+    "company": "王琦尼博物馆",
+    "anotherBus": "乌克兰港",
+    "pay": "FOB",
+    "property": "对外出口",
+    "accessory": ".jpg"
+  },
+  {
+    "number": "010134566010131131",
+    "bus": "洋山港",
+    "outTime": "2017/07/18",
+    "anotherTime": "2017/07/18",
+    "company": "乌克兰",
+    "anotherBus": "乌克兰港",
+    "pay": "FOB",
+    "property": "对外出口",
+    "accessory": "jpg"
+  }
+],
+	"has_more": true,
+	"quota_max": 300,
+	"quota_remaining": 283
+}

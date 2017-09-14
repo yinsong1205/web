@@ -1,0 +1,919 @@
+<!-- 出口合同管理 -->
+<div class="container-fluid">
+	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
+		<table id="chukou_jqGrid"></table>
+		<div id="chukou_jqGridPager"></div>
+	</div>
+</div>
+
+<!-- 新增弹窗 -->
+<div id="chukou_jqGrid_formBox" class="layerFormBox">
+	<div class="form-horizontal layerForm zzxx">
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label for="inputEmail3" class="col-xs-4 control-label">
+					<span>*</span>合同名称:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_relName" name="relName" class="form-control input-sm"  placeholder="合同名称">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>合同编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="合同编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>签订日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
+				</div>
+			</div>
+		</div>
+		<!-- <div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					开始日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="开始日期">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					截止日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发运地点">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					业务类型:
+				</label>
+				<div class="col-xs-8">
+					<select id="chukou_bus" name="bus" class="form-control input-sm">
+						<option value="" selected="true">外综服务</option>
+						<option value="" >一般贸易</option>
+						<option value="" >承包工程</option>
+					</select>
+				</div>
+			</div>
+		</div> -->
+		<div class="row">
+			
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					币制:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">人民币</option>
+						<option value="" >美元</option>
+						<option value="" >欧元</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					成交金额:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="成交金额">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					合同类型:
+				</label>
+				<div class="col-xs-8">
+					<select id="chukou_bus" name="bus" class="form-control input-sm">
+						<option value="" selected="true">外综服务</option>
+						<option value="" >一般贸易</option>
+						<option value="" >承包工程</option>
+					</select>
+				</div>
+			</div>
+			<!-- <div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					目的港:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="目的港">
+				</div>
+			</div> -->
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					成交方式:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">FOB</option>
+						<option value="" >CIF</option>
+						<option value="" >CFR</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					境内货源地:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					结算状态:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">已结算</option>
+						<option value="" >未结算</option>
+					</select>
+				</div>
+			</div>
+			<!-- <div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					发货单位代码:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位代码">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					出口口岸:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="出口口岸">
+				</div>
+			</div> -->
+		</div>
+		<!-- <div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					运输方式:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">海洋运输</option>
+						<option value="" >空中运输</option>
+						<option value="" >陆地运输</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					结汇方式:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">汇付</option>
+						<option value="" >托收</option>
+						<option value="" >信用证</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					备案:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="备案">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					批准文号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					成交方式:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">FOB</option>
+						<option value="" >CIF</option>
+						<option value="" >CFR</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					经营单位:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					装运期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="装运期">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					装运港:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">天津港</option>
+						<option value="" >新港港口</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					许可证:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="许可证">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					件数:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>
+			</div>
+		</div> -->
+		<form action="" class="col-xs-12 zzxx" style="margin-bottom: 50px;">
+			<div class="row col-xs-6 ctrol_form" style="border: 1px solid #000;border-right: none;margin-left: 20px;">
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						<span>*</span>采 购 方 :
+					</label>
+					<div class="col-xs-8">
+						<input type="text" id="chukou_company" name="company" class="form-control input-sm"  placeholder="外商（甲方）">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						签订人:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="签订人">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						联系电话:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="联系电话">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						开户行:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="开户行">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						银行:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="银行">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						传真:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="传真">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						地址:
+					</label>
+					<div class="col-xs-8">
+						<textarea type="text" class="form-control input-sm"  placeholder="地址"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row col-xs-6 ctrol_form" style="border: 1px solid #000;">
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						<span>*</span>供 货 方:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" id="chukou_anothorCompany" name="anothorCompany" class="form-control input-sm"  placeholder="入驻企业（乙方）">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						签订人:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="签订人">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						联系电话:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="联系电话">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						开户行:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="开户行">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						银行:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="银行">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						传真:
+					</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control input-sm"  placeholder="传真">
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<label class="col-xs-4 control-label">
+						地址:
+					</label>
+					<div class="col-xs-8">
+						<textarea type="text" class="form-control input-sm"  placeholder="地址"></textarea>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="row col-xs-12 ctform">
+			<label class="col-xs-2 control-label text-right">
+				备注:
+			</label>
+			<div class="col-xs-6">
+				<textarea type="text" class="form-control input-sm"  placeholder="备注"></textarea>
+			</div>
+		</div>
+		<form class="form-horizontal zzxx" id="chukou_fileupload" method="POST" enctype="multipart/form-data">
+			<div class="row col-xs-12 ctform">
+				<!-- <label class="col-xs-3 control-label">
+					合同源文件:
+				</label>
+				<div class="col-xs-3">
+					<input type="file" class="input-sm"  placeholder="选择文件">
+				</div> -->
+				<label class="col-sm-2 control-label text-right"><span>*</span>合同源文件:</label>
+				<div class="col-sm-8">
+					<span class="btn btn-default btn-sm fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加附件</span>
+						<input type="file" name="files[]" multiple>
+					</span>
+				</div>
+			</div>
+			<!-- 用于显示上传文件的浏览 样式files是必须的-->
+			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+		</form>
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm" id="chukou_resetBtn">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="chukou_cacle_btn">
+				取消
+			</button>
+		</p>
+	</div>
+	
+</div>
+
+<!-- 报表统计 -->
+<div class="container-fluid layerFormBox" id="chukou_bbtj">
+	<div class="row tjDate"> 
+		<div class="form-group text-center col-sm-4">
+			<div class="col-sm-5 plr0">
+				<input type="riqi" class="form-control input-sm"
+					id="inputEmail3" onClick="WdatePicker()" placeholder="开始日期 ">
+			</div>
+			<div class="col-sm-1 plr0 text-center">
+				<i style="position:relative; top:6px;color:#bbb;font-style:normal;">至</i>
+			</div>
+			<div class="col-sm-5 plr0">
+				<input type="riqi" class="form-control input-sm"
+					id="inputEmail4" onClick="WdatePicker()" placeholder="结束日期 ">
+			</div>
+		</div>
+		<div class="col-sm-2"> 
+			<button class="btn btn-info btn-sm">查询</button>
+		</div>
+	</div>
+	<div class="row"> 
+		<div class="col-sm-12"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>时间(年/月)</th>
+						<th>合同名称</th>
+						<th>业务类型</th>
+						<th>出口口岸</th>
+						<th>签订日期</th>
+						<th>成交方式</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td rowspan="2">2015-05-02</td>
+						<td>仓储保管合同</td>
+						<td>一般贸易</td>
+						<td>新港</td>
+						<td>2015-01-02</td>
+						<td>FOB</td>
+					</tr>
+					<tr>
+						<td>钢铁出口合同</td>
+						<td>外综服务</td>
+						<td>天津港</td>
+						<td>2015-03-02</td>
+						<td>FOB</td>
+					</tr>
+					<tr>
+						<td rowspan="2">2017-8-15</td>
+						<td>仓储保管合同</td>
+						<td>一般贸易</td>
+						<td>新港</td>
+						<td>2017-01-02</td>
+						<td>FOB</td>
+					</tr>
+					<tr>
+						<td>钢铁出口合同</td>
+						<td>外综服务</td>
+						<td>天津港</td>
+						<td>2015-03-02</td>
+						<td>FOB</td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-6"> 
+			<div id="chukou_lineChart" style="min-width:400px;height:400px"></div>
+		</div>
+		<div class="col-sm-6"> 
+			<div id="chukou_circleChart" style="min-width:400px;height:400px"></div>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div class="com-sm-6"> 
+			<div id="lineChart" style="min-width:400px;height:400px"></div>
+		</div>
+		<div class="com-sm-6"> 
+			<div id="circleChart" style="min-width:400px;height:400px"></div>
+		</div>
+	</div> -->
+</div>
+
+<!-- 导入合同 -->
+<div class="layerFormBox import_formBox" id="chukou_import_formBox"> 
+	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<div class="col-sm-8">
+				<span class="btn btn-default btn-sm fileinput-button">
+					<i class="glyphicon glyphicon-plus"></i>
+					<span>添加合同附件</span>
+					<input type="file" name="files[]" multiple>
+				</span>
+			</div>
+		</div>
+		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+	</form>
+	<p class="text-center saveOrCacelBtn"> 
+		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
+</div>
+
+<script type="text/javascript">
+
+	
+$(function(){
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/chukou.json';//数据源链接
+	var gridId = 'chukou_jqGrid'; //表格id
+	var gridPager = 'chukou_jqGridPager'; //表格分页id
+	var formBoxId = 'chukou_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'chukou_save_btn'; //弹窗保存id
+	var gridBoxId = 'chukou_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
+			{label : '合同号', name : 'numBer', align: 'center', width: 50},
+			{label : '合同名称', name : 'relName', align: 'left', width:100},
+			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
+			{label : '业务类型', name : 'bus', align: 'left', width:50,search:false},
+			{label : '外商（甲方）', name : 'company', align: 'left', width:120},
+			{label : '入驻企业（乙方）', name : 'anothorCompany', align: 'left',width:120},
+			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+	];
+	/*
+		numBer :
+		relName:
+		createTime:
+		bus:
+		company:
+		anothorCompany:
+		status:
+	*/
+	
+	$('#'+gridId).jqGrid({
+		width: gridWidth,
+		height: gridHeight,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+		//emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
+		//jsonReader : jsonReader
+		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '刷新',
+		caption: '',
+		title : '刷新',
+		buttonicon : 'glyphicon-refresh',
+		onClickButton : function(){refresh();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '添加',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '审核',
+		caption: '',
+		title : '审核',
+		buttonicon : 'fa fa-gavel',
+		onClickButton : function(){shenhe();}, //调用审核的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '导入合同',
+		caption: '',
+		title : '导入合同',
+		buttonicon : 'fa fa-upload',
+		onClickButton : function(){importLayer();}, //调用导入合同函数
+		position : 'last'
+			
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '统计',
+		caption: '',
+		title : '报表统计',
+		buttonicon : 'fa fa-bar-chart-o',
+		onClickButton : function(){chukoutongji();}, //调用报表统计的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
+	});
+	
+	//表格添加搜索框按钮
+	$('#'+gridId).jqGrid('filterToolbar');
+	//修改工具条
+	changeSearch(); 
+	
+	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+	
+	//弹框保存按钮
+	$(document).on('click','#'+dataSaveBtn,function(){
+		if(flag == 'add'){
+			var data = getFormData(formBoxId);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+			if(result){
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				
+				jQuery('#'+gridId).setSelection(currentNumber,true);
+				
+			}else{
+				layer.msg('添加失败!',{time:layerCloseTime});
+			}
+		}else if(flag == 'update'){
+			
+			//删除
+			var rowIds = getSelectedRow(gridId);
+			jQuery('#'+gridId).delRowData(rowIds[0]);
+			//添加
+			var data = getFormData(formBoxId);
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
+			}else{
+				layer.msg('更新失败!',{time:layerCloseTime});
+			}
+		}
+		
+	});
+	
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
+	
+	//左下角新增按钮
+	function addLayer(){
+		flag = 'add';
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
+			type: 1,
+			title : '添加模块',
+			area: ['98%', '98%'], //宽高
+			content: $('#'+formBoxId)
+		});
+	}
+	
+	//左下角编辑按钮
+	function updateLayer(){
+		flag = 'update';
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['98%', '98%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
+	}
+	
+	
+	//-------------------------------//
+	//刷新
+	function refresh(){
+		layer.msg('更新成功!',{time:layerCloseTime});
+	};
+	//审核
+	function shenhe(){
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '审核窗口',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['30%','40%'],
+				content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+		
+	}
+	//统计
+	function chukoutongji(){
+		commIndex = layer.open({
+			type : 1,
+			title : '报表统计',
+			skin: 'layui-layer-rim',
+			shadeClose: true,
+			area : ['90%','90%'],
+			content : $('#chukou_bbtj')
+		});
+	}
+	
+	//导入合同
+	function importLayer(){
+		commIndex = layer.open({
+			type: 1,
+			title : "导入合同",
+			area: ['80%', '60%'], //宽高
+			content: $('#chukou_import_formBox')
+		});
+	}
+	
+	//柱形图
+	var chart = new Highcharts.Chart('chukou_lineChart', {
+		exporting : {
+			enabled : false
+		},
+	    title: {
+	        text: '报关单月统计',
+	        x: -20
+	    },
+	    subtitle: {
+	        text: '数据来源: 报关单统计',
+	        x: -20
+	    },
+	    xAxis: {
+	        categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+	    },
+	    yAxis: {
+	        title: {
+	            text: '条'
+	        },
+	        plotLines: [{
+	            value: 0,
+	            width: 1,
+	            color: '#808080'
+	        }]
+	    },
+	    tooltip: {
+	        valueSuffix: '条'
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle',
+	        borderWidth: 0
+	    },
+	    series: [{
+	        name: '海淀区',
+	        data: [7, 8, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
+	    }, {
+	        name: '朝阳区',
+	        data: [1, 2, 5, 11, 17, 22, 15, 14, 10, 8, 3, 2]
+	    }, {
+	        name: '东城区',
+	        data: [1, 2, 3, 8, 13, 15, 14, 13, 10, 9, 3, 1]
+	    }, {
+	        name: '西城区',
+	        data: [3, 4, 5, 8, 11, 15, 17, 16, 14, 10, 6, 4]
+	    }]
+	});
+	//饼图
+	$('#chukou_circleChart').highcharts({
+		credits : false,
+		exporting : {
+			enabled : false
+		},
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: '报关单占比统计'
+        },
+        tooltip: {
+            headerFormat: '{series.name}<br>',
+            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '报关单申请占比',
+            data: [
+                ['朝阳',   45],
+                ['海淀',       26],
+                {
+                    name: '东城区',
+                    y: 12,
+                    sliced: true,
+                    selected: true
+                },
+                ['西城区',    8],
+                ['丰台区',     6]
+            ]
+        }]
+    });
+	
+	$('.qx').on('click',function(){
+		layer.close(layerIndex);
+		console.log(123);
+	});
+	
+	$('#chukou_resetBtn').on('click',function(){
+		$('#chukou_jqGrid_formBox :input').val('');
+	});
+	
+	/*上传文件的表单*/
+	 $("#chukou_fileupload").fileupload({
+		maxNumberOfFiles:20,//上传文件的最大数量
+		maxFileSize : 3000000, //最大3M
+		minFileSize : 5000,//最小5K
+		acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+		type : 'post',//客户端的请求方式
+		dataType : 'json',//服务器响应的数据类型
+		url: 'server/php/',//请求的地址
+		messages: {//错误信息的提示
+		   maxNumberOfFiles: '最多上传20张图片',
+		   acceptFileTypes: '文件类型不允许',
+		   maxFileSize: '文件不能大于3M',
+		   minFileSize: '文件不能小于5K'
+	   }
+	});
+	/*上传文件的表单*/
+	 $("#chukou_import_formBox").fileupload({
+		maxNumberOfFiles:20,//上传文件的最大数量
+		maxFileSize : 3000000, //最大3M
+		minFileSize : 5000,//最小5K
+		acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+		type : 'post',//客户端的请求方式
+		dataType : 'json',//服务器响应的数据类型
+		url: 'server/php/',//请求的地址
+		messages: {//错误信息的提示
+		   maxNumberOfFiles: '最多上传20张图片',
+		   acceptFileTypes: '文件类型不允许',
+		   maxFileSize: '文件不能大于3M',
+		   minFileSize: '文件不能小于5K'
+	   }
+	});
+	
+});
+
+
+	
+</script>

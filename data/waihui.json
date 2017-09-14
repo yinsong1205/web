@@ -1,0 +1,67 @@
+{
+	"items": [
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "未支付"
+  },
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "未支付"
+  },
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "未支付"
+  },
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "未支付"
+  },
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "未支付"
+  },
+  {
+    "guandan": "010220310031313",
+    "way": "一般贸易",
+    "moneyway": "人民币",
+    "aboutmoney": "30000.00",
+    "savemoney": "10000.00",
+    "overplus": "20000.00",
+    "noshouhui": "前期约定",
+    "active": "已结清"
+  }
+],
+	"has_more": true,
+	"quota_max": 300,
+	"quota_remaining": 283
+}

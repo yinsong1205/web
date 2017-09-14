@@ -1,0 +1,166 @@
+<!-- 合同统计 -->
+<div class="container-fluid tongji">
+	<div class="row">
+		<form class="form-inline">
+			<div class="form-group">
+				<select name="ywlx" id="" class="form-control input-sm">
+					<option value="" selected="selected">统计方式</option>
+					<option value="">年统计</option>
+					<option value="">月统计</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+			</div>
+			<i class="fa fa-minus"></i>
+			<div class="form-group">
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+			</div>
+			<button type="button" class="btn btn-info btn-sm">查询</button>
+			<button type="reset" class="btn btn-danger btn-sm">重置</button>
+		</form>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div id="htxiazuanChart" style="min-width:400px;height:400px"></div>
+			
+		</div>
+		<div class="col-sm-6">
+			<div id="htlineChart" style="min-width:400px;height:400px"></div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript"> 
+	 $('#htxiazuanChart').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: '出口合同'
+		},
+		subtitle: {
+			text: '数据来源: 出口合同'
+		},
+		xAxis: {
+			categories: ['2011', '2012', '2013', '2014', '2015']
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '出口合同总量'
+			},
+			stackLabels: {
+				enabled: true,
+				style: {
+					fontWeight: 'bold',
+					color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+				}
+			}
+		},
+		legend: {
+			align: 'right',
+			x: -5,
+			verticalAlign: 'top',
+			y: 25,
+			floating: true,
+			backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+			borderColor: '#CCC',
+			borderWidth: 1,
+			shadow: false,
+		},
+		tooltip: {
+			formatter: function () {
+				return '<b>' + this.x + '</b><br/>' +
+					this.series.name + ': ' + this.y + '<br/>' +
+					'总量: ' + this.point.stackTotal;
+			}
+		},
+		plotOptions: {
+			column: {
+				stacking: 'normal',
+				dataLabels: {
+					enabled: true,
+					color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+					style: {
+						textShadow: '0 0 3px black'
+					}
+				}
+			}
+		},
+		series: [{
+			name: '出口1',
+			data: [5, 3, 4, 7, 2]
+		}, {
+			name: '出口2',
+			data: [2, 2, 3, 2, 1]
+		}, {
+			name: '出口3',
+			data: [3, 4, 4, 2, 5]
+		}]
+	});
+	
+	//柱形图
+Highcharts.chart('htlineChart', {
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: '采购合同'
+		},
+		subtitle: {
+			text: '数据来源: 采购合同'
+		},
+		xAxis: {
+			type: 'category'
+		},
+		yAxis: {
+			title: {
+				text: '总的统计'
+			}
+		},
+		legend: {
+			enabled: false
+		},
+		plotOptions: {
+			series: {
+				borderWidth: 0,
+				dataLabels: {
+					enabled: true,
+					format: '{point.y:.1f}%'
+				}
+			}
+		},
+		tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		},
+		series: [{
+			name: '采购合同',
+			colorByPoint: true,
+			data: [{
+				name: '2002',
+				y: 16.33,
+				drilldown: '2002'
+			}, {
+				name: '2005',
+				y: 44.03,
+				drilldown: '2005'
+			}, {
+				name: '2009',
+				y: 9.38,
+				drilldown: '2009'
+			}, {
+				name: '2014',
+				y: 20.77,
+				drilldown: '2014'
+			}, {
+				name: '2017',
+				y: 9.91,
+				drilldown: '2017'
+			}]
+		}]
+		
+	});
+</script>

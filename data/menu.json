@@ -1,0 +1,175 @@
+[
+	{
+		"name" : "系统管理",
+		"leftIcon" : "l fa fa-cogs",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "模块管理",
+				"url" : "system/module.html"
+			},
+			{
+				"name" : "用户管理",
+				"url" : "system/user.html"
+			},
+			{
+				"name" : "角色管理",
+				"url" : "system/role.html"
+			},
+			{
+				"name" : "组织机构管理",
+				"url" : "system/organization.html"
+			}]
+	},
+	{
+		"name" : "合同管理",
+		"leftIcon" : "l fa fa-newspaper-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "采购合同管理",
+				"url" : "hetong/caigou.html"
+			},
+			{
+				"name" : "出口合同管理",
+				"url" : "hetong/chukou.html"
+			}
+		]
+	},
+	{
+		"name" : "退税申报",
+		"leftIcon" : "l fa fa-telegram",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "批次管理",
+				"url" : "tuishui/pici.html"
+			},
+			{
+				"name" : "预申报",
+				"url" : "tuishui/yushenbao.html"
+			},
+			{
+				"name" : "正式申报",
+				"url" : "tuishui/zhengshi.html"
+			},
+			{
+				"name" : "申报管理",
+				"url" : "tuishui/shenbao.html"
+			}
+		]
+	},
+	{
+		"name" : "统计分析",
+		"leftIcon" : "l fa fa-bar-chart",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "报关单统计",
+				"url" : "statistics/baoguandan.html"
+			},
+			{
+				"name" : "合同统计",
+				"url" : "statistics/hetong.html"
+			},
+			{
+				"name" : "物资统计",
+				"url" : "statistics/wuzi.html"
+			},
+			{
+				"name" : "申报统计",
+				"url" : "statistics/shenbao.html"
+			}
+		]
+	},
+	{
+		"name" : "报关单管理",
+		"leftIcon" : "l fa fa-linode",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "预录入报关单",
+				"url" : "guandan/yuluru.html"
+			},
+			{
+				"name" : "报关单管理",
+				"url" : "guandan/guandan.html"
+			}
+		]
+	},
+	{
+		"name" : "票据管理",
+		"leftIcon" : "l fa fa-ticket",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "开票通知",
+				"url" : "piaoju/tongzhi.html"
+			},
+			{
+				"name" : "发票管理",
+				"url" : "piaoju/fapiao.html"
+			},
+			{
+				"name" : "备案管理",
+				"url" : "system/beian.html"
+			}
+		]
+	},
+	{
+		"name" : "付款物流",
+		"leftIcon" : "l fa fa-paypal",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "采购合同付款管理",
+				"url" : "pay/caigoupay.html"
+			},
+			{
+				"name" : "物流合同付款管理",
+				"url" : "pay/wuliupay.html"
+			},
+			{
+				"name" : "物流管理",
+				"url" : "system/wuliu.html"
+			}
+		]
+	},
+	{
+		"name" : "预警管理",
+		"leftIcon" : "l fa fa-exclamation-triangle",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "工期预警",
+				"url" : "yujing/gongqi.html"
+			},
+			{
+				"name" : "任务预警",
+				"url" : "yujing/renwu.html"
+			}
+		]
+	},
+	{
+		"name" : "外汇核销",
+		"leftIcon" : "l fa fa-exchange",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "外汇核销",
+				"url" : "waihui/waihui.html"
+			}
+		]
+	},
+	{
+		"name" : "企业管理",
+		"leftIcon" : "l fa fa-building",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "入驻企业",
+				"url" : "ruzhu/ruzhu.html"
+			}
+		]
+	}
+]

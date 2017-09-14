@@ -1,0 +1,28 @@
+[
+	{
+		"name" : "总部",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "运保部",
+				"open" : true,
+				"children" : [
+					{"name" : "运保一部"},
+					{"name" : "运保二部"}
+				]
+			},
+			{
+				"name" : "采购部",
+				"open" : true,
+				"children" : [
+					{"name" : "采购一部"},
+					{"name" : "采购二部"}
+				]
+			},
+			{
+				"name" : "仓储部"
+			}
+			
+		]
+	}
+]
