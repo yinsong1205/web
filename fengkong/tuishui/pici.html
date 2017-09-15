@@ -7,7 +7,7 @@
 </div>
 
 <!-- 新增弹窗 -->
-<div id="pici_formBox" class="layerFormBox">
+<div id="pici_jqGrid_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-xs-3 control-label">
@@ -51,7 +51,7 @@
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
 				重置
 			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="pici_cacle_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="pici_cacle_btn">
 				取消
 			</button>
 		</p>
@@ -61,289 +61,166 @@
 
 	
 $(function(){
-	var dataUrl = 'data/pici.json';
-	var index = null;
-	var flag = '';
-	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"pici_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"pici_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"pici_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
+	
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/pici.json';//数据源链接
+	var gridId = 'pici_jqGrid'; //表格id
+	var gridPager = 'pici_jqGridPager'; //表格分页id
+	var formBoxId = 'pici_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'pici_save_btn'; //弹窗保存id
+	var gridBoxId = 'pici_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
+		{label : '报关单号', name : 'number', align: 'center', width: 120},
+		{label : '贸易类型', name : 'bus', align: 'center', width:80,search:false},
+		{label : '成交方式 ', name : 'pay', align: 'left', width:80},
+		{label : '出口日期', name : 'outTime', align: 'center', width:80},
+		{label : '关单检验状态', name : 'active', align: 'left', width:80},
+		{label : '发票检验状态', name : 'anotherActive', align: 'center', width: 80},
+		{label : '剩余商品数', name : 'lastNumber', align: 'center', width:80},
+		{label : '发票数量', name : 'fapiao', align: 'center', width:80},
+		{label : '操作人', name : 'ctrol', align: 'center', width:60},
+		{label : '操作时间', name : 'ctrolTime', align: 'center', width:60}
 	];
-
-	//表格数据
-	var gridWidth = $('#pici_gridBox').width();
-	var gridHeight = $('#pici_gridBox').height()-150;
-	$("#pici_jqGrid").jqGrid({
-		
-		hidegrid : false, 
-		altRows : true, 
-		colModel: [{label : '报关单号', name : 'number', align: 'center', width: 120},
-			{label : '贸易类型', name : 'bus', align: 'center', width:80},
-			{label : '成交方式 ', name : 'pay', align: 'left', width:80},
-			{label : '出口日期', name : 'outTime', align: 'center', width:80},
-			{label : '关单检验状态', name : 'active', align: 'left', width:80},
-			{label : '发票检验状态', name : 'anotherActive', align: 'center', width: 80},
-			{label : '剩余商品数', name : 'lastNumber', align: 'center', width:80},
-			{label : '发票数量', name : 'fapiao', align: 'center', width:80},
-			{label : '操作人', name : 'ctrol', align: 'center', width:60},
-			{label : '操作时间', name : 'ctrolTime', align: 'center', width:60}
-			],
-
-		viewrecords: true,
-		loadonce:true,
+	
+	$('#'+gridId).jqGrid({
 		width: gridWidth,
-		//width: 'auto',
-		//width : '100%',
 		height: gridHeight,
-		//height : 'auto',
-		rowNum: 11,
-		rowList:[10,15,20,25],
-		datatype: 'local',
-		pager: "#pici_jqGridPager",
-		caption: fxUtils.addBtn(arr),
-		multiselect: true,
-		rownumbers: true,
-		rownumWidth: 30,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
-		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
 		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '添加',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
 	});
-	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#pici_jqGrid').jqGrid('filterToolbar');
 	
-	fetchGridData();
-	
-	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
-	
-	
-	
-	//弹框取消按钮
-	$('#pici_cacle_btn').on('click',function(){
-		layer.close(index);
-	});
-	
-	
+	//表格添加搜索框按钮
+	$('#'+gridId).jqGrid('filterToolbar');
+	//修改工具条
+	changeSearch(); 
 	
 	//弹框保存按钮
-	$(document).on('click','#pici_save_btn',function(){
-		//var total = jQuery("#pici_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
+	$(document).on('click','#'+dataSaveBtn,function(){
 		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#pici_name').val()),
-				    "relName": $.trim($('#pici_relName').val()),
-				    "company": $.trim($('#pici_company').val()),
-				    "createTime": $.trim($('#pici_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#pici_jqGrid").addRowData(currentNumber,data,'first');
-			
+			var data = getFormData(formBoxId);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
 				
-				jQuery("#pici_jqGrid").setSelection(currentNumber,true);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 				
 			}else{
-				layer.msg('添加失败!');
+				layer.msg('添加失败!',{time:layerCloseTime});
 			}
 		}else if(flag == 'update'){
 			
 			//删除
-			var rowIds = getSelectedRow();
-			jQuery("#pici_jqGrid").delRowData(rowIds[0]);
+			var rowIds = getSelectedRow(gridId);
+			jQuery('#'+gridId).delRowData(rowIds[0]);
 			//添加
-			var data = {
-					"name": $.trim($('#pici_name').val()),
-				    "relName": $.trim($('#pici_relName').val()),
-				    "company": $.trim($('#pici_company').val()),
-				    "cteateTime": $.trim($('#pici_cteateTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#pici_jqGrid").addRowData(currentNumber,data,'first');
+			var data = getFormData(formBoxId);
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			
 			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#pici_jqGrid").setSelection(currentNumber,true);
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 			}else{
-				layer.msg('更新失败!');
+				layer.msg('更新失败!',{time:layerCloseTime});
 			}
 		}
 		
 	});
 	
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
 	
-	//表头新增按钮
-	$(document).on('click','#pici_add_btn',function(){
+	//左下角新增按钮
+	function addLayer(){
 		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#pici_formBox')
+			area: ['50%', '60%'], //宽高
+			content: $('#'+formBoxId)
 		});
-	});
+	}
 	
-	//表头编辑按钮
-	$(document).on('click','#pici_update_btn',function(){
+	//左下角编辑按钮
+	function updateLayer(){
 		flag = 'update';
-		var rowIds = getSelectedRow();
-		
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#pici_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#pici_number').val(rowData.number),
-		    $('#pici_relName').val(rowData.relName),
-		    $('#pici_company').val(rowData.company),
-		    $('#pici_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#pici_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#pici_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#pici_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#pici_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#pici_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#pici_title').val(rowData.title),
-			    $('#pici_parent').val(rowData.parent),
-			    $('#pici_url').val(rowData.url),
-			    $('#pici_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#pici_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
-	
-	//获取json数据
-	function fetchGridData() {
-
-		var gridArrayData = [];
-		// show loading message
-		$("#pici_jqGrid")[0].grid.beginReq();
-		$.ajax({
-			url: dataUrl,
-			success: function(result) {
-				for (var i = 0; i < result.items.length; i++) {
-					var item = result.items[i];
-					
-					gridArrayData.push({
-						number: item.number,
-						bus: item.bus,
-						pay: item.pay,
-						outTime: item.outTime,
-						active: item.active,
-						anotherActive: item.anotherActive,
-						company: item.company,
-						lastNumber: item.lastNumber,
-						fapiao: item.fapiao,
-						ctrol: item.ctrol,
-						ctrolTime: item.ctrolTime
-					});
-
-				}
-				// set the new data
-				$("#pici_jqGrid").jqGrid('setGridParam', {
-					data: gridArrayData
-				});
-				// hide the show message
-				$("#pici_jqGrid")[0].grid.endReq();
-				// refresh the grid
-				$("#pici_jqGrid").trigger('reloadGrid');
-			}
-		});
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['50%', '60%']
+		};
+		layerIndex = updateGridData(setting);
 	}
-	//格式化标题
-	function formatTitle(cellValue, options, rowObject) {
-		return cellValue.substring(0, 50) + "...";
-	};
-	//格式化链接
-	function formatLink(cellValue, options, rowObject) {
-		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
-	};
-	//获取选择的行
-	function getSelectedRow() {
-	    var grid = $("#pici_jqGrid");
-	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
-
-	   return rowKeys;
+	
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
 	}
 	
 	
-	changeSearch(); //修改工具条
+	//-------------------------------//
+	
+	
+	
 	
 });
 
