@@ -78,15 +78,15 @@ $(function(){
 	
 	var colModel = [
 		{label : '报关单号', name : 'number', align: 'center', width: 120},
-		{label : '贸易类型', name : 'bus', align: 'center', width:80,search:false},
-		{label : '成交方式 ', name : 'pay', align: 'left', width:80},
+		{label : '贸易类型', name : 'bus', align: 'center', width:50,search:false},
+		{label : '成交方式 ', name : 'pay', align: 'center', width:50,search:false},
 		{label : '出口日期', name : 'outTime', align: 'center', width:80},
-		{label : '关单检验状态', name : 'active', align: 'left', width:80},
+		{label : '关单检验状态', name : 'active', align: 'center', width:80},
 		{label : '发票检验状态', name : 'anotherActive', align: 'center', width: 80},
-		{label : '剩余商品数', name : 'lastNumber', align: 'center', width:80},
-		{label : '发票数量', name : 'fapiao', align: 'center', width:80},
-		{label : '操作人', name : 'ctrol', align: 'center', width:60},
-		{label : '操作时间', name : 'ctrolTime', align: 'center', width:60}
+		{label : '剩余商品数', name : 'lastNumber', align: 'center', width:60,search:false},
+		{label : '发票数量', name : 'fapiao', align: 'center', width:50,search:false},
+		{label : '操作人', name : 'ctrol', align: 'center', width:60,search:false},
+		{label : '操作时间', name : 'ctrolTime', align: 'center', width:60,search:false}
 	];
 	
 	$('#'+gridId).jqGrid({
@@ -108,7 +108,10 @@ $(function(){
 		pager: '#'+gridPager,
 		colModel: colModel
 		
-	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+	});
+	
+	/*
+	.navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '新增',
@@ -138,7 +141,7 @@ $(function(){
 	}).navSeparatorAdd('#'+gridPager,{
 		sepcontent: '',
 		sepclass : "ui-separator"
-	});
+	});*/
 	
 	//表格添加搜索框按钮
 	$('#'+gridId).jqGrid('filterToolbar');
