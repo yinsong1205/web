@@ -1,4 +1,13 @@
-<!--预录入报关单  -->
+<!--报关单管理  -->
+<style type="text/css">
+	.form-group label{
+	margin-top: 5px;
+	}
+	.form-group .form-control {
+		vertical-align:middle !important; 
+		margin-top: 5px;
+	}
+</style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="guandan_gridBox">
 		<table id="guandan_jqGrid"></table>
@@ -6,56 +15,103 @@
 	</div>
 </div>
 
-<!-- 新增弹窗 -->
-<div id="guandan_formBox" class="layerFormBox">
-	<form class="form-horizontal layerForm">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-3 control-label">
-				角色CODE:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="guandan_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
+<!-- 导入合同 -->
+<div class="layerFormBox" id="guandan_import_formBox"> 
+	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<div class="col-sm-8">
+				<span class="btn btn-default btn-sm fileinput-button">
+					<i class="glyphicon glyphicon-plus"></i>
+					<span>添加合同附件</span>
+					<input type="file" name="files[]" multiple>
+				</span>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				角色名称:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="guandan_name" name="name" class="form-control input-sm"  placeholder="角色名称">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				创建时间:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="guandan_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
-			</div>		
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				所属机构:
-			</label>
-			<div class="col-xs-8">
-				<select id="guandan_company" name="company" class="form-control input-sm">
-					<option value="小笨鸟总部" selected="true">小笨鸟总部</option>
-					<option value="运保一部" >运保一部</option>
-				</select>
-			</div>
-		</div>
-		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="guandan_save_btn">
-				保存
-			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm">
-				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="guandan_cacle_btn">
-				取消
-			</button>
-		</p>
+		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
+	<p class="text-center saveOrCacelBtn"> 
+		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
+</div>
+<!-- 报表统计 -->
+<div class="layerFormBox" id="guandan_tongji_formBox"> 
+	<div class="container-fluid tongji">
+		<div class="row">
+			<form class="form-inline">
+				<div class="form-group">
+					<select name="ywlx" id="" class="form-control input-sm">
+						<option value="" selected="selected">统计方式</option>
+						<option value="">年统计</option>
+						<option value="">月统计</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				</div>
+				<i class="fa fa-minus"></i>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				</div>
+				<button type="button" class="btn btn-info btn-sm">查询</button>
+				<button type="reset" class="btn btn-info btn-sm">重置</button>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered"> 
+					<thead>
+						<tr>
+							<th>时间(年/月)</th>
+							<th>出口口岸</th>
+							<th>运抵国</th>
+							<th>指运港</th>
+							<th>成交方式</th>
+							<th>贸易性质</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2015</td>
+							<td>洋山港</td>
+							<td>乌克兰</td>
+							<td>乌克兰港</td>
+							<td>FOB</td>
+							<td>对外出口</td>
+						</tr>
+						<tr>
+							<td>天津港</td>
+							<td>乌克兰</td>
+							<td>乌克兰港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2016</td>
+							<td>天津港</td>
+							<td>美国</td>
+							<td>美国港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td>天津港</td>
+							<td>美国</td>
+							<td>美国港</td>
+							<td>CFI</td>
+							<td>一般贸易</td>
+						</tr>
+						<tr>
+							<td>合计</td>
+							<td colspan="5" class="text-right">总记录数：4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
+	</div>
 </div>
 <script type="text/javascript">
 
@@ -66,26 +122,26 @@ $(function(){
 	var flag = '';
 	var rowNumber = 1000000;
 	//标题按钮
-	var fxUtils = new FXUtils(); 
+/*	var fxUtils = new FXUtils(); 
 	var arr = [
 		{"text":"导 入","id":"guandan_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"}
-	];
+	];*/
 
 	//表格数据
 	var gridWidth = $('#guandan_gridBox').width();
-	var gridHeight = $('#guandan_gridBox').height()-150;
+	var gridHeight = $('#guandan_gridBox').height()-122;
 	$("#guandan_jqGrid").jqGrid({
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '预录入编号', name : 'number', align: 'center', width: 120},
+		colModel: [{label : '预录入编号', name : 'number', align: 'center', width: 160},
 			{label : '出口口岸', name : 'bus', align: 'center', width:120},
-			{label : '出口日期 ', name : 'outTime', align: 'left', width:120},
+			{label : '出口日期 ', name : 'outTime', align: 'center', width:120},
 			{label : '申报日期', name : 'anotherTime', align: 'center', width:120},
 			{label : '运抵国', name : 'company', align: 'center', width: 120},
 			{label : '指运港', name : 'anotherBus', align: 'center', width:120},
-			{label : '成交方式 ', name : 'pay', align: 'left', width:120},
-			{label : '贸易性质', name : 'property', align: 'center', width:120},
+			{label : '成交方式 ', name : 'pay', align: 'center', width:80},
+			{label : '贸易性质', name : 'property', align: 'center', width:100},
 			{label : '附件', name : 'accessory', align: 'center', width:120}
 			],
 
@@ -100,13 +156,34 @@ $(function(){
 		rowList:[10,15,20,25],
 		datatype: 'local',
 		pager: "#guandan_jqGridPager",
-		caption: fxUtils.addBtn(arr),
+		// caption: fxUtils.addBtn(arr),
 		multiselect: true,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
-	});
+	}).navGrid('#guandan_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+			edit:false,add:false,del:false,search:false,refresh:false
+		}).navButtonAdd('#guandan_jqGridPager',{
+			//caption: '导入合同',
+			caption: '',
+			title : '导入合同',
+			buttonicon : 'fa fa-upload',
+			onClickButton : guandan_importLayer, //调用导入合同函数
+			position : 'last'
+			
+		}).navButtonAdd('#guandan_jqGridPager',{
+			//caption: '统计',
+			caption: '',
+			title : '报表统计',
+			buttonicon : 'fa fa-bar-chart-o',
+			onClickButton : guandan_tongjiLayer, //调用报表统计函数
+			position : 'last'
+			
+		}).navSeparatorAdd("#guandan_jqGridPager",{
+			sepcontent: '',
+			sepclass : "ui-separator"
+		});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#guandan_jqGrid').jqGrid('filterToolbar');
 	
@@ -114,175 +191,64 @@ $(function(){
 	
 	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
 	
-	
+	//导入合同
+	function guandan_importLayer(){
+		index = layer.open({
+			type: 1,
+			title : "导入合同",
+			area: ['80%', '60%'], //宽高
+			content: $('#guandan_import_formBox')
+		});
+	}
+	//报表统计
+	function guandan_tongjiLayer(){
+		index = layer.open({
+			type: 1,
+			title : "报表统计",
+			area: ['80%', '65%'], //宽高
+			content: $('#guandan_tongji_formBox')
+		});
+	}
 	
 	//弹框取消按钮
-	$('#guandan_cacle_btn').on('click',function(){
+	$('.qx').on('click',function(){
 		layer.close(index);
 	});
-	
-	
-	
-	//弹框保存按钮
-	$(document).on('click','#guandan_save_btn',function(){
-		//var total = jQuery("#guandan_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
-		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#guandan_name').val()),
-				    "relName": $.trim($('#guandan_relName').val()),
-				    "company": $.trim($('#guandan_company').val()),
-				    "createTime": $.trim($('#guandan_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#guandan_jqGrid").addRowData(currentNumber,data,'first');
-			
-			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
-				
-				jQuery("#guandan_jqGrid").setSelection(currentNumber,true);
-				
-			}else{
-				layer.msg('添加失败!');
-			}
-		}else if(flag == 'update'){
-			
-			//删除
-			var rowIds = getSelectedRow();
-			jQuery("#guandan_jqGrid").delRowData(rowIds[0]);
-			//添加
-			var data = {
-					"name": $.trim($('#guandan_name').val()),
-				    "relName": $.trim($('#guandan_relName').val()),
-				    "company": $.trim($('#guandan_company').val()),
-				    "cteateTime": $.trim($('#guandan_cteateTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#guandan_jqGrid").addRowData(currentNumber,data,'first');
-			
-			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#guandan_jqGrid").setSelection(currentNumber,true);
-			}else{
-				layer.msg('更新失败!');
-			}
-		}
-		
-	});
-	
-	
-	
-	//表头新增按钮
-	$(document).on('click','#guandan_add_btn',function(){
-		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
-			type: 1,
-			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#guandan_formBox')
+	//搜索框按钮,开启搜索框需要重新调整高度
+
+	/*上传文件的表单*/
+		 $("#guandan_fileupload").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
 		});
-	});
+		/*上传文件的表单*/
+		 $("#guandan_import_formBox").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
 	
-	//表头编辑按钮
-	$(document).on('click','#guandan_update_btn',function(){
-		flag = 'update';
-		var rowIds = getSelectedRow();
-		
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#guandan_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#guandan_number').val(rowData.number),
-		    $('#guandan_relName').val(rowData.relName),
-		    $('#guandan_company').val(rowData.company),
-		    $('#guandan_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#guandan_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#guandan_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#guandan_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#guandan_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#guandan_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#guandan_title').val(rowData.title),
-			    $('#guandan_parent').val(rowData.parent),
-			    $('#guandan_url').val(rowData.url),
-			    $('#guandan_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#guandan_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
 	
 	//获取json数据
 	function fetchGridData() {
@@ -343,4 +309,84 @@ $(function(){
 
 
 	
+</script>
+	
+<!-- 可用的模板来显示文件上传 id是必须不可修改 如果不是图片类型的文件显示默认的文件图标-->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+	<li class="col-md-2 template-upload fade" style="padding:10px">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img src="../images/word.png"/>
+				{% } %}
+				{% if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="../images/xls.png"/>
+				{% } %}
+				{% if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="../images/pdf.png"/>
+				{% } %}
+				{% if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="../images/ppt.png"/>
+				{% } %}
+			</span>
+            <div style="margin-bottom:10px;margin-top:8px;" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>	
+		</div>
+		
+		{% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-info btn-sm start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>上传</span>
+                </button>
+        {% } %}
+        {% if (!i) { %}
+             <button class="btn btn-sm btn-warning cancel">
+                 <i class="glyphicon glyphicon-ban-circle"></i>
+                 <span>删除</span>
+             </button>
+        {% } %}		
+	</li>	
+{% } %}
+</script>
+<!-- 模板来显示文件可供下载 -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <li class="col-md-2 template-download fade" style="padding:10px;margin-bottom:10px; margin-left:0">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;height:122px;overflow:hidden;"  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img width="150" height="150" src="../images/word.png"/>
+				{% }else if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="../images/xls.png"/>
+				{% }else if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="../images/pdf.png"/>
+				{% }else if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="../images/ppt.png"/>
+				{% }else { %}
+					<img width="150" height="150" src="{%=file.thumbnailUrl%}">
+				{% } %}
+			</span>
+			<p>{%=(file.name).substring(0,8)%}&bull;&bull;&bull;</p>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>				
+		</div>
+		
+		<a class="btn btn-info btn-sm " href="{%=file.url%}" download="{%=file.url%}">
+             <i class="glyphicon glyphicon-download"></i>
+             <span>下载</span>
+		</a>
+		{% if (file.deleteUrl) { %}
+            <button class="btn btn-danger btn-sm delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>删除</span>
+            </button>
+            
+        {% } else { %}
+            <button class="btn btn-warning  btn-sm  cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>删除</span>
+            </button>
+        {% } %}
+	</li>
+{% } %}
 </script>

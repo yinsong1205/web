@@ -3,7 +3,7 @@
 	.left{
 		border-left: 1px solid #ccc;
 		border-right: 1px solid #ccc;
-		height: 1000px;
+		height: 700px;
 	}
 	.table{
 		margin-top: 10px;
@@ -18,7 +18,7 @@
 		border:none;
 		outline: none; */
 	}
-	.chosen_gridBox{
+	#chosen_gridBox,#chakan_gridBox{
 		 display: none; 
 	}
 	.ui-jqgrid  {
@@ -32,7 +32,6 @@
 	}
 	.qingdan span,.qingdan2 span{
 		display: block;
-		
 		margin-top: 5px;
 	}
 	.ctro span{
@@ -40,6 +39,16 @@
 		vertical-align:middle !important; 
 		text-align: right;
 		margin-top: 30px;
+	}
+	.chakan {
+		color: #49dacb;
+		text-align: left;
+	}
+	#chakan_gridBox{
+		overflow: hidden;
+	}
+	.text-left{
+		text-align: left !important;
 	}
 </style>
 <div class="container-fluid">
@@ -50,6 +59,13 @@
 	<div class="col-sm-12 plr0 height100 gridBox" id="chosen_gridBox">
 		<table id="chosen_jqGrid"></table>
 		<div id="chosen_jqGridPager"></div>
+		<div class="col-sm-12 text-center">
+			<button class="qx btn btn-info" type="button">确定</button>
+			<button class="qx btn btn-info" type="button">取消</button>
+		</div>
+	</div>
+	<div class="col-sm-12 plr0 height100 gridBox" id="chakan_gridBox">
+		<table id="chakan_jqGrid"></table>
 		<div class="col-sm-12 text-center">
 			<button class="qx btn btn-info" type="button">确定</button>
 			<button class="qx btn btn-info" type="button">取消</button>
@@ -93,26 +109,25 @@
 				<div class="form-group col-sm-6">
 					<label class="col-sm-6 control-label text-right">所属期:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="name"
-								placeholder="所属期">
+						<input type="text" class="form-control input-sm" placeholder="所属期" id="beian_mydata" name="mydata">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
 					<label class="col-sm-6 control-label text-right">关联号:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="id" placeholder="关联号" value="59b5e9a8dc254b4cd74a49f2">
+						<input type="text" class="form-control input-sm" id="beian_relName" name="relName" placeholder="关联号" value="59b5e9a8dc254b4cd74a49f2">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
 					<label class="col-sm-6 control-label text-right">关单号:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="name" placeholder="关单号">
+						<input type="text" class="form-control input-sm" id="beian_guandan" name="guandan" placeholder="关单号">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
 					<label class="col-sm-6 control-label text-right">退税申报日期:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="id" placeholder="退税申报日期" value="59b5e9a8dc254b4cd74a49f2">
+						<input type="text" class="form-control input-sm" id="beian_createTime" name="createTime" placeholder="退税申报日期" value="59b5e9a8dc254b4cd74a49f2">
 					</div>
 				</div>
 				<div class="form-group col-sm-3">
@@ -140,8 +155,76 @@
 						<span>删除</span>
 					</p>
 				</div>
-				<div class="form-group col-sm-3">
-					<span>出口货物明细</span>
+				<div class="form-group col-sm-12">
+					<span class="col-sm-3">出口发票号：21213131</span>
+				</div>
+				<div class="form-group col-sm-12">
+					<span class="col-sm-3">出口货物明细：</span>
+					<span class="col-sm-1 chakan" id="chakan">查看</span>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-xs-2 control-label text-left">
+						其他单证:
+					</label>
+					<div class="col-xs-3 text-left">
+						<input type="text" class="form-control input-sm"  placeholder="其他单证">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						自制出口发票:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" class="form-control input-sm"  placeholder="自制出口发票">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						企业办税员:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" class="form-control input-sm"  placeholder="企业办税员">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						备案日期:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" id="beian_anotherTime" name="anotherTime" class="form-control input-sm"  placeholder="备案日期">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						备案单证出处:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" id="beian_provenance" name="provenance" class="form-control input-sm"  placeholder="备案单证出处">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						页数:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" class="form-control input-sm"  placeholder="页数">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						标志:
+					</label>
+					<div class="col-xs-6 text-left">
+						<input type="text" id="beian_sign" name="sign" class="form-control input-sm"  placeholder="标志">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-xs-4 control-label text-left">
+						备注:
+					</label>
+					<div class="col-xs-8 text-left">
+						<textarea type="text" class="form-control input-sm"  placeholder="备注"></textarea>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -152,7 +235,7 @@
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
 				重置
 			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="beian_cacle_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="beian_cacle_btn">
 				取消
 			</button>
 		</p>
@@ -183,7 +266,7 @@ $(function(){
 		altRows : true, 
 		colModel: [{label : '申请批次', name : 'pici', align: 'center', width: 120},
 			{label : '关联号', name : 'relName', align: 'center', width:120},
-			{label : '所属期', name : 'mydata', align: 'left', width:120},
+			{label : '所属期', name : 'mydata', align: 'center', width:120},
 			{label : '报关单号', name : 'guandan', align: 'center', width:120},
 			{label : '退税申报日期', name : 'createTime', align: 'center', width:120},
 			{label : '备案日期', name : 'anotherTime', align: 'center', width:120},
@@ -220,13 +303,14 @@ $(function(){
 			//caption: '导入合同',
 			caption: '',
 			title : '导出备案',
-			buttonicon : 'fa fa-sign-in',
+			buttonicon : 'fa fa-download',
 			onClickButton : beian_importLayer, //调用导入合同函数
 			position : 'last'
 		}).navSeparatorAdd("#beian_jqGridPager",{
 			sepcontent: '',
 			sepclass : "ui-separator"
 		});
+		//选择
 	$("#chosen_jqGrid").jqGrid({
 			datatype: 'local',
 			loadonce: true,
@@ -248,6 +332,58 @@ $(function(){
 				],
 			pager: "#chosen_jqGridPager"
 		})
+	//查看
+	var grid_data = [{
+		id: "00001",
+		type: "退货出库",
+		pay: "1000",
+		name: "abc",
+		text: "ccc"
+	}, {
+		id: "00002",
+		type: "退货出库",
+		pay: "1000",
+		name: "abc",
+		text: "aaa"
+	}, {
+		id: "00003",
+		type: "退货出库",
+		pay: "1040.06",
+		name: "abc",
+		text: "ddd"
+	}];
+	//查看
+	$("#chakan_jqGrid").jqGrid({
+		data: grid_data, //当 datatype 为"local" 时需填写 
+		datatype: "local", //数据来源，本地数据（local，json,jsonp,xml等）
+		height: 150, //高度，表格高度。可为数值、百分比或'auto'
+		colNames: ['商品编号', '名称 规格型号', '数量及单位', '单价', '总价'],
+		colModel: [{
+				name: 'id',
+				index: 'id', 
+				width: 50
+			}, {
+				name: 'type',
+				index: 'type',
+				width: 50
+			}, {
+				name: 'pay',
+				index: 'pay',
+				width: 50
+			}, {
+				name: 'name',
+				index: 'name',
+				width: 50
+			}, {
+				name: 'text',
+				index: 'text',
+				width: 50
+			}],
+		viewrecords: false, //是否在浏览导航栏显示记录总数
+		autowidth: true
+	});
+
+
 	fetchGridData();
 	
 	haveGridData();
@@ -263,7 +399,67 @@ $(function(){
 				content: $('#beian_formBox')
 		});
 	}
-
+	//弹框保存按钮
+	$(document).on('click','#beian_save_btn',function(){
+		//var total = jQuery("#beian_jqGrid").jqGrid('getGridParam', 'records'); 
+		////console.log(total);
+		//addRowData
+		//rowid,data, position, srcrowid
+		//console.log(flag);
+		if(flag == 'add'){
+			$('#beian_name').val("20170301");
+			var data = {
+					"name": $.trim($('#beian_name').val()),
+				    "relName": $.trim($('#beian_relName').val()),
+				    "mydata": $.trim($('#beian_mydata').val()),
+				    "guandan": $.trim($('#beian_guandan').val()),
+				    "createTime": $.trim($('#beian_createTime').val()),
+				    "anotherTime": $.trim($('#beian_anotherTime').val()),
+				    "provenance": $.trim($('#beian_provenance').val()),
+				    "sign": $.trim($('#beian_sign').val())
+			};
+			var currentNumber = rowNumber++;
+			var result = jQuery("#beian_jqGrid").addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('添加成功');
+				layer.close(index);
+				
+				jQuery("#beian_jqGrid").setSelection(currentNumber,true);
+				
+			}else{
+				layer.msg('添加失败!');
+			}
+		}else if(flag == 'update'){
+			
+			//删除
+			var rowIds = getSelectedRow();
+			jQuery("#beian_jqGrid").delRowData(rowIds[0]);
+			//添加
+			$('#beian_name').val("20170301");
+			var data = {
+					"name": $.trim($('#beian_name').val()),
+				    "relName": $.trim($('#beian_relName').val()),
+				    "mydata": $.trim($('#beian_mydata').val()),
+				    "guandan": $.trim($('#beian_guandan').val()),
+				    "createTime": $.trim($('#beian_createTime').val()),
+				    "anotherTime": $.trim($('#beian_anotherTime').val()),
+				    "provenance": $.trim($('#beian_provenance').val()),
+				    "sign": $.trim($('#beian_sign').val())
+			};
+			var currentNumber = rowNumber++;
+			var result = jQuery("#beian_jqGrid").addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('更新成功');
+				layer.close(index);
+				jQuery("#beian_jqGrid").setSelection(currentNumber,true);
+			}else{
+				layer.msg('更新失败!');
+			}
+		}
+		
+	});
 	// 导出函数
 	function beian_importLayer(){
 		var rowd = getSelectedRow();
@@ -294,7 +490,6 @@ $(function(){
 
 	//选择采购合同
 	$('#chosen').click(function(){
-		$('#chosen_gridBox').show();
 		index = layer.open({
 				type: 1,
 				title : '选择采购合同',
@@ -302,7 +497,15 @@ $(function(){
 				content: $('#chosen_gridBox')
 		});
 	})
-	
+	// 查看
+	$('#chakan').click(function(){
+		index = layer.open({
+				type: 1,
+				area: ['70%', '70%'], //宽高
+				content: $('#chakan_gridBox')
+		});
+	})
+
 	//采购获取json
 	function haveGridData() {
 

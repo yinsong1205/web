@@ -123,17 +123,17 @@ $(function(){
 
     //表格数据
     var gridWidth = $('#fapiao_gridBox').width();
-    var gridHeight = $('#fapiao_gridBox').height()-150;
+    var gridHeight = $('#fapiao_gridBox').height()-122;
     $("#fapiao_jqGrid").jqGrid({
         
         hidegrid : false, 
         altRows : true, 
-        colModel: [{label : '发票代码', name : 'number', align: 'center', width: 120},
-            {label : '发票号码', name : 'anotherNumber', align: 'center', width:80},
-            {label : '通知单号 ', name : 'tongzhi', align: 'left', width:80},
-            {label : '相关单', name : 'baoguan', align: 'center', width:80},
-            {label : '销方名称', name : 'company', align: 'left', width:80},
-            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 80}
+        colModel: [{label : '发票代码', name : 'number', align: 'center', width: 100},
+            {label : '发票号码', name : 'anotherNumber', align: 'center', width:100},
+            {label : '通知单号 ', name : 'tongzhi', align: 'center', width:100},
+            {label : '相关单', name : 'baoguan', align: 'center', width:100},
+            {label : '销方名称', name : 'company', align: 'center', width:60},
+            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 100}
             ],
 
         viewrecords: true,
@@ -167,7 +167,7 @@ $(function(){
             //caption: '导入合同',
             caption: '',
             title : '导入合同',
-            buttonicon : 'fa fa-share',
+            buttonicon : 'fa fa-upload',
             onClickButton : fapiao_importLayer, //调用导入合同函数
             position : 'last'
         }).navButtonAdd('#fapiao_jqGridPager',{

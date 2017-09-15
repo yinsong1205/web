@@ -22,16 +22,16 @@ $(function(){
 
 	//表格数据
 	var gridWidth = $('#tongzhi_gridBox').width();
-	var gridHeight = $('#tongzhi_gridBox').height()-150;
+	var gridHeight = $('#tongzhi_gridBox').height()-122;
 	$("#tongzhi_jqGrid").jqGrid({
 		
 		hidegrid : false, 
 		altRows : true, 
 		colModel: [{label : '开票通知单号', name : 'number', align: 'center', width: 100},
 			{label : '供应商', name : 'company', align: 'center', width:80},
-			{label : '征税率 ', name : 'Tarate', align: 'left', width:80},
+			{label : '征税率 ', name : 'Tarate', align: 'center', width:80},
 			{label : '退税率', name : 'RefundRate', align: 'center', width:80},
-			{label : '开票品名', name : 'name', align: 'left', width:80},
+			{label : '开票品名', name : 'name', align: 'center', width:80},
 			{label : '数量', name : 'quantity', align: 'center', width: 80},
 			{label : '单位', name : 'unit', align: 'center', width:80},
 			{label : '开票金额', name : 'money', align: 'center', width:80},
@@ -70,7 +70,7 @@ $(function(){
 			//caption: '导出',
 		caption: '',
 		title : '导出',
-		buttonicon : 'fa fa-sign-in',
+		buttonicon : 'fa fa-download',
 		onClickButton : tongzhi_importLayer, //调用导出函数
 		position : 'last'
 	}).navSeparatorAdd("#tongzhi_jqGridPager",{
