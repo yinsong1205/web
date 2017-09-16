@@ -7,13 +7,13 @@
 </div>
 
 <!-- 新增弹窗 -->
-<div id="wuliu_formBox" class="layerFormBox">
+<div id="wuliu_jqGrid_formBox" class="layerFormBox zzxx">
 	<form>
 		<div class="row">
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>协议编号:</label>
 				<div class="col-sm-6" style="display: block;top: 0">
-					<input type="email" class="form-control input-sm" id="wuliu_numBer" name="numBer" placeholder="协议编号">
+					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" placeholder="协议编号">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
@@ -33,7 +33,7 @@
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>运输目的地:</label>
 				<div class="col-sm-6" style="display: block;top: 0">
-					<input type="email" class="form-control input-sm" placeholder="运输目的地">
+					<input type="text" class="form-control input-sm" placeholder="运输目的地">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
@@ -43,29 +43,9 @@
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>截止日期:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">截止日期:</label>
 				<div class="col-sm-6">
 					<input type="riqi" id="wuliu_endTime"  name="endTime" class="form-control input-sm" placeholder="截止日期 ">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>运输目的地:</label>
-				<div class="col-sm-6" style="display: block;top: 0">
-					<input type="email" class="form-control input-sm" placeholder="运输目的地">
-				</div>
-			</div>
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>发运地点:</label>
-				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="发运地点 ">
-				</div>
-			</div>
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>截止日期:</label>
-				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="截止日期 ">
 				</div>
 			</div>
 		</div>
@@ -127,7 +107,7 @@
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>保费:</label>
 				<div class="col-sm-6">
-					<input type="email" class="form-control input-sm" placeholder="保费">
+					<input type="text" class="form-control input-sm" placeholder="保费">
 				</div>
 			</div>
 		</div>
@@ -138,7 +118,7 @@
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>委托方:</label>
 				<div class="col-sm-6" style="display: block;top: 0">
-					<input type="email" class="form-control input-sm" id="wuliu_relName"  name="relName" placeholder="委托方">
+					<input type="text" class="form-control input-sm" id="wuliu_relName"  name="relName" placeholder="委托方">
 				</div>
 			</div>
 			<div class="form-group col-sm-6">
@@ -152,13 +132,13 @@
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>签订人:</label>
 				<div class="col-sm-6">
-					<input type="email" id="wuliu_roleName"  name="roleName" class="form-control input-sm" placeholder="签订人">
+					<input type="text" id="wuliu_roleName"  name="roleName" class="form-control input-sm" placeholder="签订人">
 				</div>
 			</div>
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>签订人:</label>
 				<div class="col-sm-6">
-					<input type="email" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm" placeholder="签订人">
+					<input type="text" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm" placeholder="签订人">
 				</div>
 			</div>
 		</div>
@@ -166,13 +146,13 @@
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">联系电话:</label>
 				<div class="col-sm-6">
-					<input type="email" class="form-control input-sm" placeholder="联系电话">
+					<input type="text" class="form-control input-sm" placeholder="联系电话">
 				</div>
 			</div>
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">联系电话:</label>
 				<div class="col-sm-6">
-					<input type="email" class="form-control input-sm" placeholder="联系电话">
+					<input type="text" class="form-control input-sm" placeholder="联系电话">
 				 </div>
 			 </div>
 		 </div>
@@ -181,13 +161,13 @@
 			 <div class="form-group col-sm-6">
 				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">开户行:</label>
 				 <div class="col-sm-6">
-					 <input type="email" class="form-control input-sm" placeholder="开户行">
+					 <input type="text" class="form-control input-sm" placeholder="开户行">
 				 </div>
 			 </div>
 			 <div class="form-group col-sm-6">
 				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">开户行:</label>
 				 <div class="col-sm-6"> 
-				 	<input type="email" class="form-control input-sm" d="inputEmail3" placeholder="开户行">
+				 	<input type="text" class="form-control input-sm" d="inputEmail3" placeholder="开户行">
 				 </div>
 			 </div>
 		 </div>
@@ -196,13 +176,13 @@
 			 <div class="form-group col-sm-6">
 				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">银行账户:</label>
 				 <div class="col-sm-6">
-					 <input type="email" class="form-control input-sm" placeholder="银行账户">
+					 <input type="text" class="form-control input-sm" placeholder="银行账户">
 				 </div>
 			 </div>
 			 <div class="form-group col-sm-6">
 				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">银行账户:</label>
 				 <div class="col-sm-6">
-					 <input type="email" class="form-control input-sm" placeholder="银行账户">
+					 <input type="text" class="form-control input-sm" placeholder="银行账户">
 				 </div>
 			 </div>
 		 </div>
@@ -211,13 +191,13 @@
 			<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">传真:</label>
 				<div class="col-sm-6">
-					<input type="email" class="form-control input-sm" placeholder="传真">
+					<input type="text" class="form-control input-sm" placeholder="传真">
 				</div>
 			</div>
 				<div class="form-group col-sm-6">
 					<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">传真:</label>
 					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" placeholder="传真">
+						<input type="text" class="form-control input-sm" placeholder="传真">
 					</div>
 				</div>
 			</div>
@@ -243,7 +223,7 @@
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
 				重置
 			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="wuliu_cacle_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="wuliu_cacle_btn">
 				取消
 			</button>
 		</p>
@@ -253,26 +233,9 @@
 
 	
 $(function(){
-	var dataUrl = 'data/wuliu.json';
-	var index = null;
-	var flag = '';
-	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"wuliu_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"wuliu_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"wuliu_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
-
-	//表格数据
-	var gridWidth = $('#wuliu_gridBox').width();
-	var gridHeight = $('#wuliu_gridBox').height()-150;
-	$("#wuliu_jqGrid").jqGrid({
-		
-		hidegrid : false, 
-		altRows : true, 
-		colModel: [{label : '协议编号', name : 'numBer', align: 'center', width: 100},
+	
+	/* var colModel= 	 [
+			{label : '协议编号', name : 'numBer', align: 'center', width: 100},
 			{label : '委托方', name : 'relName', align: 'center', width:80},
 			{label : '代理方 ', name : 'company', align: 'left', width:80},
 			{label : '运输方式', name : 'bus', align: 'center', width:80},
@@ -280,273 +243,169 @@ $(function(){
 			{label : '截止时间', name : 'endTime', align: 'center',width:80},
 			{label : '委托方签订人', name : 'roleName', align: 'center',width:80},
 			{label : '代理方签订人', name : 'anthorName', align: 'center',width:80},
-			{label : '结款状态', name : 'status', align: 'center',width:70}],
-
-		viewrecords: true,
-		loadonce:true,
-		width: gridWidth,
-		//width: 'auto',
-		//width : '100%',
-		height: gridHeight,
-		//height : 'auto',
-		rowNum: 11,
-		rowList:[10,15,20,25],
-		datatype: 'local',
-		pager: "#wuliu_jqGridPager",
-		caption: fxUtils.addBtn(arr),
-		multiselect: true,
-		area: ['90%', '80%'],
-		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
-		//loadtext: "Loading...",
-		
-	});
-	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#wuliu_jqGrid').jqGrid('filterToolbar');
+			{label : '结款状态', name : 'status', align: 'center',width:70}
+	]; */
 	
-	fetchGridData();
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/wuliu.json';//数据源链接
+	var gridId = 'wuliu_jqGrid'; //表格id
+	var gridPager = 'wuliu_jqGridPager'; //表格分页id
+	var formBoxId = 'wuliu_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'wuliu_save_btn'; //弹窗保存id
+	var gridBoxId = 'wuliu_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
+		{label : '协议编号', name : 'number', align: 'left', width: 130},
+		{label : '委托方', name : 'relName', align: 'left', width:80},
+		{label : '代理方 ', name : 'company', align: 'left', width:60},
+		{label : '运输方式', name : 'bus', align: 'center', width:60},
+		{label : '签订时间', name : 'createTime', align: 'center', width:70},
+		{label : '截止时间', name : 'endTime', align: 'center',width:70},
+		{label : '委托方签订人', name : 'roleName', align: 'center',width:70},
+		{label : '代理方签订人', name : 'anthorName', align: 'center',width:70},
+		{label : '结款状态', name : 'status', align: 'center',width:60}
+	];
+	
+	$('#'+gridId).jqGrid({
+		width: gridWidth,
+		height: gridHeight,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+		//emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
+		//jsonReader : jsonReader
+		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '添加',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
+	});
+	
+	//表格添加搜索框按钮
+	$('#'+gridId).jqGrid('filterToolbar');
+	//修改工具条
+	changeSearch(); 
 	
 	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
 	
-	
-	
-	//弹框取消按钮
-	$('#wuliu_cacle_btn').on('click',function(){
-		layer.close(index);
-	});
-	
-	
-	
 	//弹框保存按钮
-	$(document).on('click','#wuliu_save_btn',function(){
-		//var total = jQuery("#wuliu_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
+	$(document).on('click','#'+dataSaveBtn,function(){
 		if(flag == 'add'){
-			var data = {
-					"numBer": $.trim($('#wuliu_numBer').val()),
-				    "relName": $.trim($('#wuliu_relName').val()),
-				    "company": $.trim($('#wuliu_company').val()),
-				    "bus": $.trim($('#wuliu_bus').val()),
-				    "createTime": $.trim($('#wuliu_createTime').val()),
-				    "endTime": $.trim($('#wuliu_endTime').val()),
-				    "roleName": $.trim($('#wuliu_roleName').val()),
-				    "anthorName": $.trim($('#wuliu_anthorName').val()),
-				    "status": $.trim($('#wuliu_status').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#wuliu_jqGrid").addRowData(currentNumber,data,'first');
-			
+			var data = getFormData(formBoxId);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
 				
-				jQuery("#wuliu_jqGrid").setSelection(currentNumber,true);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 				
 			}else{
-				layer.msg('添加失败!');
+				layer.msg('添加失败!',{time:layerCloseTime});
 			}
 		}else if(flag == 'update'){
 			
 			//删除
-			var rowIder = getSelectedRow();
-			jQuery("#wuliu_jqGrid").delRowData(rowIder[0]);
+			var rowIds = getSelectedRow(gridId);
+			jQuery('#'+gridId).delRowData(rowIds[0]);
 			//添加
-			var data = {
-					"numBer": $.trim($('#wuliu_numBer').val()),
-				    "relName": $.trim($('#wuliu_relName').val()),
-				    "company": $.trim($('#wuliu_company').val()),
-				    "bus": $.trim($('#wuliu_bus').val()),
-				    "createTime": $.trim($('#wuliu_createTime').val()),
-				    "endTime": $.trim($('#wuliu_endTime').val()),
-				    "roleName": $.trim($('#wuliu_roleName').val()),
-				    "anthorName": $.trim($('#wuliu_anthorName').val()),
-				    "status": $.trim($('#wuliu_status').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#wuliu_jqGrid").addRowData(currentNumber,data,'first');
+			var data = getFormData(formBoxId);
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			
 			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#wuliu_jqGrid").setSelection(currentNumber,true);
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 			}else{
-				layer.msg('更新失败!');
+				layer.msg('更新失败!',{time:layerCloseTime});
 			}
 		}
 		
 	});
 	
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
 	
-	
-	//表头新增按钮
-	$(document).on('click','#wuliu_add_btn',function(){
+	//左下角新增按钮
+	function addLayer(){
 		flag = 'add';
-		$('.form-control').val('');
-		index = layer.open({
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['90%', '80%'], //宽高
-			content: $('#wuliu_formBox')
+			area: ['70%', '80%'], //宽高
+			content: $('#'+formBoxId)
 		});
-	});
+	}
 	
-	//表头编辑按钮
-	$(document).on('click','#wuliu_update_btn',function(){
+	//左下角编辑按钮
+	function updateLayer(){
 		flag = 'update';
-		var rowIder = getSelectedRow();
-		
-		if(rowIder && $.isArray(rowIder) && rowIder.length == 1 ){
-			
-			var rowData = $("#wuliu_jqGrid").getRowData(rowIder[0]);
-			
-			//console.log(rowData);
-							
-			$('#wuliu_numBer').val(rowData.numBer),
-		    $('#wuliu_relName').val(rowData.relName),
-		    $('#wuliu_company').val(rowData.company),
-		   	$('#wuliu_bus').val(rowData.bus),
-		    $('#wuliu_createTime').val(rowData.createTime),
-		    $('#wuliu_endTime').val(rowData.endTime),
-			$('#wuliu_roleName').val(rowData.roleName),
-		    $('#wuliu_anthorName').val(rowData.anthorName),
-		    $('#wuliu_status').val(rowData.status)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['90%', '80%'], //宽高
-				content: $('#wuliu_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#wuliu_delete_btn',function(){
-		var rowIder = getSelectedRow();
-		var len = rowIder.length;
-		if(rowIder && $.isArray(rowIder) && rowIder.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#wuliu_jqGrid").delRowData(rowIder[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#wuliu_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIder = getSelectedRow();
-			
-			if(rowIder && $.isArray(rowIder) && rowIder.length == 1 ){
-				
-				var rowData = $("#wuliu_jqGrid").getRowData(rowIder[0]);
-				
-				//console.log(rowData);
-				
-				$('#wuliu_title').val(rowData.title),
-			    $('#wuliu_parent').val(rowData.parent),
-			    $('#wuliu_url').val(rowData.url),
-			    $('#wuliu_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#wuliu_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
-	
-	//获取json数据
-	function fetchGridData() {
-
-		var gridArrayData = [];
-		// show loading message
-		$("#wuliu_jqGrid")[0].grid.beginReq();
-		$.ajax({
-			url: 'data/wuliu.json',
-			success: function(result) {
-				for (var i = 0; i < result.items.length; i++) {
-					var item = result.items[i];
-					
-					gridArrayData.push({
-						numBer: item.number,
-						relName: item.relName,
-						company: item.company,
-						bus: item.bus,
-						createTime: item.createTime,
-						endTime: item.endTime,
-						roleName: item.roleName,
-						anthorName: item.anthorName,
-						status: item.status
-					});
-
-				}
-				// set the new data
-				$("#wuliu_jqGrid").jqGrid('setGridParam', {
-					data: gridArrayData
-				});
-				// hide the show message
-				$("#wuliu_jqGrid")[0].grid.endReq();
-				// refresh the grid
-				$("#wuliu_jqGrid").trigger('reloadGrid');
-			}
-		});
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['70%', '80%']
+		};
+		layerIndex = updateGridData(setting);
 	}
-	//格式化标题
-	function formatTitle(cellValue, options, rowObject) {
-		return cellValue.substring(0, 50) + "...";
-	};
-	//格式化链接
-	function formatLink(cellValue, options, rowObject) {
-		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
-	};
-	//获取选择的行
-	function getSelectedRow() {
-	    var grid = $("#wuliu_jqGrid");
-	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
-
-	   return rowKeys;
+	
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
 	}
 	
 	
-	changeSearch(); //修改工具条
+	//-------------------------------//
 	
 });
 
