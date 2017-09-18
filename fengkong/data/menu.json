@@ -33,6 +33,10 @@
 			{
 				"name" : "出口合同管理",
 				"url" : "hetong/chukou.html"
+			},
+			{
+				"name" : "物流运输管理",
+				"url" : "hetong/wuliu.html"
 			}
 		]
 	},
@@ -117,7 +121,7 @@
 		]
 	},
 	{
-		"name" : "付款物流",
+		"name" : "付款管理",
 		"leftIcon" : "l fa fa-paypal",
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
@@ -128,10 +132,6 @@
 			{
 				"name" : "物流合同付款管理",
 				"url" : "pay/wuliupay.html"
-			},
-			{
-				"name" : "物流管理",
-				"url" : "system/wuliu.html"
 			}
 		]
 	},
