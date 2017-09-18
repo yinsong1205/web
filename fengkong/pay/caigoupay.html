@@ -6,57 +6,6 @@
 	</div>
 </div>
 
-<!-- 新增弹窗 -->
-<div id="capay_formBox" class="layerFormBox">
-	<form class="form-horizontal layerForm">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-3 control-label">
-				角色CODE:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="capay_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				角色名称:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="capay_name" name="name" class="form-control input-sm"  placeholder="角色名称">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				创建时间:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="capay_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
-			</div>		
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				所属机构:
-			</label>
-			<div class="col-xs-8">
-				<select id="capay_company" name="company" class="form-control input-sm">
-					<option value="小笨鸟总部" selected="true">小笨鸟总部</option>
-					<option value="运保一部" >运保一部</option>
-				</select>
-			</div>
-		</div>
-		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="capay_save_btn">
-				保存
-			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm">
-				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="capay_cacle_btn">
-				取消
-			</button>
-		</p>
-	</form>
-</div>
 <script type="text/javascript">
 
 	
@@ -65,24 +14,16 @@ $(function(){
 	var index = null;
 	var flag = '';
 	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"capay_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"capay_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"capay_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
-
 	//表格数据
 	var gridWidth = $('#capay_gridBox').width();
-	var gridHeight = $('#capay_gridBox').height()-150;
+	var gridHeight = $('#capay_gridBox').height()-122;
 	$("#capay_jqGrid").jqGrid({
 		
 		hidegrid : false, 
 		altRows : true, 
 		colModel: [{label : '合同编号', name : 'number', align: 'center', width: 120},
 			{label : '合同名称', name : 'name', align: 'center', width:80},
-			{label : '合同金额 ', name : 'money', align: 'left', width:80},
+			{label : '合同金额 ', name : 'money', align: 'center', width:80},
 			{label : '实付金额', name : 'pay', align: 'center', width:80},
 			{label : '剩余金额', name : 'last', align: 'center', width:80},
 			{label : '结款状态', name : 'active', align: 'center', width:80}
@@ -98,7 +39,6 @@ $(function(){
 		rowList:[10,15,20,25],
 		datatype: 'local',
 		pager: "#capay_jqGridPager",
-		caption: fxUtils.addBtn(arr),
 		multiselect: true,
 		rownumbers: true,
 		rownumWidth: 30,
@@ -106,6 +46,19 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
+	}).navGrid('#capay_jqGridPager',{ 
+	// the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#capay_jqGridPager',{
+			//caption: '导出',
+		caption: '',
+		title : '结算',
+		buttonicon : 'fa fa-paypal',
+		onClickButton : caigoupay_importLayer, //调用导出函数
+		position : 'last'
+	}).navSeparatorAdd("#capay_jqGridPager",{
+			sepcontent: '',
+			sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#capay_jqGrid').jqGrid('filterToolbar');
@@ -113,121 +66,28 @@ $(function(){
 	fetchGridData();
 	
 	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
-	
-	
-	
-	//弹框取消按钮
-	$('#capay_cacle_btn').on('click',function(){
-		layer.close(index);
-	});
-	
-	
-	
-	//弹框保存按钮
-	$(document).on('click','#capay_save_btn',function(){
-		//var total = jQuery("#capay_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
-		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#capay_name').val()),
-				    "relName": $.trim($('#capay_relName').val()),
-				    "company": $.trim($('#capay_company').val()),
-				    "createTime": $.trim($('#capay_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#capay_jqGrid").addRowData(currentNumber,data,'first');
-			
-			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
-				
-				jQuery("#capay_jqGrid").setSelection(currentNumber,true);
-				
-			}else{
-				layer.msg('添加失败!');
-			}
-		}else if(flag == 'update'){
-			
+	// 结算函数
+	function caigoupay_importLayer(){
+		var rowd = getSelectedRow();
+		var len = rowd.length;
+		if(rowd && $.isArray(rowd) && rowd.length>0){
 			//删除
-			var rowIds = getSelectedRow();
-			jQuery("#capay_jqGrid").delRowData(rowIds[0]);
-			//添加
-			var data = {
-					"name": $.trim($('#capay_name').val()),
-				    "relName": $.trim($('#capay_relName').val()),
-				    "company": $.trim($('#capay_company').val()),
-				    "cteateTime": $.trim($('#capay_cteateTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#capay_jqGrid").addRowData(currentNumber,data,'first');
-			
-			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#capay_jqGrid").setSelection(currentNumber,true);
-			}else{
-				layer.msg('更新失败!');
-			}
-		}
-		
-	});
-	
-	
-	//表头新增按钮
-	$(document).on('click','#capay_add_btn',function(){
-		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
-			type: 1,
-			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#capay_formBox')
-		});
-	});
-	
-	//表头编辑按钮
-	$(document).on('click','#capay_update_btn',function(){
-		flag = 'update';
-		var rowIds = getSelectedRow();
-		
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#capay_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#capay_number').val(rowData.number),
-		    $('#capay_relName').val(rowData.relName),
-		    $('#capay_company').val(rowData.company),
-		    $('#capay_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#capay_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#capay_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
+			var deletindex = layer.confirm('确定要结算吗？', {
 			  btn: ['确定','取消'] //按钮
 			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#capay_jqGrid").delRowData(rowIds[0]);  
+				/*for(var i=0; i<len; i++){
+					jQuery("#yulu_jqGrid").delRowData(rowd[0]);  
+				}*/
+			    var rowIds = getSelectedRow();
+				if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+					
+					var rowData = $("#capay_jqGrid").getRowData(rowIds[0]);
+					
+				    $('#capay_pay').val(rowData.last),
+				    $('#capay_last').val("0"),
+				    $('#capay_active').val("已结清")
 				}
-			    layer.msg('删除成功', {icon: 1});
+			    layer.msg('结算成功', {icon: 1});
 			}, function(){
 			  	layer.close(deletindex);
 			});
@@ -235,53 +95,13 @@ $(function(){
 		}else{
 			layer.msg('请选择记录!');
 		}
-		
-	});
+	}
 	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#capay_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#capay_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#capay_title').val(rowData.title),
-			    $('#capay_parent').val(rowData.parent),
-			    $('#capay_url').val(rowData.url),
-			    $('#capay_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#capay_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
+	
+	//弹框取消按钮
+	$('#capay_cacle_btn').on('click',function(){
+		layer.close(index);
+	});
 	
 	//获取json数据
 	function fetchGridData() {

@@ -1,61 +1,9 @@
-<!--备案管理  -->
+<!--外汇核销  -->
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="waihui_gridBox">
 		<table id="waihui_jqGrid"></table>
 		<div id="waihui_jqGridPager"></div>
 	</div>
-</div>
-
-<!-- 新增弹窗 -->
-<div id="waihui_formBox" class="layerFormBox">
-	<form class="form-horizontal layerForm">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-3 control-label">
-				角色CODE:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="waihui_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				角色名称:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="waihui_name" name="name" class="form-control input-sm"  placeholder="角色名称">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				创建时间:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="waihui_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
-			</div>		
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				所属机构:
-			</label>
-			<div class="col-xs-8">
-				<select id="waihui_company" name="company" class="form-control input-sm">
-					<option value="小笨鸟总部" selected="true">小笨鸟总部</option>
-					<option value="运保一部" >运保一部</option>
-				</select>
-			</div>
-		</div>
-		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="waihui_save_btn">
-				保存
-			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm">
-				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="waihui_cacle_btn">
-				取消
-			</button>
-		</p>
-	</form>
 </div>
 <script type="text/javascript">
 
@@ -65,13 +13,6 @@ $(function(){
 	var index = null;
 	var flag = '';
 	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"waihui_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"waihui_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"waihui_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
 
 	//表格数据
 	var gridWidth = $('#waihui_gridBox').width();
@@ -82,7 +23,7 @@ $(function(){
 		altRows : true,
 		colModel: [{label : '报关单号', name : 'guandan', align: 'center', width: 120},
 			{label : '贸易方式', name : 'way', align: 'center', width:120},
-			{label : '币制', name : 'moneyway', align: 'left', width:120},
+			{label : '币制', name : 'moneyway', align: 'center', width:120},
 			{label : '报关金额', name : 'aboutmoney', align: 'center', width:120},
 			{label : '已收汇金额', name : 'savemoney', align: 'center', width:120},
 			{label : '剩余金额', name : 'overplus', align: 'center', width:120},
@@ -99,21 +40,59 @@ $(function(){
 		rowList:[10,15,20,25],
 		datatype: 'local',
 		pager: "#waihui_jqGridPager",
-		caption: fxUtils.addBtn(arr),
 		multiselect: true,
-		rownumbers: true,
-		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
+	}).navGrid('#waihui_jqGridPager',{ 
+	// the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#waihui_jqGridPager',{
+			//caption: '导出',
+		caption: '',
+		title : '结算',
+		buttonicon : 'fa fa-paypal',
+		onClickButton : waihui_importLayer, //调用导出函数
+		position : 'last'
+	}).navSeparatorAdd("#waihui_jqGridPager",{
+			sepcontent: '',
+			sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#waihui_jqGrid').jqGrid('filterToolbar');
 	
 	fetchGridData();
-	
-	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+		// 结算函数
+	function waihui_importLayer(){
+		var rowd = getSelectedRow();
+		var len = rowd.length;
+		if(rowd && $.isArray(rowd) && rowd.length>0){
+			//删除
+			var deletindex = layer.confirm('确定要结算吗？', {
+			  btn: ['确定','取消'] //按钮
+			}, function(){
+				/*for(var i=0; i<len; i++){
+					jQuery("#yulu_jqGrid").delRowData(rowd[0]);  
+				}*/
+			    var rowIds = getSelectedRow();
+				if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+					
+					var rowData = $("#waihui_jqGrid").getRowData(rowIds[0]);
+					
+				    $('#waihui_pay').val(rowData.last),
+				    $('#waihui_last').val("0"),
+				    $('#waihui_active').val("已结清")
+				}
+			    layer.msg('结算成功', {icon: 1});
+			}, function(){
+			  	layer.close(deletindex);
+			});
+			
+		}else{
+			layer.msg('请选择记录!');
+		}
+	}
 	
 	
 	
@@ -175,20 +154,7 @@ $(function(){
 		}
 		
 	});
-	
-	
-	
-	//表头新增按钮
-	$(document).on('click','#waihui_add_btn',function(){
-		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
-			type: 1,
-			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#waihui_formBox')
-		});
-	});
+
 	
 	//表头编辑按钮
 	$(document).on('click','#waihui_update_btn',function(){
@@ -216,74 +182,6 @@ $(function(){
 			layer.msg('同时只能选择一条记录!');
 		}
 	});
-	
-	//表头删除按钮
-	$(document).on('click','#waihui_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#waihui_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#waihui_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#waihui_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#waihui_title').val(rowData.title),
-			    $('#waihui_parent').val(rowData.parent),
-			    $('#waihui_url').val(rowData.url),
-			    $('#waihui_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#waihui_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
 	
 	//获取json数据
 	function fetchGridData() {

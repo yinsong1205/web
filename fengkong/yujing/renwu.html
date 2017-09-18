@@ -1,4 +1,4 @@
-<!--备案管理  -->
+<!--任务预警  -->
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwu_gridBox">
 		<table id="renwu_jqGrid"></table>
@@ -6,57 +6,6 @@
 	</div>
 </div>
 
-<!-- 新增弹窗 -->
-<div id="renwu_formBox" class="layerFormBox">
-	<form class="form-horizontal layerForm">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-3 control-label">
-				角色CODE:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="renwu_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				角色名称:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="renwu_name" name="name" class="form-control input-sm"  placeholder="角色名称">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				创建时间:
-			</label>
-			<div class="col-xs-8">
-				<input type="text" id="renwu_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
-			</div>		
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				所属机构:
-			</label>
-			<div class="col-xs-8">
-				<select id="renwu_company" name="company" class="form-control input-sm">
-					<option value="小笨鸟总部" selected="true">小笨鸟总部</option>
-					<option value="运保一部" >运保一部</option>
-				</select>
-			</div>
-		</div>
-		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="renwu_save_btn">
-				保存
-			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm">
-				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="renwu_cacle_btn">
-				取消
-			</button>
-		</p>
-	</form>
-</div>
 <script type="text/javascript">
 
 	
@@ -82,7 +31,7 @@ $(function(){
 		altRows : true, 
 		colModel: [{label : '任务号', name : 'tasknumber', align: 'center', width: 120},
 			{label : '报关单号', name : 'guandannumber', align: 'center', width:120},
-			{label : '出口国家', name : 'country', align: 'left', width:120},
+			{label : '出口国家', name : 'country', align: 'center', width:120},
 			{label : '所在环节', name : 'type', align: 'center', width:120},
 			{label : '开始时间', name : 'startTime', align: 'center', width:120},
 			{label : '结束时间', name : 'endTime', align: 'center', width:120},
@@ -100,12 +49,9 @@ $(function(){
 		datatype: 'local',
 		pager: "#renwu_jqGridPager",
 		caption: fxUtils.addBtn(arr),
-		multiselect: true,
 		rownumbers: true,
 		rownumWidth: 30,
-		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
-		//loadtext: "Loading...",
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>"
 		
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度

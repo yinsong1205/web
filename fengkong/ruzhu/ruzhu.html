@@ -65,14 +65,7 @@ $(function(){
 	var index = null;
 	var flag = '';
 	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"ruzhu_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"ruzhu_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"ruzhu_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
-
+	var gridPager = 'ruzhu_jqGridPager';
 	//表格数据
 	var gridWidth = $('#ruzhu_gridBox').width();
 	var gridHeight = $('#ruzhu_gridBox').height()-150;
@@ -98,15 +91,66 @@ $(function(){
 		rowNum: 11,
 		rowList:[10,15,20,25],
 		datatype: 'local',
-		pager: "#ruzhu_jqGridPager",
-		caption: fxUtils.addBtn(arr),
+		pager: '#'+gridPager,
 		multiselect: true,
-		rownumbers: true,
-		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '刷新',
+		caption: '',
+		title : '刷新',
+		buttonicon : 'glyphicon-refresh',
+		onClickButton : function(){refresh();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '新增',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '审核',
+		caption: '',
+		title : '审核',
+		buttonicon : 'fa fa-gavel',
+		onClickButton : function(){shenhe();}, //调用审核的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '导入合同',
+		caption: '',
+		title : '导入合同',
+		buttonicon : 'fa fa-upload',
+		onClickButton : function(){importLayer();}, //调用导入合同函数
+		position : 'last'
+			
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '统计',
+		caption: '',
+		title : '报表统计',
+		buttonicon : 'fa fa-bar-chart-o',
+		onClickButton : function(){chukoutongji();}, //调用报表统计的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#ruzhu_jqGrid').jqGrid('filterToolbar');
@@ -176,114 +220,71 @@ $(function(){
 		
 	});
 	
-	
-	
-	//表头新增按钮
-	$(document).on('click','#ruzhu_add_btn',function(){
+	//左下角新增按钮
+	function addLayer(){
 		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#ruzhu_formBox')
+			area: ['98%', '98%'], //宽高
+			content: $('#'+formBoxId)
 		});
-	});
+	}
 	
-	//表头编辑按钮
-	$(document).on('click','#ruzhu_update_btn',function(){
+	//左下角编辑按钮
+	function updateLayer(){
 		flag = 'update';
-		var rowIds = getSelectedRow();
-		
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['98%', '98%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	//审核
+	function shenhe(){
+		var rowIds = getSelectedRow(gridId);
 		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#ruzhu_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#ruzhu_name').val(rowData.name),
-		    $('#ruzhu_relName').val(rowData.relName),
-		    $('#ruzhu_company').val(rowData.company),
-		    $('#ruzhu_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#ruzhu_formBox')
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '审核窗口',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['30%','40%'],
+				content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
 			});
 		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#ruzhu_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#ruzhu_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
 		}
 		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#ruzhu_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#ruzhu_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#ruzhu_title').val(rowData.title),
-			    $('#ruzhu_parent').val(rowData.parent),
-			    $('#ruzhu_url').val(rowData.url),
-			    $('#ruzhu_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#ruzhu_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
+	}
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
+	}
+	//统计
+	function chukoutongji(){
+		commIndex = layer.open({
+			type : 1,
+			title : '报表统计',
+			skin: 'layui-layer-rim',
+			shadeClose: true,
+			area : ['90%','90%'],
+			content : $('#chukou_bbtj')
+		});
+	}
+	//导入合同
+	function importLayer(){
+		commIndex = layer.open({
+			type: 1,
+			title : "导入合同",
+			area: ['80%', '60%'], //宽高
+			content: $('#chukou_import_formBox')
+		});
+	}
 	
 	//获取json数据
 	function fetchGridData() {
