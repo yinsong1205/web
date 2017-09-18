@@ -1,67 +1,103 @@
-<!--预录入报关单  -->
+<!-- 用户管理 -->
 <div class="container-fluid">
-	<div class="col-sm-12 plr0 height100 gridBox" id="yushenbao_gridBox">
-		<table id="yushenbao_jqGrid"></table>
-		<div id="yushenbao_jqGridPager"></div>
+	<div class="col-sm-12 plr0 height100 gridBox" id="renwugridBox">
+		<table id="renwujqGrid"></table>
+		<div id="renwujqGridPager"></div>
 	</div>
 </div>
 
-<!-- 预申报弹窗 -->
-<div id="yushenbao_jqGrid_formBox" class="layerFormBox">
+<!-- 新增弹窗 -->
+<div id="renwujqGrid_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-3 control-label">
-				申报年月:
+		<div class="form-group col-xs-6">
+			<label for="inputEmail3" class="col-xs-4 control-label">
+				登录名称:
 			</label>
 			<div class="col-xs-8">
-				<input type="text"  name="outTime" class="form-control input-sm" readonly="readonly" placeholder="申报年月">
+				<input type="text" id="renwuname" name="name" class="form-control input-sm"  placeholder="登录名称">
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				申报批次:
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				真实名字:
 			</label>
 			<div class="col-xs-8">
-				<input type="text"  name="pici" class="form-control input-sm" readonly="readonly" placeholder="申报批次">
+				<input type="text" id="renwurelName" name="relName" class="form-control input-sm"  placeholder="真实名字">
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label sr-only">
-				申报结果:
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				用户邮箱:
 			</label>
-			<div class="col-xs-offset-3 col-xs-8">
-				申报成功
+			<div class="col-xs-8">
+				<input type="text" id="renwuemail" name="email"  class="form-control input-sm"  placeholder="用户邮箱">
 			</div>
 		</div>
-		
-		<!-- <div class="form-group">
-			<label class="col-xs-3 control-label">
-				创建时间:
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				电话:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" id="yushenbao_createTime" name="createTime" class="form-control input-sm"  placeholder="创建时间">
-			</div>		
+				<input type="text" id="renwutel" name="tel"  class="form-control input-sm"  placeholder="电话">
+			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">
-				所属机构:
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>所属单位:
 			</label>
 			<div class="col-xs-8">
-				<select id="yushenbao_company" name="company" class="form-control input-sm">
-					<option value="小笨鸟总部" selected="true">小笨鸟总部</option>
-					<option value="运保一部" >运保一部</option>
+				<select id="renwucompany" name="company" class="form-control input-sm">
+					<option value="小笨鸟总部">小笨鸟总部</option>
+					<option value="财务一部">财务一部</option>
+					<option value="运保一部" selected="true">运保一部</option>
 				</select>
 			</div>
-		</div> -->
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>用户状态:
+			</label>
+			<div class="col-xs-8">
+				<select id="renwustatus" name="status" class="form-control input-sm">
+					<option value="可用" selected="selected">可用</option>
+					<option value="不可用">不可用</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>权限级别:
+			</label>
+			<div class="col-xs-8">
+				
+				<select id="renwuauthorLevel" name="authorLevel" class="form-control input-sm">
+					<option value="小笨鸟总部">小笨鸟总部</option>
+					<option value="财务一部" selected="true">财务一部</option>
+					<option value="运保一部">运保一部</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>角色:
+			</label>
+			<div class="col-xs-8">
+				<select name="roleName"  class="form-control input-sm">
+					<option value="系统管理员" >系统管理员</option>
+					<option value="来宾">来宾</option>
+					<option value="普通用户" selected="true">普通用户</option>
+				</select>
+			</div>
+		</div>
 		<p class="text-center">
-			<!-- <button type="button" class="saveBtn btn btn-info btn-sm" id="yushenbao_save_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="renwusave_btn">
 				保存
 			</button>
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
 				重置
-			</button> -->
-			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yushenbao_cacle_btn">
-				确定
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwucacle_btn">
+				取消
 			</button>
 		</p>
 	</form>
@@ -70,28 +106,38 @@
 
 	
 $(function(){
-
+	
 	//-------------------------------//
 	var layerIndex = null; //弹窗id,关闭所用
 	var flag = ''; //添加修改标记
-	var dataUrl = 'data/yushenbao.json';//数据源链接
-	var gridId = 'yushenbao_jqGrid'; //表格id
-	var gridPager = 'yushenbao_jqGridPager'; //表格分页id
-	var formBoxId = 'yushenbao_jqGrid_formBox'; //添加修改窗口元素id
+	var dataUrl = 'data/liucheng_renwu.json';//数据源链接
+	var gridId = 'renwujqGrid'; //表格id
+	var gridPager = 'renwujqGridPager'; //表格分页id
+	var formBoxId = 'renwujqGrid_formBox'; //添加修改窗口元素id
 	var layerCloseClassName = 'qx';
-	var dataSaveBtn = 'yushenbao_save_btn'; //弹窗保存id
-	var gridBoxId = 'yushenbao_gridBox';//表格尺寸
+	var dataSaveBtn = 'renwusave_btn'; //弹窗保存id
+	var gridBoxId = 'renwugridBox';//表格尺寸
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
 	var gridHeight = $('#'+gridBoxId).height()-118;
 	
 	var colModel = [
-		{label : '申报批次', name : 'pici', align: 'center', width: 120},
-		{label : '申报年月', name : 'outTime', align: 'center', width:80},
-		{label : '海关代码', name : 'number', align: 'center', width:80},
-		{label : '企业名称 ', name : 'company', align: 'left', width:80},
-		{label : '创建时间', name : 'createTime', align: 'left', width:80},
-		{label : '申请创建者', name : 'user', align: 'center', width: 80}
+			
+			{label : '任务编号', name : 'id', align: 'center', width:100},
+			{label : '任务名称 ', name : 'name', align: 'left', width:150},
+			{label : '出口口岸', name : 'kouan', align: 'center', width:130},
+			{label : '创建日期', name : 'createTime', align: 'center', width:70, search:false},
+			{label : '流程处理', name : 'liucheng', align: 'center',width:80, search:false},
+			{label : '操作', name : 'operation', align: 'center',width:80, search:false}
+			
+/* 			
+id :
+name:
+kouan :
+createTime :
+liucheng:
+operation:	 */
+	
 	];
 	
 	$('#'+gridId).jqGrid({
@@ -119,17 +165,6 @@ $(function(){
 	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
 	}).navButtonAdd('#'+gridPager,{
-		//caption: '预申报',
-		caption: '',
-		title : '预申报',
-		buttonicon : 'fa fa-paperclip',
-		onClickButton : function(){yushenbao();}, //调用预申报的函数
-		position : 'last'
-		
-	});
-	
-	
-	/* .navButtonAdd('#'+gridPager,{
 		//caption: '新增',
 		caption: '',
 		title : '添加',
@@ -157,7 +192,7 @@ $(function(){
 	}).navSeparatorAdd('#'+gridPager,{
 		sepcontent: '',
 		sepclass : "ui-separator"
-	}); */
+	});
 	
 	//表格添加搜索框按钮
 	$('#'+gridId).jqGrid('filterToolbar');
@@ -209,7 +244,7 @@ $(function(){
 	});
 	
 	//左下角新增按钮
-	/* function addLayer(){
+	function addLayer(){
 		flag = 'add';
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
@@ -218,7 +253,7 @@ $(function(){
 			area: ['50%', '60%'], //宽高
 			content: $('#'+formBoxId)
 		});
-	} */
+	}
 	
 	//左下角编辑按钮
 	function updateLayer(){
@@ -241,28 +276,8 @@ $(function(){
 	//-------------------------------//
 	
 	
-	function yushenbao(){
-		var rowIds = getSelectedRow(gridId);
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			var rowData = $('#'+gridId).getRowData(rowIds[0]);
-			setFormData(formBoxId,rowData);
-			layerIndex = layer.open({
-				type: 1,
-				title : '申报结果',
-				area: ['40%','50%'], //宽高
-				content: $('#'+formBoxId)
-			});
-		}else{
-			layer.msg('只能选择一条记录进行申报!',{time:layerCloseTime});
-		}
-	}
-	
-	
 });
 
 
 	
 </script>
-
-
-

@@ -122,7 +122,11 @@ $(function(){
 	var gridHeight = $('#'+gridBoxId).height()-118;
 	
 	var colModel = [
-		{label : '登录名', name : 'name', align: 'center', width: 100},
+			{label : '登录名', name : 'name', align: 'center', width: 100,
+				searchoptions : {
+					sopt : ['cn']
+				}
+			},
 			{label : '真实姓名', name : 'relName', align: 'center', width:100},
 			{label : '邮箱地址 ', name : 'email', align: 'left', width:150},
 			{label : '电话', name : 'tel', align: 'center', width:130},
@@ -139,7 +143,18 @@ $(function(){
 				}*/
 			},
 			{label : '账户状态', name : 'status', align: 'center',width:50, search:false},
-			{label : '创建时间', name : 'createTime', align: 'center',width:100}
+			{label : '创建时间', name : 'createTime', align: 'center',width:100,
+				searchoptions : {
+					dataInit: function(e){
+						$(e).on('click',function(){
+							WdatePicker({
+								dateFmt : 'yyyy-MM',
+								readOnly : true
+							});
+						});
+					}
+				}
+			}
 	];
 	
 	$('#'+gridId).jqGrid({
