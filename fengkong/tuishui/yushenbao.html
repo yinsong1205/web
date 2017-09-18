@@ -6,26 +6,35 @@
 	</div>
 </div>
 
-<!-- 新增弹窗 -->
-<div id="yushenbao_formBox" class="layerFormBox">
+<!-- 预申报弹窗 -->
+<div id="yushenbao_jqGrid_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-xs-3 control-label">
-				角色CODE:
+				申报年月:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" id="yushenbao_relName" name="relName" class="form-control input-sm"  placeholder="角色CODE">
+				<input type="text"  name="outTime" class="form-control input-sm" readonly="readonly" placeholder="申报年月">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">
-				角色名称:
+				申报批次:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" id="yushenbao_name" name="name" class="form-control input-sm"  placeholder="角色名称">
+				<input type="text"  name="pici" class="form-control input-sm" readonly="readonly" placeholder="申报批次">
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-xs-3 control-label sr-only">
+				申报结果:
+			</label>
+			<div class="col-xs-offset-3 col-xs-8">
+				申报成功
+			</div>
+		</div>
+		
+		<!-- <div class="form-group">
 			<label class="col-xs-3 control-label">
 				创建时间:
 			</label>
@@ -43,16 +52,16 @@
 					<option value="运保一部" >运保一部</option>
 				</select>
 			</div>
-		</div>
+		</div> -->
 		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="yushenbao_save_btn">
+			<!-- <button type="button" class="saveBtn btn btn-info btn-sm" id="yushenbao_save_btn">
 				保存
 			</button>
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
 				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="yushenbao_cacle_btn">
-				取消
+			</button> -->
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yushenbao_cacle_btn">
+				确定
 			</button>
 		</p>
 	</form>
@@ -61,279 +70,193 @@
 
 	
 $(function(){
-	var dataUrl = 'data/yushenbao.json';
-	var index = null;
-	var flag = '';
-	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"预 申 报","id":"yushenbao_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"yushenbao_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"yushenbao_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
 
-	//表格数据
-	var gridWidth = $('#yushenbao_gridBox').width();
-	var gridHeight = $('#yushenbao_gridBox').height()-150;
-	$("#yushenbao_jqGrid").jqGrid({
-		
-		hidegrid : false, 
-		altRows : true, 
-		colModel: [{label : '申报批次', name : 'pici', align: 'center', width: 120},
-			{label : '申报年月', name : 'outTime', align: 'center', width:80},
-			{label : '海关代码', name : 'number', align: 'center', width:80},
-			{label : '企业名称 ', name : 'company', align: 'left', width:80},
-			{label : '创建时间', name : 'createTime', align: 'left', width:80},
-			{label : '申请创建者', name : 'user', align: 'center', width: 80}
-			],
-		viewrecords: true,
-		loadonce:true,
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/yushenbao.json';//数据源链接
+	var gridId = 'yushenbao_jqGrid'; //表格id
+	var gridPager = 'yushenbao_jqGridPager'; //表格分页id
+	var formBoxId = 'yushenbao_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'yushenbao_save_btn'; //弹窗保存id
+	var gridBoxId = 'yushenbao_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
+		{label : '申报批次', name : 'pici', align: 'center', width: 120},
+		{label : '申报年月', name : 'outTime', align: 'center', width:80},
+		{label : '海关代码', name : 'number', align: 'center', width:80},
+		{label : '企业名称 ', name : 'company', align: 'left', width:80},
+		{label : '创建时间', name : 'createTime', align: 'left', width:80},
+		{label : '申请创建者', name : 'user', align: 'center', width: 80}
+	];
+	
+	$('#'+gridId).jqGrid({
 		width: gridWidth,
-		//width: 'auto',
-		//width : '100%',
 		height: gridHeight,
-		//height : 'auto',
-		rowNum: 11,
-		rowList:[10,15,20,25],
-		datatype: 'local',
-		pager: "#yushenbao_jqGridPager",
-		caption: fxUtils.addBtn(arr),
-		multiselect: true,
-		rownumbers: true,
-		rownumWidth: 30,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
+		//emptyrecords: "No records to view",
 		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
+		//jsonReader : jsonReader
+		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '预申报',
+		caption: '',
+		title : '预申报',
+		buttonicon : 'fa fa-paperclip',
+		onClickButton : function(){yushenbao();}, //调用预申报的函数
+		position : 'last'
 		
 	});
-	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#yushenbao_jqGrid').jqGrid('filterToolbar');
 	
-	fetchGridData();
+	
+	/* .navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '添加',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
+	}); */
+	
+	//表格添加搜索框按钮
+	$('#'+gridId).jqGrid('filterToolbar');
+	//修改工具条
+	changeSearch(); 
 	
 	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
 	
-	
-	
-	//弹框取消按钮
-	$('#yushenbao_cacle_btn').on('click',function(){
-		layer.close(index);
-	});
-	
-	
-	
 	//弹框保存按钮
-	$(document).on('click','#yushenbao_save_btn',function(){
-		//var total = jQuery("#yushenbao_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
+	$(document).on('click','#'+dataSaveBtn,function(){
 		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#yushenbao_name').val()),
-				    "relName": $.trim($('#yushenbao_relName').val()),
-				    "company": $.trim($('#yushenbao_company').val()),
-				    "createTime": $.trim($('#yushenbao_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#yushenbao_jqGrid").addRowData(currentNumber,data,'first');
-			
+			var data = getFormData(formBoxId);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
 				
-				jQuery("#yushenbao_jqGrid").setSelection(currentNumber,true);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 				
 			}else{
-				layer.msg('添加失败!');
+				layer.msg('添加失败!',{time:layerCloseTime});
 			}
 		}else if(flag == 'update'){
 			
 			//删除
-			var rowIds = getSelectedRow();
-			jQuery("#yushenbao_jqGrid").delRowData(rowIds[0]);
+			var rowIds = getSelectedRow(gridId);
+			jQuery('#'+gridId).delRowData(rowIds[0]);
 			//添加
-			var data = {
-					"name": $.trim($('#yushenbao_name').val()),
-				    "relName": $.trim($('#yushenbao_relName').val()),
-				    "company": $.trim($('#yushenbao_company').val()),
-				    "cteateTime": $.trim($('#yushenbao_cteateTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#yushenbao_jqGrid").addRowData(currentNumber,data,'first');
+			var data = getFormData(formBoxId);
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			
 			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#yushenbao_jqGrid").setSelection(currentNumber,true);
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 			}else{
-				layer.msg('更新失败!');
+				layer.msg('更新失败!',{time:layerCloseTime});
 			}
 		}
 		
 	});
 	
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
 	
-	//表头新增按钮
-	$(document).on('click','#yushenbao_add_btn',function(){
+	//左下角新增按钮
+	/* function addLayer(){
 		flag = 'add';
-		$('.form-control').val('');
-		index = parent.layer.open({
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['60%', '70%'], //宽高
-			content: $('#yushenbao_formBox')
+			area: ['50%', '60%'], //宽高
+			content: $('#'+formBoxId)
 		});
-	});
-	
-	//表头编辑按钮
-	$(document).on('click','#yushenbao_update_btn',function(){
-		flag = 'update';
-		var rowIds = getSelectedRow();
-		
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#yushenbao_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#yushenbao_number').val(rowData.number),
-		    $('#yushenbao_relName').val(rowData.relName),
-		    $('#yushenbao_company').val(rowData.company),
-		    $('#yushenbao_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#yushenbao_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
-	});
-	
-	//表头删除按钮
-	$(document).on('click','#yushenbao_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#yushenbao_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#yushenbao_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#yushenbao_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#yushenbao_title').val(rowData.title),
-			    $('#yushenbao_parent').val(rowData.parent),
-			    $('#yushenbao_url').val(rowData.url),
-			    $('#yushenbao_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#yushenbao_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
 	} */
 	
-	//获取json数据
-	function fetchGridData() {
-
-		var gridArrayData = [];
-		// show loading message
-		$("#yushenbao_jqGrid")[0].grid.beginReq();
-		$.ajax({
-			url: dataUrl,
-			success: function(result) {
-				for (var i = 0; i < result.items.length; i++) {
-					var item = result.items[i];
-					
-					gridArrayData.push({
-						pici: item.pici,
-						outTime: item.outTime,
-						number: item.number,
-						company: item.company,
-						createTime: item.createTime,
-						user: item.user
-					});
-
-				}
-				// set the new data
-				$("#yushenbao_jqGrid").jqGrid('setGridParam', {
-					data: gridArrayData
-				});
-				// hide the show message
-				$("#yushenbao_jqGrid")[0].grid.endReq();
-				// refresh the grid
-				$("#yushenbao_jqGrid").trigger('reloadGrid');
-			}
-		});
+	//左下角编辑按钮
+	function updateLayer(){
+		flag = 'update';
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['50%', '60%']
+		};
+		layerIndex = updateGridData(setting);
 	}
-	//格式化标题
-	function formatTitle(cellValue, options, rowObject) {
-		return cellValue.substring(0, 50) + "...";
-	};
-	//格式化链接
-	function formatLink(cellValue, options, rowObject) {
-		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
-	};
-	//获取选择的行
-	function getSelectedRow() {
-	    var grid = $("#yushenbao_jqGrid");
-	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
-
-	   return rowKeys;
+	
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
 	}
 	
 	
-	changeSearch(); //修改工具条
+	//-------------------------------//
+	
+	
+	function yushenbao(){
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			setFormData(formBoxId,rowData);
+			layerIndex = layer.open({
+				type: 1,
+				title : '申报结果',
+				area: ['40%','50%'], //宽高
+				content: $('#'+formBoxId)
+			});
+		}else{
+			layer.msg('只能选择一条记录进行申报!',{time:layerCloseTime});
+		}
+	}
+	
 	
 });
 
