@@ -206,4 +206,18 @@ $(document).on('click','.qx',function(){
 	layer.close(commIndex);
 });
 
+//修改密码
+$(document).on('click','#changePasswordBtn',function(){
+	commIndex = layer.open({
+		type : 1,
+		title : '修改密码',
+		area : ['40%','55%'],
+		content : $('#header_change_pwd')
+	});
+});
+
+//确定修改
+$(document).on('click','#headerQuedingPwdBtn',function(){
+	layer.msg('修改成功!',{time:layerCloseTime});
+});
 
