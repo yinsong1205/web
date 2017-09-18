@@ -1,4 +1,4 @@
-<!-- 用户管理 -->
+<!-- 任务管理 -->
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwugridBox">
 		<table id="renwujqGrid"></table>
@@ -6,26 +6,70 @@
 	</div>
 </div>
 
-<!-- 新增弹窗 -->
+<!-- 新增任务弹窗 -->
 <div id="renwujqGrid_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label for="inputEmail3" class="col-xs-4 control-label">
-				登录名称:
+				任务编号:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" id="renwuname" name="name" class="form-control input-sm"  placeholder="登录名称">
+				<input type="text"  name="name" class="form-control input-sm"  placeholder="任务编号">
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				真实名字:
+				任务名称:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" id="renwurelName" name="relName" class="form-control input-sm"  placeholder="真实名字">
+				<input type="text"  name="relName" class="form-control input-sm"  placeholder="任务名称">
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>出口国家:
+			</label>
+			<div class="col-xs-8">
+				<select  name="company" class="form-control input-sm">
+					<option value="小笨鸟总部">美国</option>
+					<option value="财务一部">英国</option>
+					<option value="运保一部" selected="true">法国</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>出口口岸:
+			</label>
+			<div class="col-xs-8">
+				<select  name="company" class="form-control input-sm">
+					<option value="北京机场">北京机场</option>
+					<option value="天津新港" selected="true">天津新港</option>
+					
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				出口日期:
+			</label>
+			<div class="col-xs-8">
+				<input type="text"  name="relName" onclick="WdatePicker();" class="form-control input-sm"  placeholder="出口日期">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-offset-xs-4 col-xs-4">
+				<label class="col-xs-4 control-label">
+					说明:
+				</label>
+				<div class="col-xs-8">
+					<textarea class="form-control input-sm" row="5"  placeholder="说明"></textarea>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- <div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				用户邮箱:
 			</label>
@@ -33,7 +77,7 @@
 				<input type="text" id="renwuemail" name="email"  class="form-control input-sm"  placeholder="用户邮箱">
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				电话:
 			</label>
@@ -41,7 +85,7 @@
 				<input type="text" id="renwutel" name="tel"  class="form-control input-sm"  placeholder="电话">
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				<span class="necessary">*</span>所属单位:
 			</label>
@@ -53,7 +97,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				<span class="necessary">*</span>用户状态:
 			</label>
@@ -64,7 +108,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				<span class="necessary">*</span>权限级别:
 			</label>
@@ -77,7 +121,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group col-xs-6">
+		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
 				<span class="necessary">*</span>角色:
 			</label>
@@ -88,9 +132,9 @@
 					<option value="普通用户" selected="true">普通用户</option>
 				</select>
 			</div>
-		</div>
-		<p class="text-center">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="renwusave_btn">
+		</div> -->
+		<p class="text-left">
+			<!-- <button type="button" class="saveBtn btn btn-info btn-sm" id="renwusave_btn">
 				保存
 			</button>
 			<button type="reset" class="saveBtn btn btn-info btn-sm">
@@ -98,9 +142,19 @@
 			</button>
 			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwucacle_btn">
 				取消
+			</button> -->
+			<button type="button" class="saveBtn btn btn-info btn-sm"  id="changeGoods_btn">
+				选择出口商品
 			</button>
 		</p>
+		<div >
+			<table id="liucheng_changeGood_jqGrid"></table>
+			<div id="liucheng_changeGood_jqGridPager"></div>
+		</div>
 	</form>
+	
+	
+	
 </div>
 <script type="text/javascript">
 
@@ -136,7 +190,8 @@ name:
 kouan :
 createTime :
 liucheng:
-operation:	 */
+operation:	 
+	*/
 	
 	];
 	
@@ -250,7 +305,7 @@ operation:	 */
 		layerIndex = layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['50%', '60%'], //宽高
+			area: ['90%', '90%'], //宽高
 			content: $('#'+formBoxId)
 		});
 	}
@@ -262,7 +317,7 @@ operation:	 */
 			gridId : gridId,
 			formBoxId : formBoxId,
 			title : '修改模块',
-			area : ['50%', '60%']
+			area : ['90%', '90%']
 		};
 		layerIndex = updateGridData(setting);
 	}
@@ -273,11 +328,166 @@ operation:	 */
 	}
 	
 	
-	//-------------------------------//
 	
+	//-------------------------------//
+	$('#changeGoods_btn').on('click',function(){
+		changeGoods();
+	});
+	
+	var changeGoodsIndex = null;
+	//物资清单
+	var wzFlag = false;
+	function changeGoods(){
+		
+		changeGoodsIndex = layer.open({
+			type : 1,
+			title : '选择商品',
+			area : ['70%','99%'],
+			content : $('#changeGoods')
+		});
+		
+		var caigouWidth =  $('#changeGoods').width()-2;
+		var caigouHeight =  $('#changeGoods').height()-148;
+		console.log(caigouHeight);
+		$("#liucheng_wz_jqGrid").jqGrid({
+			url: 'data/wuzi.json',
+			// we set the changes to be made at client side using predefined word clientArray
+			editurl: 'clientArray',
+			datatype: "json",
+			sortname: 'name',
+			sortorder: 'asc',
+			loadonce: true,
+			viewrecords: true,
+			multiselect: true,
+			rownumbers: true,
+			altRows : true,
+			width: caigouWidth,
+			height: caigouHeight,
+			rowNum: 8,
+			colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+				{label : '数量', name : 'number', align: 'center', width:80,search: false},
+				{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
+				{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
+				{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+				{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+				{label : '供货方', name : 'company', align: 'center',width:150},
+				],
+			
+			pager: "#liucheng_wz_jqGridPager"
+		
+		});
+		
+		//$('#liucheng_wz_jqGrid').jqGrid('filterToolbar');
+		if(!wzFlag){
+			/*
+			$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+				edit:false,add:false,del:false,search:false,refresh:false
+			}).navButtonAdd('#caigou_wz_jqGridPager',{
+				//caption: '新增',
+				caption: '',
+				title : '新增',
+				buttonicon : 'glyphicon-plus',
+				onClickButton : addLayer, //调用添加的函数
+				position : 'last'
+				
+			}).navButtonAdd('#caigou_wz_jqGridPager',{
+				//caption: '删除',
+				caption: '',
+				title : '删除',
+				buttonicon : 'glyphicon-trash',
+				onClickButton : deleteLayer, //调用删除的函数
+				position : 'last'
+				
+			}).navButtonAdd('#caigou_wz_jqGridPager',{
+				//caption: '导入合同',
+				caption: '',
+				title : '导入合同',
+				buttonicon : 'fa fa-share',
+				onClickButton : importLayer, //调用导入合同函数
+				position : 'last'
+				
+			}).navSeparatorAdd("#caigou_wz_jqGridPager",{
+				sepcontent: '',
+				sepclass : "ui-separator"
+			});
+			*/
+			changeSearch(); //修改工具条
+			
+			wzFlag = true;
+		}
+	}
+	
+	//选择完商品后
+	$('#changeGoodsNext').on('click',function(){
+		commIndex = layer.confirm('是否要生成报关单？', {
+		  btn: ['是','否'] 
+		}, function(){
+			layer.close(commIndex);
+			layer.close(changeGoodsIndex);
+			showChangeGoods();
+		}, function(){
+			layer.close(commIndex);
+			layer.close(changeGoodsIndex);
+			showChangeGoods();
+		});
+		
+		
+		
+	});
+	
+	function showChangeGoods(){
+		$("#liucheng_changeGood_jqGrid").jqGrid({
+			url: 'data/wuzi.json',
+			// we set the changes to be made at client side using predefined word clientArray
+			editurl: 'clientArray',
+			datatype: "json",
+			sortname: 'name',
+			sortorder: 'asc',
+			loadonce: true,
+			viewrecords: true,
+			multiselect: true,
+			rownumbers: true,
+			altRows : true,
+			width: '100%',
+			height: 300,
+			rowNum: 8,
+			colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+				{label : '数量', name : 'number', align: 'center', width:80,search: false},
+				{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
+				{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
+				{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+				{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+				{label : '供货方', name : 'company', align: 'center',width:150},
+				],
+			
+			pager: "#liucheng_changeGood_jqGridPager"
+		
+		});
+	}
 	
 });
 
 
+
+
 	
 </script>
+
+<!-- 点击选择商品 -->
+<div class="layerFormBox" id="changeGoods" style="padding:0; width:100%; height:100%;">
+	<form class="form-inline" action="" method="" style="padding:15px;">
+		<select  name="company" class="form-control input-sm">
+			<option value="小笨鸟总部">请选择采购合同</option>
+			<option value="财务一部">采购合同1</option>
+			<option value="运保一部" selected="true">采购合同2</option>
+		</select>
+		<input type="text"  name="name" class="form-control input-sm"  placeholder="商品名称">
+		<input type="button" value="查询" class="btn btn-info btn-sm"/>
+		<input type="button" value="下一步" class="btn btn-info btn-sm pull-right" id="changeGoodsNext"/>
+	</form>
+	<table id="liucheng_wz_jqGrid"></table>
+	<div id="liucheng_wz_jqGridPager"></div>
+	
+	
+	
+</div>
