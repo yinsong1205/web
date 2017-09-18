@@ -170,6 +170,17 @@
 				"name" : "入驻企业",
 				"url" : "ruzhu/ruzhu.html"
 			}
+		] 
+	}, 
+	{
+		"name" : "退税流程",
+		"leftIcon" : "l fa fa-building",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "创建任务",
+				"url" : "liucheng/renwu.html"
+			}
 		]
 	}
 ]
