@@ -14,13 +14,6 @@ $(function(){
 	var index = null;
 	var flag = '';
 	var rowNumber = 1000000;
-	//标题按钮
-	var fxUtils = new FXUtils(); 
-	var arr = [
-		{"text":"新 增","id":"renwu_add_btn", "class":"btn btn-info btn-xs","iClass":"fa fa-plus"},
-		{"text":"修 改","id":"renwu_update_btn","class":"btn btn-info btn-xs","iClass":"fa fa-pencil"},
-		{"text":"删 除","id":"renwu_delete_btn","class":"btn btn-info btn-xs","iClass": "fa fa-trash"}
-	];
 
 	//表格数据
 	var gridWidth = $('#renwu_gridBox').width();
@@ -48,7 +41,6 @@ $(function(){
 		rowList:[10,15,20,25],
 		datatype: 'local',
 		pager: "#renwu_jqGridPager",
-		caption: fxUtils.addBtn(arr),
 		rownumbers: true,
 		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>"
@@ -163,73 +155,6 @@ $(function(){
 		}
 	});
 	
-	//表头删除按钮
-	$(document).on('click','#renwu_delete_btn',function(){
-		var rowIds = getSelectedRow();
-		var len = rowIds.length;
-		if(rowIds && $.isArray(rowIds) && rowIds.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要删除吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				for(var i=0; i<len; i++){
-					jQuery("#renwu_jqGrid").delRowData(rowIds[0]);  
-				}
-			    layer.msg('删除成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-		
-	});
-	
-	/* function addLayer(option){
-		
-		flag = option;
-		
-		var title = '添加模块';
-		if(option == 'add'){
-			title = '添加模块';
-			$('.form-control').val('');
-			index = parent.layer.open({
-				type: 1,
-				title : title,
-				area: ['40%', '70%'], 
-				content: $('#renwu_formBox')
-			});
-			
-		}else if(option == 'edit'){
-			
-			//getRowData
-			var rowIds = getSelectedRow();
-			
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				
-				var rowData = $("#renwu_jqGrid").getRowData(rowIds[0]);
-				
-				//console.log(rowData);
-				
-				$('#renwu_title').val(rowData.title),
-			    $('#renwu_parent').val(rowData.parent),
-			    $('#renwu_url').val(rowData.url),
-			    $('#renwu_priority').val(rowData.priority)
-				title = '修改模块';
-				index = layer.open({
-					type: 1,
-					title : title,
-					area: ['40%', '70%'], 
-					content: $('#renwu_formBox')
-				});
-			}else{
-				layer.msg('同时只能选择一条记录!');
-			}
-			
-		}
-		
-	} */
 	
 	//获取json数据
 	function fetchGridData() {

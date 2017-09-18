@@ -67,7 +67,7 @@ text-align: left;
 			</div>
 			<div class="form-group col-xs-6 head">
 				<label class="col-xs-3 control-label">
-					<span class="necessary">*</span>海关编号:
+					海关编号:
 				</label>
 				<div class="col-xs-8">
 					<input type="text" class="form-control input-sm"  placeholder="海关编号">
@@ -75,7 +75,7 @@ text-align: left;
 			</div>
 			<div class="form-group col-xs-3">
 				<label class="col-xs-5 control-label">
-					出口口岸
+					<span class="necessary">*</span>出口口岸
 				</label>
 				<div class="col-xs-7">
 					<input type="text" id="yulu_bus" name="bus" class="form-control input-sm"  placeholder="出口口岸">
@@ -108,7 +108,7 @@ text-align: left;
 
 			<div class="form-group col-xs-3">
 				<label class="col-xs-5 control-label">
-					经营单位
+					<span class="necessary">*</span>经营单位
 				</label>
 				<div class="col-xs-7">
 					<input type="text" class="form-control input-sm"  placeholder="经营单位">
@@ -141,7 +141,7 @@ text-align: left;
 
 			<div class="form-group col-xs-3">
 				<label class="col-xs-5 control-label">
-					发货单位
+					<span class="necessary">*</span>发货单位
 				</label>
 				<div class="col-xs-7">
 					<input type="text" class="form-control input-sm"  placeholder="发货单位">
@@ -605,6 +605,7 @@ $(function(){
 	var dataUrl = 'data/yuluru.json';
 	var flag = '';
 	var rowNumber = 1000000;
+	var gridPager = 'yulu_jqGridPager';
 
 	//表格数据
 	var gridWidth = $('#yulu_gridBox').width();
@@ -634,46 +635,55 @@ $(function(){
 		rowNum: 11,
 		rowList:[10,15,20,25],
 		datatype: 'local',
-		pager: "#yulu_jqGridPager",
+		pager: '#'+gridPager,
 		// caption: fxUtils.addBtn(arr),
 		multiselect: true,
+		multiboxonly: true,
 		rownumbers: true,
 		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
-	}).navGrid('#yulu_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 			edit:false,add:false,del:false,search:false,refresh:false
-		}).navButtonAdd('#yulu_jqGridPager',{
+		}).navButtonAdd('#'+gridPager,{
 				//caption: '新增',
 			caption: '',
 			title : '新增',
 			buttonicon : 'glyphicon-plus',
 			onClickButton : yulu_addLayer, //调用添加的函数
 			position : 'last'
-		}).navButtonAdd('#yulu_jqGridPager',{
+		}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+			caption: '',
+			title : '修改',
+			buttonicon : 'glyphicon-edit',
+			onClickButton : function(){yulu_updateLayer();}, //调用更新的函数
+			position : 'last'
+		
+		}).navButtonAdd('#'+gridPager,{
 			//caption: '删除',
 			caption: '',
 			title : '删除',
 			buttonicon : 'glyphicon-trash',
 			onClickButton : yulu_deleteLayer, //调用删除的函数
 			position : 'last'	
-		}).navButtonAdd('#yulu_jqGridPager',{
+		}).navButtonAdd('#'+gridPager,{
 			//caption: '导入合同',
 			caption: '',
 			title : '导入合同',
 			buttonicon : 'fa fa-upload',
 			onClickButton : yulu_importLayer, //调用导入合同函数
 			position : 'last'
-		}).navButtonAdd('#yulu_jqGridPager',{
+		}).navButtonAdd('#'+gridPager,{
 			//caption: '统计',
 			caption: '',
 			title : '报表统计',
 			buttonicon : 'fa fa-bar-chart-o',
 			onClickButton : yulu_tongjiLayer, //调用报表统计函数
 			position : 'last'
-		}).navSeparatorAdd("#yulu_jqGridPager",{
+		}).navSeparatorAdd('#'+gridPager,{
 			sepcontent: '',
 			sepclass : "ui-separator"
 		});
@@ -816,7 +826,7 @@ $(function(){
 			index = layer.open({
 				type: 1,
 				title : title,
-				area: ['60%', '70%'], //宽高
+				area: ['98%', '98%'], //宽高
 				content: $('#yulu_formBox')
 			});
 		}else{
