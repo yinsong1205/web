@@ -85,6 +85,22 @@
 				"url" : "statistics/shenbao.html"
 			}
 		]
+	}, 
+	{
+		"name" : "退税流程",
+		"leftIcon" : "l fa fa-random",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "创建任务",
+				"url" : "liucheng/renwu.html"
+			},
+			{
+				"id" : "tslc_dbrw",
+				"name" : "待办任务",
+				"url" : "liucheng/dealt.html"
+			}
+		]
 	},
 	{
 		"name" : "报关单管理",
@@ -171,16 +187,5 @@
 				"url" : "ruzhu/ruzhu.html"
 			}
 		] 
-	}, 
-	{
-		"name" : "退税流程",
-		"leftIcon" : "l fa fa-building",
-		"rightIcon" : "r fa fa-angle-right",
-		"children" : [
-			{
-				"name" : "创建任务",
-				"url" : "liucheng/renwu.html"
-			}
-		]
 	}
 ]

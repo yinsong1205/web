@@ -20,8 +20,8 @@ $(function(){
 	//加载左侧信息
 	$('#fkLeft').load('include/left.html');
 	//加载首页
-	//$('#main .con').eq(0).load('include/main.html');
-	$('#main .con').eq(0).load('system/module.html');
+	$('#main .con').eq(0).load('include/main.html');
+	//$('#main .con').eq(0).load('system/module.html');
 	
 	//右侧触发点击
 	$('#fkTabs ul').on('click','li',function(){

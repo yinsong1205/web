@@ -1,8 +1,36 @@
 <!-- 首页 -->
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-12">
-			首页
+		<div class="col-sm-6">
+			<div class="panel panel-info">
+				<div class="panel-heading"><a href="javascript:;" id="main_db_title">待办任务</a></div>
+				<div class="panel-body">
+					<ol class="main_dbrw">
+						<li>上海商品出口合同中货物的分类。</li>
+						<li>XX预报关单的申报着手进行。</li>
+						<li>手机合同的需要开票通知。</li>
+						<li>上海商品出口合同中货物的比较。</li>
+						<li>上海商品出口合同中货物的分类。</li>
+						<li>XX预报关单的申报着手进行。</li>
+						<li>手机合同的需要开票通知。</li>
+						<li>上海商品出口合同中货物的比较。</li>
+						<li>XX预报关单的申报着手进行。</li>
+						<li>手机合同的需要开票通知。</li>
+					</ol>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+<style>
+	.main_dbrw {  /* cursor:pointer; */}
+	.main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }
+</style>
+
+<script>
+	$(function(){
+		$('#main_db_title').on('click',function(){
+			$('#tslc_dbrw').trigger('click');
+		});
+	});
+</script>
