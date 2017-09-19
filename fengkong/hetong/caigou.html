@@ -338,7 +338,7 @@
 			<div class="col-sm-8">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span id="caigou_import_btn_name">添加合同附件</span>
+					<span>添加合同附件</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
@@ -626,22 +626,10 @@
 		
 		//导入合同
 		function importLayer(){
-			$('#caigou_import_btn_name').text('添加合同文件');
 			commIndex = layer.open({
 				type: 1,
 				title : "导入合同",
 				area: ['80%', '60%'], //宽高
-				content: $('#caigou_import_formBox')
-			});
-		}
-		
-		//导入物资
-		function importGoods(){
-			$('#caigou_import_btn_name').text('添加物资文件');
-			commIndex = layer.open({
-				type: 1,
-				title : "导入物资",
-				area: ['60%', '60%'], //宽高
 				content: $('#caigou_import_formBox')
 			});
 		}
@@ -744,22 +732,6 @@
 			});
 			$('#caigou_wz_jqGrid').jqGrid('filterToolbar');
 			if(!wzFlag){
-				
-				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
-					edit:false,add:false,del:false,search:false,refresh:false
-				}).navButtonAdd('#caigou_wz_jqGridPager',{
-					//caption: '导入合同',
-					caption: '',
-					title : '导入物资',
-					buttonicon : 'fa fa-share',
-					onClickButton : function(){importGoods();}, //调用导入合同函数
-					position : 'last'
-					
-				}).navSeparatorAdd("#caigou_wz_jqGridPager",{
-					sepcontent: '',
-					sepclass : "ui-separator"
-				});
-				
 				/*
 				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
 					edit:false,add:false,del:false,search:false,refresh:false

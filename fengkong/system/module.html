@@ -95,10 +95,10 @@ $(function(){
 	var gridHeight = $('#'+gridBoxId).height()-118;
 	
 	var colModel = [
-		{label: '组织名称',name: 'name',width: 100,/*formatter: formatTitle,*/ align: 'center',},
+		{label: '组织名称',name: 'name',width: 80,/*formatter: formatTitle,*/ align: 'center',},
 		{label: '优先级',name: 'priority',width: 35,sorttype: 'integer',align: 'center',search:false},
 		{label: '父模块',name: 'parent',width: 50,sorttype: 'integer',align: 'center'},
-		{label: '模块地址',name: 'url',width: 80,align: 'left',search:false},
+		{label: '模块地址',name: 'url',width: 80,align: 'center',search:false},
 		{label: '操作',name: 'operation',width: 30,align: 'center',search:false,formatter: formatLink,sortable:false}
 	];
 	
