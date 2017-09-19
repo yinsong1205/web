@@ -1,6 +1,6 @@
 <!-- 左侧菜单 -->
 <div class="menus clearfix">
-	<p class="intro text-center">功能菜单</p>
+	<!-- <p class="intro text-center">功能菜单</p> -->
 	<ul class="list-unstyled" id="menuList"></ul>
 </div>
 
@@ -18,6 +18,7 @@
 					var aProperties = {
 							"href" : "javascript:;",
 							"class" : "clearfix",
+							"data-href" : e.url
 					};
 					$a.attr(aProperties);
 					$a.text(e.name);
@@ -122,14 +123,59 @@
 			}
 			
 		});
-/*		$('#menuList').on('click','li>a',function(){
-			var href = $(this).attr('href');
-			if(href != 'javascript:;'){
-				console.log(1);	
-			}else{
-				console.log(2);
+		$('#menuList').on('click','li>a',function(){
+			var title = $.trim($(this).text());
+			var href = $.trim($(this).attr('data-href'));
+			console.log(href);
+			if(href && href != 'undefined' && href != null){
+				//获取标题和链接
+				var title = $.trim($(this).text());
+				var href = $.trim($(this).attr('data-href'));
+				
+				//标记,右侧是否已经存在
+				var flag = false; 
+				var $tabs = $('#fkTabs ul');
+				var $tabsLi = $tabs.find('li');
+				$.each($tabsLi,function(i,e){
+					var newhref = $.trim($(e).find('a').attr('data-href'));
+					if(newhref === href){
+						//去掉右侧所有li标签的当前样式
+						$tabsLi.removeClass('active');
+						$(e).addClass('active');
+						//右侧比较内容显示
+						var index = $(e).index();
+						var $mainCon = $('#main .con');
+						$mainCon.eq(index).addClass('active').siblings().removeClass('active');
+						flag = true;
+					}
+				});
+				
+				//如果不存在
+				if(!flag){
+					//去掉右侧所有li标签的当前样式
+					$tabsLi.removeClass('active');
+					//创建元素
+					var $li = $('<li></li>');
+					$li.attr('class','active');
+					var $a = $('<a></a>');
+					$a.attr('href','javascript:;');
+					$a.attr('data-href',href);
+					$a.text(title);
+					var $i = $('<i></i>');
+					$i.attr('class','fa fa-close');
+					$li.append($a);
+					$li.append($i);
+					//向右侧tab添加元素
+					$tabs.append($li);
+					//右侧内容区加载页面
+					var $main = $('#main');
+					$main.find('.con').removeClass('active');
+					var $con = $('<div></div>');
+					$con.attr('class','con active');
+					$main.append($con.load(href));
+				}	
 			}	
 				
-		})*/
+		})
 	});
 </script>
