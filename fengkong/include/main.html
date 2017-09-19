@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;">任务预警</a></div>
+				<div class="panel-heading"><a href="javascript:;" id="main_rw_title">任务预警</a></div>
 				<div class="panel-body">
 					<a class="fa fa-tasks" id="main_rw_title"></a>
 					<span class="font">12</span>
@@ -68,10 +68,16 @@
 <script>
 	$(function(){
 		$('#main_db_title').on('click',function(){
-			$('#tslc_dbrw').trigger('click');
+			$('#menu_rw_gl').trigger('click');
 		});
 		$('#main_rw_title').on('click',function(){
-			$('#tslc_dbrw').trigger('click');
+			$('#menu_yj_renwu').trigger('click');
+		});
+		$('#main_gq_title').on('click',function(){
+			$('#menu_yj_gq').trigger('click');
+		});
+		$('#main_sh_title').on('click',function(){
+			$('#menu_yj_sh').trigger('click');
 		});
 	});
 </script>

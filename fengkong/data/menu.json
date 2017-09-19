@@ -1,6 +1,7 @@
 [
 	
 	{
+		"id" : "menu_rw_gl",
 		"name" : "任务管理",
 		"url" : "liucheng/renwu.html",
 		"leftIcon" : "l fa fa-cogs"
@@ -89,14 +90,17 @@
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
 			{
+				"id" : "menu_yj_renwu",
 				"name" : "任务预警",
 				"url" : "yujing/renwu.html"
 			},
 			{
+				"id" : "menu_yj_gq",
 				"name" : "工期预警",
 				"url" : "yujing/gongqi.html"
 			},
 			{
+				"id" : "menu_yj_sh",
 				"name" : "收汇预警",
 				"url" : "yujing/shouhuiyujing.html"
 			}
