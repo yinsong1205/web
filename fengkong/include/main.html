@@ -11,12 +11,36 @@
 						<li>手机合同的需要开票通知。</li>
 						<li>上海商品出口合同中货物的比较。</li>
 						<li>上海商品出口合同中货物的分类。</li>
-						<li>XX预报关单的申报着手进行。</li>
-						<li>手机合同的需要开票通知。</li>
-						<li>上海商品出口合同中货物的比较。</li>
-						<li>XX预报关单的申报着手进行。</li>
-						<li>手机合同的需要开票通知。</li>
 					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel panel-info">
+				<div class="panel-heading"><a href="javascript:;">任务预警</a></div>
+				<div class="panel-body">
+					<a class="fa fa-tasks" id="main_rw_title"></a>
+					<span class="font">12</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel panel-info">
+				<div class="panel-heading"><a href="javascript:;" id="main_gq_title">工期预警</a></div>
+				<div class="panel-body">
+					<a class="fa fa-wordpress"></a>
+					<span class="font">54</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel panel-info">
+				<div class="panel-heading"><a href="javascript:;" id="main_sh_title">收汇预警</a></div>
+				<div class="panel-body">
+					<a class="fa fa-exchange"></a>
+					<span class="font">12</span>
 				</div>
 			</div>
 		</div>
@@ -25,11 +49,28 @@
 <style>
 	.main_dbrw {  /* cursor:pointer; */}
 	.main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }
+	.panel-body .fa {
+		cursor:pointer;
+		padding-top: 20px;
+		display: block;
+		text-align: center;
+		font-size: 30px;
+	}
+	.panel-body .font {
+		padding-top: 40px;
+		padding-bottom: 30px;
+		display: block;
+		text-align: center;
+		font-size: 30px;
+	}
 </style>
 
 <script>
 	$(function(){
 		$('#main_db_title').on('click',function(){
+			$('#tslc_dbrw').trigger('click');
+		});
+		$('#main_rw_title').on('click',function(){
 			$('#tslc_dbrw').trigger('click');
 		});
 	});
