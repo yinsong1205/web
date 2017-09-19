@@ -1,16 +1,19 @@
 <!-- 首页 -->
-<div class="container-fluid">
+<div class="container-fluid" id="include_main_box">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" id="main_db_title">待办任务</a></div>
+			<div class="panel panel-info daiban">
+				<div class="panel-heading"><a href="javascript:;" id="main_db_title">任务管理</a><!-- <span class="badge">8</span> --></div>
 				<div class="panel-body">
 					<ol class="main_dbrw">
-						<li>上海商品出口合同中货物的分类。</li>
-						<li>XX预报关单的申报着手进行。</li>
-						<li>手机合同的需要开票通知。</li>
-						<li>上海商品出口合同中货物的比较。</li>
-						<li>上海商品出口合同中货物的分类。</li>
+						<li><a href="javascript:;">上海商品出口合同中货物的分类。</a></li>
+						<li><a href="javascript:;">XX预报关单的申报着手进行。</a></li>
+						<li><a href="javascript:;">手机合同的需要开票通知。</a></li>
+						<li><a href="javascript:;">上海商品出口合同中货物的比较。</a></li>
+						<li><a href="javascript:;">上海商品出口合同中货物的分类。</a></li>
+						<li><a href="javascript:;">手机合同的需要开票通知。</a></li>
+						<li><a href="javascript:;">上海商品出口合同中货物的比较。</a></li>
+						<li><a href="javascript:;">XX预报关单的申报着手进行。</a></li>
 					</ol>
 				</div>
 			</div>
@@ -19,7 +22,7 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" id="main_rw_title">任务预警</a></div>
+				<div class="panel-heading"><a href="javascript:;">任务预警</a></div>
 				<div class="panel-body">
 					<a class="fa fa-tasks" id="main_rw_title"></a>
 					<span class="font">12</span>
@@ -28,41 +31,46 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" id="main_gq_title">工期预警</a></div>
+				<div class="panel-heading"><a href="javascript:;" >工期预警</a></div>
 				<div class="panel-body">
-					<a class="fa fa-wordpress"></a>
-					<span class="font">54</span>
+					<a class="fa fa-bell-o" id="main_gq_title"></a>
+					<span class="font">51</span>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" id="main_sh_title">收汇预警</a></div>
+				<div class="panel-heading"><a href="javascript:;" >收汇预警</a></div>
 				<div class="panel-body">
-					<a class="fa fa-exchange"></a>
-					<span class="font">12</span>
+					<a class="fa fa-exchange" id="main_sh_title"></a>
+					<span class="font">36</span>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <style>
-	.main_dbrw {  /* cursor:pointer; */}
-	.main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }
-	.panel-body .fa {
+	#include_main_box .main_dbrw {  /* cursor:pointer; */}
+	#include_main_box .main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }
+	#include_main_box .daiban .panel-body{ height:173px; overflow-y:scroll;  }
+	#include_main_box .daiban .badge { margin-left:8px; }
+	#include_main_box .panel-body .fa {
 		cursor:pointer;
 		padding-top: 20px;
 		display: block;
 		text-align: center;
 		font-size: 50px;
+		color: #666; 
 	}
-	.panel-body .font {
+	#include_main_box .panel-body .font {
 		padding-top: 20px;
 		padding-bottom: 30px;
 		display: block;
 		text-align: center;
 		font-size: 30px;
+		color: #666; 
 	}
+	#include_main_box .panel-body:hover .fa,#include_main_box .panel-body:hover .font {color:#333; }
 </style>
 
 <script>
