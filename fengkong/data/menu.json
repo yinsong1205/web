@@ -29,13 +29,13 @@
 	},
 	{
 		"name" : "预报关单",
-		"url" : "tuishui/yushenbao.html",
+		"url" : "guandan/yuluru.html",
 		"leftIcon" : "l fa fa-file"
 		
 	},
 	{
 		"name" : "报关单",
-		"url" : "tuishui/zhengshi.html",
+		"url" : "guandan/guandan.html",
 		"leftIcon" : "l fa fa-file-text"
 		
 	},
