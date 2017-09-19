@@ -43,14 +43,15 @@ html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
 /*menu start*/
 .menus {}
 .menus .intro { color:#eee; height:40px; line-height:40px; background:#21394c;  margin-bottom:0;  }
-.menus ul {}
+.menus ul { padding-top:8px; }
 .menus ul li{ position:relative;   }
-.menus ul li a{ color:#eee; display:block;  padding:12px 0;}
+.menus ul li a{ color:#eee; display:block;  padding:8px 0;}
 .menus ul li a:hover, .menus ul li.active  a { background:#374f62; }
 .menus ul li a i {  } 
 .menus ul li a .l { padding:0 15px 0 15px; }
 .menus ul li a .r { padding:0 15px 0 0; position:relative; top:3px; float:right; }
-.menus ul li dl{ position:absolute; left:150px; top:0; z-index:10; background:#374f62;  display:none;}
+.menus ul li dl{ position:absolute; left:150px; bottom:-20px; z-index:10; background:#374f62;  display:none;}
+.menus ul li:nth-child(2) dl { top:0; bottom:auto; }
 .menus ul li dl dd{ padding:8px 30px 8px 10px; }
 .menus ul li dl dd ,.menus ul li dl dd a  {
 	transition-property: background;
