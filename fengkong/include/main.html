@@ -2,8 +2,8 @@
 <div class="container-fluid" id="include_main_box">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="panel panel-info daiban">
-				<div class="panel-heading"><a href="javascript:;" id="main_db_title">任务管理</a><!-- <span class="badge">8</span> --></div>
+			<!-- <div class="panel panel-info daiban">
+				<div class="panel-heading"><a href="javascript:;" id="main_db_title">任务管理</a><span class="badge">8</span></div>
 				<div class="panel-body">
 					<ol class="main_dbrw">
 						<li><a href="javascript:;">上海商品出口合同中货物的分类。</a></li>
@@ -16,6 +16,76 @@
 						<li><a href="javascript:;">XX预报关单的申报着手进行。</a></li>
 					</ol>
 				</div>
+			</div> -->
+			<!-- <table id="main_renwujqGrid"></table>
+			<div id="main_renwujqGridPager"></div> -->
+			
+			<table class="table " style="margin-bottom:0;">
+				<caption style="background:#fff; text-align:center; font-size:16px;"><a href="javascript:;" id="main_db_title">任务管理</a></caption>
+				<thead class="bg-info">
+					<tr>
+						<th width="20%">任务编号</th>
+						<th width="20%">任务名称</th>
+						<th width="20%">出口口岸</th>
+						<th width="20%">创建日期</th>
+						<th width="20%">流程处理</th>
+						<!-- <th>操作</th> -->
+					</tr>
+				</thead>
+			</table>
+			<div style="height:185px; overflow-y:auto; margin-bottom:15px; background:#fff;">
+			<table class="table table-striped" style="margin-bottom:0;">
+				<tbody>
+					<tr>
+						<td width="20%">RW10762</td>
+						<td width="20%"><a href="javascript:;" class="main_db_name">关单备注</a></td>
+						<td width="20%">京国际局电子口岸</td>
+						<td width="20%">2017-02-12</td>
+						<td width="20%">创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<td>RW10762</td>
+						<td>关单备注</td>
+						<td>电子口岸</td>
+						<td>2017-02-12</td>
+						<td>创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<td>RW10762</td>
+						<td>关单备注</td>
+						<td>电子口岸</td>
+						<td>2017-02-12</td>
+						<td>创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<td>RW10762</td>
+						<td>关单备注</td>
+						<td>电子口岸</td>
+						<td>2017-02-12</td>
+						<td>创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<td>RW10762</td>
+						<td>关单备注</td>
+						<td>电子口岸</td>
+						<td>2017-02-12</td>
+						<td>创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<td>RW10762</td>
+						<td>关单备注</td>
+						<td>电子口岸</td>
+						<td>2017-02-12</td>
+						<td>创建任务</td>
+						<!-- <td></td> -->
+					</tr>
+				</tbody>
+			</table>
 			</div>
 		</div>
 	</div>
@@ -64,18 +134,19 @@
 	}
 	#include_main_box .panel-body .font {
 		padding-top: 20px;
-		padding-bottom: 30px;
+		padding-bottom: 20px;
 		display: block;
 		text-align: center;
 		font-size: 30px;
 		color: #666; 
 	}
 	#include_main_box .panel-body:hover .fa,#include_main_box .panel-body:hover .font {color:#333; }
+	
 </style>
 
 <script>
 	$(function(){
-		$('#main_db_title').on('click',function(){
+		$('#main_db_title, .main_db_name').on('click',function(){
 			$('#menu_rw_gl').trigger('click');
 		});
 		$('#main_rw_title').on('click',function(){
@@ -87,5 +158,51 @@
 		$('#main_sh_title').on('click',function(){
 			$('#menu_yj_sh').trigger('click');
 		});
+		
+		
+		//-------------------------------//
+		/* var layerIndex = null; //弹窗id,关闭所用
+		var flag = ''; //添加修改标记
+		var dataUrl = 'data/liucheng_renwu.json';//数据源链接
+		var gridId = 'main_renwujqGrid'; //表格id
+		var gridPager = 'main_renwujqGridPager'; //表格分页id
+		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+		
+		var colModel = [
+				
+				{label : '任务编号', name : 'id', align: 'center', width:100},
+				{label : '任务名称 ', name : 'name', align: 'left', width:150},
+				{label : '出口口岸', name : 'kouan', align: 'center', width:130},
+				{label : '创建日期', name : 'createTime', align: 'center', width:70, search:false},
+				{label : '流程处理', name : 'liucheng', align: 'center',width:80, search:false},
+				{label : '操作', name : 'operation', align: 'center',width:80, search:false}
+		
+		];
+		
+		$('#'+gridId).jqGrid({
+			width: "auto",
+			height: 173,
+			url: dataUrl,
+			datatype: "json",
+			loadonce: true, //加载到本地操作
+			rownumbers: true, //显示顺序编号
+			multiselect: true, //定义多选
+			viewrecords: true, //显示总记录数
+			sortname: 'name', //排序字段
+			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+			altRows : true, //设置表格隔行变色
+			rowNum: 12, //每页显示的记录数
+			rowList:[10,12,15,18,20,25], //
+			rownumWidth: 30, 
+			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+			//emptyrecords: "No records to view",
+			//loadtext: "Loading...",
+			pager: '#'+gridPager,
+			colModel: colModel
+			//jsonReader : jsonReader
+			
+		}); */
+		
+		
 	});
 </script>
