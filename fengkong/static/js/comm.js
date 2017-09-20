@@ -221,3 +221,17 @@ $(document).on('click','#headerQuedingPwdBtn',function(){
 	layer.msg('修改成功!',{time:layerCloseTime});
 });
 
+//查看信息
+function lookInfo(gid,rowId){
+	var data = $('#'+gid).getRowData(rowId);
+	data.name = $(data.name).text();
+	setFormData(gid+'_formBox',data);
+	title = '查看信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['98%', '98%'], //宽高
+		content: $('#'+gid+'_formBox')
+	});
+}
+
