@@ -553,7 +553,7 @@
 			<!-- 用于显示上传文件的浏览 样式files是必须的-->
 			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
 		</form>
-		<p class="text-center col-xs-12" id="check">
+		<p class="text-center col-xs-12" id="ctrl">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
 				保存
 			</button>
@@ -679,6 +679,51 @@
 		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
 	</p>
 </div>
+<div class="layerFormBox" id="shenhe_formBoxId"> 
+	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
+	<div class="col-sm-12"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>审核人</th>
+						<th>审核日期</th>
+						<th>审核状态</th>
+						<th>说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-10</td>
+						<td>已通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-06</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-04</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-02</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
 
 <script type="text/javascript">
 
@@ -692,21 +737,23 @@ $(function(){
 	var gridPager = 'chukou_jqGridPager'; //表格分页id
 	var formBoxId = 'chukou_jqGrid_formBox'; //添加修改窗口元素id
 	var layerCloseClassName = 'qx';
+	var ctrl = 'ctrl'; //保存 重置 删除按钮
 	var dataSaveBtn = 'chukou_save_btn'; //弹窗保存id
 	var gridBoxId = 'chukou_gridBox';//表格尺寸
+	var shenhe_formBoxId = 'shenhe_formBoxId';
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
 	var gridHeight = $('#'+gridBoxId).height()-118;
 	
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
-			{label : '合同名称', name : 'relName', align: 'center', width:100},
-			{label : '贸易方式', name : 'bus', align: 'center', width:50},
+			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
-			{label : '买方名称', name : 'company', align: 'center', width:120,search:false},
-			{label : '卖方名称', name : 'anothorCompany', align: 'center',width:120,search:false},
 			{label : '合同金额', name : 'hetongmoney', align: 'center',width:50,search:false},
+			{label : '买方', name : 'company', align: 'center', width:120,search:false},
+			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
 			{label : '出口国别', name : 'county', align: 'center',width:50,search:false},
+			{label : '贸易方式', name : 'bus', align: 'center', width:50},
 			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
 
 	];
@@ -784,13 +831,13 @@ $(function(){
 		onClickButton : function(){importLayer();}, //调用导入合同函数
 		position : 'last'
 			
-	}).navButtonAdd('#'+gridPager,{
-		//caption: '统计',
-		caption: '',
-		title : '报表统计',
-		buttonicon : 'fa fa-bar-chart-o',
-		onClickButton : function(){chukoutongji();}, //调用报表统计的函数
-		position : 'last'
+	// }).navButtonAdd('#'+gridPager,{
+	// 	//caption: '统计',
+	// 	caption: '',
+	// 	title : '报表统计',
+	// 	buttonicon : 'fa fa-bar-chart-o',
+	// 	onClickButton : function(){chukoutongji();}, //调用报表统计的函数
+	// 	position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '删除',
@@ -869,7 +916,7 @@ $(function(){
 	
 	//左下角编辑按钮
 	function updateLayer(){
-		$('#check').show();
+		$('#ctrl').show();
 		flag = 'update';
 		var setting = {
 			gridId : gridId,
@@ -885,7 +932,14 @@ $(function(){
 		deleteGridData(gridId);
 	}
 	
-	
+	function formatrelName(cellValue, options, rowObject) {
+		$('#ctrl').hide();
+		var len = cellValue.length;
+		if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+	};
 	//-------------------------------//
 	//刷新
 	// function refresh(){
@@ -902,25 +956,27 @@ $(function(){
 				title : '审核窗口',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
-				area : ['30%','40%'],
-				content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
+				area : ['70%','70%'],
+				content : $('#'+shenhe_formBoxId)
+				// ''
 			});
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
 		}
 		
 	}
-	//统计
-	function chukoutongji(){
-		commIndex = layer.open({
-			type : 1,
-			title : '报表统计',
-			skin: 'layui-layer-rim',
-			shadeClose: true,
-			area : ['90%','90%'],
-			content : $('#chukou_bbtj')
-		});
-	}
+
+//	//统计
+	// function chukoutongji(){
+	// 	commIndex = layer.open({
+	// 		type : 1,
+	// 		title : '报表统计',
+	// 		skin: 'layui-layer-rim',
+	// 		shadeClose: true,
+	// 		area : ['90%','90%'],
+	// 		content : $('#chukou_bbtj')
+	// 	});
+	// }
 	
 	//导入合同
 	function importLayer(){

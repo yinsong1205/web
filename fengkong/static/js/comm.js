@@ -226,6 +226,7 @@ $(document).on('click','#headerQuedingPwdBtn',function(){
 function lookInfo(gid,rowId){
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();
+	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
 	title = '查看信息';
 	commIndex = layer.open({
