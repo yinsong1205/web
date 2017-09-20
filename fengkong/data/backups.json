@@ -42,6 +42,15 @@
   }
 ]
 ---------------------------------------------------------
+//caigou.html -- wuzi
+name:'{{random("手机", "螺栓", "水杯","电脑","插座","香烟")}}-{{surname().toUpperCase()}}',
+number:'{{integer(20, 40)}}',
+guige:'{{integer(100, 200)}}*{{integer(100, 200)}}*{{integer(100, 200)}}',
+danwei:'{{random("件", "包", "箱")}}',
+oneMoney:'{{integer(100, 500)}}',
+totalMoney:'{{integer(10000, 50000)}}',
+company:'{{random("平海", "京中", "国际","八里","天津","津京","上海")}}{{surname().toUpperCase()}}{{random("有限公司", "责任公司", "建筑公司")}}'
+
 //waihui.html
 id: 'WH{{integer(100000, 200000)}}',
 kouan: '{{random("平谷海关", "京中关村", "京国际局","十八里店","京调查局","天津海关","津开发区","津机场办","唐山海关")}}',
