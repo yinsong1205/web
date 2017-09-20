@@ -1,11 +1,20 @@
 <!-- 出口合同管理 -->
+<style type="text/css">
+	#qingdan_gridBox{
+		display: none;
+	}
+</style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
 		<table id="chukou_jqGrid"></table>
 		<div id="chukou_jqGridPager"></div>
 	</div>
+	<div class="col-sm-12 plr0 height100 gridBox" id="qingdan_gridBox">
+		<table id="qingdan_jqGrid"></table>
+		<div id="qingdan_jqGridPager"></div>
+	</div>
 </div>
-
+	
 <!-- 新增弹窗 -->
 <div id="chukou_jqGrid_formBox" class="layerFormBox">
 	<div class="form-horizontal layerForm zzxx">
@@ -663,14 +672,17 @@
 <div class="layerFormBox import_formBox" id="chukou_import_formBox"> 
 	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
-			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择文件:</label>
 			<div class="col-sm-8">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span>添加合同附件</span>
+					<span>添加附件</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
+		</div>
+		<div class="form-group col-sm-12">
+			支持excle、CSV、xml 三种方式导入
 		</div>
 		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
@@ -681,7 +693,7 @@
 </div>
 <div class="layerFormBox" id="shenhe_formBoxId"> 
 	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
-	<div class="col-sm-12"> 
+	<div class="col-sm-12" id="shenhe_history"> 
 			<table id="tj" class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr class="d9">
@@ -733,6 +745,7 @@ $(function(){
 	var layerIndex = null; //弹窗id,关闭所用
 	var flag = ''; //添加修改标记
 	var dataUrl = 'data/chukou.json';//数据源链接
+	var qingdanUrl = 'data/qingdan.json';
 	var gridId = 'chukou_jqGrid'; //表格id
 	var gridPager = 'chukou_jqGridPager'; //表格分页id
 	var formBoxId = 'chukou_jqGrid_formBox'; //添加修改窗口元素id
@@ -740,22 +753,36 @@ $(function(){
 	var ctrl = 'ctrl'; //保存 重置 删除按钮
 	var dataSaveBtn = 'chukou_save_btn'; //弹窗保存id
 	var gridBoxId = 'chukou_gridBox';//表格尺寸
-	var shenhe_formBoxId = 'shenhe_formBoxId';
+	var shenhe_formBoxId = 'shenhe_formBoxId'; //审核弹框
+
+	var qingdan_formBoxId = 'qingdan_formBoxId'; //物资清单弹框
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
 	var gridHeight = $('#'+gridBoxId).height()-118;
-	
+
+	var qingdan_gridWidth = $('#qingdan_gridBox').width();
+	var qingdan_gridHeight = $('#qingdan_gridBox').height()-118;
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
 			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
-			{label : '合同金额', name : 'hetongmoney', align: 'center',width:50,search:false},
 			{label : '买方', name : 'company', align: 'center', width:120,search:false},
 			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
 			{label : '出口国别', name : 'county', align: 'center',width:50,search:false},
 			{label : '贸易方式', name : 'bus', align: 'center', width:50},
-			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus},
+			{label : '关联状态', name : 'status', align: 'center',width:50,search:false}
 
+	];
+	var qingdan_colModel = [
+			{label : '物资名称', name : 'name', align: 'center', width: 150,editable: true},
+			{label : '数量', name : 'number', align: 'center', width:100},
+			{label : '规格型号 ', name : 'type', align: 'center', width:150},
+			{label : '计量单位', name : 'many', align: 'center', width:130},
+			{label : '单价', name : 'oneprice', align: 'center', width:70},
+			{label : '总价', name : 'allprice', align: 'center',width:80},
+			{label : '供货方', name : 'gonghuo', align: 'center',width:80},
+			{label : '海关商品码', name : 'haiguan', align: 'center',width:80},
 	];
 	/*
 		numBer :
@@ -824,6 +851,14 @@ $(function(){
 		position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
+		//caption: '审核',
+		caption: '',
+		title : '物资清单',
+		buttonicon : 'fa fa-indent',
+		onClickButton : function(){qingdan();}, //调用审核的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
 		//caption: '导入合同',
 		caption: '',
 		title : '导入合同',
@@ -858,7 +893,7 @@ $(function(){
 	//修改工具条
 	changeSearch(); 
 	
-	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+
 	
 	//弹框保存按钮
 	$(document).on('click','#'+dataSaveBtn,function(){
@@ -901,7 +936,31 @@ $(function(){
 	$('.'+layerCloseClassName).on('click',function(){
 		layer.close(layerIndex);
 	});
-	
+
+	//清单弹出框
+	function qingdan(){
+		index = layer.open({
+				type: 1,
+				title : '物资清单',
+				area: ['90%', '90%'], //宽高
+				content: $('#qingdan_gridBox')
+		});
+			$("#qingdan_jqGrid").jqGrid({
+				url: qingdanUrl,
+				datatype: "json",
+				loadonce: true,
+				viewrecords: true,
+				multiselect: true,
+				rownumbers: true,
+				altRows : true,
+				width: qingdan_gridWidth,
+				height: qingdan_gridHeight,
+				page : 1,
+				rowNum: 12,
+				colModel: qingdan_colModel,
+				pager: "#qingdan_jqGridPager"
+			})
+	}
 	//左下角新增按钮
 	function addLayer(){
 		flag = 'add';
@@ -948,6 +1007,7 @@ $(function(){
 
 	//审核
 	function shenhe(){
+		$('#shenhe_history').hide();
 		var rowIds = getSelectedRow(gridId);
 		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
@@ -982,7 +1042,7 @@ $(function(){
 	function importLayer(){
 		commIndex = layer.open({
 			type: 1,
-			title : "导入合同",
+			title : "批量导入",
 			area: ['80%', '60%'], //宽高
 			content: $('#chukou_import_formBox')
 		});
