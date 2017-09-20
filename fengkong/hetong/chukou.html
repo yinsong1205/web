@@ -658,14 +658,6 @@
 			<div id="chukou_circleChart" style="min-width:400px;height:400px"></div>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<div class="com-sm-6"> 
-			<div id="lineChart" style="min-width:400px;height:400px"></div>
-		</div>
-		<div class="com-sm-6"> 
-			<div id="circleChart" style="min-width:400px;height:400px"></div>
-		</div>
-	</div> -->
 </div>
 
 <!-- 导入合同 -->
@@ -687,7 +679,7 @@
 		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
 	<p class="text-center saveOrCacelBtn"> 
-		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">确定</button>		
 		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
 	</p>
 </div>
@@ -736,7 +728,78 @@
 			</table>
 		</div>
 </div>
-
+<div id="qingdan_jqGrid_formBox" class="layerFormBox">
+	<div class="form-horizontal layerForm zzxx">
+		<div class="form-group col-xs-4">
+			<label for="inputEmail3" class="col-xs-4 control-label">
+				<span>*</span>货物名称:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="chukou_relName" name="relName" class="form-control input-sm"  placeholder="货物名称">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span>*</span>数量:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="数量">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span>*</span>单价:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="单价">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				规格型号:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="规格型号">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				供货商:
+			</label>
+			<div class="col-xs-8">
+				<select id="chukou_bus" name="bus" class="form-control input-sm">
+					<option value="深圳五金供货" selected="true">深圳五金供货</option>
+					<option value="上海五金供货" >上海五金供货</option>
+					<option value="河南五金供货" >河南五金供货</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				金额:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="金额">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				单位:
+			</label>
+			<div class="col-xs-8">
+				<select id="chukou_bus" name="bus" class="form-control input-sm">
+					<option value="汇付" selected="true">汇付</option>
+					<option value="托收" >托收</option>
+					<option value="信用证" >信用证</option>
+				</select>
+			</div>
+		</div>
+		<p class="text-center saveOrCacelBtn"> 
+			<button type="button" class="btn btn-info btn-sm qx">确定</button>		
+			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+		</p>
+	</div>
+</div>
 <script type="text/javascript">
 
 	
@@ -758,31 +821,45 @@ $(function(){
 	var qingdan_formBoxId = 'qingdan_formBoxId'; //物资清单弹框
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
-	var gridHeight = $('#'+gridBoxId).height()-118;
+	// var gridHeight = $('#'+gridBoxId).height()-118;
+	var gridHeight = 370;
 
-	var qingdan_gridWidth = $('#qingdan_gridBox').width();
-	var qingdan_gridHeight = $('#qingdan_gridBox').height()-118;
+	var qingdan_gridWidth = $('#qingdan_gridBox').width()-140;
+	var qingdan_gridHeight = 370;
 	var colModel = [
-			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
+			{label : '合同编号', name : 'numBer', align: 'center', width: 50,
+					searchoptions: {
+						sopt : ['cn']
+					}
+},
 			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
-			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
+			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,
+					searchoptions: {
+						sopt : ['cn']
+					}
+},
 			{label : '买方', name : 'company', align: 'center', width:120,search:false},
 			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
-			{label : '出口国别', name : 'county', align: 'center',width:50,search:false},
-			{label : '贸易方式', name : 'bus', align: 'center', width:50},
+			{label : '出口国别', name : 'county', align: 'center',width:50,
+					searchoptions: {
+						sopt : ['cn']
+					}
+},
+			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
+},
 			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus},
 			{label : '关联状态', name : 'status', align: 'center',width:50,search:false}
 
 	];
 	var qingdan_colModel = [
-			{label : '物资名称', name : 'name', align: 'center', width: 150,editable: true},
-			{label : '数量', name : 'number', align: 'center', width:100},
-			{label : '规格型号 ', name : 'type', align: 'center', width:150},
-			{label : '计量单位', name : 'many', align: 'center', width:130},
-			{label : '单价', name : 'oneprice', align: 'center', width:70},
-			{label : '总价', name : 'allprice', align: 'center',width:80},
-			{label : '供货方', name : 'gonghuo', align: 'center',width:80},
-			{label : '海关商品码', name : 'haiguan', align: 'center',width:80},
+			{label : '物资名称', name : 'name', align: 'center', width: 30,editable: true},
+			{label : '数量', name : 'number', align: 'center', width:30},
+			{label : '规格型号 ', name : 'type', align: 'center', width:30},
+			{label : '计量单位', name : 'many', align: 'center', width:30},
+			{label : '单价', name : 'oneprice', align: 'center', width:30},
+			{label : '总价', name : 'allprice', align: 'center',width:50},
+			{label : '供货方', name : 'gonghuo', align: 'center',width:40},
+			{label : '海关商品码', name : 'haiguan', align: 'center',width:40},
 	];
 	/*
 		numBer :
@@ -942,7 +1019,7 @@ $(function(){
 		index = layer.open({
 				type: 1,
 				title : '物资清单',
-				area: ['90%', '90%'], //宽高
+				area: ['90%', '80%'], //宽高
 				content: $('#qingdan_gridBox')
 		});
 			$("#qingdan_jqGrid").jqGrid({
@@ -951,14 +1028,21 @@ $(function(){
 				loadonce: true,
 				viewrecords: true,
 				multiselect: true,
-				rownumbers: true,
 				altRows : true,
 				width: qingdan_gridWidth,
 				height: qingdan_gridHeight,
 				page : 1,
-				rowNum: 12,
+				rowNum: 15,
 				colModel: qingdan_colModel,
 				pager: "#qingdan_jqGridPager"
+			}).navButtonAdd('#'+gridPager,{
+				//caption: '新增',
+				caption: '',
+				title : '添加',
+				buttonicon : 'glyphicon-plus',
+				onClickButton : function(){qingdan_addLayer();}, //调用添加的函数
+				position : 'last'
+				
 			})
 	}
 	//左下角新增按钮
@@ -972,7 +1056,17 @@ $(function(){
 			content: $('#'+formBoxId)
 		});
 	}
-	
+	//清单增加按钮
+	function qingdan_addLayer(){
+		flag = 'add';
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
+			type: 1,
+			title : '添加模块',
+			area: ['98%', '98%'], //宽高
+			content: $('#'+formBoxId)
+		});
+	}
 	//左下角编辑按钮
 	function updateLayer(){
 		$('#ctrl').show();
