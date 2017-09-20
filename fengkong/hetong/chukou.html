@@ -28,33 +28,7 @@
 			</div>
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
-					<span>*</span>签订日期:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" id="chukou_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
-				</div>
-			</div>
-		</div>
-		<!-- <div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					开始日期:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="开始日期">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					截止日期:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="发运地点">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					业务类型:
+					<span>*</span>业务类型:
 				</label>
 				<div class="col-xs-8">
 					<select id="chukou_bus" name="bus" class="form-control input-sm">
@@ -64,12 +38,35 @@
 					</select>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<div class="row">
-			
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
-					币制:
+					<span>*</span>签约日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>生效日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" onclick="WdatePicker();" class="form-control input-sm"  placeholder="生效日期">
+				</div>
+			</div>
+			<!-- <div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					截止日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发运地点">
+				</div>
+			</div> -->
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>币制:
 				</label>
 				<div class="col-xs-8">
 					<select id="" class="form-control input-sm">
@@ -79,15 +76,26 @@
 					</select>
 				</div>
 			</div>
+		</div>
+		<div class="row">
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
-					成交金额:
+					<span>*</span>合同金额:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="合同金额">
+				</div>
+			</div>
+			
+<!-- 			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>成交金额:
 				</label>
 				<div class="col-xs-8">
 					<input type="text" class="form-control input-sm"  placeholder="成交金额">
 				</div>
-			</div>
-			<div class="form-group col-xs-4">
+			</div> -->
+			<!-- <div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
 					合同类型:
 				</label>
@@ -98,81 +106,10 @@
 						<option value="" >承包工程</option>
 					</select>
 				</div>
-			</div>
-			<!-- <div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					目的港:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="目的港">
-				</div>
 			</div> -->
-		</div>
-		<div class="row">
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
-					成交方式:
-				</label>
-				<div class="col-xs-8">
-					<select id="" class="form-control input-sm">
-						<option value="" selected="true">FOB</option>
-						<option value="" >CIF</option>
-						<option value="" >CFR</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					境内货源地:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="发货单位">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					结算状态:
-				</label>
-				<div class="col-xs-8">
-					<select id="" class="form-control input-sm">
-						<option value="" selected="true">已结算</option>
-						<option value="" >未结算</option>
-					</select>
-				</div>
-			</div>
-			<!-- <div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					发货单位代码:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="发货单位代码">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					出口口岸:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="出口口岸">
-				</div>
-			</div> -->
-		</div>
-		<!-- <div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					运输方式:
-				</label>
-				<div class="col-xs-8">
-					<select id="" class="form-control input-sm">
-						<option value="" selected="true">海洋运输</option>
-						<option value="" >空中运输</option>
-						<option value="" >陆地运输</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					结汇方式:
+					<span>*</span>结汇方式:
 				</label>
 				<div class="col-xs-8">
 					<select id="" class="form-control input-sm">
@@ -184,14 +121,90 @@
 			</div>
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
-					备案:
+					<span>*</span>成交方式:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="备案">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">FOB</option>
+						<option value="" >CIF</option>
+						<option value="" >CFR</option>
+					</select>
 				</div>
 			</div>
 		</div>
 		<div class="row">
+			<!-- <div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					指运港:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="指运港">
+				</div>
+			</div> -->
+			
+			
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>运输方式:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">海洋运输</option>
+						<option value="" >空中运输</option>
+						<option value="" >陆地运输</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>出口国别:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">泰国</option>
+						<option value="" >美国</option>
+						<option value="" >英国</option>
+						<option value="" >德国</option>
+						<option value="" >日本</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>出口口岸:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="出口口岸">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>运抵国:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">泰国</option>
+						<option value="" >美国</option>
+						<option value="" >英国</option>
+						<option value="" >德国</option>
+						<option value="" >日本</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>指运港:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">泰国港</option>
+						<option value="" >美国港</option>
+						<option value="" >英国港</option>
+						<option value="" >德国港</option>
+						<option value="" >日本港</option>
+					</select>
+				</div>
+			</div>
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
 					批准文号:
@@ -200,6 +213,120 @@
 					<input type="text" class="form-control input-sm"  placeholder="批准文号">
 				</div>
 			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					经营单位:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					许可证:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="许可证">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					装运期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" onclick="WdatePicker();" class="form-control input-sm"  placeholder="装运期">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					发货单位代码:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位代码">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					发货单位:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					件数:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					工期起始时间:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="工期起始时间">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					工期结束时间:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="工期结束时间">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					工期（天）:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="工期（天）">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					不退税标志:
+				</label>
+				<div class="col-xs-8">
+					<input type="radio" class="input-sm">
+				</div>
+			</div>
+			<!-- <div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					结算状态:
+				</label>
+				<div class="col-xs-8">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">已结算</option>
+						<option value="" >未结算</option>
+					</select>
+				</div>
+			</div> -->
+			<!-- 
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					出口口岸:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="出口口岸">
+				</div>
+			</div> -->
+		</div>
+		<!-- 
+			
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					备案:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="备案">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
 					成交方式:
@@ -212,24 +339,10 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					经营单位:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="经营单位">
-				</div>
-			</div>
+			
 		</div>
 		<div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					装运期:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="装运期">
-				</div>
-			</div>
+			
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
 					装运港:
@@ -251,42 +364,35 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
-					件数:
-				</label>
-				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="件数">
-				</div>
-			</div>
+			
 		</div> -->
 		<form action="" class="col-xs-12 zzxx" style="margin-bottom: 50px;">
 			<div class="row col-xs-6 ctrol_form" style="border: 1px solid #000;border-right: none;margin-left: 20px;">
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						<span>*</span>采 购 方 :
+						<span>*</span>买方名称:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" id="chukou_company" name="company" class="form-control input-sm"  placeholder="外商（甲方）">
+						<input type="text" id="chukou_company" name="company" class="form-control input-sm"  placeholder="买方名称">
 					</div>
 				</div>
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						签订人:
+						买方签约人:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" class="form-control input-sm"  placeholder="签订人">
+						<input type="text" class="form-control input-sm"  placeholder="买方签约人">
 					</div>
 				</div>
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						联系电话:
+						买方联系电话:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" class="form-control input-sm"  placeholder="联系电话">
+						<input type="text" class="form-control input-sm"  placeholder="买方联系电话">
 					</div>
 				</div>
-				<div class="form-group col-xs-12">
+<!-- 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
 						开户行:
 					</label>
@@ -309,42 +415,42 @@
 					<div class="col-xs-8">
 						<input type="text" class="form-control input-sm"  placeholder="传真">
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						地址:
+						买方地址:
 					</label>
 					<div class="col-xs-8">
-						<textarea type="text" class="form-control input-sm"  placeholder="地址"></textarea>
+						<textarea type="text" class="form-control input-sm"  placeholder="买方地址"></textarea>
 					</div>
 				</div>
 			</div>
 			<div class="row col-xs-6 ctrol_form" style="border: 1px solid #000;">
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						<span>*</span>供 货 方:
+						<span>*</span>卖方名称:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" id="chukou_anothorCompany" name="anothorCompany" class="form-control input-sm"  placeholder="入驻企业（乙方）">
+						<input type="text" id="chukou_anothorCompany" name="anothorCompany" class="form-control input-sm"  placeholder="卖方名称">
 					</div>
 				</div>
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						签订人:
+						卖方签约人:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" class="form-control input-sm"  placeholder="签订人">
+						<input type="text" class="form-control input-sm"  placeholder="卖方签约人">
 					</div>
 				</div>
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						联系电话:
+						卖方联系电话:
 					</label>
 					<div class="col-xs-8">
-						<input type="text" class="form-control input-sm"  placeholder="联系电话">
+						<input type="text" class="form-control input-sm"  placeholder="卖方联系电话">
 					</div>
 				</div>
-				<div class="form-group col-xs-12">
+				<!-- <div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
 						开户行:
 					</label>
@@ -367,13 +473,13 @@
 					<div class="col-xs-8">
 						<input type="text" class="form-control input-sm"  placeholder="传真">
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group col-xs-12">
 					<label class="col-xs-4 control-label">
-						地址:
+						卖方地址:
 					</label>
 					<div class="col-xs-8">
-						<textarea type="text" class="form-control input-sm"  placeholder="地址"></textarea>
+						<textarea type="text" class="form-control input-sm"  placeholder="卖方地址"></textarea>
 					</div>
 				</div>
 			</div>
@@ -395,6 +501,54 @@
 					<input type="file" class="input-sm"  placeholder="选择文件">
 				</div> -->
 				<label class="col-sm-2 control-label text-right"><span>*</span>合同源文件:</label>
+				<div class="col-sm-8">
+					<span class="btn btn-default btn-sm fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加附件</span>
+						<input type="file" name="files[]" multiple>
+					</span>
+				</div>
+			</div>
+			<div class="row col-xs-12 ctform">
+				<!-- <label class="col-xs-3 control-label">
+					合同源文件:
+				</label>
+				<div class="col-xs-3">
+					<input type="file" class="input-sm"  placeholder="选择文件">
+				</div> -->
+				<label class="col-sm-2 control-label text-right"><span>*</span>投标文件:</label>
+				<div class="col-sm-8">
+					<span class="btn btn-default btn-sm fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加附件</span>
+						<input type="file" name="files[]" multiple>
+					</span>
+				</div>
+			</div>
+			<div class="row col-xs-12 ctform">
+				<!-- <label class="col-xs-3 control-label">
+					合同源文件:
+				</label>
+				<div class="col-xs-3">
+					<input type="file" class="input-sm"  placeholder="选择文件">
+				</div> -->
+				<label class="col-sm-2 control-label text-right"><span>*</span>中标文件:</label>
+				<div class="col-sm-8">
+					<span class="btn btn-default btn-sm fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加附件</span>
+						<input type="file" name="files[]" multiple>
+					</span>
+				</div>
+			</div>
+			<div class="row col-xs-12 ctform">
+				<!-- <label class="col-xs-3 control-label">
+					合同源文件:
+				</label>
+				<div class="col-xs-3">
+					<input type="file" class="input-sm"  placeholder="选择文件">
+				</div> -->
+				<label class="col-sm-2 control-label text-right"><span>*</span>其他:</label>
 				<div class="col-sm-8">
 					<span class="btn btn-default btn-sm fileinput-button">
 						<i class="glyphicon glyphicon-plus"></i>
@@ -552,13 +706,16 @@ $(function(){
 	var gridHeight = $('#'+gridBoxId).height()-118;
 	
 	var colModel = [
-			{label : '合同号', name : 'numBer', align: 'center', width: 50},
-			{label : '合同名称', name : 'relName', align: 'left', width:100},
+			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
+			{label : '合同名称', name : 'relName', align: 'center', width:100},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
-			{label : '业务类型', name : 'bus', align: 'left', width:50,search:false},
-			{label : '外商（甲方）', name : 'company', align: 'left', width:120},
-			{label : '入驻企业（乙方）', name : 'anothorCompany', align: 'left',width:120},
+			{label : '业务类型', name : 'bus', align: 'center', width:50,search:false},
+			{label : '外商（甲方）', name : 'company', align: 'center', width:120},
+			{label : '入驻企业（乙方）', name : 'anothorCompany', align: 'center',width:120},
+			{label : '合同金额', name : 'hetongmoney', align: 'center',width:50},
+			{label : '出口国别', name : 'county', align: 'center',width:50},
 			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+
 	];
 	/*
 		numBer :
