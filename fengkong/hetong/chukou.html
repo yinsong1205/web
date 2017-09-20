@@ -679,6 +679,51 @@
 		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
 	</p>
 </div>
+<div class="layerFormBox" id="shenhe_formBoxId"> 
+	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
+	<div class="col-sm-12"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>审核人</th>
+						<th>审核日期</th>
+						<th>审核状态</th>
+						<th>说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-10</td>
+						<td>已通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-06</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-04</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-02</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
 
 <script type="text/javascript">
 
@@ -695,6 +740,7 @@ $(function(){
 	var ctrl = 'ctrl'; //保存 重置 删除按钮
 	var dataSaveBtn = 'chukou_save_btn'; //弹窗保存id
 	var gridBoxId = 'chukou_gridBox';//表格尺寸
+	var shenhe_formBoxId = 'shenhe_formBoxId';
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
 	var gridHeight = $('#'+gridBoxId).height()-118;
@@ -910,8 +956,9 @@ $(function(){
 				title : '审核窗口',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
-				area : ['30%','40%'],
-				content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
+				area : ['70%','70%'],
+				content : $('#'+shenhe_formBoxId)
+				// ''
 			});
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
