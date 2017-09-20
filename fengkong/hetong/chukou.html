@@ -553,7 +553,7 @@
 			<!-- 用于显示上传文件的浏览 样式files是必须的-->
 			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
 		</form>
-		<p class="text-center col-xs-12" id="check">
+		<p class="text-center col-xs-12" id="ctrl">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
 				保存
 			</button>
@@ -692,6 +692,7 @@ $(function(){
 	var gridPager = 'chukou_jqGridPager'; //表格分页id
 	var formBoxId = 'chukou_jqGrid_formBox'; //添加修改窗口元素id
 	var layerCloseClassName = 'qx';
+	var ctrl = 'ctrl'; //保存 重置 删除按钮
 	var dataSaveBtn = 'chukou_save_btn'; //弹窗保存id
 	var gridBoxId = 'chukou_gridBox';//表格尺寸
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
@@ -700,7 +701,7 @@ $(function(){
 	
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
-			{label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
 			{label : '贸易方式', name : 'bus', align: 'center', width:50},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
 			{label : '买方名称', name : 'company', align: 'center', width:120,search:false},
@@ -784,13 +785,13 @@ $(function(){
 		onClickButton : function(){importLayer();}, //调用导入合同函数
 		position : 'last'
 			
-	}).navButtonAdd('#'+gridPager,{
-		//caption: '统计',
-		caption: '',
-		title : '报表统计',
-		buttonicon : 'fa fa-bar-chart-o',
-		onClickButton : function(){chukoutongji();}, //调用报表统计的函数
-		position : 'last'
+	// }).navButtonAdd('#'+gridPager,{
+	// 	//caption: '统计',
+	// 	caption: '',
+	// 	title : '报表统计',
+	// 	buttonicon : 'fa fa-bar-chart-o',
+	// 	onClickButton : function(){chukoutongji();}, //调用报表统计的函数
+	// 	position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '删除',
@@ -869,7 +870,7 @@ $(function(){
 	
 	//左下角编辑按钮
 	function updateLayer(){
-		$('#check').show();
+		$('#ctrl').show();
 		flag = 'update';
 		var setting = {
 			gridId : gridId,
@@ -885,7 +886,14 @@ $(function(){
 		deleteGridData(gridId);
 	}
 	
-	
+	function formatrelName(cellValue, options, rowObject) {
+		$('#ctrl').hide();
+		var len = cellValue.length;
+		if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+	};
 	//-------------------------------//
 	//刷新
 	// function refresh(){
@@ -910,17 +918,18 @@ $(function(){
 		}
 		
 	}
-	//统计
-	function chukoutongji(){
-		commIndex = layer.open({
-			type : 1,
-			title : '报表统计',
-			skin: 'layui-layer-rim',
-			shadeClose: true,
-			area : ['90%','90%'],
-			content : $('#chukou_bbtj')
-		});
-	}
+
+//	//统计
+	// function chukoutongji(){
+	// 	commIndex = layer.open({
+	// 		type : 1,
+	// 		title : '报表统计',
+	// 		skin: 'layui-layer-rim',
+	// 		shadeClose: true,
+	// 		area : ['90%','90%'],
+	// 		content : $('#chukou_bbtj')
+	// 	});
+	// }
 	
 	//导入合同
 	function importLayer(){
