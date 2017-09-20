@@ -32,9 +32,9 @@
 				</label>
 				<div class="col-xs-8">
 					<select id="chukou_bus" name="bus" class="form-control input-sm">
-						<option value="" selected="true">外综服务</option>
-						<option value="" >一般贸易</option>
-						<option value="" >承包工程</option>
+						<option value="外综服务" selected="true">外综服务</option>
+						<option value="一般贸易" >一般贸易</option>
+						<option value="承包商" >承包商</option>
 					</select>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 					<span>*</span>合同金额:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="合同金额">
+					<input type="text" id="chukou_hetongmoney" name="hetongmoney" class="form-control input-sm"  placeholder="合同金额">
 				</div>
 			</div>
 			
@@ -99,13 +99,6 @@
 				<label class="col-xs-4 control-label">
 					合同类型:
 				</label>
-				<div class="col-xs-8">
-					<select id="chukou_bus" name="bus" class="form-control input-sm">
-						<option value="" selected="true">外综服务</option>
-						<option value="" >一般贸易</option>
-						<option value="" >承包工程</option>
-					</select>
-				</div>
 			</div> -->
 			<div class="form-group col-xs-4">
 				<label class="col-xs-4 control-label">
@@ -160,12 +153,12 @@
 					<span>*</span>出口国别:
 				</label>
 				<div class="col-xs-8">
-					<select id="" class="form-control input-sm">
-						<option value="" selected="true">泰国</option>
-						<option value="" >美国</option>
-						<option value="" >英国</option>
-						<option value="" >德国</option>
-						<option value="" >日本</option>
+					<select id="chukou_county" name="county" class="form-control input-sm">
+						<option value="泰国" selected="true">泰国</option>
+						<option value="美国" >美国</option>
+						<option value="英国" >英国</option>
+						<option value="德国" >德国</option>
+						<option value="日本" >日本</option>
 					</select>
 				</div>
 			</div>
@@ -560,7 +553,7 @@
 			<!-- 用于显示上传文件的浏览 样式files是必须的-->
 			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
 		</form>
-		<p class="text-center col-xs-12">
+		<p class="text-center col-xs-12" id="check">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
 				保存
 			</button>
@@ -708,12 +701,12 @@ $(function(){
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50},
 			{label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '贸易方式', name : 'bus', align: 'center', width:50},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,search:false},
-			{label : '业务类型', name : 'bus', align: 'center', width:50,search:false},
-			{label : '外商（甲方）', name : 'company', align: 'center', width:120},
-			{label : '入驻企业（乙方）', name : 'anothorCompany', align: 'center',width:120},
-			{label : '合同金额', name : 'hetongmoney', align: 'center',width:50},
-			{label : '出口国别', name : 'county', align: 'center',width:50},
+			{label : '买方名称', name : 'company', align: 'center', width:120,search:false},
+			{label : '卖方名称', name : 'anothorCompany', align: 'center',width:120,search:false},
+			{label : '合同金额', name : 'hetongmoney', align: 'center',width:50,search:false},
+			{label : '出口国别', name : 'county', align: 'center',width:50,search:false},
 			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
 
 	];
@@ -751,13 +744,13 @@ $(function(){
 		
 	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
-	}).navButtonAdd('#'+gridPager,{
-		//caption: '刷新',
-		caption: '',
-		title : '刷新',
-		buttonicon : 'glyphicon-refresh',
-		onClickButton : function(){refresh();}, //调用添加的函数
-		position : 'last'
+	// }).navButtonAdd('#'+gridPager,{
+	// 	//caption: '刷新',
+	// 	caption: '',
+	// 	title : '刷新',
+	// 	buttonicon : 'glyphicon-refresh',
+	// 	onClickButton : function(){refresh();}, //调用添加的函数
+	// 	position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '新增',
@@ -765,6 +758,14 @@ $(function(){
 		title : '添加',
 		buttonicon : 'glyphicon-plus',
 		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '编辑',
+		buttonicon : 'glyphicon glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用添加的函数
 		position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
@@ -868,6 +869,7 @@ $(function(){
 	
 	//左下角编辑按钮
 	function updateLayer(){
+		$('#check').show();
 		flag = 'update';
 		var setting = {
 			gridId : gridId,
@@ -886,9 +888,10 @@ $(function(){
 	
 	//-------------------------------//
 	//刷新
-	function refresh(){
-		layer.msg('更新成功!',{time:layerCloseTime});
-	};
+	// function refresh(){
+	// 	layer.msg('更新成功!',{time:layerCloseTime});
+	// };
+
 	//审核
 	function shenhe(){
 		var rowIds = getSelectedRow(gridId);
@@ -1048,7 +1051,7 @@ $(function(){
 		messages: {//错误信息的提示
 		   maxNumberOfFiles: '最多上传20张图片',
 		   acceptFileTypes: '文件类型不允许',
-		   maxFileSize: '文件不能大于3M',
+		   maxFileSize: '文件不能大于50M',
 		   minFileSize: '文件不能小于5K'
 	   }
 	});
@@ -1057,14 +1060,14 @@ $(function(){
 		maxNumberOfFiles:20,//上传文件的最大数量
 		maxFileSize : 3000000, //最大3M
 		minFileSize : 5000,//最小5K
-		acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+		acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png|zip)$/i,//接受的文件类型
 		type : 'post',//客户端的请求方式
 		dataType : 'json',//服务器响应的数据类型
 		url: 'server/php/',//请求的地址
 		messages: {//错误信息的提示
 		   maxNumberOfFiles: '最多上传20张图片',
 		   acceptFileTypes: '文件类型不允许',
-		   maxFileSize: '文件不能大于3M',
+		   maxFileSize: '文件不能大于50M',
 		   minFileSize: '文件不能小于5K'
 	   }
 	});
