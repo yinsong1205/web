@@ -335,13 +335,14 @@
 	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
 			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择:</label>
-			<div class="col-sm-8">
+			<div class="col-sm-2">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
 					<span>浏览...</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
+			<div class="col-sm-8" style="padding-top:7px">支持excel、csv、xml三种文件方式导入。</div>
 		</div>
 		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
@@ -492,7 +493,7 @@
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 		var gridWidth = $('#'+gridBoxId).width();
 		//var gridHeight = $('#'+gridBoxId).height()-118;
-		var gridHeight = 310;
+		var gridHeight = 370;
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
@@ -515,7 +516,8 @@
 				},
 				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
 				{label : '合同金额', name : 'money', align: 'center',width:50, search:false},
-				{label : '物资清单', name : 'list', align: 'center',width:40,search:false}
+				{label : '物资清单', name : 'list', align: 'center',width:40,search:false},
+				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
 		];
 		/**
 			id:
@@ -539,7 +541,7 @@
 			sortname: 'name', //排序字段
 			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
 			altRows : true, //设置表格隔行变色
-			rowNum: 10, //每页显示的记录数
+			rowNum: 15, //每页显示的记录数
 			rowList:[10,15,18,20,25], //
 			rownumWidth: 30, 
 			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
