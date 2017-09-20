@@ -449,7 +449,7 @@
 		
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
-				{label : '合同名称', name : 'name', align: 'left', width:100 },
+				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
 				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60,
 					searchoptions : {
 						dataInit: function(e){
@@ -623,6 +623,17 @@
 		
 		
 		//-------------------------------//
+		
+		//格式化标题
+		function formatName(cellValue, options, rowObject) {
+			var len = cellValue.length;
+			if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+			}
+			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		};
+		
+		
 		
 		//导入合同
 		function importLayer(){

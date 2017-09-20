@@ -1,241 +1,821 @@
 <!--外汇核销  -->
+<style type="text/css">
+#yulu_formBox .text-center{
+text-align: center;
+}
+#yulu_formBox .text-left{
+text-align: left;
+}
+#yulu_formBox .index {
+	z-index: 23452523;
+}
+#yulu_formBox .table {
+	border: 1px solid #ccc;
+}
+/* .table td{
+	border: 1px solid #ccc;
+}
+.table th{
+	border: 1px solid #ccc;
+} */
+#yulu_formBox .thead{
+	width: 100%;
+}
+#yulu_formBox .yulu_ul {
+	list-style: none;
+}
+#yulu_formBox .text-center{
+	text-align: center;
+}
+#yulu_formBox .index {
+	border: 1px solid #ccc;
+}
+#yulu_formBox .head {
+	padding-top: 5px;
+}
+#yulu_formBox .form-group {
+	/*border: 1px solid #ccc !important;*/
+	/* background: #D9DEF7; */
+}
+#yulu_formBox .form-group label{
+	margin-top: 2px;
+}
+#yulu_formBox .form-group .form-control {
+	vertical-align:middle !important; 
+	margin-top: 5px;
+}
+</style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="waihui_gridBox">
 		<table id="waihui_jqGrid"></table>
 		<div id="waihui_jqGridPager"></div>
 	</div>
 </div>
+
+<!-- 新增弹窗 -->
+<div id="waihui_jqGrid_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm col-xs-12">
+		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
+		<div class="col-xs-12 index">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text"  name="id" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>出口口岸
+				</label>
+				<div class="col-xs-7">
+					<input type="text"  name="kouan" class="form-control input-sm"  placeholder="出口口岸">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="ckDate" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_property" name="type" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<input type="text" id="yulu_company" name="dyg" class="form-control input-sm"  placeholder="抵运国（地区）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>
+				</div>		
+			</div>
+			<div id="yulu_ul col-xs-12">
+				<table class="table col-xs-12">
+					<thead class="thead">
+						<tr>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>商品名称 规格型号</th>
+							<th>数量及单位</th>
+							<th>最终目的国（地区）</th>
+							<th>单价</th>
+							<th>总价</th>
+							<th>币值</th>
+							<th>征免</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					税费征收情况
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="税费征收情况"></textarea>.
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					录入员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="录入员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					兹上证明无讹并承担法律责任
+				</label>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					海关审单批注及放行日期（签章）
+				</label>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					报关员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="报关员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审单
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审单">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审价
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审价">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					单位地址
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="单位地址">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					征税
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="rate" class="form-control input-sm"  placeholder="征税">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					统计
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="统计">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					邮编
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="邮编">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					电话
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="电话">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					填制日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="填制日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					查验
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="查验">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					放行
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="放行">
+				</div>		
+			</div>
+
+		</div>
+		<!-- <p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="yulu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yulu_cacle_btn">
+				取消
+			</button>
+		</p> -->
+	</form>
+</div>
+
+
+<div id="waihui_shouhui_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm zzxx">
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label for="inputEmail3" class="col-xs-4 control-label">
+					<span>*</span>金额:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_relName" name="relName" class="form-control input-sm"  placeholder="金额">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>收汇日期:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="收汇日期">
+				</div>
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					<span>*</span>收汇人:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="chukou_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<label class="col-xs-4 control-label">
+					说明:
+				</label>
+				<div class="col-xs-8">
+					<textarea class="form-control input-sm" row="5" placeholder="备注信息"></textarea>
+				</div>
+			</div>
+		</div>
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm" id="chukou_resetBtn">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="chukou_cacle_btn">
+				取消
+			</button>
+		</p>
+		<p>&nbsp;</p>
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-striped table-condensed">
+					<thead class="bg-info">
+						<tr>
+							<th>收汇人</th>
+							<th>操作人</th>
+							<th>收汇日期</th>
+							<th>操作时间</th>
+							<th>金额</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody> 
+						<tr>
+							<td>张三</td>
+							<td>王五</td>
+							<td>2017-07-01</td>
+							<td>2017-07-08</td>
+							<td>2785</td>
+							<td>王五帮助张三进行的操作</td>
+						</tr>
+						<tr>
+							<td>王五</td>
+							<td>张三</td>
+							<td>2017-07-01</td>
+							<td>2017-07-08</td>
+							<td>2785</td>
+							<td>王五让张三帮助进行的操作</td>
+						</tr>
+						<tr>
+							<td>张三</td>
+							<td>王五</td>
+							<td>2017-07-01</td>
+							<td>2017-07-08</td>
+							<td>2785</td>
+							<td>王五帮助张三进行的操作</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
+
 <script type="text/javascript">
 
 	
 $(function(){
-	var dataUrl = 'data/waihui.json';
-	var index = null;
-	var flag = '';
-	var rowNumber = 1000000;
-
-	//表格数据
-	var gridWidth = $('#waihui_gridBox').width();
-	var gridHeight = $('#waihui_gridBox').height()-122;
-	$("#waihui_jqGrid").jqGrid({
+	
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/waihui.json';//数据源链接
+	var gridId = 'waihui_jqGrid'; //表格id
+	var gridPager = 'waihui_jqGridPager'; //表格分页id
+	var formBoxId = 'waihui_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'waihui_save_btn'; //弹窗保存id
+	var gridBoxId = 'waihui_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
 		
-		hidegrid : false, 
-		altRows : true,
-		colModel: [{label : '报关单号', name : 'guandan', align: 'center', width: 120},
-			{label : '贸易方式', name : 'way', align: 'center', width:120},
-			{label : '币制', name : 'moneyway', align: 'center', width:120},
-			{label : '报关金额', name : 'aboutmoney', align: 'center', width:120},
-			{label : '已收汇金额', name : 'savemoney', align: 'center', width:120},
-			{label : '剩余金额', name : 'overplus', align: 'center', width:120},
-			{label : '不能收汇原因', name : 'noshouhui', align: 'center', width:120},
-			{label : '结款状态', name : 'active', align: 'center', width:120}],
-		viewrecords: true,
-		loadonce:true,
+			{label : '报关单号', name : 'id', align: 'center', width: 120},
+			{label : '出口口岸', name : 'kouan', align: 'center', width: 120,search:false},
+			{label : '抵运国', name : 'dyg', align: 'center', width: 120,search:false},
+			{label : '出口日期', name : 'ckDate', align: 'center', width:120},
+			{label : '贸易方式', name : 'type', align: 'center', width:120,search:false},
+			{label : '收汇率', name : 'rate', align: 'center', width:120,search:false},
+		
+		];
+/*
+id: 'WH{{integer(100000, 200000)}}',
+kouan: '{{random("平谷海关", "京中关村", "京国际局","十八里店","京调查局","天津海关","津开发区","津机场办","唐山海关")}}',
+dyg: '{{random("美国", "台湾", "英国","韩国","俄罗斯","朝鲜","印度")}}',
+ckDate: '{{date(new Date(2017, 0, 1), new Date(), "YYYY-MM-dd")}}',
+type: '{{random("一般贸易", "外综服务", "承包商")}}',
+rate: '{{integer(10, 80)}}%'
+*/
+	
+	$('#'+gridId).jqGrid({
 		width: gridWidth,
-		//width: 'auto',
-		//width : '100%',
 		height: gridHeight,
-		//height : 'auto',
-		rowNum: 11,
-		rowList:[10,15,20,25],
-		datatype: 'local',
-		pager: "#waihui_jqGridPager",
-		multiselect: true,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
+		//emptyrecords: "No records to view",
 		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
+		//jsonReader : jsonReader
 		
-	}).navGrid('#waihui_jqGridPager',{ 
-	// the buttons to appear on the toolbar of the grid
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
-	}).navButtonAdd('#waihui_jqGridPager',{
-			//caption: '导出',
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '查看',
 		caption: '',
-		title : '结算',
-		buttonicon : 'fa fa-paypal',
-		onClickButton : waihui_importLayer, //调用导出函数
+		title : '查看',
+		buttonicon : 'fa fa-search',
+		onClickButton : function(){ lookInfo(); }, //调用查看的函数
 		position : 'last'
-	}).navSeparatorAdd("#waihui_jqGridPager",{
-			sepcontent: '',
-			sepclass : "ui-separator"
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '查看',
+		caption: '',
+		title : '收汇',
+		buttonicon : 'fa fa-money',
+		onClickButton : function(){ shouhui(); }, //调用查看的函数
+		position : 'last'
 	});
-	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#waihui_jqGrid').jqGrid('filterToolbar');
-	
-	fetchGridData();
-		// 结算函数
-	function waihui_importLayer(){
-		var rowd = getSelectedRow();
-		var len = rowd.length;
-		if(rowd && $.isArray(rowd) && rowd.length>0){
-			//删除
-			var deletindex = layer.confirm('确定要结算吗？', {
-			  btn: ['确定','取消'] //按钮
-			}, function(){
-				/*for(var i=0; i<len; i++){
-					jQuery("#yulu_jqGrid").delRowData(rowd[0]);  
-				}*/
-			    var rowIds = getSelectedRow();
-				if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-					
-					var rowData = $("#waihui_jqGrid").getRowData(rowIds[0]);
-					
-				    $('#waihui_pay').val(rowData.last),
-				    $('#waihui_last').val("0"),
-				    $('#waihui_active').val("已结清")
-				}
-			    layer.msg('结算成功', {icon: 1});
-			}, function(){
-			  	layer.close(deletindex);
-			});
-			
-		}else{
-			layer.msg('请选择记录!');
-		}
-	}
-	
-	
-	
-	//弹框取消按钮
-	$('#waihui_cacle_btn').on('click',function(){
-		layer.close(index);
+	/*
+	.navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '添加',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
 	});
 	
+	*/
 	
+	//表格添加搜索框按钮
+	$('#'+gridId).jqGrid('filterToolbar');
+	//修改工具条
+	changeSearch(); 
+	
+	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
 	
 	//弹框保存按钮
-	$(document).on('click','#waihui_save_btn',function(){
-		//var total = jQuery("#waihui_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
+	$(document).on('click','#'+dataSaveBtn,function(){
 		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#waihui_name').val()),
-				    "relName": $.trim($('#waihui_relName').val()),
-				    "company": $.trim($('#waihui_company').val()),
-				    "createTime": $.trim($('#waihui_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#waihui_jqGrid").addRowData(currentNumber,data,'first');
-			
+			var data = getFormData(formBoxId);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
 				
-				jQuery("#waihui_jqGrid").setSelection(currentNumber,true);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 				
 			}else{
-				layer.msg('添加失败!');
+				layer.msg('添加失败!',{time:layerCloseTime});
 			}
 		}else if(flag == 'update'){
 			
 			//删除
-			var rowIds = getSelectedRow();
-			jQuery("#waihui_jqGrid").delRowData(rowIds[0]);
+			var rowIds = getSelectedRow(gridId);
+			jQuery('#'+gridId).delRowData(rowIds[0]);
 			//添加
-			var data = {
-					"name": $.trim($('#waihui_name').val()),
-				    "relName": $.trim($('#waihui_relName').val()),
-				    "company": $.trim($('#waihui_company').val()),
-				    "cteateTime": $.trim($('#waihui_cteateTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#waihui_jqGrid").addRowData(currentNumber,data,'first');
+			var data = getFormData(formBoxId);
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
 			
 			if(result){
-				layer.msg('更新成功');
-				layer.close(index);
-				jQuery("#waihui_jqGrid").setSelection(currentNumber,true);
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#'+gridId).setSelection(currentNumber,true);
 			}else{
-				layer.msg('更新失败!');
+				layer.msg('更新失败!',{time:layerCloseTime});
 			}
 		}
 		
 	});
-
 	
-	//表头编辑按钮
-	$(document).on('click','#waihui_update_btn',function(){
-		flag = 'update';
-		var rowIds = getSelectedRow();
-		
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			
-			var rowData = $("#waihui_jqGrid").getRowData(rowIds[0]);
-			
-			//console.log(rowData);
-			
-			$('#waihui_name').val(rowData.name),
-		    $('#waihui_relName').val(rowData.relName),
-		    $('#waihui_company').val(rowData.company),
-		    $('#waihui_createTime').val(rowData.createTime)
-			title = '修改模块';
-			index = layer.open({
-				type: 1,
-				title : title,
-				area: ['60%', '70%'], //宽高
-				content: $('#waihui_formBox')
-			});
-		}else{
-			layer.msg('同时只能选择一条记录!');
-		}
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
 	});
 	
-	//获取json数据
-	function fetchGridData() {
-
-		var gridArrayData = [];
-		// show loading message
-		$("#waihui_jqGrid")[0].grid.beginReq();
-		$.ajax({
-			url: dataUrl,
-			success: function(result) {
-				for (var i = 0; i < result.items.length; i++) {
-					var item = result.items[i];
-					
-					gridArrayData.push({
-						guandan: item.guandan,
-						way: item.way,
-						moneyway: item.moneyway,
-						aboutmoney: item.aboutmoney,
-						savemoney: item.savemoney,
-						overplus: item.overplus,
-						noshouhui: item.noshouhui,
-						active: item.active
-					});
-
-				}
-				// set the new data
-				$("#waihui_jqGrid").jqGrid('setGridParam', {
-					data: gridArrayData
-				});
-				// hide the show message
-				$("#waihui_jqGrid")[0].grid.endReq();
-				// refresh the grid
-				$("#waihui_jqGrid").trigger('reloadGrid');
-			}
+	//左下角新增按钮
+	function addLayer(){
+		flag = 'add';
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
+			type: 1,
+			title : '添加模块',
+			area: ['90%', '90%'], //宽高
+			content: $('#'+formBoxId)
 		});
 	}
-	//格式化标题
-	function formatTitle(cellValue, options, rowObject) {
-		return cellValue.substring(0, 50) + "...";
-	};
-	//格式化链接
-	function formatLink(cellValue, options, rowObject) {
-		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
-	};
-	//获取选择的行
-	function getSelectedRow() {
-	    var grid = $("#waihui_jqGrid");
-	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
-
-	   return rowKeys;
+	
+	//左下角编辑按钮
+	function updateLayer(){
+		flag = 'update';
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['90%', '90%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
 	}
 	
 	
-	changeSearch(); //修改工具条
+	//-------------------------------//
+	
+	//查看
+	function lookInfo(){
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '合同信息',
+			area : ['90%', '90%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	
+	//收汇
+	function shouhui(){
+		
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type: 1,
+				title : '收汇',
+				area: ["90%","80%"], //宽高
+				content: $('#waihui_shouhui_formBox')
+			});
+		}else{
+			layer.msg('只能选择一条关单!',{time:layerCloseTime});
+		}
+		
+	}
+	
 	
 });
 

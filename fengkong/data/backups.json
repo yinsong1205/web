@@ -1,5 +1,54 @@
 /*
-
+---------------------------------------------------------
+[
+  '{{repeat(5, 7)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    guid: '{{guid()}}',
+    isActive: '{{bool()}}',
+    balance: '{{floating(1000, 4000, 2, "$0,0.00")}}',
+    picture: 'http://placehold.it/32x32',
+    age: '{{integer(20, 40)}}',
+    eyeColor: '{{random("blue", "brown", "green")}}',
+    name: '{{firstName()}} {{surname()}}',
+    gender: '{{gender()}}',
+    company: '{{company().toUpperCase()}}',
+    email: '{{email()}}',
+    phone: '+1 {{phone()}}',
+    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    about: '{{lorem(1, "paragraphs")}}',
+    registered: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    latitude: '{{floating(-90.000001, 90)}}',
+    longitude: '{{floating(-180.000001, 180)}}',
+    tags: [
+      '{{repeat(7)}}',
+      '{{lorem(1, "words")}}'
+    ],
+    friends: [
+      '{{repeat(3)}}',
+      {
+        id: '{{index()}}',
+        name: '{{firstName()}} {{surname()}}'
+      }
+    ],
+    greeting: function (tags) {
+      return 'Hello, ' + this.name + '! You have ' + tags.integer(1, 10) + ' unread messages.';
+    },
+    favoriteFruit: function (tags) {
+      var fruits = ['apple', 'banana', 'strawberry'];
+      return fruits[tags.integer(0, fruits.length - 1)];
+    }
+  }
+]
+---------------------------------------------------------
+//waihui.html
+id: 'WH{{integer(100000, 200000)}}',
+kouan: '{{random("平谷海关", "京中关村", "京国际局","十八里店","京调查局","天津海关","津开发区","津机场办","唐山海关")}}',
+dyg: '{{random("美国", "台湾", "英国","韩国","俄罗斯","朝鲜","印度")}}',
+ckDate: '{{date(new Date(2017, 0, 1), new Date(), "YYYY-MM-dd")}}',
+type: '{{random("一般贸易", "外综服务", "承包商")}}',
+rate: '{{integer(10, 80)}}%'
 
 ***********************user.json文件***********************
 {label : '登录名', name : 'name', align: 'center'},
