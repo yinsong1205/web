@@ -334,11 +334,11 @@
 <div class="layerFormBox import_formBox" id="caigou_import_formBox"> 
 	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
-			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>附件:</label>
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择:</label>
 			<div class="col-sm-8">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span>上传附件</span>
+					<span>浏览...</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
@@ -428,6 +428,52 @@
 		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
 	</div>
 </div>
+<!-- 审核 -->
+<div class="layerFormBox" id="shenhe_formBoxId"> 
+	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
+	<div class="col-sm-12"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>审核人</th>
+						<th>审核日期</th>
+						<th>审核状态</th>
+						<th>说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-10</td>
+						<td>已通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-06</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-04</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-02</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
 
 <script type="text/javascript">
 	
@@ -445,8 +491,8 @@
 		var gridBoxId = 'caigou_gridBox';//表格尺寸
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 		var gridWidth = $('#'+gridBoxId).width();
-		var gridHeight = $('#'+gridBoxId).height()-118;
-		
+		//var gridHeight = $('#'+gridBoxId).height()-118;
+		var gridHeight = 310;
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
@@ -493,8 +539,8 @@
 			sortname: 'name', //排序字段
 			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
 			altRows : true, //设置表格隔行变色
-			rowNum: 12, //每页显示的记录数
-			rowList:[10,12,15,18,20,25], //
+			rowNum: 10, //每页显示的记录数
+			rowList:[10,15,18,20,25], //
 			rownumWidth: 30, 
 			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 			//emptyrecords: "No records to view",
@@ -532,7 +578,7 @@
 		}).navButtonAdd('#'+gridPager,{
 			//caption: '导入合同',
 			caption: '',
-			title : '导入合同',
+			title : '批量导入',
 			buttonicon : 'fa fa-upload',
 			onClickButton : function(){importLayer();}, //调用导入合同函数
 			position : 'last'
@@ -652,7 +698,7 @@
 		};
 		
 		//审核
-		function shenhe(){
+		/* function shenhe(){
 			var rowIds = getSelectedRow(gridId);
 			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 				var rowData = $('#'+gridId).getRowData(rowIds[0]);
@@ -663,6 +709,25 @@
 					shadeClose: true,
 					area : ['30%','40%'],
 					content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
+				});
+			}else{
+				layer.msg('请选择一条记录!',{time:layerCloseTime});
+			}
+			
+		} */
+		//审核
+		function shenhe(){
+			var rowIds = getSelectedRow(gridId);
+			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+				var rowData = $('#'+gridId).getRowData(rowIds[0]);
+				commIndex = layer.open({
+					type : 1,
+					title : '审核窗口',
+					skin: 'layui-layer-rim',
+					shadeClose: true,
+					area : ['70%','70%'],
+					content : $('#shenhe_formBoxId')
+					// ''
 				});
 			}else{
 				layer.msg('请选择一条记录!',{time:layerCloseTime});
