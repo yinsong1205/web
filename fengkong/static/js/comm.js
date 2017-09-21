@@ -20,7 +20,22 @@ $(function(){
 	//加载左侧信息
 	$('#fkLeft').load('include/left.html');
 	//加载首页
-	$('#main .con').eq(0).load('include/main.html');
+	//$('#main .con').eq(0).load('include/main.html');
+	
+	var href = window.location.href;
+	//var menuJsonUrl = 'data/menu.json';
+	if(href.indexOf('zhangsan') != -1){
+		//$('#header_dropdown_menu b').text('张三');
+		//menuJsonUrl = 'data/menu_zhangsan.json';
+		$('#main .con').eq(0).load('include/main_zhangsan.html');
+	}else if(href.indexOf('lisi') != -1){
+		//$('#header_dropdown_menu b').text('李四');
+		//menuJsonUrl = 'data/menu_lisi.json';
+		$('#main .con').eq(0).load('include/main_lisi.html');
+	}else{
+		$('#main .con').eq(0).load('include/main.html');
+	}
+	
 	//$('#main .con').eq(0).load('system/module.html');
 	
 	//右侧触发点击
@@ -188,6 +203,8 @@ function updateGridData(setting){
 	if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 		var rowData = $('#'+setting.gridId).getRowData(rowIds[0]);
 		rowData.name = $(rowData.name).text();
+		console.log('id:'+rowData.id);
+		rowData.id = $(rowData.id).text();
 		setFormData(setting.formBoxId,rowData);
 		//title = '修改模块';
 		commIndex = layer.open({
