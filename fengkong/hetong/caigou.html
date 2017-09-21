@@ -10,6 +10,7 @@
 #otherInfo {position:absolute; bottom:-30px; left:0; width:100%; z-index:10; }
 #otherInfo .btn {padding:0 10px;}
 #otherInfo .btn i {font-size:14px; }
+#caigou_gl_box{display: none;}
 
 </style>
 
@@ -46,7 +47,7 @@
 				<div class="form-group col-sm-4">
 					<label  class="col-sm-6 control-label text-right">开始日期 :</label>
 					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
+						<input type="email" class="form-control input-sm" onClick="WdatePicker()"
 							placeholder="开始日期 " onclick="WdatePicker();">
 					</div>
 				</div>
@@ -476,15 +477,15 @@
 		</div>
 </div>
 <!-- 关联 -->
-<div class="layerFormBox" id="caigou_gl_box">
+<div id="caigou_gl_box" style="padding:0; width:100%;height:80%;">
 	<table id="caigou_gl_jqGrid"></table>
 	<div id="caigou_gl_jqGridPager"></div>
 	<div class="col-sm-12">	
-		<button type="button" class="saveBtn btn btn-info btn-sm" id="caigou_save_btn" style="display:block">关联</button>
+		<button type="button" class="saveBtn btn btn-info btn-sm" id="caigou_gl_btn" style="display:block">关联</button>
 	</div>
-	<div class="col-sm-12" id="yiguan_gridBox" style="padding:0; width:100%;height:80%;">
-		<table id="yiguan_jqGrid"></table>
-		<div id="yiguan_jqGridPager"></div>
+	<div class="container-fluid" id="yichukou_gridBox" style="padding:0; width:90%;height:80%;">
+		<table id="yichukou_jqGrid"></table>
+		<div id="yichukou_jqGridPager"></div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -502,10 +503,9 @@
 		var dataSaveBtn = 'caigou_save_btn'; //弹窗保存id
 		var gridBoxId = 'caigou_gridBox';//表格尺寸
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
-		var gridWidth = $('#'+gridBoxId).width();
+		var gridWidth = $('#'+gridBoxId).width()-2;
 		//var gridHeight = $('#'+gridBoxId).height()-118;
-		
-		var gridHeight = 370;
+		var gridHeight = $('#'+gridBoxId).height()-132;
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
@@ -934,6 +934,71 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 			
 		});
 	});
+		$("#caigou_gl_jqGrid").jqGrid({
+				url: 'data/chukou.json',
+				datatype: "json",
+				loadonce: true,
+				viewrecords: true,
+				multiselect: true,
+				altRows : true,
+				width: $('#caigou_gl_gridBox').width(),
+				height: $('#caigou_gl_gridBox').height(),
+				page : 1,
+				rowNum: 8,
+				colModel: [
+			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
+},
+			{label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
+},
+			{label : '买方', name : 'company', align: 'center', width:120,search:false},
+			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
+			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
+},
+			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
+}
+				],
+				pager: "#caigou_gl_jqGridPager"
+			});
+			$('#caigou_gl_jqGrid').jqGrid('filterToolbar');
+	//关联按钮
+	$(document).on('click','#caigou_gl_btn',function(){
+		var rowIds = getSelectedRow('caigou_gl_jqGrid');
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			showchukou();
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+	});
+function showchukou (){
+	$("#yichukou_jqGrid").jqGrid({
+		url: 'data/yichukou.json',
+		editurl: 'clientArray',
+		datatype: "json",
+		sortname: 'name',
+		sortorder: 'asc',
+		loadonce: true,
+		width: $('#yichukou_gridBox').width(),
+		height: 150,
+		rowNum: 13,
+		colModel: [
+			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
+},
+			{label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
+},
+			{label : '买方', name : 'company', align: 'center', width:120,search:false},
+			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
+			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
+},
+			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
+},
+			{label : '关联方式', name : 'glStatus', align: 'center',width:50, search:false}
+				],
+			
+		pager: "#yichukou_jqGridPager"
+	});
+}
 </script>
 
 	

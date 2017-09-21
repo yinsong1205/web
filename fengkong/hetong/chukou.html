@@ -19,17 +19,20 @@
 	
 </div>
 <!-- 物资清单 -->
-<div class="layerFormBox" id="qingdan_gridBox" style="padding:0; width:75%;height:80%;">
-	<table id="qingdan_jqGrid"></table>
-	<div id="qingdan_jqGridPager"></div>
+<div>
+	<div class="col-sm-12 plr0 height100 gridBox" id="qingdan_gridBox" style="padding:0; width:90%;height:80%;">
+		<table id="qingdan_jqGrid"></table>
+		<div id="qingdan_jqGridPager"></div>
+	</div>
 </div>
-<div class="col-sm-12" id="cai_gridBox" style="padding:0; width:80%;height:80%;">
+<!-- 关联采购 -->
+<div id="cai_gridBox" style="padding:0; width:100%;height:80%;">
 	<table id="cai_jqGrid"></table>
 	<div id="cai_jqGridPager"></div>
 	<div class="col-sm-12">	
 		<button type="button" class="saveBtn btn btn-info btn-sm" id="cai_save_btn" style="display:block">关联</button>
 	</div>
-	<div class="col-sm-12" id="yiguan_gridBox" style="padding:0; width:100%;height:80%;">
+	<div class="container-fluid" id="yiguan_gridBox" style="padding:0; width:90%;height:80%;">
 		<table id="yiguan_jqGrid"></table>
 		<div id="yiguan_jqGridPager"></div>
 	</div>
@@ -935,15 +938,15 @@ $(function(){
 
 	var qingdan_formBoxId = 'qingdan_formBoxId'; //物资清单弹框
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
-	var gridWidth = $('#'+gridBoxId).width();
+	var gridWidth = $('#'+gridBoxId).width()-2;
 	// var gridHeight = $('#'+gridBoxId).height()-118;
-	var gridHeight = 370;
+	var gridHeight = $('#'+gridBoxId).height()-132;
 
-	var qingdan_gridWidth = $('#qingdan_gridBox').width()-2;
-	var qingdan_gridHeight = $('#qingdan_gridBox').height()-122;
+	var qingdan_gridWidth = $('#qingdan_gridBox').width();
+	var qingdan_gridHeight = $('#qingdan_gridBox').height()-132;
 
-	var cai_gridWidth = $('#cai_gridBox').width()-2;
-	var cai_gridHeight = 150;
+	var cai_gridWidth = $('#cai_gridBox').width();
+	var cai_gridHeight = $('#'+gridBoxId).height()-150;
 
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
@@ -1242,7 +1245,7 @@ $(function(){
 				{label : '合同名称', name : 'name', align: 'left', width:10},
 				{label : '签订时间 ', name : 'qdTime', align: 'center', width:10, search:false
 				},
-				{label : '采购方', name : 'caiName', align: 'left', width:10, search:false
+				{label : '采购方', name : 'caigouName', align: 'left', width:10, search:false
 				},
 				{label : '供货方', name : 'gonghuoName', align: 'left', width:10},
 				{label : '合同金额', name : 'money', align: 'center',width:10, search:false}
@@ -1310,11 +1313,13 @@ $(function(){
 		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 	};
 	function formatRelated(cellValue, options, rowObject) {
-		var len = cellValue.length;
-		if(len>50){
-				cellValue = cellValue.substring(0, 50) + "...";
+		if (cellValue) {
+			var len = cellValue.length;
+			if(len>50){
+					cellValue = cellValue.substring(0, 50) + "...";
+			}
+			return '<a href="javascript:;" onclick="lookcai()">'+cellValue+'</a>';
 		}
-		return '<a href="javascript:;" onclick="lookcai()">'+cellValue+'</a>';
 	};
 	//-------------------------------//
 	//刷新
@@ -1417,7 +1422,7 @@ function showcai (){
 		sortname: 'name',
 		sortorder: 'asc',
 		loadonce: true,
-		width: $('#yiguan_gridBox').width()-2,
+		width: $('#yiguan_gridBox').width(),
 		height: 150,
 		rowNum: 13,
 		colModel: [
@@ -1425,11 +1430,11 @@ function showcai (){
 				{label : '合同名称', name : 'name', align: 'left', width:10},
 				{label : '签订时间 ', name : 'qdTime', align: 'center', width:10, search:false
 				},
-				{label : '采购方', name : 'caiName', align: 'left', width:10, search:false
+				{label : '采购方', name : 'caigouName', align: 'left', width:10, search:false
 				},
 				{label : '供货方', name : 'gonghuoName', align: 'left', width:10},
 				{label : '合同金额', name : 'money', align: 'center',width:10, search:false},
-				{label : '已关联', name : 'glStatus', align: 'center',width:10, search:false}
+				{label : '关联方式', name : 'glStatus', align: 'center',width:10, search:false}
 				],
 			
 		pager: "#yiguan_jqGridPager"

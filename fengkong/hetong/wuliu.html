@@ -9,7 +9,6 @@
 <!-- 新增弹窗 -->
 <div id="wuliu_jqGrid_formBox" class="layerFormBox zzxx">
 	<form>
-		<div class="row">
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>协议编号:</label>
 				<div class="col-sm-6" style="display: block;top: 0">
@@ -25,31 +24,15 @@
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>签订日期:</label>
 				<div class="col-sm-6">
-					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" placeholder="签订日期 ">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>运输目的地:</label>
-				<div class="col-sm-6" style="display: block;top: 0">
-					<input type="text" class="form-control input-sm" placeholder="运输目的地">
+					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" placeholder="签订日期 " onClick="WdatePicker()">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>发运地点:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>生效日期:</label>
 				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="发运地点 ">
+					<input type="riqi" class="form-control input-sm" placeholder="生效日期 " onClick="WdatePicker()">
 				</div>
 			</div>
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">截止日期:</label>
-				<div class="col-sm-6">
-					<input type="riqi" id="wuliu_endTime"  name="endTime" class="form-control input-sm" placeholder="截止日期 ">
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>币制:</label>
 				<div class="col-xs-6">
@@ -60,12 +43,54 @@
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>合同金额:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>金额:</label>
 				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="合同金额 ">
+					<input type="riqi" class="form-control input-sm" placeholder="金额 ">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>结汇方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="货到付款" selected="true">货到付款</option>
+						<option value="款到发货" >款到发货</option>
+						<option value="月付" >月付</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>运输方式:</label>
+				<div class="col-sm-6" style="display: block;top: 0">
+					<input type="text" class="form-control input-sm" placeholder="运输方式">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">发运地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" placeholder="发运地 ">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">目的地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" placeholder="目的地 ">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;">付款日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" placeholder="付款日期 ">.
+				</div>
+			</div>
+			<!-- <div class="form-group col-sm-4">
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">截止日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" id="wuliu_endTime"  name="endTime" class="form-control input-sm" placeholder="截止日期 ">
+				</div>
+			</div> -->
+			
+			
+			<!-- <div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>运输方式:</label>
 				<div class="col-xs-6">
 					<select class="form-control input-sm" id="wuliu_bus"  name="bus">
@@ -74,16 +99,9 @@
 						<option value="陆路" >陆路</option>
 					</select>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>付款日期:</label>
-				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="付款日期 ">
-				</div>
-			</div>
-			<div class="form-group col-sm-4">
+			</div> -->
+			
+			<!-- <div class="form-group col-sm-4">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>结款状态:</label>
 				<div class="col-xs-6">
 					<select class="form-control input-sm" id="wuliu_status"  name="status">
@@ -91,21 +109,10 @@
 						<option value="已结清" >已结清</option>
 					</select>
 				</div>
-			</div>
+			</div> -->
+			
 			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>结算方式:</label>
-				<div class="col-xs-6">
-					<select class="form-control input-sm">
-						<option value="水路" selected="true">货到付款</option>
-						<option value="空路" >款到发货</option>
-						<option value="陆路" >月付</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>保费:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;">保费:</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-sm" placeholder="保费">
 				</div>
@@ -116,7 +123,7 @@
 	<form class="form-horizontal layerForm">
 		<div class="row" style="margin-top: 10px;">
 			<div class="form-group col-sm-6">
-				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;"><span>*</span>委托方:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-left" style="height: 40px;">委托方:</label>
 				<div class="col-sm-6" style="display: block;top: 0">
 					<input type="text" class="form-control input-sm" id="wuliu_relName"  name="relName" placeholder="委托方">
 				</div>
@@ -130,65 +137,63 @@
 		</div>
 		<div class="row" style="margin-top: 10px;">
 			<div class="form-group col-sm-6">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>签订人:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>委托方签订人:</label>
 				<div class="col-sm-6">
-					<input type="text" id="wuliu_roleName"  name="roleName" class="form-control input-sm" placeholder="签订人">
+					<input type="text" id="wuliu_roleName"  name="roleName" class="form-control input-sm" placeholder="委托方签订人">
 				</div>
 			</div>
 			<div class="form-group col-sm-6">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>签订人:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;"><span>*</span>代理方签订人:</label>
 				<div class="col-sm-6">
-					<input type="text" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm" placeholder="签订人">
+					<input type="text" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm" placeholder="代理方签订人">
 				</div>
 			</div>
 		</div>
 		<div class="row" style="margin-top: 10px;">
 			<div class="form-group col-sm-6">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">联系电话:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">委托方联系方式:</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-sm" placeholder="联系电话">
+					<input type="text" class="form-control input-sm" placeholder="委托方联系方式">
 				</div>
 			</div>
 			<div class="form-group col-sm-6">
-				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">联系电话:</label>
+				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">代理方联系方式:</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-sm" placeholder="联系电话">
+					<input type="text" class="form-control input-sm" placeholder="代理方联系方式">
 				 </div>
 			 </div>
 		 </div>
 
 		 <div class="row" style="margin-top: 10px;">
 			 <div class="form-group col-sm-6">
-				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">开户行:</label>
+				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">委托方开户行:</label>
 				 <div class="col-sm-6">
-					 <input type="text" class="form-control input-sm" placeholder="开户行">
+					 <input type="text" class="form-control input-sm" placeholder="委托方开户行">
 				 </div>
 			 </div>
 			 <div class="form-group col-sm-6">
-				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">开户行:</label>
+				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">代理方开户行:</label>
 				 <div class="col-sm-6"> 
-				 	<input type="text" class="form-control input-sm" d="inputEmail3" placeholder="开户行">
+				 	<input type="text" class="form-control input-sm" d="inputEmail3" placeholder="代理方开户行">
 				 </div>
 			 </div>
 		 </div>
 
 		 <div class="row" style="margin-top: 10px;">
 			 <div class="form-group col-sm-6">
-				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">银行账户:</label>
+				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">委托方账户:</label>
 				 <div class="col-sm-6">
-					 <input type="text" class="form-control input-sm" placeholder="银行账户">
+					 <input type="text" class="form-control input-sm" placeholder="委托方账户">
 				 </div>
 			 </div>
 			 <div class="form-group col-sm-6">
-				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">银行账户:</label>
+				 <label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">代理方账户:</label>
 				 <div class="col-sm-6">
-					 <input type="text" class="form-control input-sm" placeholder="银行账户">
+					 <input type="text" class="form-control input-sm" placeholder="代理方账户">
 				 </div>
 			 </div>
 		 </div>
-
-		<div class="row text-left" style="margin-top: 10px;">
-			<div class="form-group col-sm-6">
+		<!-- 	<div class="form-group col-sm-6">
 				<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">传真:</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-sm" placeholder="传真">
@@ -199,23 +204,34 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control input-sm" placeholder="传真">
 					</div>
-				</div>
-			</div>
+				</div> -->
 
 			<div class="row text-left" style="margin-top: 10px;">
 				<div class="form-group col-sm-6">
-					<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;text-align: right">地址:</label>
+					<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;text-align: right">委托方地址:</label>
 					<div class="col-sm-6">
-						<textarea class="form-control input-sm" placeholder="地址"></textarea>
+						<textarea class="form-control input-sm" placeholder="委托方地址"></textarea>
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">地址:</label>
-						<div class="col-sm-6">
-							<textarea class="form-control input-sm" placeholder="地址"></textarea>
-						</div>
+					<label for="inputEmail3" class="col-sm-6 control-label text-right" style="height: 40px;">代理方地址:</label>
+					<div class="col-sm-6">
+						<textarea class="form-control input-sm" placeholder="代理方地址"></textarea>
 					</div>
 				</div>
+			</div>
+			<form class="form-horizontal zzxx" id="wuliu_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="row col-xs-12 ctform">
+				<label class="col-sm-2 control-label text-right"><span>*</span>合同源文件:</label>
+				<div class="col-sm-8">
+					<span class="btn btn-default btn-sm fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加附件</span>
+						<input type="file" name="files[]" multiple>
+					</span>
+				</div>
+			</div>
+			</form>
 		<p class="text-center">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="wuliu_save_btn">
 				保存
@@ -228,7 +244,6 @@
 			</button>
 		</p>
 	</form>
-			</div>
 <script type="text/javascript">
 
 	
@@ -257,8 +272,8 @@ $(function(){
 	var dataSaveBtn = 'wuliu_save_btn'; //弹窗保存id
 	var gridBoxId = 'wuliu_gridBox';//表格尺寸
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
-	var gridWidth = $('#'+gridBoxId).width();
-	var gridHeight = $('#'+gridBoxId).height()-118;
+	var gridWidth = $('#'+gridBoxId).width()-2;
+	var gridHeight = $('#'+gridBoxId).height()-132;
 	
 	var colModel = [
 		{label : '协议编号', name : 'number', align: 'left', width: 130},
