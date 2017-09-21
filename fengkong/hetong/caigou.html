@@ -475,7 +475,10 @@
 			</table>
 		</div>
 </div>
-
+<!-- 关联 -->
+<div class="layerFormBox" id="caigou_gl_box">
+	<p>aaa</p>
+</div>
 <script type="text/javascript">
 	
 	$(function() {
@@ -517,8 +520,9 @@
 				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
 				{label : '合同金额', name : 'money', align: 'center',width:50, search:false},
 				{label : '物资清单', name : 'list', align: 'center',width:40,search:false},
-				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
-		];
+				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus},
+				{label : '关联状态', name : 'glStatus', align: 'center',width:40,search:false,formatter: formatGlStatus}
+		]; 
 		/**
 			id:
 			name:
@@ -801,6 +805,19 @@
 			$('.yincang').slideToggle();
 		});
 		
+		//关联
+		function formatGlStatus(cellValue, options, rowObject){
+			return cellValue ? '<a href="javascript:;" class="caigou_gl_ht">'+cellValue+'</a>' : '<a href="javascript:;" class="caigou_gl_ht">未关联</a>'; 
+		}
+		
+		$(document).on('click','.caigou_gl_ht',function(){
+			commIndex = layer.open({
+				type : 1,
+				title : '关联出口合同',
+				area : ["80%","80%"],
+				content: $('#caigou_gl_box')
+			});
+		});
 		
 		//物资清单
 		var wzFlag = false;
