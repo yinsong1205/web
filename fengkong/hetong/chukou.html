@@ -566,6 +566,22 @@
 				<textarea type="text" class="form-control input-sm"  placeholder="备注"></textarea>
 			</div>
 		</div>
+		<div class="col-sm-12" style="padding-top:15px;">
+			<div class="radio-inline">
+				<label>
+					<input type="radio" name="a" checked="true"/>审核不通过
+				</label>
+			</div>
+			<div class="radio-inline">
+				<label>
+					<input type="radio" name="a"/>审核通过
+				</label>
+			</div>
+			<textarea class="form-control" rows="3" placeholder="审核意见..."></textarea>
+			<p class="text-center" style="margin-top:15px;">
+				<button class="btn btn-info btn-sm qx">保存</button>
+			</p>
+		</div>
 		<form class="form-horizontal zzxx" id="chukou_fileupload" method="POST" enctype="multipart/form-data">
 			<div class="row col-xs-12 ctform">
 				<!-- <label class="col-xs-3 control-label">
@@ -630,6 +646,9 @@
 						<input type="file" name="files[]" multiple>
 					</span>
 				</div>
+			</div>
+			<div class="col-xs-6">
+
 			</div>
 			<!-- 用于显示上传文件的浏览 样式files是必须的-->
 			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
@@ -755,6 +774,7 @@
 		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
 	</p>
 </div>
+<!--  -->
 <div class="layerFormBox" id="shenhe_formBoxId"> 
 	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
 	<div class="col-sm-12" id="shenhe_history"> 
@@ -901,28 +921,20 @@ $(function(){
 	var qingdan_gridWidth = $('#qingdan_gridBox').width()-2;
 	var qingdan_gridHeight = $('#qingdan_gridBox').height()-122;
 	var colModel = [
-			{label : '合同编号', name : 'numBer', align: 'center', width: 50,
-					searchoptions: {
-						sopt : ['cn']
-					}
+			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
 			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
-			{label : '签订日期 ', name : 'createTime', align: 'center', width:60,
-					searchoptions: {
-						sopt : ['cn']
-					}
+			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
 },
 			{label : '买方', name : 'company', align: 'center', width:120,search:false},
 			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
-			{label : '出口国别', name : 'county', align: 'center',width:50,
-					searchoptions: {
-						sopt : ['cn']
-					}
+			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
 },
 			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
 },
-			{label : '货物清单', name : 'list', align: 'center',width:40,search:false},
-			{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+			{label : '货物清单', name : 'list', align: 'center',width:40, searchoptions: { sopt : ['cn']}},
+			{label : '审核状态', name : 'status', align: 'center',width:40,formatter:formatStatus, searchoptions: { sopt : ['cn']}},
+			{label : '关联状态', name : 'related', align: 'center',width:40,formatter:formatStatus, searchoptions: { sopt : ['cn']}}
 
 	];
 	/*
@@ -947,7 +959,7 @@ $(function(){
 		sortname: 'name', //排序字段
 		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
 		altRows : true, //设置表格隔行变色
-		rowNum: 12, //每页显示的记录数
+		rowNum: 15, //每页显示的记录数
 		rowList:[10,12,15,18,20,25], //
 		rownumWidth: 30, 
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
@@ -1103,27 +1115,7 @@ $(function(){
 	$('.'+layerCloseClassName).on('click',function(){
 		layer.close(layerIndex);
 	});
-
-/*	//清单弹出框
-	function qingdan(){
-		index = layer.open({
-				type: 1,
-				title : '物资清单',
-				area: ['90%', '80%'], //宽高
-				content: $('#qingdan_gridBox')
-		});
-			$("#qingdan_jqGrid").jqGrid({
-				
-			}).navButtonAdd('#'+gridPager,{
-				//caption: '新增',
-				caption: '',
-				title : '添加',
-				buttonicon : 'glyphicon-plus',
-				onClickButton : function(){qingdan_addLayer();}, //调用添加的函数
-				position : 'last'
-				
-			})
-	}*/
+	//清单弹出框
 	var flag = false;
 		$(document).on('click','.chukou_wzqd',function(){
 			
@@ -1232,7 +1224,6 @@ $(function(){
 	
 	//左下角编辑按钮
 	function updateLayer(){
-		$('#ctrl').show();
 		flag = 'update';
 		var setting = {
 			gridId : gridId,
@@ -1249,7 +1240,6 @@ $(function(){
 	}
 	
 	function formatrelName(cellValue, options, rowObject) {
-		$('#ctrl').hide();
 		var len = cellValue.length;
 		if(len>50){
 				cellValue = cellValue.substring(0, 50) + "...";
@@ -1264,7 +1254,7 @@ $(function(){
 
 	//审核
 	function shenhe(){
-		$('#shenhe_history').hide();
+		// $('#shenhe_history').hide();
 		var rowIds = getSelectedRow(gridId);
 		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
@@ -1282,7 +1272,6 @@ $(function(){
 		}
 		
 	}
-
 //	//统计
 	// function chukoutongji(){
 	// 	commIndex = layer.open({
