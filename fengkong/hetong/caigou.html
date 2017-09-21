@@ -235,15 +235,13 @@
 					<div class="form-group col-sm-12">
 						<label  class="col-sm-5 control-label text-right"><span>*</span>入驻企业:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" name="gonghuoName"
-								placeholder="入驻企业">
+							<input type="email" class="form-control input-sm" name="gonghuoName" placeholder="入驻企业">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
 						<label  class="col-sm-5 control-label text-right"><span>*</span>签  订  人:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="签  订  人 ">
+							<input type="email" class="form-control input-sm" placeholder="签  订  人 ">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
@@ -334,15 +332,14 @@
 <div class="layerFormBox import_formBox" id="caigou_import_formBox"> 
 	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
-			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择:</label>
-			<div class="col-sm-2">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+			<div class="col-sm-8">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span>浏览...</span>
+					<span>添加合同附件</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
-			<div class="col-sm-8" style="padding-top:7px">支持excel、csv、xml三种文件方式导入。</div>
 		</div>
 		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
@@ -429,52 +426,6 @@
 		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
 	</div>
 </div>
-<!-- 审核 -->
-<div class="layerFormBox" id="shenhe_formBoxId"> 
-	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
-	<div class="col-sm-12"> 
-			<table id="tj" class="table table-striped table-condensed table-bordered">
-				<thead>
-					<tr class="d9">
-						<th>审核人</th>
-						<th>审核日期</th>
-						<th>审核状态</th>
-						<th>说明</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>admin</td>
-						<td>2015-01-10</td>
-						<td>已通过</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>admin</td>
-						<td>2015-01-06</td>
-						<td>未通过</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>admin</td>
-						<td>2015-01-04</td>
-						<td>未通过</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>admin</td>
-						<td>2015-01-02</td>
-						<td>未通过</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>合计</td>
-						<td colspan="5" class="textRight">总记录 : 4</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-</div>
 
 <script type="text/javascript">
 	
@@ -492,12 +443,12 @@
 		var gridBoxId = 'caigou_gridBox';//表格尺寸
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 		var gridWidth = $('#'+gridBoxId).width();
-		//var gridHeight = $('#'+gridBoxId).height()-118;
 		var gridHeight = 370;
+		
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
-				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, search:false,
+				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60,
 					searchoptions : {
 						dataInit: function(e){
 							$(e).on('click',function(){
@@ -509,15 +460,14 @@
 						}
 					}
 				},
-				{label : '采购方', name : 'caigouName', align: 'left', width:150, search:false,
+				{label : '采购方', name : 'caigouName', align: 'left', width:150,
 					searchoptions: {
 						sopt : ['cn']
 					}
 				},
 				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
-				{label : '合同金额', name : 'money', align: 'center',width:50, search:false},
-				{label : '物资清单', name : 'list', align: 'center',width:40,search:false},
-				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+				{label : '合同金额', name : 'money', align: 'center',width:50},
+				{label : '物资清单', name : 'list', align: 'center',width:40,search:false}
 		];
 		/**
 			id:
@@ -541,8 +491,8 @@
 			sortname: 'name', //排序字段
 			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
 			altRows : true, //设置表格隔行变色
-			rowNum: 15, //每页显示的记录数
-			rowList:[10,15,18,20,25], //
+			rowNum: 12, //每页显示的记录数
+			rowList:[10,12,15,18,20,25], //
 			rownumWidth: 30, 
 			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 			//emptyrecords: "No records to view",
@@ -562,27 +512,19 @@
 			position : 'last'
 			
 		}).navButtonAdd('#'+gridPager,{
-			//caption: '新增',
-			caption: '',
-			title : '编辑',
-			buttonicon : 'glyphicon glyphicon-edit',
-			onClickButton : function(){updateLayer();}, //调用添加的函数
-			position : 'last'
-			
-		}).navButtonAdd('#'+gridPager,{
-			//caption: '审核',
-			caption: '',
-			title : '审核',
-			buttonicon : 'fa fa-gavel',
-			onClickButton : function(){shenhe();}, //调用审核的函数
-			position : 'last'
-			
-		}).navButtonAdd('#'+gridPager,{
 			//caption: '导入合同',
 			caption: '',
-			title : '批量导入',
+			title : '导入合同',
 			buttonicon : 'fa fa-upload',
 			onClickButton : function(){importLayer();}, //调用导入合同函数
+			position : 'last'
+			
+		}).navButtonAdd('#'+gridPager,{
+			//caption: '统计',
+			caption: '',
+			title : '报表统计',
+			buttonicon : 'fa fa-bar-chart-o',
+			onClickButton : function(){tongjiLayer(); }, //调用报表统计函数
 			position : 'last'
 			
 		}).navButtonAdd('#'+gridPager,{
@@ -598,16 +540,6 @@
 			sepcontent: '',
 			sepclass : "ui-separator"
 		});
-		
-		/* .navButtonAdd('#'+gridPager,{
-			//caption: '统计',
-			caption: '',
-			title : '报表统计',
-			buttonicon : 'fa fa-bar-chart-o',
-			onClickButton : function(){tongjiLayer(); }, //调用报表统计函数
-			position : 'last'
-			
-		}) */
 		
 		//表格添加搜索框按钮
 		$('#'+gridId).jqGrid('filterToolbar');
@@ -699,50 +631,14 @@
 			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 		};
 		
-		//审核
-		/* function shenhe(){
-			var rowIds = getSelectedRow(gridId);
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				var rowData = $('#'+gridId).getRowData(rowIds[0]);
-				commIndex = layer.open({
-					type : 1,
-					title : '审核窗口',
-					skin: 'layui-layer-rim',
-					shadeClose: true,
-					area : ['30%','40%'],
-					content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
-				});
-			}else{
-				layer.msg('请选择一条记录!',{time:layerCloseTime});
-			}
-			
-		} */
-		//审核
-		function shenhe(){
-			var rowIds = getSelectedRow(gridId);
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				var rowData = $('#'+gridId).getRowData(rowIds[0]);
-				commIndex = layer.open({
-					type : 1,
-					title : '审核窗口',
-					skin: 'layui-layer-rim',
-					shadeClose: true,
-					area : ['70%','70%'],
-					content : $('#shenhe_formBoxId')
-					// ''
-				});
-			}else{
-				layer.msg('请选择一条记录!',{time:layerCloseTime});
-			}
-			
-		}
+		
 		
 		//导入合同
 		function importLayer(){
 			commIndex = layer.open({
 				type: 1,
-				title : "批量导入",
-				area: ['60%', '60%'], //宽高
+				title : "导入合同",
+				area: ['80%', '60%'], //宽高
 				content: $('#caigou_import_formBox')
 			});
 		}
@@ -813,8 +709,8 @@
 				content: $('#caigou_wuzi')
 			});
 			
-			var caigouWidth =  $('#caigou_wuzi').width()-3;
-			var caigouHeight =  $('#caigou_wuzi').height()-130;
+			var caigouWidth =  $('#caigou_wuzi').width()-2;
+			var caigouHeight =  $('#caigou_wuzi').height()-122;
 			
 			$("#caigou_wz_jqGrid").jqGrid({
 				url: 'data/wuzi.json',
@@ -831,32 +727,24 @@
 				width: caigouWidth,
 				height: caigouHeight,
 				rowNum: 8,
-				colModel: [{label : '物资名称', name : 'name', align: 'left', width: 100,editable: true},
-					{label : '数量', name : 'number', align: 'center', width:50,search: false},
-					{label : '规格型号 ', name : 'guige', align: 'left', width:80,search: false},
+				colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+					{label : '数量', name : 'number', align: 'center', width:80,search: false},
+					{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
 					{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
-					{label : '单价', name : 'oneMoney', align: 'center', width:50,search: false},
-					{label : '总价', name : 'totalMoney', align: 'center',width:60,search: false},
-					{label : '供货方', name : 'company', align: 'left',width:150},
+					{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+					{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+					{label : '供货方', name : 'company', align: 'center',width:150},
 					],
-/*
-name:'{{random("手机", "螺栓", "水杯","电脑","插座","香烟")}}-{{surname().toUpperCase()}}',
-number:'{{integer(20, 40)}}',
-guige:'{{integer(100, 200)}}*{{integer(100, 200)}}*{{integer(100, 200)}}',
-danwei:'{{random("件", "包", "箱")}}',
-oneMoney:'{{integer(100, 500)}}',
-totalMoney:'{{integer(10000, 50000)}}',
-company:'{{random("平海", "京中", "国际","八里","天津","津京","上海")}}{{surname().toUpperCase()}}{{random("有限公司", "责任公司", "建筑公司")}}'
-*/
+				
 				pager: "#caigou_wz_jqGridPager"
 			
 			});
 			$('#caigou_wz_jqGrid').jqGrid('filterToolbar');
 			if(!wzFlag){
-				/*
+				
 				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
 					edit:false,add:false,del:false,search:false,refresh:false
-				}).navButtonAdd('#caigou_wz_jqGridPager',{
+				/*}).navButtonAdd('#caigou_wz_jqGridPager',{
 					//caption: '新增',
 					caption: '',
 					title : '新增',
@@ -885,9 +773,6 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 					sepclass : "ui-separator"
 				});
 				*/
-				
-				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
-					edit:false,add:false,del:false,search:false,refresh:false
 				}).navButtonAdd('#caigou_wz_jqGridPager',{
 					//caption: '导入物资',
 					caption: '',
@@ -900,7 +785,6 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 					sepcontent: '',
 					sepclass : "ui-separator"
 				});
-				
 				changeSearch(); //修改工具条
 				
 				wzFlag = true;
