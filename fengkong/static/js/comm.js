@@ -203,6 +203,8 @@ function updateGridData(setting){
 	if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 		var rowData = $('#'+setting.gridId).getRowData(rowIds[0]);
 		rowData.name = $(rowData.name).text();
+		console.log('id:'+rowData.id);
+		rowData.id = $(rowData.id).text();
 		setFormData(setting.formBoxId,rowData);
 		//title = '修改模块';
 		commIndex = layer.open({
