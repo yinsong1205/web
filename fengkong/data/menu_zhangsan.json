@@ -3,7 +3,7 @@
 	{
 		"id" : "menu_rw_gl",
 		"name" : "任务管理",
-		"url" : "liucheng/renwu.html",
+		"url" : "liucheng/renwu_zhangsan.html",
 		"leftIcon" : "l fa fa-tasks"
 		
 	},

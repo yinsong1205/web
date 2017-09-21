@@ -9,21 +9,35 @@ a:hover{ color:#3eabe8;}
 /* html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
 #fkHeader, #fkLeft, #fkRight, #fkFooter {position: absolute;}
 #fkHeader, #fkFooter {left:0; right:0;  }
-#fkLeft, #fkRight {top:58px; bottom:20px; } 有底部
+#fkLeft, #fkRight {top:58px; bottom:20px; } //有底部
 #fkLeft, #fkRight {top:58px; bottom:0; } //无底部
 #fkHeader{ top:0; height:58px; background:#fff; }
 #fkLeft{left:0; width:150px; background:#293f51;}
 #fkRight{ left:150px; right:0; background:#f4f4f4; overflow:auto; top:98px;}
-#fkFooter{ bottom:0; height:20px; background:#1f2c3c; } 有底部
+#fkFooter{ bottom:0; height:20px; background:#1f2c3c; } //有底部
 #fkTabs {position:fixed; left:150px; top:58px; width:100%; background:#e5e6e6; border-top:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9; padding:0 15px; height:40px;   }
-#fkMain {  } */
-
+#fkMain {  }  */
 /*layout end*/
 
-html,body,#fkBox { width:100%; background:#293f51;  }
+/*layout start*/
+html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
+#fkHeader, #fkLeft, #fkRight, #fkFooter {position: absolute;}
+#fkHeader, #fkFooter {left:0; right:0;  }
+/* #fkLeft, #fkRight {top:58px; bottom:20px; } 有底部*/
+#fkLeft, #fkRight {top:58px; bottom:0; } //无底部
+#fkHeader{ top:0; height:58px; background:#fff; }
+#fkLeft{left:0; width:150px; background:#293f51;}
+#fkRight{ left:150px; right:0; background:#f4f4f4; overflow:auto; top:98px;}
+/* #fkFooter{ bottom:0; height:20px; background:#1f2c3c; } 有底部 */
+#fkTabs {position:fixed; left:150px; top:58px; width:100%; background:#e5e6e6; border-top:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9; padding:0 15px; height:40px;   }
+#fkMain {  }
+/*layout end*/
+
+
+/* html,body,#fkBox { width:100%; background:#293f51;  }
 #fkLeft { width:150px; float:left; background:#293f51; }
 #fkRight { margin-left:150px; background:#f4f4f4; min-height:500px; padding-bottom:15px;   }
-#fkTabs { background:#e5e6e6; border-top:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9; padding:0 15px; height:40px; }
+#fkTabs { background:#e5e6e6; border-top:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9; padding:0 15px; height:40px; } */
 
 /*header start*/
 .headerInfo { line-height:58px; background: #337AB7;}
