@@ -23,13 +23,13 @@
 						<form action="#" name="f" method="post">
 							<div class="input_outer">
 								<span class="u_user"></span>
-								<input name="logname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+								<input name="logname" id="index_loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
-								<input name="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+								<input name="logpass" id="index_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
 							</div>
-							<div class="mb2"><a class="act-but submit" href="indexpart.html" style="color: #FFFFFF">登录</a></div>
+							<div class="mb2"><a class="act-but submit" id="index_login" href="javascript:;" style="color: #FFFFFF">登录</a></div>
 						</form>
 					</div>
 				</div>
@@ -41,5 +41,41 @@
 		<script src="static/js/demo-1.js"></script>
 		<div style="text-align:center;">
 </div>
+
+<script type="text/javascript" src="static/plugins/jquery-2.1.1/jquery-2.1.1.js"></script>
+<link rel="stylesheet" href="static/plugins/layer-3.0.3/skin/default/layer.css"/>
+<script type="text/javascript" src="static/plugins/layer-3.0.3/layer.js"></script>
+<script> 
+	$(function(){
+		$(document).on('click','#index_login',function(){
+			var name = 	$('#index_loginName').val();
+			var pwd = $('#index_pwd').val();
+			name = $.trim(name);
+			pwd = $.trim(pwd);
+			if(name == 'admin'){
+				if(pwd == 'admin'){
+					window.location.href = "indexpart.html";
+				}else{
+					layer.msg('密码不正确!');
+				}
+			}else if(name == 'zhangsan'){
+				if(pwd == 'zhangsan'){
+					window.location.href = "index_zhangsan.html";
+				}else{
+					layer.msg('密码不正确!');
+				}
+				
+			}else if(name == 'lisi'){
+				if(pwd == 'lisi'){
+					window.location.href = "index_lisi.html";
+				}else{
+					layer.msg('密码不正确!');
+				}
+			}else{
+				layer.msg('此用户不存在!');
+			}
+		})
+	});
+</script>
 	</body>
 </html>

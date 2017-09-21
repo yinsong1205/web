@@ -42,6 +42,17 @@
   }
 ]
 ---------------------------------------------------------
+//rensu.html
+id : '{{integer(100000, 200000)}}',
+guobie: '{{random("美国", "法国", "日本")}}',
+type: '{{random("一般贸易", "外宗服")}}',
+kouan : '{{random("平谷海关", "京中关村", "京国际局","十八里店","京调查局","天津海关","津开发区","津机场办","唐山海关")}}',
+yunshufangshi: '{{random("水路", "空运")}}',
+huanjie: '{{random("环节1", "环节2")}}',
+createName: '{{random("张三", "李四")}}',
+createTime: '{{date(new Date(2017, 0, 1), new Date(), "YYYY-MM-dd")}}'
+
+
 //caigou.html -- wuzi
 name:'{{random("手机", "螺栓", "水杯","电脑","插座","香烟")}}-{{surname().toUpperCase()}}',
 number:'{{integer(20, 40)}}',

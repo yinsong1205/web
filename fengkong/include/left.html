@@ -6,8 +6,19 @@
 
 <script> 
 	$(function(){
+		//修改用户菜单
+		var href = window.location.href;
+		var menuJsonUrl = 'data/menu.json';
+		if(href.indexOf('zhangsan') != -1){
+			//$('#header_dropdown_menu b').text('张三');
+			menuJsonUrl = 'data/menu_zhangsan.json';
+		}else if(href.indexOf('lisi') != -1){
+			//$('#header_dropdown_menu b').text('李四');
+			menuJsonUrl = 'data/menu_lisi.json';
+		}
+		
 		//初始化菜单
-		$.get('data/menu.json',function(data){
+		$.get(menuJsonUrl,function(data){
 			if(data && $.isArray(data) && data.length>0){
 				var $menuList = $('#menuList');
 				$.each(data,function(i,e){

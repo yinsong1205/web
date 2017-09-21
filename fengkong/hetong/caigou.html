@@ -475,6 +475,11 @@
 			</table>
 		</div>
 </div>
+<!-- //关联合同 -->
+<div id="caigou_glhtBox" class="layerFormBox">
+	
+</div>
+
 
 <script type="text/javascript">
 	
@@ -495,8 +500,17 @@
 		//var gridHeight = $('#'+gridBoxId).height()-118;
 		var gridHeight = 370;
 		var colModel = [
-				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
-				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
+				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true ,
+					searchoptions: {
+						sopt : ['cn']
+					}
+				
+				},
+				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName,
+					searchoptions: {
+						sopt : ['cn']
+					}
+				},
 				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, search:false,
 					searchoptions : {
 						dataInit: function(e){
@@ -510,14 +524,19 @@
 					}
 				},
 				{label : '采购方', name : 'caigouName', align: 'left', width:150, search:false,
-					searchoptions: {
+					/* searchoptions: {
 						sopt : ['cn']
-					}
+					} */
 				},
-				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
+				{label : '供货方', name : 'gonghuoName', align: 'left', width:150,
+			   		searchoptions: {
+						sopt : ['cn']
+					} 
+				},
 				{label : '合同金额', name : 'money', align: 'center',width:50, search:false},
 				{label : '物资清单', name : 'list', align: 'center',width:40,search:false},
-				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus}
+				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus},
+				{label : '关联状态', name : 'glStatus', align: 'center',width:40,search:false ,formatter: formatterGl }
 		];
 		/**
 			id:
@@ -699,6 +718,21 @@
 			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 		};
 		
+		//关联
+		function formatterGl(cellValue, options, rowObject){
+			console.log(cellValue);
+			return cellValue ? '<a href="javascript:;" class="caigou_gl_ht">'+cellValue+'</a>' : '<a href="javascript:;" class="caigou_gl_ht">未关联</a>';
+		}
+		
+		$(document).on('click','.caigou_gl_ht',function(){
+			layer.open({
+				type: 1,
+				title : '选择关联合同',
+				area : ["80%","80%"],
+				content : $('#caigou_glhtBox')
+			});
+		});
+		
 		//审核
 		/* function shenhe(){
 			var rowIds = getSelectedRow(gridId);
@@ -831,14 +865,23 @@
 				width: caigouWidth,
 				height: caigouHeight,
 				rowNum: 8,
-				colModel: [{label : '物资名称', name : 'name', align: 'left', width: 100,editable: true},
+				colModel: [
+					{label : '物资名称', name : 'name', align: 'left', width: 100,editable: true,
+						searchoptions: {
+							sopt : ['cn']
+						} 					
+					},
 					{label : '数量', name : 'number', align: 'center', width:50,search: false},
 					{label : '规格型号 ', name : 'guige', align: 'left', width:80,search: false},
 					{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
 					{label : '单价', name : 'oneMoney', align: 'center', width:50,search: false},
 					{label : '总价', name : 'totalMoney', align: 'center',width:60,search: false},
-					{label : '供货方', name : 'company', align: 'left',width:150},
-					],
+					{label : '供货方', name : 'company', align: 'left',width:150,
+						searchoptions: {
+							sopt : ['cn']
+						} 						
+					},
+				],
 /*
 name:'{{random("手机", "螺栓", "水杯","电脑","插座","香烟")}}-{{surname().toUpperCase()}}',
 number:'{{integer(20, 40)}}',
@@ -888,6 +931,14 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 				
 				$("#caigou_wz_jqGrid").navGrid('#caigou_wz_jqGridPager',{ // the buttons to appear on the toolbar of the grid
 					edit:false,add:false,del:false,search:false,refresh:false
+				}).navButtonAdd('#'+gridPager,{
+					//caption: '新增',
+					caption: '',
+					title : '添加物资',
+					buttonicon : 'glyphicon-plus',
+					onClickButton : function(){addWuZi();}, //调用物资的函数
+					position : 'last'
+					
 				}).navButtonAdd('#caigou_wz_jqGridPager',{
 					//caption: '导入物资',
 					caption: '',
@@ -907,6 +958,16 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 			}
 			
 		});
+		
+		//添加物资
+		function addWuZi(){
+			commIndex = layer.open({
+				type : 1,
+				title : '关联出口合同',
+				area : ['80%','80%'],
+				content : $('#')
+			});
+		}
 	});
 </script>
 
