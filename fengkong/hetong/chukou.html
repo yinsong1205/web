@@ -4,6 +4,10 @@
 		display: none;
 		margin-left: 20px;
 	}
+	.text-center {text-align: center;}
+	.caigou_btn {
+		margin-top: 20px;
+	}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
@@ -16,6 +20,15 @@
 <div class="layerFormBox" id="qingdan_gridBox" style="padding:0; width:75%;height:80%;">
 	<table id="qingdan_jqGrid"></table>
 	<div id="qingdan_jqGridPager"></div>
+</div>
+<div class="container-fluid" id="caigou_gridBox" style="padding:0; width:75%;height:80%;">
+	<table id="caigou_jqGrid"></table>
+	<div id="caigou_jqGridPager"></div>
+	<div class="col-sm-12">	
+		<button type="button" class="saveBtn btn btn-info btn-sm" id="caigou_save_btn">关联</button>
+	</div>
+	<table id="yiguan_jqGrid"></table>
+	<div id="yiguan_jqGridPager"></div>
 </div>
 <!-- 物资增加 -->
 <div id="zengqingdan_jqGrid_formBox" class="layerFormBox">
@@ -901,8 +914,11 @@ $(function(){
 	var flag = ''; //添加修改标记
 	var dataUrl = 'data/chukou.json';//数据源链接
 	var qingdanUrl = 'data/qingdan.json';
+	var qingdanUrl = 'data/caigou.json';
 	var gridId = 'chukou_jqGrid'; //表格id
 	var qingdan_gridId = 'qingdan_jqGrid'; //表格id
+	var gird = 'caigou_jqGrid'
+
 	var gridPager = 'chukou_jqGridPager'; //表格分页id
 	var formBoxId = 'chukou_jqGrid_formBox'; //添加修改窗口元素id
 	var layerCloseClassName = 'qx';
@@ -920,6 +936,10 @@ $(function(){
 
 	var qingdan_gridWidth = $('#qingdan_gridBox').width()-2;
 	var qingdan_gridHeight = $('#qingdan_gridBox').height()-122;
+
+	var caigou_gridWidth = $('#caigou_gridBox').width()-2;
+	var caigou_gridHeight = 150;
+
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
@@ -934,7 +954,7 @@ $(function(){
 },
 			{label : '货物清单', name : 'list', align: 'center',width:40, searchoptions: { sopt : ['cn']}},
 			{label : '审核状态', name : 'status', align: 'center',width:40,formatter:formatStatus, searchoptions: { sopt : ['cn']}},
-			{label : '关联状态', name : 'related', align: 'center',width:40,formatter:formatStatus, searchoptions: { sopt : ['cn']}}
+			{label : '关联状态', name : 'related', align: 'center',width:40, searchoptions: { sopt : ['cn']},formatter:formatRelated}
 
 	];
 	/*
@@ -1111,10 +1131,20 @@ $(function(){
 		}
 		
 	});
+	//关联按钮
+	$(document).on('click','#caigou_save_btn',function(){
+		var rowIds = getSelectedRow(gird);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+	});
 	//弹框取消按钮
 	$('.'+layerCloseClassName).on('click',function(){
 		layer.close(layerIndex);
 	});
+
 	//清单弹出框
 	var flag = false;
 		$(document).on('click','.chukou_wzqd',function(){
@@ -1187,7 +1217,44 @@ $(function(){
 				flag = true;
 			}
 			
-		});
+	});
+
+	//关联采购弹出框
+			
+			$("#"+gird).jqGrid({
+				url: 'data/caigou.json',
+				datatype: "json",
+				loadonce: true,
+				viewrecords: true,
+				multiselect: true,
+				altRows : true,
+				width: caigou_gridWidth,
+				height: caigou_gridHeight,
+				page : 1,
+				rowNum: 8,
+				colModel: [
+						{label : '合同编号', name : 'id', align: 'center', width: 5,editable: true},
+						{label : '合同名称', name : 'name', align: 'center', width:5}
+				],
+				pager: "#caigou_jqGridPager"
+			});
+			$('#'+gird).jqGrid('filterToolbar');
+				$("#"+gird).navGrid('#caigou_jqGridPager',{ // the buttons to appear on the toolbar of the grid
+					edit:false,add:false,del:false,search:false,refresh:false
+				// }).navButtonAdd('#caigou_jqGridPager',{
+				// 	//caption: '导入物资',
+				// 	caption: '',
+				// 	title : '新增',
+				// 	buttonicon : 'glyphicon-plus',
+				// 	onClickButton : caigou_addLayer, //调用导入物资函数
+				// 	position : 'last'
+					
+				}).navSeparatorAdd("#caigou_jqGridPager",{
+					sepcontent: '',
+					sepclass : "ui-separator"
+				});
+				
+				changeSearch(); //修改工具条
 	//左下角新增按钮
 	function addLayer(){
 		flag = 'add';
@@ -1238,6 +1305,7 @@ $(function(){
 	function deleteLayer(gridId){
 		deleteGridData(gridId);
 	}
+	//触发查看信息
 	
 	function formatrelName(cellValue, options, rowObject) {
 		var len = cellValue.length;
@@ -1245,6 +1313,13 @@ $(function(){
 				cellValue = cellValue.substring(0, 50) + "...";
 		}
 		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+	};
+	function formatRelated(cellValue, options, rowObject) {
+		var len = cellValue.length;
+		if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" onclick="lookcaigou()">'+cellValue+'</a>';
 	};
 	//-------------------------------//
 	//刷新
@@ -1272,17 +1347,6 @@ $(function(){
 		}
 		
 	}
-//	//统计
-	// function chukoutongji(){
-	// 	commIndex = layer.open({
-	// 		type : 1,
-	// 		title : '报表统计',
-	// 		skin: 'layui-layer-rim',
-	// 		shadeClose: true,
-	// 		area : ['90%','90%'],
-	// 		content : $('#chukou_bbtj')
-	// 	});
-	// }
 	
 	//导入合同
 	function importLayer(){
@@ -1293,104 +1357,6 @@ $(function(){
 			content: $('#chukou_import_formBox')
 		});
 	}
-	
-	//柱形图
-	var chart = new Highcharts.Chart('chukou_lineChart', {
-		exporting : {
-			enabled : false
-		},
-	    title: {
-	        text: '报关单月统计',
-	        x: -20
-	    },
-	    subtitle: {
-	        text: '数据来源: 报关单统计',
-	        x: -20
-	    },
-	    xAxis: {
-	        categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-	    },
-	    yAxis: {
-	        title: {
-	            text: '条'
-	        },
-	        plotLines: [{
-	            value: 0,
-	            width: 1,
-	            color: '#808080'
-	        }]
-	    },
-	    tooltip: {
-	        valueSuffix: '条'
-	    },
-	    legend: {
-	        layout: 'vertical',
-	        align: 'right',
-	        verticalAlign: 'middle',
-	        borderWidth: 0
-	    },
-	    series: [{
-	        name: '海淀区',
-	        data: [7, 8, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
-	    }, {
-	        name: '朝阳区',
-	        data: [1, 2, 5, 11, 17, 22, 15, 14, 10, 8, 3, 2]
-	    }, {
-	        name: '东城区',
-	        data: [1, 2, 3, 8, 13, 15, 14, 13, 10, 9, 3, 1]
-	    }, {
-	        name: '西城区',
-	        data: [3, 4, 5, 8, 11, 15, 17, 16, 14, 10, 6, 4]
-	    }]
-	});
-	//饼图
-	$('#chukou_circleChart').highcharts({
-		credits : false,
-		exporting : {
-			enabled : false
-		},
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '报关单占比统计'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '报关单申请占比',
-            data: [
-                ['朝阳',   45],
-                ['海淀',       26],
-                {
-                    name: '东城区',
-                    y: 12,
-                    sliced: true,
-                    selected: true
-                },
-                ['西城区',    8],
-                ['丰台区',     6]
-            ]
-        }]
-    });
 	
 	$('.qx').on('click',function(){
 		layer.close(layerIndex);
@@ -1433,9 +1399,21 @@ $(function(){
 		   minFileSize: '文件不能小于5K'
 	   }
 	});
+
 	
 });
 
-
+function lookcaigou(rowId){
+	var data = $('#caigou_jqGrid').getRowData(rowId);
+	data.related = $(data.related).text();
+	setFormData('caigou_jqGrid',data);
+	title = '信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['98%', '98%'], //宽高
+		content: $('#caigou_gridBox')
+	});
+}
 	
 </script>
