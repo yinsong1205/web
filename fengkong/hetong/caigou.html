@@ -477,7 +477,15 @@
 </div>
 <!-- 关联 -->
 <div class="layerFormBox" id="caigou_gl_box">
-	<p>aaa</p>
+	<table id="caigou_gl_jqGrid"></table>
+	<div id="caigou_gl_jqGridPager"></div>
+	<div class="col-sm-12">	
+		<button type="button" class="saveBtn btn btn-info btn-sm" id="caigou_save_btn" style="display:block">关联</button>
+	</div>
+	<div class="col-sm-12" id="yiguan_gridBox" style="padding:0; width:100%;height:80%;">
+		<table id="yiguan_jqGrid"></table>
+		<div id="yiguan_jqGridPager"></div>
+	</div>
 </div>
 <script type="text/javascript">
 	
@@ -496,6 +504,7 @@
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 		var gridWidth = $('#'+gridBoxId).width();
 		//var gridHeight = $('#'+gridBoxId).height()-118;
+		
 		var gridHeight = 370;
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
