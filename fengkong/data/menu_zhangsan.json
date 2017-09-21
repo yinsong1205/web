@@ -1,0 +1,30 @@
+[
+	
+	{
+		"id" : "menu_rw_gl",
+		"name" : "任务管理",
+		"url" : "liucheng/renwu.html",
+		"leftIcon" : "l fa fa-tasks"
+		
+	},
+	{
+		"name" : "合同管理",
+		"leftIcon" : "l fa fa-file-word-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			
+			{
+				"name" : "出口合同",
+				"url" : "hetong/chukou.html"
+			},
+			{
+				"name" : "采购合同",
+				"url" : "hetong/caigou.html"
+			},
+			{
+				"name" : "运输协议",
+				"url" : "hetong/wuliu.html"
+			}
+		]
+	}
+]

@@ -9,7 +9,9 @@
     "caigouName": "上海NEWCUBE有限责任公司",
     "gonghuoName": "广东GYNKO有限公司",
     "money": 150631,
-    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>"
+    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
+     "status": 0,
+     "glStatus" : "已关联"
   },
   {
     "id": "HT1312",
@@ -18,7 +20,9 @@
     "caigouName": "广东MEDICROIX有限责任公司",
     "gonghuoName": "北京QNEKT有限责任公司",
     "money": 188198,
-    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>"
+    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
+    "status": 1,
+    "glStatus" : "未关联"
   },
   {
     "id": "HT1257",
@@ -27,7 +31,9 @@
     "caigouName": "英国XYLAR公司",
     "gonghuoName": "上海WRAPTURE有限公司",
     "money": 141164,
-    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>"
+    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
+    "status": 0,
+    "glStatus" : "已关联"
   },
   {
     "id": "HT1284",
@@ -36,7 +42,8 @@
     "caigouName": "广东GAPTEC公司",
     "gonghuoName": "广东DOGNOSIS有限公司",
     "money": 124889,
-    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>"
+    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
+     "status": 1
   },
   {
     "id": "HT1242",
