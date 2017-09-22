@@ -1,0 +1,74 @@
+[
+	{
+		"name" : "创建任务",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "张三"
+			}
+		]
+	},
+	{
+		"name" : "预关单审核",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "报关单审核",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "开票通知",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "收票确认",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "发票认证",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "申报",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	},
+	{
+		"name" : "备案",
+		"open" : true,
+		"children" : [
+			{
+				"name" : "李四"
+			}
+		]
+	}
+]

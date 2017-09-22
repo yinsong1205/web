@@ -605,8 +605,8 @@ $(function(){
 		commIndex = layer.open({
 			type : 1,
 			title : '操作任务',
-			area : ["30%","80%"],
-			content : $('#renwu_ope_box'),
+			area : ["90%","80%"],
+			content : $('#renwu_ope_box')
 		});
 	});
 	
@@ -645,6 +645,69 @@ $(function(){
 	$('#renwu_change_ch_select_btn').on('change',function(){
 		$('#liucheng_wz_jqGrid').sortGrid('totalMoney',false);
 	})
+	
+	$('#renwu_scygd_box').hide();
+	
+	//生成预关单
+	$('#renwu_scygd').on('click',function(){
+		layer.load(1, {
+			  shade: [0.3,'#fff'], //0.1透明度的白色背景
+			  time : 2000
+		});
+		setTimeout(function(){
+			
+			$('#renwu_scygd_box').show();
+		},2000);
+	});
+	//归类
+	var guileiIndex = null;
+	$('#renwu_gl').on('click',function(){
+		if($('#renwu_scygd_box').is(':visible')){
+			//打开归类的窗口
+			/* layer.open({
+				type : 1,
+				title : '关单比对',
+				area ['80%','80%'],
+				content : $('#renwu_gl_box')
+			}); */
+			guileiIndex = layer.open({
+				type : 1,
+				title : '商品归类',
+				area : ["90%","80%"],
+				content : $('#renwu_gl_box')
+			});
+		}
+	});
+	//归类确认
+	$('#renwu_guilei_hou_btn').on('click',function(){
+		layer.close(guileiIndex);
+		layer.msg('商品归类成功!',{time:2000});
+	});
+	
+	//比对
+	var biduiIndex = null;
+	$('#renwu_bd').on('click',function(){
+		if($('#renwu_scygd_box').is(':visible')){
+			//打开归类的窗口
+			/* layer.open({
+				type : 1,
+				title : '关单比对',
+				area ['80%','80%'],
+				content : $('#renwu_gl_box')
+			}); */
+			biduiIndex = layer.open({
+				type : 1,
+				title : '商品比对',
+				area : ["90%","80%"],
+				content : $('#renwu_bd_box')
+			});
+		}
+	});
+	//比对确认
+	$('#renwu_bidui_hou_btn').on('click',function(){
+		layer.close(biduiIndex);
+		layer.msg('商品比对成功!',{time:2000});
+	});
 });
 
 function formatRwId(cellValue, options, rowObject){
@@ -765,42 +828,203 @@ function formatOpe(cellValue, options, rowObject){
 <div id="renwu_ope_box" class="layerFormBox">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">1.创建任务</button>
+			<div class="col-xs-2" id="danqian">
+				<button class="btn  btn-block">1.创建任务</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">2.预关单审核</button>
+				<button class="btn btn-info  btn-block">2.预关单审核</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">3.报关单审核</button>
+				<button class="btn  btn-block">3.报关单审核</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-danger btn-block">4.开票通知</button>
+				<button class="btn  btn-block">4.开票通知</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">5.收票确认</button>
+				<button class="btn  btn-block">5.收票确认</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">6.发票认证</button>
+				<button class="btn  btn-block">6.发票认证</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
-			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">7.申报</button>
+				<button class="btn  btn-block">7.申报</button>
 				<p class="text-center"><i class="glyphicon glyphicon-triangle-bottom"></i></p>
+				<button class="btn  btn-block">8.备案</button>
 			</div>
+			<div class="col-xs-10">
+				<!-- 任务信息 -->
+				<div style=" overflow-y:auto; margin-bottom:15px; background:#fff;">
+					<table class="table table-striped table-condensed" style="margin-bottom:0;">
+						<thead class="bg-info">
+							<tr>
+								<th width="20%">任务编号</th>
+								<th width="10%">出口国别</th>
+								<th width="10%">业务类型</th>
+								<th width="10%">出口口岸</th>
+								<th width="10%">运输方式</th>
+								<th width="10%">当前环节</th>
+								<th width="10%">创建人</th>
+								<th width="10%">创建时间</th>
+								<!-- <th>操作</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td width="20%">RW10762</td>
+								<td width="10%">美国</td>
+								<td width="10%">一般贸易</td>
+								<td width="10%">京国际局</td>
+								<td width="10%">空运</td>
+								<th width="10%">创建任务</th>
+								<td width="10%">张三</td>
+								<td width="10%">2017-02-12</td>
+								<!-- <td></td> -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- 任务信息 -->
+				<!-- 操作按钮 -->
+				<p style="margin:30px 0">
+					<button class="btn btn-info btn-sm" id="renwu_scygd">生成预关单</button>
+					<button class="btn btn-info btn-sm" id="renwu_gl">归类</button>
+					<button class="btn btn-info btn-sm">导入</button>
+					<button class="btn btn-info btn-sm" id="renwu_bd">比对</button>
+					<button class="btn btn-info btn-sm">导出</button>
+				</p>
+				<!-- 操作按钮 -->
+				<!-- 生成预关单信息 -->
+				<div id="renwu_scygd_box" style=" overflow-y:auto; margin-bottom:15px; background:#fff;">
+					<table class="table table-striped table-condensed" style="margin-bottom:0;">
+						<thead class="bg-info">
+							<tr>
+								<th width="20%">任务编号</th>
+								<th width="10%">出口国别</th>
+								<th width="10%">业务类型</th>
+								<th width="10%">出口口岸</th>
+								<th width="10%">运输方式</th>
+								<th width="10%">当前环节</th>
+								<th width="10%">创建人</th>
+								<th width="10%">创建时间</th>
+								<!-- <th>操作</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td width="20%">RW10762</td>
+								<td width="10%">美国</td>
+								<td width="10%">一般贸易</td>
+								<td width="10%">京国际局</td>
+								<td width="10%">空运</td>
+								<th width="10%">创建任务</th>
+								<td width="10%">张三</td>
+								<td width="10%">2017-02-12</td>
+								<!-- <td></td> -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 归类 -->
+<div class="layerFormBox" id="renwu_gl_box">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-6">
+				<p>商品列表:</p>
+				<table class="table table-striped table-condensed" style="margin-bottom:0;">
+					<thead class="bg-info">
+						<tr>
+							<th></th>
+							<th>物资名称</th>
+							<th>规格型号</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>螺栓</td>
+							<td>200*10*50</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>螺栓</td>
+							<td>300*10*50</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>螺栓</td>
+							<td>200*20*50</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>螺栓</td>
+							<td>200*40*60</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-6" style="background:#f4f4f4;">
+				<p class="text-right" style="padding-top:10px;"><button class="btn btn-info btn-sm">查询</button></p>
+				<form class="form-horizontal layerForm">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-xs-3 control-label">
+							海关商品码:
+						</label>
+						<div class="col-xs-8">
+							<input type="text" id="module_title" name="name" class="form-control input-sm"  placeholder="海关商品码">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label">
+							商品名称:
+						</label>
+						<div class="col-xs-8">
+							<input type="text" id="module_priority" name="priority" class="form-control input-sm"  placeholder="商品名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label">
+							描述:
+						</label>
+						<div class="col-xs-8">
+							<textarea class="form-control input-sm" id="module_description" name="description"   rows="3" placeholder="描述。。。。"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
 			<div class="col-xs-12">
-				<button class="btn btn-default btn-block">8.备案</button>
+				<p class="text-center">
+					<button class="btn btn-info" id="renwu_guilei_hou_btn">确定</button>
+				</p>
 			</div>
-			
+		</div>
+	</div>
+</div>
+
+<!-- 比对 -->
+<div class="layerFormBox" id="renwu_bd_box">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-6">
+				
+			</div>
+			<div class="col-xs-6" style="background:#f4f4f4;">
+				
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="text-center">
+					<button class="btn btn-info" id="renwu_bidui_hou_btn">确定</button>
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
 
 <style>
 	#renwu_detail_info_box .form-control { border:none; box-shadow:none; }
+	#renwu_ope_box #danqian p { margin-bottom:0; }
 </style>
