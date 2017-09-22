@@ -11,6 +11,7 @@
 #otherInfo .btn {padding:0 10px;}
 #otherInfo .btn i {font-size:14px; }
 #caigou_gl_box{display: none;}
+#shenhecaigou_save_btn{display: none;}
 
 </style>
 
@@ -318,6 +319,7 @@
 		<!-- 附件 -->
 		
 		<p class="text-center saveOrCacelBtn"> 
+		    <button type="button" class="btn btn-info btn-sm" id="shenhecaigou_save_btn">保存</button>	
 			<button type="button" class="btn btn-info btn-sm" id="caigou_save_btn">保存</button>		
 			<button type="button" class="btn btn-info btn-sm" id="caigou_resetBtn">重置</button>		
 			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
@@ -431,7 +433,7 @@
 	</div>
 </div>
 <!-- 审核 -->
-<div class="layerFormBox" id="shenhe_formBoxId"> 
+<div class="layerFormBox" id="shenhe_caigou_formBoxId"> 
 	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
 	<div class="col-sm-12"> 
 			<table id="tj" class="table table-striped table-condensed table-bordered">
@@ -506,6 +508,7 @@
 		var gridWidth = $('#'+gridBoxId).width()-2;
 		//var gridHeight = $('#'+gridBoxId).height()-118;
 		var gridHeight = $('#'+gridBoxId).height()-132;
+		var shenhemodel = 'caigou'
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
@@ -713,27 +716,9 @@
 		};
 		
 		//审核
-		/* function shenhe(){
-			var rowIds = getSelectedRow(gridId);
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-				var rowData = $('#'+gridId).getRowData(rowIds[0]);
-				commIndex = layer.open({
-					type : 1,
-					title : '审核窗口',
-					skin: 'layui-layer-rim',
-					shadeClose: true,
-					area : ['30%','40%'],
-					content : '<div class="container-fluid"><div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div></div>'
-				});
-			}else{
-				layer.msg('请选择一条记录!',{time:layerCloseTime});
-			}
-			
-		} */
-		//审核
 		function shenhe(){
 			var rowIds = getSelectedRow(gridId);
-			if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 				var rowData = $('#'+gridId).getRowData(rowIds[0]);
 				commIndex = layer.open({
 					type : 1,
@@ -741,7 +726,7 @@
 					skin: 'layui-layer-rim',
 					shadeClose: true,
 					area : ['70%','70%'],
-					content : $('#shenhe_formBoxId')
+					content : $('#'+'shenhe_'+shenhemodel+'_formBoxId')
 					// ''
 				});
 			}else{
