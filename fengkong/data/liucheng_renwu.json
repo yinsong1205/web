@@ -8,7 +8,7 @@
 			"type": "外宗服",
 			"kouan": "唐山海关",
 			"yunshufangshi": "水路",
-			"huanjie": "环节2",
+			"huanjie": "创建任务",
 			"createName": "张三",
 			"createTime": "2017-01-28",
 			"operation" : "处理"
@@ -19,89 +19,10 @@
 			"type": "外宗服",
 			"kouan": "津机场办",
 			"yunshufangshi": "水路",
-			"huanjie": "环节1",
+			"huanjie": "创建任务",
 			"createName": "张三",
-			"createTime": "2017-06-09"
-		},
-		{
-			"id": 183172,
-			"guobie": "日本",
-			"type": "外宗服",
-			"kouan": "京中关村",
-			"yunshufangshi": "水路",
-			"huanjie": "环节1",
-			"createName": "张三",
-			"createTime": "2017-07-21"
-		},
-		{
-			"id": 193756,
-			"guobie": "美国",
-			"type": "外宗服",
-			"kouan": "京中关村",
-			"yunshufangshi": "空运",
-			"huanjie": "环节1",
-			"createName": "张三",
-			"createTime": "2017-07-01"
-		},
-		{
-			"id": 189001,
-			"guobie": "法国",
-			"type": "一般贸易",
-			"kouan": "天津海关",
-			"yunshufangshi": "空运",
-			"huanjie": "环节2",
-			"createName": "张三",
-			"createTime": "2017-07-28"
-		},
-		{
-			"id": 131605,
-			"guobie": "日本",
-			"type": "一般贸易",
-			"kouan": "十八里店",
-			"yunshufangshi": "水路",
-			"huanjie": "环节2",
-			"createName": "张三",
-			"createTime": "2017-01-17"
-		},
-		{
-			"id": 121948,
-			"guobie": "法国",
-			"type": "一般贸易",
-			"kouan": "京调查局",
-			"yunshufangshi": "空运",
-			"huanjie": "环节1",
-			"createName": "张三",
-			"createTime": "2017-06-15"
-		},
-		{
-			"id": 131269,
-			"guobie": "美国",
-			"type": "外宗服",
-			"kouan": "十八里店",
-			"yunshufangshi": "水路",
-			"huanjie": "环节2",
-			"createName": "张三",
-			"createTime": "2017-01-21"
-		},
-		{
-			"id": 128530,
-			"guobie": "美国",
-			"type": "外宗服",
-			"kouan": "十八里店",
-			"yunshufangshi": "水路",
-			"huanjie": "环节1",
-			"createName": "张三",
-			"createTime": "2017-08-24"
-		},
-		{
-			"id": 189801,
-			"guobie": "美国",
-			"type": "外宗服",
-			"kouan": "天津海关",
-			"yunshufangshi": "水路",
-			"huanjie": "环节2",
-			"createName": "张三",
-			"createTime": "2017-08-23"
+			"createTime": "2017-06-09",
+			"operation" : "未处理"
 		}
 	]
 }

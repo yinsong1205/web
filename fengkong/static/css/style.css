@@ -114,7 +114,7 @@ html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
 /*right content start*/
 #fkMain, #main, #main .con { height:100%; }
 #main {}
-#main .con { display:none; padding:15px 0 0 0; background: #f4f4f4; }
+#main .con { display:none; padding:15px 0; background: #f4f4f4; }
 #main .con.active {display: block; }
 /*right content end*/
 
