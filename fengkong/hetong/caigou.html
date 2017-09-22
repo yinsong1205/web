@@ -12,6 +12,7 @@
 #otherInfo .btn i {font-size:14px; }
 #caigou_gl_box{display: none;}
 #shenhecaigou_save_btn{display: none;}
+#shenhecaigou_history{display: none;}
 
 </style>
 
@@ -319,7 +320,7 @@
 		<!-- 附件 -->
 		
 		<p class="text-center saveOrCacelBtn"> 
-		    <button type="button" class="btn btn-info btn-sm" id="shenhecaigou_save_btn">保存</button>	
+		    <button type="button" class="btn btn-info btn-sm" id="shenhecaigou_save_btn">审核</button>	
 			<button type="button" class="btn btn-info btn-sm" id="caigou_save_btn">保存</button>		
 			<button type="button" class="btn btn-info btn-sm" id="caigou_resetBtn">重置</button>		
 			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
@@ -435,7 +436,7 @@
 <!-- 审核 -->
 <div class="layerFormBox" id="shenhe_caigou_formBoxId"> 
 	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
-	<div class="col-sm-12"> 
+	<div class="col-sm-12" id="shenhecaigou_history"> 
 			<table id="tj" class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr class="d9">
@@ -480,14 +481,16 @@
 </div>
 <!-- 关联 -->
 <div id="caigou_gl_box" style="padding:0; width:100%;height:80%;">
-	<table id="caigou_gl_jqGrid"></table>
-	<div id="caigou_gl_jqGridPager"></div>
-	<div class="col-sm-12">	
+	<div class="col-sm-5">
+		<p style="margin-top: 20px;">请选择要关联的出口合同</p>
+		<table id="caigou_gl_jqGrid"></table>
+	</div>
+	<div class="col-sm-2" style="margin-top:120px;">	
 		<button type="button" class="saveBtn btn btn-info btn-sm" id="caigou_gl_btn" style="display:block">关联</button>
 	</div>
-	<div class="container-fluid" id="yichukou_gridBox" style="padding:0; width:90%;height:80%;">
+	<div class="col-sm-5">
+		<p style="margin-top: 20px;">已关联的出口合同</p>
 		<table id="yichukou_jqGrid"></table>
-		<div id="yichukou_jqGridPager"></div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -508,7 +511,7 @@
 		var gridWidth = $('#'+gridBoxId).width()-2;
 		//var gridHeight = $('#'+gridBoxId).height()-118;
 		var gridHeight = $('#'+gridBoxId).height()-132;
-		var shenhemodel = 'caigou'
+		var shenhemodel = 'caigou';
 		var colModel = [
 				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
 				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
@@ -596,7 +599,7 @@
 		}).navButtonAdd('#'+gridPager,{
 			//caption: '导入合同',
 			caption: '',
-			title : '批量导入',
+			title : '导入',
 			buttonicon : 'fa fa-upload',
 			onClickButton : function(){importLayer();}, //调用导入合同函数
 			position : 'last'
@@ -676,6 +679,7 @@
 		
 		//左下角新增按钮
 		function addLayer(){
+			$('#shenhecaigou_save_btn').hide();
 			flag = 'add';
 			$('#'+formBoxId+' .form-control:not(select)').val('');
 			layerIndex = layer.open({
@@ -688,6 +692,7 @@
 		
 		//左下角编辑按钮
 		function updateLayer(){
+			$('#shenhecaigou_save_btn').hide();
 			flag = 'update';
 			var setting = {
 				gridId : gridId,
@@ -717,6 +722,7 @@
 		
 		//审核
 		function shenhe(){
+			$('#shenhecaigou_history').hide();
 			var rowIds = getSelectedRow(gridId);
 			if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 				var rowData = $('#'+gridId).getRowData(rowIds[0]);
@@ -757,7 +763,6 @@
 		
 		//重置按钮
 		$('#caigou_resetBtn').on('click',function(){
-			console.log(123);
 			$('#caigou_jqGrid_formBox :input').val('');
 		});
 		/*上传文件的表单*/
@@ -803,7 +808,7 @@
 		function formatGlStatus(cellValue, options, rowObject){
 			return cellValue ? '<a href="javascript:;" class="caigou_gl_ht">'+cellValue+'</a>' : '<a href="javascript:;" class="caigou_gl_ht">未关联</a>'; 
 		}
-		
+		//关联弹出窗口
 		$(document).on('click','.caigou_gl_ht',function(){
 			commIndex = layer.open({
 				type : 1,
@@ -812,7 +817,18 @@
 				content: $('#caigou_gl_box')
 			});
 		});
-		
+		//查看审核
+		$(document).on('click','#shenhecaigou_save_btn',function(){
+				$('#shenhecaigou_history').show();
+				commIndex = layer.open({
+					type : 1,
+					title : '审核窗口',
+					skin: 'layui-layer-rim',
+					shadeClose: true,
+					area : ['70%','70%'],
+					content : $('#'+'shenhe_'+shenhemodel+'_formBoxId')
+			})
+		});
 		//物资清单
 		var wzFlag = false;
 		$(document).on('click','.caigou_wzqd',function(){
@@ -927,23 +943,14 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 				multiselect: true,
 				altRows : true,
 				width: $('#caigou_gl_gridBox').width(),
-				height: $('#caigou_gl_gridBox').height(),
+				height: 150,
 				page : 1,
 				rowNum: 8,
 				colModel: [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
-			{label : '合同名称', name : 'relName', align: 'center', width:100},
-			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
-},
-			{label : '买方', name : 'company', align: 'center', width:120,search:false},
-			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
-			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
-},
-			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
-}
-				],
-				pager: "#caigou_gl_jqGridPager"
+			{label : '合同名称', name : 'relName', align: 'center', width:100}
+				]
 			});
 			$('#caigou_gl_jqGrid').jqGrid('filterToolbar');
 	//关联按钮
@@ -969,19 +976,24 @@ function showchukou (){
 		colModel: [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
-			{label : '合同名称', name : 'relName', align: 'center', width:100},
-			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
-},
-			{label : '买方', name : 'company', align: 'center', width:120,search:false},
-			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
-			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
-},
-			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
-},
-			{label : '关联方式', name : 'glStatus', align: 'center',width:50, search:false}
-				],
-			
-		pager: "#yichukou_jqGridPager"
+			{label : '合同名称', name : 'relName', align: 'center', width:100}
+				]
+	});
+
+}
+
+function lookInfo(gid,rowId){
+	$('#shenhecaigou_save_btn').show();
+	var data = $('#'+gid).getRowData(rowId);
+	data.name = $(data.name).text();
+	data.relName = $(data.relName).text();
+	setFormData(gid+'_formBox',data);
+	title = '查看信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['98%', '98%'], //宽高
+		content: $('#'+gid+'_formBox')
 	});
 }
 </script>
