@@ -32,11 +32,5 @@
 		"url" : "guandan/yuluru.html",
 		"leftIcon" : "l fa fa-file"
 		
-	},
-	{
-		"name" : "报关单",
-		"url" : "guandan/guandan.html",
-		"leftIcon" : "l fa fa-file-text"
-		
 	}
 ]

@@ -640,6 +640,34 @@ $(function(){
 	
 	});
 	
+	$("#liucheng_guilei_goods_jqGrid").jqGrid({
+		url: 'data/wuzi.json',
+		// we set the changes to be made at client side using predefined word clientArray
+		editurl: 'clientArray',
+		datatype: "json",
+		sortname: 'name',
+		sortorder: 'asc',
+		loadonce: true,
+		viewrecords: true,
+		multiselect: true,
+		rownumbers: true,
+		altRows : true,
+		//width: '100%',
+		width: $('#renwu_gl_box').width()-15,
+		height: 200,
+		rowNum: 5,
+		colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+			{label : '数量', name : 'number', align: 'center', width:80,search: false},
+			{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
+			{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
+			{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+			{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+			{label : '供货方', name : 'company', align: 'center',width:150},
+			],
+		
+		pager: "#liucheng_guilei_goods_jqGridPager"
+	
+	});
 	
 	//选择采购合同
 	$('#renwu_change_ch_select_btn').on('change',function(){
@@ -664,19 +692,13 @@ $(function(){
 	$('#renwu_gl').on('click',function(){
 		if($('#renwu_scygd_box').is(':visible')){
 			//打开归类的窗口
-			/* layer.open({
-				type : 1,
-				title : '关单比对',
-				area ['80%','80%'],
-				content : $('#renwu_gl_box')
-			}); */
-			guileiIndex = layer.open({
-				type : 1,
-				title : '商品归类',
-				area : ["90%","80%"],
-				content : $('#renwu_gl_box')
-			});
 		}
+		guileiIndex = layer.open({
+			type : 1,
+			title : '商品归类',
+			area : ["90%","100%"],
+			content : $('#renwu_gl_box')
+		});
 	});
 	//归类确认
 	$('#renwu_guilei_hou_btn').on('click',function(){
@@ -707,6 +729,18 @@ $(function(){
 	$('#renwu_bidui_hou_btn').on('click',function(){
 		layer.close(biduiIndex);
 		layer.msg('商品比对成功!',{time:2000});
+	});
+	//添加归类类型
+	$('#renwu_add_hglx').on('click',function(){
+		var tr = '<tr>'+
+					'<td>1.</td>'+
+					'<td><input type="text" class="form-control input-sm" placeholder="商品码"/></td>'+
+					'<td><input type="text" class="form-control input-sm" placeholder="商品名称"/></td>'+
+					'<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>'+
+					'<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>'+
+					'<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>'+
+				'</tr>';
+		$('#renwu_hglx_table tbody').append();
 	});
 });
 
@@ -880,7 +914,7 @@ function formatOpe(cellValue, options, rowObject){
 				<!-- 任务信息 -->
 				<!-- 操作按钮 -->
 				<p style="margin:30px 0">
-					<button class="btn btn-info btn-sm" id="renwu_scygd">生成预关单</button>
+					<!-- <button class="btn btn-info btn-sm" id="renwu_scygd">生成预关单</button> -->
 					<button class="btn btn-info btn-sm" id="renwu_gl">归类</button>
 					<button class="btn btn-info btn-sm">导入</button>
 					<button class="btn btn-info btn-sm" id="renwu_bd">比对</button>
@@ -926,69 +960,87 @@ function formatOpe(cellValue, options, rowObject){
 <div class="layerFormBox" id="renwu_gl_box">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-6">
-				<p>商品列表:</p>
-				<table class="table table-striped table-condensed" style="margin-bottom:0;">
-					<thead class="bg-info">
+			<div class="col-xs-12">
+				<form class="form-horizontal zzxx renwu_lisi_ygdInfo">
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right">预录入编号:</label>
+						<div class="col-sm-6">
+							<p>GD125465421254124121</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right"><span>*</span>出口口岸:</label>
+						<div class="col-sm-6">
+							<p>天津新港</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right"><span>*</span>出口日期:</label>
+						<div class="col-sm-6">
+							<p>2017-08-10</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right">运抵国 :</label>
+						<div class="col-sm-6">
+							<p>美国</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right">指运港   :</label>
+						<div class="col-sm-6">
+							<p>海关</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-4">
+						<label  class="col-sm-6 control-label text-right"><span>*</span>成交方式   :</label>
+						<div class="col-sm-6">
+							<p>一般贸易</p>
+							<!-- <select name="" id="" class="form-control input-sm" placeholder="业务类型   "> 
+								<option value="all">外综服务</option>
+								<option value="one">一般贸易</option>
+								<option value="two">承包工程</option>
+							</select> -->
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<!-- 商品 列表-->
+			<div class="col-xs-12">
+				<table id="liucheng_guilei_goods_jqGrid"></table>
+				<div id="liucheng_guilei_goods_jqGridPager"></div>
+			</div>
+			<!-- 商品 列表-->
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- 归类列表 -->
+				<p class="bg-info text-right" style="padding:8px 10px;margin-top:15px; margin-bottom:0"><a href="javascript:;" id="renwu_add_hglx"><i class="glyphicon glyphicon-plus"></i></a></p>
+				<table class="table table-striped" id="renwu_hglx_table">
+					<thead class="" style="background:#f4f4f4;">
 						<tr>
-							<th></th>
-							<th>物资名称</th>
-							<th>规格型号</th>
-							
+							<th>序号</th>
+							<th>商品码</th>
+							<th>商品名称</th>
+							<th>型号</th>
+							<th>单价</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
-							<td>螺栓</td>
-							<td>200*10*50</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>螺栓</td>
-							<td>300*10*50</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>螺栓</td>
-							<td>200*20*50</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>螺栓</td>
-							<td>200*40*60</td>
+							<td>1.</td>
+							<td><input type="text" class="form-control input-sm" placeholder="商品码"/></td>
+							<td><input type="text" class="form-control input-sm" placeholder="商品名称"/></td>
+							<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>
+							<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>
+							<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="col-xs-6" style="background:#f4f4f4;">
-				<p class="text-right" style="padding-top:10px;"><button class="btn btn-info btn-sm">查询</button></p>
-				<form class="form-horizontal layerForm">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-xs-3 control-label">
-							海关商品码:
-						</label>
-						<div class="col-xs-8">
-							<input type="text" id="module_title" name="name" class="form-control input-sm"  placeholder="海关商品码">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-xs-3 control-label">
-							商品名称:
-						</label>
-						<div class="col-xs-8">
-							<input type="text" id="module_priority" name="priority" class="form-control input-sm"  placeholder="商品名称">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-xs-3 control-label">
-							描述:
-						</label>
-						<div class="col-xs-8">
-							<textarea class="form-control input-sm" id="module_description" name="description"   rows="3" placeholder="描述。。。。"></textarea>
-						</div>
-					</div>
-				</form>
+				<!-- 归类列表 -->
 			</div>
 		</div>
 		
@@ -1027,4 +1079,6 @@ function formatOpe(cellValue, options, rowObject){
 <style>
 	#renwu_detail_info_box .form-control { border:none; box-shadow:none; }
 	#renwu_ope_box #danqian p { margin-bottom:0; }
+	.renwu_lisi_ygdInfo p {padding-top:7px; }
+	.renwu_lisi_ygdInfo .form-group { margin-bottom:0; }
 </style>

@@ -27,7 +27,7 @@
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
-								<input name="logpass" id="index_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+								<input name="logpass" id="index_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码" onkeydown="keyDown();">
 							</div>
 							<div class="mb2"><a class="act-but submit" id="index_login" href="javascript:;" style="color: #FFFFFF">登录</a></div>
 						</form>
@@ -59,14 +59,14 @@
 					layer.msg('密码不正确!');
 				}
 			}else if(name == 'zhangsan'){
-				if(pwd == 'zhangsan'){
+				if(pwd == '1'){
 					window.location.href = "index_zhangsan.html";
 				}else{
 					layer.msg('密码不正确!');
 				}
 				
 			}else if(name == 'lisi'){
-				if(pwd == 'lisi'){
+				if(pwd == '1'){
 					window.location.href = "index_lisi.html";
 				}else{
 					layer.msg('密码不正确!');
@@ -76,6 +76,13 @@
 			}
 		})
 	});
+	
+	function keyDown(){
+		console.log(event.keyCode);
+		if(event.keyCode == 13){
+			$('#index_login').trigger('click');
+		}
+	}
 </script>
 	</body>
 </html>

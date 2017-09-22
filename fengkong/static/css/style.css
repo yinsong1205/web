@@ -45,7 +45,7 @@ html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
 .headerInfo .logo a { display:block; }
 .headerInfo .logo img { display:inline; height:58px; }
 .headerInfo .companyName { padding:0 30px;/*  border-right:1px solid #d9d9d9;  */}
-.headerInfo .companyName a { display:block; color: #fff; }
+.headerInfo .companyName a { display:block; color: #fff; font-size:16px; letter-spacing:1px; text-shadow:2px 2px 2px #333;  }
 .headerInfo .companyName a:hover { color:#fff; }
 .headerInfo .companyName a i{ margin:0 15px;}
 .headerInfo ul{}
@@ -70,8 +70,8 @@ html,body,#fkBox{width:100%; height:100%;overflow:hidden;}
 .menus ul li a i {  } 
 .menus ul li a .l { padding:0 15px 0 15px; width:45px;  }
 .menus ul li a .r { padding:0 15px 0 0; position:relative; top:3px; float:right; }
-.menus ul li dl{ position:absolute; left:150px; bottom:-20px; z-index:10; background:#374f62;  display:none;}
-.menus ul li:nth-child(2) dl { top:0; bottom:auto; }
+.menus ul li dl{ position:absolute; left:150px;/*  bottom:-20px; */ top:0; z-index:10; background:#374f62;  display:none;}
+/* .menus ul li:nth-child(2) dl { top:0; bottom:auto; } */
 .menus ul li dl dd{ padding:8px 30px 8px 10px; }
 .menus ul li dl dd ,.menus ul li dl dd a  {
 	transition-property: background;

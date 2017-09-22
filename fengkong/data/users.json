@@ -1,6 +1,6 @@
 [
 	{
-		"name" : "创建任务",
+		"name" : "创建任务组",
 		"open" : true,
 		"children" : [
 			{
@@ -9,7 +9,7 @@
 		]
 	},
 	{
-		"name" : "预关单审核",
+		"name" : "预关单审核组",
 		"open" : true,
 		"children" : [
 			{
@@ -18,7 +18,7 @@
 		]
 	},
 	{
-		"name" : "报关单审核",
+		"name" : "报关单审核组",
 		"open" : true,
 		"children" : [
 			{
@@ -27,7 +27,7 @@
 		]
 	},
 	{
-		"name" : "开票通知",
+		"name" : "开票通知组",
 		"open" : true,
 		"children" : [
 			{
@@ -36,7 +36,7 @@
 		]
 	},
 	{
-		"name" : "收票确认",
+		"name" : "收票确认组",
 		"open" : true,
 		"children" : [
 			{
@@ -45,7 +45,7 @@
 		]
 	},
 	{
-		"name" : "发票认证",
+		"name" : "发票认证组",
 		"open" : true,
 		"children" : [
 			{
@@ -54,7 +54,7 @@
 		]
 	},
 	{
-		"name" : "申报",
+		"name" : "申报组",
 		"open" : true,
 		"children" : [
 			{
@@ -63,7 +63,7 @@
 		]
 	},
 	{
-		"name" : "备案",
+		"name" : "备案组",
 		"open" : true,
 		"children" : [
 			{
