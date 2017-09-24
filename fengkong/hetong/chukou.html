@@ -1,24 +1,13 @@
 <!-- 出口合同管理 -->
 <style type="text/css">
-	#qingdan_gridBox{
-		display: none;
-	}
+	#qingdan_gridBox{display: none;}
 	.text-center {text-align: center;}
-	.cai_btn {
-		margin-top: 20px;
-	}
-	#guanlian_gridBox{
-		display: none;
-	}
-	#shenhe_formBoxId {
-		display: none;
-	}
-	#shenhe_history {
-		display: none;
-	}
-	#shenhe_save_btn{
-		display: none;
-	}
+	.cai_btn {margin-top: 20px;}
+	#guanlian_gridBox{display: none;}
+	#shenhe_formBoxId {display: none;}
+	#shenhe_history {display: none;}
+	#shenhe_save_btn{display: none;}
+	#zengqingdan_jqGrid_formBox span{color: red;}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
@@ -94,7 +83,11 @@
 			<span>*</span>计量单位:
 		</label>
 		<div class="col-xs-8">
-			<input type="text" id="qingdan_many" name="many" class="form-control input-sm"  placeholder="计量单位">
+			<select id="chukou_bus" name="bus" class="form-control input-sm">
+				<option value="个" selected="true">个</option>
+				<option value="包" >包</option>
+				<option value="台" >台</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group col-xs-4">
@@ -1329,7 +1322,7 @@ $(function(){
 
 	//审核
 	function shenhe(){
-		
+		$('#shenhe_history').hide();
 		var rowIds = getSelectedRow(gridId);
 		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
