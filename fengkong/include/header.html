@@ -72,7 +72,10 @@
 		}else if(href.indexOf('lisi') != -1){
 			$('#header_dropdown_menu b').text('李四');
 			$('#main .con').eq(0).load('include/main_lisi.html');
-		}else{
+		}else if(href.indexOf('wangwu') != -1){
+			$('#header_dropdown_menu b').text('王五');
+			$('#main .con').eq(0).load('include/main_wangwu.html');
+		}else {
 			$('#main .con').eq(0).load('include/main.html');
 		}
 	});

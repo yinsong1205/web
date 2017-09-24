@@ -23,7 +23,7 @@
 						<form action="#" name="f" method="post">
 							<div class="input_outer">
 								<span class="u_user"></span>
-								<input name="logname" id="index_loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+								<input name="logname" id="index_loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户" onkeydown="keyDown();">
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
@@ -52,8 +52,8 @@
 			var pwd = $('#index_pwd').val();
 			name = $.trim(name);
 			pwd = $.trim(pwd);
-			if(name == 'admin'){
-				if(pwd == 'admin'){
+			/* if(name == 'admin'){
+				if(pwd == '1'){
 					window.location.href = "indexpart.html";
 				}else{
 					layer.msg('密码不正确!');
@@ -73,12 +73,25 @@
 				}
 			}else{
 				layer.msg('此用户不存在!');
+			} */
+			
+			if(name == 'admin'){
+				window.location.href = "indexpart.html";
+			}else if(name == 'zhangsan'){
+				window.location.href = "index_zhangsan.html";
+			}else if(name == 'lisi'){
+				window.location.href = "index_lisi.html";
+			}else if(name == 'wangwu'){
+				window.location.href = "index_wangwu.html";
+			}else{
+				layer.msg('此用户不存在!');
 			}
+			
 		})
 	});
 	
 	function keyDown(){
-		console.log(event.keyCode);
+		//console.log(event.keyCode);
 		if(event.keyCode == 13){
 			$('#index_login').trigger('click');
 		}
