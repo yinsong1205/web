@@ -81,6 +81,9 @@
 		}else if(href.indexOf('shoupiao') != -1){
 			$('#header_dropdown_menu b').text('田七');
 			$('#main .con').eq(0).load('include/main_shoupiao.html');
+		}else if(href.indexOf('renzheng') != -1){
+			$('#header_dropdown_menu b').text('钱八');
+			$('#main .con').eq(0).load('include/main_renzheng.html');
 		}else {
 			$('#main .con').eq(0).load('include/main.html');
 		}
