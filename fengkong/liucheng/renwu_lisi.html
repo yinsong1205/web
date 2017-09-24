@@ -742,12 +742,17 @@ $(function(){
 	$('#renwu_add_hglx').on('click',function(){
 		var xh = $('#renwu_hglx_table tbody tr').length + 1;
 		var tr = '<tr>'+
-					'<td style="vertical-align:middle;text-align:center;">'+xh+'</td>'+
-					'<td><input type="text" list="renwu_lisi_shangpinma" class="form-control input-sm lisi_hgspm" placeholder="商品码"/></td>'+
-					'<td><input type="text" name="spmc" class="form-control input-sm" placeholder="商品名称"/></td>'+
-					'<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>'+
-					'<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>'+
-					'<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>'+
+					'<td style="vertical-align:middle;text-align:center;">'+xh+'.</td>'+
+					'<td><input type="text"  list="renwu_lisi_shangpinma" class="form-control input-sm lisi_hgspm" placeholder="商品码"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="spmc" placeholder="商品名称"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="ggxh" placeholder="规格型号"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="fddw" placeholder="法定单位"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="dedw" placeholder="第二单位"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="dj" placeholder="单价"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="bz" placeholder="币制"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="zm" placeholder="征免"/></td>'+
+					'<td><input type="text" class="form-control input-sm" name="sl" placeholder="数量"/></td>'+
+					'<td><a href="javascript:;" class="btn btn-sm btn-info renwu_hg_add">加入</a></td>'+
 				'</tr>';
 		$('#renwu_hglx_table tbody').append(tr);
 	});
@@ -774,18 +779,53 @@ $(function(){
 	$(document).on('input','.lisi_hgspm',function(){
 		/* <option value="6102200010" label="衣服">
 		<option value="6211439000" label="马甲">
-		<option value="3926909090" label="衣服扣饰"> */
+		<option value="3926909090" label="衣服扣饰"> 
+		<td><input type="text" class="form-control input-sm" name="ggxh" placeholder="规格型号"/></td>
+		<td><input type="text" class="form-control input-sm" name="fddw" placeholder="法定单位"/></td>
+		<td><input type="text" class="form-control input-sm" name="dedw" placeholder="第二单位"/></td>
+		<td><input type="text" class="form-control input-sm" name="dj" placeholder="单价"/></td>
+		<td><input type="text" class="form-control input-sm" name="bz" placeholder="币制"/></td>
+		<td><input type="text" class="form-control input-sm" name="zm" placeholder="征免"/></td>
+		<td><input type="text" class="form-control input-sm" name="sl" placeholder="数量"/></td>
+		*/
 		var value = $(this).val();
-		console.log(value);
+		var ggxhList = ['梭织','染色','平纹','100%棉','142CM','165G/M'];
+		var index = parseInt(Math.random()*4);
+		var ggxh = ggxhList[index];
 		if(value=='6102200010'){
 			$(this).parent().siblings().find('input[name=spmc]').val('衣服');
+			$(this).parent().siblings().find('input[name=ggxh]').val(ggxh);
+			$(this).parent().siblings().find('input[name=fddw]').val('CM');
+			$(this).parent().siblings().find('input[name=dedw]').val('MM');
+			$(this).parent().siblings().find('input[name=dj]').val('124');
+			$(this).parent().siblings().find('input[name=bz]').val('美元');
+			$(this).parent().siblings().find('input[name=zm]').val('7%');
+			$(this).parent().siblings().find('input[name=sl]').val('0');
 		}else if(value=='6211439000'){
 			$(this).parent().siblings().find('input[name=spmc]').val('马甲');
+			$(this).parent().siblings().find('input[name=ggxh]').val(ggxh);
+			$(this).parent().siblings().find('input[name=fddw]').val('件');
+			$(this).parent().siblings().find('input[name=dedw]').val('箱');
+			$(this).parent().siblings().find('input[name=dj]').val('245');
+			$(this).parent().siblings().find('input[name=bz]').val('法郎');
+			$(this).parent().siblings().find('input[name=zm]').val('19%');
+			$(this).parent().siblings().find('input[name=sl]').val('0');
 		}else if(value=='3926909090'){
 			$(this).parent().siblings().find('input[name=spmc]').val('衣服扣饰');
+			$(this).parent().siblings().find('input[name=ggxh]').val(ggxh);
+			$(this).parent().siblings().find('input[name=fddw]').val('个');
+			$(this).parent().siblings().find('input[name=dedw]').val('包');
+			$(this).parent().siblings().find('input[name=dj]').val('16');
+			$(this).parent().siblings().find('input[name=bz]').val('英镑');
+			$(this).parent().siblings().find('input[name=zm]').val('13%');
+			$(this).parent().siblings().find('input[name=sl]').val('0');
 		}else {
 			$(this).parent().siblings().find('input').val('');
 		}
+	});
+	
+	$(document).on('click','.renwu_hg_add',function(){
+		$(this).parent().siblings().find('input[name=sl]').val(parseInt(1+Math.random()*200));
 	});
 	
 });
@@ -867,7 +907,7 @@ function formatOpe(cellValue, options, rowObject){
 				当前环节:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">环节1</p>
+				<p  class="form-control input-sm"  placeholder="出口日期">预关单审核</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -901,6 +941,45 @@ function formatOpe(cellValue, options, rowObject){
 			<table id="liucheng_info_jqGrid"></table>
 			<div id="liucheng_info_jqGridPager"></div>
 		</div>
+		
+		<!-- 操作历史 -->
+	<div class="panel panel-info" style="margin-top:15px;">
+		<div class="panel-heading">历史操作记录</div>
+		<div class="panel-body" style="padding:0; height:180px;overflow-y:auto;">
+			<table class="table table-striped  table-condensed" style="margin-bottom:0;">
+				<thead style="background:#e5e6e6;">
+					<tr>
+						<th >任务编号</th>
+						<th >创建人</th>
+						<th >创建时间</th>
+						<th >当前环节</th>
+						<th >操作人</th>
+						<th >操作时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td >107625879564215478</td>
+						<td >张三</td>
+						<td >2017-05-11</td>
+						<th >预关单审核</th>
+						<td >李四</td>
+						<td >2017-05-13</td>
+					</tr>
+					<tr>
+						<td >107625879564215479</td>
+						<td >张三</td>
+						<td >2017-05-12</td>
+						<th >开票通知</th>
+						<td >王五</td>
+						<td >2017-05-19</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 操作历史 -->
+		
 	</div>
 </div>
 
@@ -1067,50 +1146,290 @@ function formatOpe(cellValue, options, rowObject){
 <div class="layerFormBox" id="renwu_gl_box">
 	<div class="container-fluid" >
 		<div class="row">
-			<div class="col-xs-12">
-				<form class="form-horizontal zzxx renwu_lisi_ygdInfo">
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right">预录入编号:</label>
-						<div class="col-sm-6">
-							<p>GD125465421254124121</p>
-						</div>
-					</div>
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right"><span>*</span>出口口岸:</label>
-						<div class="col-sm-6">
-							<p>天津新港</p>
-						</div>
-					</div>
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right"><span>*</span>出口日期:</label>
-						<div class="col-sm-6">
-							<p>2017-08-10</p>
-						</div>
-					</div>
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right">运抵国 :</label>
-						<div class="col-sm-6">
-							<p>美国</p>
-						</div>
-					</div>
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right">指运港   :</label>
-						<div class="col-sm-6">
-							<p>海关</p>
-						</div>
-					</div>
-					<div class="form-group col-sm-4">
-						<label  class="col-sm-6 control-label text-right"><span>*</span>成交方式   :</label>
-						<div class="col-sm-6">
-							<p>一般贸易</p>
-							<!-- <select name="" id="" class="form-control input-sm" placeholder="业务类型   "> 
-								<option value="all">外综服务</option>
-								<option value="one">一般贸易</option>
-								<option value="two">承包工程</option>
-							</select> -->
-						</div>
-					</div>
-				</form>
+			<div class="col-xs-12" style="padding:0">
+				<!-- 左侧关单 -->
+		     		<form class="form-horizontal layerForm">
+		<div class="col-xs-12 index" style="padding:0">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="yulu_number" name="number" value="2541201701023568" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>出口口岸
+				</label>
+				<div class="col-xs-7">
+					<select  class="form-control input-sm"> 
+						<option>天津新港</option>
+						<option selected="true">北京机场</option>
+					</select>
+					<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="outTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式 
+				</label>
+				<div class="col-xs-7">
+					<select class="form-control input-sm">
+						<option value="一般贸易" selected="true">一般贸易</option>
+						<option value="承包工程">承包工程</option>
+						<option value="外综服贸易">外综服贸易</option>
+					</select>
+					<!-- <input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<select   class="form-control input-sm"> 
+						<option>美国</option>
+						<option selected="true">英国</option>
+					</select>
+					<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text"  class="form-control input-sm" value="150"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+				</div>		
+			</div>
+
+		</div>
+	</form>
+		     		<!-- 左侧关单 -->
 			</div>
 		</div>
 		<div class="row">
@@ -1129,10 +1448,15 @@ function formatOpe(cellValue, options, rowObject){
 					<thead class="" style="background:#f4f4f4;">
 						<tr>
 							<th>序号</th>
-							<th>商品码</th>
+							<th>商品编码</th>
 							<th>商品名称</th>
-							<th>型号</th>
+							<th>规格型号</th>
+							<th>法定单位</th>
+							<th>第二单位</th>
 							<th>单价</th>
+							<th>币制</th>
+							<th>征免</th>
+							<th>数量</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -1141,9 +1465,14 @@ function formatOpe(cellValue, options, rowObject){
 							<td style="vertical-align:middle;text-align:center;">1.</td>
 							<td><input type="text"  list="renwu_lisi_shangpinma" class="form-control input-sm lisi_hgspm" placeholder="商品码"/></td>
 							<td><input type="text" class="form-control input-sm" name="spmc" placeholder="商品名称"/></td>
-							<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>
-							<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>
-							<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>
+							<td><input type="text" class="form-control input-sm" name="ggxh" placeholder="规格型号"/></td>
+							<td><input type="text" class="form-control input-sm" name="fddw" placeholder="法定单位"/></td>
+							<td><input type="text" class="form-control input-sm" name="dedw" placeholder="第二单位"/></td>
+							<td><input type="text" class="form-control input-sm" name="dj" placeholder="单价"/></td>
+							<td><input type="text" class="form-control input-sm" name="bz" placeholder="币制"/></td>
+							<td><input type="text" class="form-control input-sm" name="zm" placeholder="征免"/></td>
+							<td><input type="text" class="form-control input-sm" name="sl" placeholder="数量"/></td>
+							<td><a href="javascript:;" class="btn btn-sm btn-info renwu_hg_add">加入</a></td>
 						</tr>
 						<datalist id="renwu_lisi_shangpinma">
 							<option value="6102200010" label="衣服">
@@ -1184,7 +1513,7 @@ function formatOpe(cellValue, options, rowObject){
 					<span class="necessary">*</span>预录入编号:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="yulu_number" name="number" value="YLR154254525454525" class="form-control input-sm"  placeholder="预录入编号">
+					<input type="text" id="yulu_number" name="number" value="2541201701023568" class="form-control input-sm"  placeholder="预录入编号">
 				</div>
 			</div>
 			<div class="form-group col-xs-6 head">
@@ -1220,7 +1549,7 @@ function formatOpe(cellValue, options, rowObject){
 					出口日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+					<input type="text" id="yulu_outTime" name="outTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="出口日期">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -1228,7 +1557,7 @@ function formatOpe(cellValue, options, rowObject){
 					申报日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+					<input type="text" id="yulu_anotherTime" name="createTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="申报日期">
 				</div>		
 			</div>
 
@@ -1278,7 +1607,12 @@ function formatOpe(cellValue, options, rowObject){
 					贸易方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+					<select class="form-control input-sm">
+						<option value="一般贸易" selected="true">一般贸易</option>
+						<option value="承包工程">承包工程</option>
+						<option value="外综服贸易">外综服贸易</option>
+					</select>
+					<!-- <input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式"> -->
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -1641,7 +1975,7 @@ function formatOpe(cellValue, options, rowObject){
 					<span class="necessary">*</span>预录入编号:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="yulu_number" name="number" value="YLR154254525454525" class="form-control input-sm"  placeholder="预录入编号">
+					<input type="text" id="yulu_number" name="number" value="2541201701023568" class="form-control input-sm"  placeholder="预录入编号">
 				</div>
 			</div>
 			<div class="form-group col-xs-6 head">
@@ -1677,7 +2011,7 @@ function formatOpe(cellValue, options, rowObject){
 					出口日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+					<input type="text" id="yulu_outTime" name="outTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="出口日期">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -1685,7 +2019,7 @@ function formatOpe(cellValue, options, rowObject){
 					申报日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+					<input type="text" id="yulu_anotherTime" name="createTime" onclick="WdatePicker();" class="form-control input-sm"  placeholder="申报日期">
 				</div>		
 			</div>
 
@@ -1735,7 +2069,12 @@ function formatOpe(cellValue, options, rowObject){
 					贸易方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+					<select class="form-control input-sm">
+						<option value="一般贸易" selected="true">一般贸易</option>
+						<option value="承包工程">承包工程</option>
+						<option value="外综服贸易">外综服贸易</option>
+					</select>
+					<!-- <input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式"> -->
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
