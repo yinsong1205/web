@@ -705,11 +705,14 @@ $(function(){
 	$('#renwu_guilei_hou_btn').on('click',function(){
 		layer.close(guileiIndex);
 		layer.msg('商品归类成功!',{time:2000});
+		
+		$('#renwu_scygd_box').show();
 	});
 	
 	//比对
 	var biduiIndex = null;
 	$('#renwu_bd').on('click',function(){
+		
 		if($('#renwu_scygd_box').is(':visible')){
 			//打开归类的窗口
 			/* layer.open({
@@ -720,24 +723,28 @@ $(function(){
 			}); */
 			biduiIndex = layer.open({
 				type : 1,
-				title : '商品比对',
-				area : ["90%","80%"],
+				title : '关单比对',
+				area : ["100%","100%"],
 				content : $('#renwu_bd_box')
 			});
+		}else{
+			layer.msg('请先对商品进行归类!',{time:2000});
 		}
 	});
+	
 	//比对确认
 	$('#renwu_bidui_hou_btn').on('click',function(){
 		layer.close(biduiIndex);
-		layer.msg('商品比对成功!',{time:2000});
+		layer.msg('关单比对成功!',{time:2000});
 	});
+	
 	//添加归类类型
 	$('#renwu_add_hglx').on('click',function(){
 		var xh = $('#renwu_hglx_table tbody tr').length + 1;
 		var tr = '<tr>'+
 					'<td style="vertical-align:middle;text-align:center;">'+xh+'</td>'+
-					'<td><input type="text" list="renwu_lisi_shangpinma" class="form-control input-sm" placeholder="商品码"/></td>'+
-					'<td><input type="text" class="form-control input-sm" placeholder="商品名称"/></td>'+
+					'<td><input type="text" list="renwu_lisi_shangpinma" class="form-control input-sm lisi_hgspm" placeholder="商品码"/></td>'+
+					'<td><input type="text" name="spmc" class="form-control input-sm" placeholder="商品名称"/></td>'+
 					'<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>'+
 					'<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>'+
 					'<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>'+
@@ -762,6 +769,25 @@ $(function(){
 		layer.msg('提交成功!',{time:layerCloseTime})
 	});
 	//选择用户处理流程
+	
+	//选择海关商品码
+	$(document).on('input','.lisi_hgspm',function(){
+		/* <option value="6102200010" label="衣服">
+		<option value="6211439000" label="马甲">
+		<option value="3926909090" label="衣服扣饰"> */
+		var value = $(this).val();
+		console.log(value);
+		if(value=='6102200010'){
+			$(this).parent().siblings().find('input[name=spmc]').val('衣服');
+		}else if(value=='6211439000'){
+			$(this).parent().siblings().find('input[name=spmc]').val('马甲');
+		}else if(value=='3926909090'){
+			$(this).parent().siblings().find('input[name=spmc]').val('衣服扣饰');
+		}else {
+			$(this).parent().siblings().find('input').val('');
+		}
+	});
+	
 });
 
 function formatRwId(cellValue, options, rowObject){
@@ -1112,17 +1138,17 @@ function formatOpe(cellValue, options, rowObject){
 					</thead>
 					<tbody>
 						<tr>
-							<td>1.</td>
-							<td><input type="text" list="renwu_lisi_shangpinma" class="form-control input-sm" placeholder="商品码"/></td>
-							<td><input type="text" class="form-control input-sm" placeholder="商品名称"/></td>
+							<td style="vertical-align:middle;text-align:center;">1.</td>
+							<td><input type="text"  list="renwu_lisi_shangpinma" class="form-control input-sm lisi_hgspm" placeholder="商品码"/></td>
+							<td><input type="text" class="form-control input-sm" name="spmc" placeholder="商品名称"/></td>
 							<td><input type="text" class="form-control input-sm" placeholder="型号"/></td>
 							<td><input type="text" class="form-control input-sm" placeholder="单价"/></td>
 							<td><a href="javascript:;" class="btn btn-sm btn-default">归类</a></td>
 						</tr>
 						<datalist id="renwu_lisi_shangpinma">
-							<option value="BMW">
-							<option value="Ford">
-							<option value="Volvo">
+							<option value="6102200010" label="衣服">
+							<option value="6211439000" label="马甲">
+							<option value="3926909090" label="衣服扣饰">
 						</datalist>
 					</tbody>
 				</table>
@@ -1142,13 +1168,939 @@ function formatOpe(cellValue, options, rowObject){
 
 <!-- 比对 -->
 <div class="layerFormBox" id="renwu_bd_box">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-6">
-				
+	
+	<div class="panel panel-info">
+	  <div class="panel-heading text-center" style="font-size:16px;">比对结果: <span class="text-danger" style="font-weight:bold;">不一致</span></div>
+		  <div class="panel-body">
+		     <div class="row">
+		     	<div class="col-xs-12">
+		     	<p style="border-bottom:1px solid #f4f4f4; padding-bottom:5px;"><span class="bg-info" style="padding:5px 10px;">系统生成的预报关单</span></p>
+		     		<!-- 左侧关单 -->
+		     		<form class="form-horizontal layerForm col-xs-12">
+		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
+		<div class="col-xs-12 index">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="yulu_number" name="number" value="YLR154254525454525" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
 			</div>
-			<div class="col-xs-6" style="background:#f4f4f4;">
-				
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>出口口岸
+				</label>
+				<div class="col-xs-7">
+					<select style="border:1px solid #a94442; color:#a94442;" class="form-control input-sm"> 
+						<option>天津新港</option>
+						<option selected="true">北京机场</option>
+					</select>
+					<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<select style="border:1px solid #a94442; color:#a94442;"  class="form-control input-sm"> 
+						<option>美国</option>
+						<option selected="true">英国</option>
+					</select>
+					<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" style="border:1px solid #a94442; color:#a94442;" class="form-control input-sm" value="150"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+				</div>		
+			</div>
+			<div id="yulu_ul col-xs-12">
+				<table class="table col-xs-12">
+					<thead class="thead">
+						<tr>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>商品名称 规格型号</th>
+							<th>数量及单位</th>
+							<th>最终目的国（地区）</th>
+							<th>单价</th>
+							<th>总价</th>
+							<th>币值</th>
+							<th>征免</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					税费征收情况
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="税费征收情况"></textarea>.
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					录入员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="录入员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					兹上证明无讹并承担法律责任
+				</label>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					海关审单批注及放行日期（签章）
+				</label>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					报关员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="报关员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审单
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审单">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审价
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审价">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					单位地址
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="单位地址">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					征税
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="征税">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					统计
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="统计">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					邮编
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="邮编">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					电话
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="电话">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					填制日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="填制日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					查验
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="查验">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					放行
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="放行">
+				</div>		
+			</div>
+
+		</div>
+		<!-- <p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="yulu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yulu_cacle_btn">
+				取消
+			</button>
+		</p> -->
+	</form>
+		     		<!-- 左侧关单 -->
+		     	</div>
+		     	<div class="col-xs-12" style="margin-top:20px;">
+		     		<p style="border-bottom:1px solid #f4f4f4; padding-bottom:5px;"><span class="bg-info" style="padding:5px 10px;">海关报关单</span></p>
+		     		<!-- 右侧关单 -->
+		     		<form class="form-horizontal layerForm col-xs-12">
+		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
+		<div class="col-xs-12 index">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="yulu_number" name="number" value="YLR154254525454525" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>出口口岸
+				</label>
+				<div class="col-xs-7">
+					<select style="border:1px solid #a94442; color:#a94442;" class="form-control input-sm"> 
+						<option selected="true">天津新港</option>
+						<option >北京机场</option>
+					</select>
+					<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<select style="border:1px solid #a94442; color:#a94442;"  class="form-control input-sm"> 
+						<option selected="true">美国</option>
+						<option >英国</option>
+					</select>
+					<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" style="border:1px solid #a94442; color:#a94442;" class="form-control input-sm" value="130"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+				</div>		
+			</div>
+			<div id="yulu_ul col-xs-12">
+				<table class="table col-xs-12">
+					<thead class="thead">
+						<tr>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>商品名称 规格型号</th>
+							<th>数量及单位</th>
+							<th>最终目的国（地区）</th>
+							<th>单价</th>
+							<th>总价</th>
+							<th>币值</th>
+							<th>征免</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					税费征收情况
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="税费征收情况"></textarea>.
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					录入员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="录入员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					兹上证明无讹并承担法律责任
+				</label>		
+			</div>
+			<div class="form-group col-xs-4 text-center">
+				<label class="control-label">
+					海关审单批注及放行日期（签章）
+				</label>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					报关员
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="报关员">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审单
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审单">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					审价
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="审价">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					单位地址
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="单位地址">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					申报单位（签章）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="申报单位（签章）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					征税
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="征税">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					统计
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="统计">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					邮编
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="邮编">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					电话
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="电话">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					填制日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="填制日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					查验
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="查验">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					放行
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="放行">
+				</div>		
+			</div>
+
+		</div>
+		<!-- <p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="yulu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yulu_cacle_btn">
+				取消
+			</button>
+		</p> -->
+	</form>
+		     		<!-- 右侧关单 -->
+		     	</div>
+		     </div>
+		  </div>
+		  <div class="panel-footer text-center">
+				<button class="btn btn-info btn-xs" id="renwu_bidui_hou_btn">确定</button>
+		  </div>
+		</div>
+	<!-- <div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				    Basic panel example
+				  </div>
+				</div>
 			</div>
 		</div>
 		
@@ -1159,7 +2111,7 @@ function formatOpe(cellValue, options, rowObject){
 				</p>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <style>
