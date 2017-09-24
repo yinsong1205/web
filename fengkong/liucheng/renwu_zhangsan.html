@@ -650,21 +650,24 @@ $(function(){
 		zTreeObj = $.fn.zTree.init($("#renwu_user_Tree"), setting, zNodes);
 	});
 	
-	$('#renwu_liucheng_chuli').on('click',function(){
-		layer.close(chooseUserLayer);
-		layer.close(commIndex);
-		layer.msg('提交成功!',{time:layerCloseTime})
-	});
+	//选择用户处理流程
 	var chooseUserLayer = null;
 	$('#renwu_choose_user_btn').on('click',function(){
 		chooseUserLayer = layer.open({
 				type : 1,
 				title : '选择用户',
-				area : ['20%',"50%"],
+				area : ['25%',"60%"],
 				content : $('#renwu_choosen_user_box')
 			});
 		
-	})
+	});
+	$('#renwu_liucheng_chuli').on('click',function(){
+		layer.close(chooseUserLayer);
+		layer.close(commIndex);
+		layer.msg('提交成功!',{time:layerCloseTime})
+	});
+	//选择用户处理流程
+	
 });
 
 function formatRwId(cellValue, options, rowObject){
@@ -881,7 +884,7 @@ function formatOpe(cellValue, options, rowObject){
 </div>
 <!-- 任务处理界面 -->
 
-<!-- 选择用户 -->
+<!-- 选择用户处理流程 -->
 <div id="renwu_choosen_user_box" class="layerFormBox" >
 	<p>请选择要提交的用户：</p>
 	<select class="form-control input-sm">
@@ -923,19 +926,25 @@ function formatOpe(cellValue, options, rowObject){
 			  </label>
 			</div>
 		</div>
+		
+	</div>
+	<div class="row" style="margin-top:15px;">
+		<div class="col-xs-12">
+			<textarea class="form-control input-sm" cols="3" placeholder="意见..."></textarea>
+		</div>
 	</div>
 	
 	<!-- <ul id="renwu_user_Tree" class="ztree" style="background:#f4f4f4; "></ul>-->
-	<p class="text-center"><button class="btn btn-info btn-sm" style="margin-top:15px;" id="renwu_liucheng_chuli">确认</button></p> 
+	<p class="text-center"><button class="btn btn-info btn-sm" style="margin-top:35px;" id="renwu_liucheng_chuli">确认</button></p> 
 </div>
-
+<!-- 选择用户处理流程 -->
 
 <style>
 	#renwu_detail_info_box .form-control { border:none; box-shadow:none; padding-top:7px; }
 	#renwu_ope_box #danqian p { margin-bottom:0; }
 	.layerForm .form-group {margin-bottom:0; }
 	/* .layerForm .topSeven { padding-top:7px; } */
-	#renwu_choose_user_btn {margin-top:15px;}
+	#renwu_choose_user_btn {margin-top:35px;}
 	.rewwu_base_info p {}
 	.rewwu_base_info p span{ padding:0 10px; font-weight:bold; }
 </style>
