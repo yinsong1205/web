@@ -1,0 +1,28 @@
+{
+	"total": 100,
+	"page": 1,
+	"rows": [
+		{
+			"id": "CK201709220001",
+			"guobie": "法国",
+			"type": "一般贸易",
+			"kouan": "天津新港",
+			"yunshufangshi": "水上运输",
+			"huanjie": "收票确认",
+			"createName": "张三",
+			"createTime": "2017-01-28",
+			"operation" : "处理"
+		},
+		{
+			"id": "CK201709220002",
+			"guobie": "美国",
+			"type": "承包工程",
+			"kouan": "北京机场",
+			"yunshufangshi": "航空运输",
+			"huanjie": "收票确认",
+			"createName": "张三",
+			"createTime": "2017-06-09",
+			"operation" : "未处理"
+		}
+	]
+}

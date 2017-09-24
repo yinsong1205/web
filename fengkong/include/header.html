@@ -78,6 +78,9 @@
 		}else if(href.indexOf('kaipiao') != -1){
 			$('#header_dropdown_menu b').text('赵六');
 			$('#main .con').eq(0).load('include/main_kaipiao.html');
+		}else if(href.indexOf('shoupiao') != -1){
+			$('#header_dropdown_menu b').text('田七');
+			$('#main .con').eq(0).load('include/main_shoupiao.html');
 		}else {
 			$('#main .con').eq(0).load('include/main.html');
 		}

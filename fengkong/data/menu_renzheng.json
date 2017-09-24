@@ -1,0 +1,14 @@
+[
+	{
+		"id" : "menu_rw_gl",
+		"name" : "任务管理",
+		"url" : "liucheng/renwu_renzheng.html",
+		"leftIcon" : "l fa fa-tasks"
+		
+	},
+	{
+		"name" : "开票通知单",
+		"url" : "piaoju/tongzhi.html",
+		"leftIcon" : "l fa fa-ticket",
+	}
+]
