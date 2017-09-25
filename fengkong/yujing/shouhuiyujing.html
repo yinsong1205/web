@@ -1,0 +1,158 @@
+<!--工期预警  -->
+<div class="container-fluid" id="shouhuiyujing">
+	<div class="col-sm-12 plr0 height100 gridBox" id="shouhuiyujing_gridBox">
+		<table id="shouhuiyujing_jqGrid"></table>
+		<div id="shouhuiyujing_jqGridPager"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	
+$(function(){
+	var dataUrl = 'data/shouhuiyujing.json';
+	var index = null;
+	var flag = '';
+	var rowNumber = 1000000;
+
+	//表格数据
+	var gridWidth = $('#shouhuiyujing_gridBox').width();
+	var gridHeight = $('#shouhuiyujing_gridBox').height()-118;
+	$("#shouhuiyujing_jqGrid").jqGrid({
+		url: dataUrl,
+		hidegrid : false, 
+		altRows : true, 
+		colModel: [{label : '合同编号', name : 'hetongnumber', align: 'center', width: 120},
+			{label : '合同名称', name : 'hetongname', align: 'center', width:120},
+			{label : '签订时间', name : 'time', align: 'center', width:120},
+			{label : '实际开始时间', name : 'startTime', align: 'center', width:120},
+			{label : '实际结束时间', name : 'endTime', align: 'center', width:120},
+			{label : '预警时间', name : 'dataTime', align: 'center', width:120},
+			{label : '实际超出时间', name : 'overTime', align: 'center', width:120}],
+		viewrecords: true,
+		loadonce:true,
+		width: gridWidth,
+		//width: 'auto',
+		//width : '100%',
+		height: gridHeight,
+		//height : 'auto',
+		rowNum: 11,
+		rowList:[10,15,20,25],
+		datatype: 'local',
+		pager: "#shouhuiyujing_jqGridPager",
+		rownumbers: true,
+		rownumWidth: 30,
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+	    //emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		
+	}).navButtonAdd('#shouhuiyujing_jqGridPager',{
+		//caption: '查看',
+		caption: '',
+		title : '解除预警',
+		buttonicon : 'fa fa-ban',
+		onClickButton : function(){ remove(); }, //调用查看的函数
+		position : 'last'
+	}).navSeparatorAdd('#shouhuiyujing_jqGridPager',{
+		sepcontent: '',
+		sepclass : "ui-separator"
+	});
+	//搜索框按钮,开启搜索框需要重新调整高度
+	$('#shouhuiyujing_jqGrid').jqGrid('filterToolbar');
+	
+	fetchGridData();
+	
+	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
+	
+	
+	
+	//弹框取消按钮
+	$('#shouhuiyujing_cacle_btn').on('click',function(){
+		layer.close(index);
+	});
+	
+	//表头编辑按钮
+	$(document).on('click','#shouhuiyujing_update_btn',function(){
+		flag = 'update';
+		var rowIds = getSelectedRow();
+		
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			
+			var rowData = $("#shouhuiyujing_jqGrid").getRowData(rowIds[0]);
+			
+			//console.log(rowData);
+			
+			$('#shouhuiyujing_name').val(rowData.name),
+		    $('#shouhuiyujing_relName').val(rowData.relName),
+		    $('#shouhuiyujing_company').val(rowData.company),
+		    $('#shouhuiyujing_createTime').val(rowData.createTime)
+			title = '修改模块';
+			index = layer.open({
+				type: 1,
+				title : title,
+				area: ['60%', '70%'], //宽高
+				content: $('#shouhuiyujing_formBox')
+			});
+		}else{
+			layer.msg('同时只能选择一条记录!');
+		}
+	});
+	
+	//获取json数据
+	function fetchGridData() {
+
+		var gridArrayData = [];
+		// show loading message
+		$("#shouhuiyujing_jqGrid")[0].grid.beginReq();
+		$.ajax({
+			url: dataUrl,
+			success: function(result) {
+				for (var i = 0; i < result.items.length; i++) {
+					var item = result.items[i];
+					
+					gridArrayData.push({
+						hetongnumber: item.hetongnumber,
+						hetongname: item.hetongname,
+						time: item.time,
+						startTime: item.startTime,
+						endTime: item.endTime,
+						dataTime: item.dataTime,
+						overTime: item.overTime
+					});
+
+				}
+				// set the new data
+				$("#shouhuiyujing_jqGrid").jqGrid('setGridParam', {
+					data: gridArrayData
+				});
+				// hide the show message
+				$("#shouhuiyujing_jqGrid")[0].grid.endReq();
+				// refresh the grid
+				$("#shouhuiyujing_jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	//格式化标题
+	function formatTitle(cellValue, options, rowObject) {
+		return cellValue.substring(0, 50) + "...";
+	};
+	//格式化链接
+	function formatLink(cellValue, options, rowObject) {
+		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
+	};
+	//获取选择的行
+	function getSelectedRow() {
+	    var grid = $("#shouhuiyujing_jqGrid");
+	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
+
+	   return rowKeys;
+	}
+	
+	
+	changeSearch(); //修改工具条
+	
+});
+
+
+	
+</script>

@@ -128,12 +128,14 @@ $(function(){
         
         hidegrid : false, 
         altRows : true, 
-        colModel: [{label : '发票代码', name : 'number', align: 'center', width: 100},
+        colModel: [{label : '发票号码', name : 'number', align: 'center', width: 100},
             {label : '发票代码', name : 'anotherNumber', align: 'center', width:100},
             {label : '通知单号 ', name : 'tongzhi', align: 'center', width:100,search:false},
             {label : '销方名称', name : 'company', align: 'center', width:80},
-            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 100,search:false},
-            {label : '关单号', name : 'baoguan', align: 'center', width:100,search:false},
+            {label : '销方识别号', name : 'shibie', align: 'center', width: 100,search:false},
+            {label : '金额', name : 'money', align: 'center', width: 100,search:false},
+            {label : '税额', name : 'shuimoney', align: 'center', width: 100,search:false},
+            {label : '开票日期', name : 'numbers', align: 'center', width: 100,search:false}
             ],
 
         viewrecords: true,
@@ -372,9 +374,11 @@ $(function(){
                         number: item.number,
                         anotherNumber: item.anotherNumber,
                         tongzhi: item.tongzhi,
-                        baoguan: item.baoguan,
+                        shibie: item.shibie,
                         company: item.company,
-                        lastNumber: item.lastNumber
+                        money: item.money,
+                        shuimoney: item.shuimoney,
+                        numbers: item.numbers
                     });
 
                 }

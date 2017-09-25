@@ -1,12 +1,18 @@
 <!-- 合同统计 -->
+<style type="text/css">
+</style>
 <div class="container-fluid tongji">
 	<div class="row">
 		<form class="form-inline">
 			<div class="form-group">
-				<select name="ywlx" id="" class="form-control input-sm">
+				<select name="ywlx" id="selecter" class="form-control input-sm">
 					<option value="" selected="selected">统计方式</option>
-					<option value="">年统计</option>
-					<option value="">月统计</option>
+					<option class="guandan" value="报关单号">报关单号</option>
+					<option value="贸易方式">贸易方式</option>
+					<option value="成交方式">成交方式</option>
+					<option value="出口日期">出口日期</option>
+					<option value="退税情况">退税情况</option>
+					<option value="退税率">退税率</option>
 				</select>
 			</div>
 			<div class="form-group">
@@ -16,32 +22,114 @@
 			<div class="form-group">
 				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
 			</div>
-			<button type="button" class="btn btn-info btn-sm">查询</button>
+			<button type="button" class="btn btn-info btn-sm" id="search">查询</button>
 			<button type="reset" class="btn btn-danger btn-sm">重置</button>
 		</form>
 	</div>
 
 	<div class="row">
-		<div class="col-sm-6">
-			<div id="htxiazuanChart" style="min-width:400px;height:400px"></div>
+		<div class="col-sm-2" id="he" class="yincang">
+			<div id="hetongChart" style="min-width:1000px;height:400px"></div>
 			
 		</div>
-		<div class="col-sm-6">
-			<div id="htlineChart" style="min-width:400px;height:400px"></div>
+		<div class="col-sm-2" id="cai" class="yincang">
+			<div id="maoyiChart" style="min-width:1000px;height:400px"></div>
+		</div>
+		<div class="col-sm-2" id="pa" class="yincang">
+			<div id="payChart" style="min-width:1000px;height:400px"></div>
 		</div>
 	</div>
 
 </div>
 <script type="text/javascript"> 
-	 $('#htxiazuanChart').highcharts({
+	var guandan = 'guandan';
+	var flag = 'Chart';
+	var hetong= 'hetong';
+	var maoyi = 'maoyi';
+	var pay = 'pay';
+	$(document).on('click','#search',function(){
+		if ($('#selecter option:selected').text() == '报关单号') {
+			$('#he').show().siblings().hide();
+			hetongchart();
+		}else if($('#selecter option:selected').text() == '贸易方式'){
+			$('#cai').show().siblings().hide();
+			maoyichart();
+		}else if($('#selecter option:selected').text() == '成交方式'){
+			$('#pa').show().siblings().hide();
+			paychart();
+		}
+	})
+// 按成交方式
+	function paychart(){
+	 $('#' + pay + flag).highcharts({
 		chart: {
 			type: 'column'
 		},
 		title: {
-			text: '出口合同'
+			text: '成交方式'
 		},
 		subtitle: {
-			text: '数据来源: 出口合同'
+			text: '数据来源: 成交方式'
+		},
+		xAxis: {
+			type: 'category'
+		},
+		yAxis: {
+			title: {
+				text: '总的统计'
+			}
+		},
+		legend: {
+			enabled: false
+		},
+		plotOptions: {
+			series: {
+				borderWidth: 0,
+				dataLabels: {
+					enabled: true,
+					format: '{point.y:.1f}%'
+				}
+			},
+			column: {
+            	pointWidth:50
+        	}
+		},
+		tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		},
+		series: [{
+			name: '成交方式',
+			colorByPoint: true,
+			data: [{
+				name: 'CIF',
+				y: 44.33,
+				drilldown: '2002'
+			}, {
+				name: 'FOB',
+				y: 33.03,
+				drilldown: '2005'
+			}, {
+				name: 'CIP',
+				y: 12.38,
+				drilldown: '2009'
+			}]
+		}]
+		
+	});
+	
+	}
+// 按关单号
+function hetongchart(){
+	 $('#' + hetong + flag).highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: '报关单号'
+		},
+		subtitle: {
+			text: '数据来源: 报关单号'
 		},
 		xAxis: {
 			categories: ['2011', '2012', '2013', '2014', '2015']
@@ -75,7 +163,10 @@
 				return '<b>' + this.x + '</b><br/>' +
 					this.series.name + ': ' + this.y + '<br/>' +
 					'总量: ' + this.point.stackTotal;
-			}
+			},
+			column: {
+            	pointWidth:50
+        	}
 		},
 		plotOptions: {
 			column: {
@@ -101,16 +192,19 @@
 		}]
 	});
 	
+	}
+// 按贸易方式
+	function maoyichart(){
 	//柱形图
-Highcharts.chart('htlineChart', {
+$('#' + maoyi + flag).highcharts({
 		chart: {
 			type: 'column'
 		},
 		title: {
-			text: '采购合同'
+			text: '贸易方式'
 		},
 		subtitle: {
-			text: '数据来源: 采购合同'
+			text: '数据来源: 贸易方式'
 		},
 		xAxis: {
 			type: 'category'
@@ -130,37 +224,33 @@ Highcharts.chart('htlineChart', {
 					enabled: true,
 					format: '{point.y:.1f}%'
 				}
-			}
+			},
+			column: {
+            	pointWidth:50
+        	}
 		},
 		tooltip: {
 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
 			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
 		},
 		series: [{
-			name: '采购合同',
+			name: '贸易方式',
 			colorByPoint: true,
 			data: [{
-				name: '2002',
-				y: 16.33,
+				name: '一般贸易',
+				y: 12.33,
 				drilldown: '2002'
 			}, {
-				name: '2005',
-				y: 44.03,
+				name: '承包工程',
+				y: 54.03,
 				drilldown: '2005'
 			}, {
-				name: '2009',
-				y: 9.38,
+				name: '外综服贸易',
+				y: 45.38,
 				drilldown: '2009'
-			}, {
-				name: '2014',
-				y: 20.77,
-				drilldown: '2014'
-			}, {
-				name: '2017',
-				y: 9.91,
-				drilldown: '2017'
 			}]
 		}]
 		
 	});
+}
 </script>

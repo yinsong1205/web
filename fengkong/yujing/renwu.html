@@ -1,11 +1,62 @@
 <!--任务预警  -->
+<style type="text/css">
+	.input-sm{
+		vertical-align: center;
+	}
+</style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwu_gridBox">
 		<table id="renwu_jqGrid"></table>
 		<div id="renwu_jqGridPager"></div>
 	</div>
 </div>
-
+<!-- 查看详细 -->
+<div>
+	<form class="form-horizontal zzxx">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-5 control-label text-right"></label>
+			<div class="col-sm-7">
+				<input type="email" class="form-control input-sm" 
+								placeholder="签  订  人 ">
+			</div>
+		</div>
+	</form>
+</div>
+<!-- 预警 -->
+<div class="layerFormBox" id="renwu_formBox"> 
+	<div class="form-group col-sm-12">
+		<div class="col-sm-3">解除预警</div>
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>已解除
+		</label> 
+		
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>未解除
+		</label>
+		
+	</div>
+	<div class="form-group col-sm-12">
+		<label  class="col-sm-3 control-label">解除说明:</label>
+		<div class="col-sm-6">
+			<textarea class="form-control input-sm" placeholder="解除说明"></textarea>
+		</div>
+	</div>
+	<p class="text-center saveOrCacelBtn">
+		<button type="button" class="saveBtn btn btn-info btn-sm" id="renwu_save_btn">
+			保存
+		</button>
+		<button type="reset" class="saveBtn btn btn-info btn-sm">
+			重置
+		</button>
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_cacle_btn">
+			取消
+		</button>
+	</p>
+</div>
 <script type="text/javascript">
 
 	
@@ -22,15 +73,17 @@ $(function(){
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '任务编号', name : 'tasknumber', align: 'center', width: 120},
-			{label : '出口国别', name : 'country', align: 'center', width:120},
-			{label : '业务类型', name : 'guandannumber', align: 'center', width:120},
-			{label : '出口口岸', name : 'guandannumber', align: 'center', width:120},
-			{label : '运输方式', name : 'guandannumber', align: 'center', width:120},
-			{label : '当前环节', name : 'type', align: 'center', width:120},
-			{label : '创建人', name : 'startTime', align: 'center', width:120},
-			{label : '创建时间', name : 'startTime', align: 'center', width:120},
-			{label : '剩余时间', name : 'overTime', align: 'center', width:120}],
+		colModel: [{label : '任务编号', name : 'tasknumber', align: 'center', width: 120 ,formatter: formatName},
+			{label : '出口国别', name : 'county', align: 'center', width:120},
+			{label : '业务类型', name : 'type', align: 'center', width:120},
+			{label : '出口口岸', name : 'kouan', align: 'center', width:120},
+			{label : '运输方式', name : 'bus', align: 'center', width:120},
+			{label : '当前环节', name : 'level', align: 'center', width:120},
+			{label : '创建人', name : 'createPeople', align: 'center', width:120},
+			{label : '创建时间', name : 'createTime', align: 'center', width:120},
+			{label : '剩余时间', name : 'lastTime', align: 'center', width:120},
+			{label : '截止时间', name : 'overTime', align: 'center', width:120},
+			{label : '说明', name : 'sign', align: 'center', width:120},],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -43,16 +96,22 @@ $(function(){
 		datatype: 'local',
 		pager: "#renwu_jqGridPager",
 		rownumbers: true,
+		multiselect: true,
 		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>"
 		
-	}).navButtonAdd('#renwu_jqGridPager',{
+	}).navGrid("#renwu_jqGridPager",{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd("#renwu_jqGridPager",{
 		//caption: '查看',
 		caption: '',
 		title : '解除预警',
-		buttonicon : 'fa fa-times',
+		buttonicon : 'fa fa-ban',
 		onClickButton : function(){ remove(); }, //调用查看的函数
 		position : 'last'
+	}).navSeparatorAdd('#renwu_jqGridPager',{
+		sepcontent: '',
+		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#renwu_jqGrid').jqGrid('filterToolbar');
@@ -68,37 +127,34 @@ $(function(){
 		layer.close(index);
 	});
 	function remove(){
+		flag == 'update';
+		var rowIds = getSelectedRow();
 		
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			
+			var rowData = $("#renwu_jqGrid").getRowData(rowIds[0]);
+			
+			//console.log(rowData);
+			
+			$('#renwu_name').val(rowData.name),
+		    $('#renwu_relName').val(rowData.relName),
+		    $('#renwu_company').val(rowData.company),
+		    $('#renwu_createTime').val(rowData.createTime)
+			title = '修改模块';
+			index = layer.open({
+				type: 1,
+				title : title,
+				area: ['60%', '70%'], //宽高
+				content: $('#renwu_formBox')
+			});
+		}else{
+			layer.msg('同时只能选择一条记录!');
+		}
 	}
 	
 	
 	//弹框保存按钮
 	$(document).on('click','#renwu_save_btn',function(){
-		//var total = jQuery("#renwu_jqGrid").jqGrid('getGridParam', 'records'); 
-		////console.log(total);
-		//addRowData
-		//rowid,data, position, srcrowid
-		//console.log(flag);
-		if(flag == 'add'){
-			var data = {
-					"name": $.trim($('#renwu_name').val()),
-				    "relName": $.trim($('#renwu_relName').val()),
-				    "company": $.trim($('#renwu_company').val()),
-				    "createTime": $.trim($('#renwu_createTime').val())
-			};
-			var currentNumber = rowNumber++;
-			var result = jQuery("#renwu_jqGrid").addRowData(currentNumber,data,'first');
-			
-			if(result){
-				layer.msg('添加成功');
-				layer.close(index);
-				
-				jQuery("#renwu_jqGrid").setSelection(currentNumber,true);
-				
-			}else{
-				layer.msg('添加失败!');
-			}
-		}else if(flag == 'update'){
 			
 			//删除
 			var rowIds = getSelectedRow();
@@ -120,7 +176,6 @@ $(function(){
 			}else{
 				layer.msg('更新失败!');
 			}
-		}
 		
 	});
 	
@@ -164,7 +219,14 @@ $(function(){
 			layer.msg('同时只能选择一条记录!');
 		}
 	});
-	
+			//格式化标题
+		function formatName(cellValue, options, rowObject) {
+			var len = cellValue.length;
+			if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+			}
+			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		};
 	
 	//获取json数据
 	function fetchGridData() {
@@ -180,13 +242,16 @@ $(function(){
 					
 					gridArrayData.push({
 						tasknumber: item.tasknumber,
-						guandannumber: item.guandannumber,
-						country: item.country,
+						county: item.county,
 						type: item.type,
-						startTime: item.startTime,
-						endTime: item.endTime,
-						yujingnumber: item.yujingnumber,
-						overTime: item.overTime
+						kouan: item.kouan,
+						bus: item.bus,
+						level: item.level,
+						createPeople: item.createPeople,
+						overTime: item.overTime,
+						createTime: item.createTime,
+						lastTime: item.lastTime,
+						sign: item.sign
 					});
 
 				}
@@ -221,7 +286,20 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-
+function lookInfo(gid,rowId){
+	$('#shenhecaigou_save_btn').show();
+	var data = $('#'+gid).getRowData(rowId);
+	data.name = $(data.name).text();
+	data.relName = $(data.relName).text();
+	setFormData(gid+'_formBox',data);
+	title = '查看信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['98%', '98%'], //宽高
+		content: $('#'+gid+'_formBox')
+	});
+}
 
 	
 </script>

@@ -17,7 +17,7 @@ $(function(){
 
 	//表格数据
 	var gridWidth = $('#gongqi_gridBox').width();
-	var gridHeight = $('#gongqi_gridBox').height()-150;
+	var gridHeight = $('#gongqi_gridBox').height()-118;
 	$("#gongqi_jqGrid").jqGrid({
 		
 		hidegrid : false, 
@@ -46,6 +46,16 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
+	}).navButtonAdd('#gongqi_jqGridPager',{
+		//caption: '查看',
+		caption: '',
+		title : '解除预警',
+		buttonicon : 'fa fa-ban',
+		onClickButton : function(){ remove(); }, //调用查看的函数
+		position : 'last'
+	}).navSeparatorAdd('#gongqi_jqGridPager',{
+		sepcontent: '',
+		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#gongqi_jqGrid').jqGrid('filterToolbar');

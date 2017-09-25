@@ -1,67 +1,354 @@
 {
-	"items": [
+    "items": [
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "创立信电子厂",
+    "number": 2017918364,
     "type": "生产",
-    "source": "导入",
-    "level": "黑",
-    "black": "是",
-    "active": "截止期限过期"
+    "level": "灰",
+    "active": 1
   },
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "创立信电子厂",
+    "number": 2017905730,
     "type": "生产",
-    "source": "导入",
+    "level": "黑",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017934887,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017950980,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017975985,
+    "type": "生产",
     "level": "白",
-    "black": "否",
-    "active": "正常"
+    "active": 1
   },
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "创立信电子厂",
+    "number": 2017983434,
     "type": "生产",
-    "source": "导入",
-    "level": "黑",
-    "black": "是",
-    "active": "截止期限过期"
+    "level": "白",
+    "active": 0
   },
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "廊坊富士康",
+    "number": 2017974759,
     "type": "生产",
-    "source": "导入",
-    "level": "黑",
-    "black": "是",
-    "active": "截止期限过期"
+    "level": "白",
+    "active": 1
   },
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "廊坊富士康",
+    "number": 2017970954,
     "type": "生产",
-    "source": "导入",
-    "level": "黑",
-    "black": "是",
-    "active": "截止期限过期"
+    "level": "白",
+    "active": 1
   },
   {
-    "company": "北京东方天旭国际贸易",
-    "seanumber": "2017030021",
-    "number": "20170354646301",
+    "company": "海德机床厂",
+    "number": 2017912738,
     "type": "生产",
-    "source": "导入",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017916914,
+    "type": "生产",
     "level": "黑",
-    "black": "是",
-    "active": "截止期限过期"
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017987172,
+    "type": "生产",
+    "level": "白",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017955295,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017910934,
+    "type": "生产",
+    "level": "黑",
+    "active": 1
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017929824,
+    "type": "生产",
+    "level": "白",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017981040,
+    "type": "生产",
+    "level": "白",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017930069,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017939989,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017946476,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017927955,
+    "type": "生产",
+    "level": "白",
+    "active": 0
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017917153,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017948123,
+    "type": "生产",
+    "level": "黑",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017975486,
+    "type": "生产",
+    "level": "黑",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017944701,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017972363,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017967055,
+    "type": "生产",
+    "level": "白",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017919307,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017954314,
+    "type": "生产",
+    "level": "白",
+    "active": 0
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017950822,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017979678,
+    "type": "生产",
+    "level": "白",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017981639,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017953391,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017942054,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017927263,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017978707,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017912829,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017920623,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017944083,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017933962,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017901290,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017968117,
+    "type": "生产",
+    "level": "白",
+    "active": 1
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017932873,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017967990,
+    "type": "生产",
+    "level": "黑",
+    "active": 1
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017946111,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "创立信电子厂",
+    "number": 2017953645,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017979591,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "海德机床厂",
+    "number": 2017929366,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017942353,
+    "type": "生产",
+    "level": "黑",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017939578,
+    "type": "生产",
+    "level": "灰",
+    "active": 1
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017985735,
+    "type": "生产",
+    "level": "白",
+    "active": 0
+  },
+  {
+    "company": "廊坊富士康",
+    "number": 2017990997,
+    "type": "生产",
+    "level": "灰",
+    "active": 0
   }
-],
-	"has_more": true,
-	"quota_max": 300,
-	"quota_remaining": 283
+]
 }
