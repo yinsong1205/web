@@ -7,7 +7,7 @@
 		</a>
 	</div>
 	<div class="companyName pull-left">
-		<a href="javascript:;"><i class="fa fa-flag"></i>出口退税风险管理平台</a>
+		<a href="javascript:;"><i class="fa fa-flag"></i>外贸综合企业出口退税风险管理平台</a>
 	</div>
 	<ul class="list-inline pull-right" style="margin-bottom:0;">
 		<!-- <li><a href="javascript:;"><i class="fa fa-star-o"></i></a></li>
@@ -68,8 +68,24 @@
 		var href = window.location.href;
 		if(href.indexOf('zhangsan') != -1){
 			$('#header_dropdown_menu b').text('张三');
+			$('#main .con').eq(0).load('include/main_zhangsan.html');
 		}else if(href.indexOf('lisi') != -1){
 			$('#header_dropdown_menu b').text('李四');
+			$('#main .con').eq(0).load('include/main_lisi.html');
+		}else if(href.indexOf('wangwu') != -1){
+			$('#header_dropdown_menu b').text('王五');
+			$('#main .con').eq(0).load('include/main_wangwu.html');
+		}else if(href.indexOf('kaipiao') != -1){
+			$('#header_dropdown_menu b').text('赵六');
+			$('#main .con').eq(0).load('include/main_kaipiao.html');
+		}else if(href.indexOf('shoupiao') != -1){
+			$('#header_dropdown_menu b').text('田七');
+			$('#main .con').eq(0).load('include/main_shoupiao.html');
+		}else if(href.indexOf('renzheng') != -1){
+			$('#header_dropdown_menu b').text('钱八');
+			$('#main .con').eq(0).load('include/main_renzheng.html');
+		}else {
+			$('#main .con').eq(0).load('include/main.html');
 		}
 	});
 </script>

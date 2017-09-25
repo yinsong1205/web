@@ -3,7 +3,7 @@
 	{
 		"id" : "menu_rw_gl",
 		"name" : "任务管理",
-		"url" : "liucheng/renwu_lisi.html",
+		"url" : "liucheng/renwu_wangwu.html",
 		"leftIcon" : "l fa fa-tasks"
 		
 	},
@@ -28,9 +28,20 @@
 		]
 	},
 	{
-		"name" : "预报关单",
-		"url" : "guandan/yuluru.html",
-		"leftIcon" : "l fa fa-file"
-		
+		"name" : "报关单管理",
+		"leftIcon" : "l fa fa-file-text",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "预报关单",
+				"url" : "guandan/yuluru.html"
+				
+			},
+			{
+				"name" : "报关单",
+				"url" : "guandan/guandan.html"
+				
+			}
+		]
 	}
 ]

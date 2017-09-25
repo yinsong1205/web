@@ -8,11 +8,15 @@
 		
 	},
 	{
+		"name" : "供货商管理",
+		"url" : "ruzhu/ruzhu.html",
+		"leftIcon" : "l fa fa-building"
+	},
+	{
 		"name" : "合同管理",
 		"leftIcon" : "l fa fa-file-word-o",
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
-			
 			{
 				"name" : "出口合同",
 				"url" : "hetong/chukou.html"
@@ -27,65 +31,83 @@
 			}
 		]
 	},
+	
 	{
-		"name" : "预报关单",
-		"url" : "guandan/yuluru.html",
-		"leftIcon" : "l fa fa-file"
-		
+		"name" : "报关单管理",
+		"leftIcon" : "l fa fa-file-text",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "预报关单",
+				"url" : "guandan/yuluru.html"
+				
+			},
+			{
+				"name" : "报关单",
+				"url" : "guandan/guandan.html"
+				
+			}
+		]
 	},
-	{
-		"name" : "报关单",
-		"url" : "guandan/guandan.html",
-		"leftIcon" : "l fa fa-file-text"
-		
-	},
-	{
-		"name" : "开票通知单",
-		"url" : "piaoju/tongzhi.html",
-		"leftIcon" : "l fa fa-info-circle"
-	},
+	
 	{
 		"name" : "发票管理",
-		"url" : "piaoju/fapiao.html",
-		"leftIcon" : "l fa fa-ticket"
+		"leftIcon" : "l fa fa-ticket",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+				{
+					"name" : "开票通知单",
+					"url" : "piaoju/tongzhi.html"
+				},
+				{
+					"name" : "发票管理",
+					"url" : "piaoju/fapiao.html"
+				}
+		]
 	},
-	{
-		"name" : "申报批次",
-		"url" : "tuishui/pici.html",
-		"leftIcon" : "l fa fa-telegram"
-	},
-	{
-		"name" : "预申报",
-		"url" : "tuishui/yushenbao.html",
-		"leftIcon" : "l fa fa-sticky-note-o"
-	},
-	{
-		"name" : "正式申报",
-		"url" : "tuishui/zhengshi.html",
-		"leftIcon" : "l fa fa-sticky-note"
-	},
-	{
-		"name" : "备案管理",
-		"url" : "system/beian.html",
-		"leftIcon" : "l fa fa-camera-retro"
-	},
-	{
-		"name" : "供货商",
-		"url" : "ruzhu/ruzhu.html",
-		"leftIcon" : "l fa fa-building"
-	},
+	
 	{
 		"name" : "收汇管理",
 		"url" : "waihui/waihui.html",
 		"leftIcon" : "l fa fa-credit-card"
 	},
+	
+	
+	{
+		"name" : "申报管理",
+		"leftIcon" : "l fa fa-sticky-note-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+				{
+					"name" : "申报批次",
+					"url" : "tuishui/pici.html"
+				},
+				{
+					"name" : "预申报",
+					"url" : "tuishui/yushenbao.html"
+				},
+				{
+					"name" : "正式申报",
+					"url" : "tuishui/zhengshi.html"
+				}
+		]
+	},
+	
+	
+	{
+		"name" : "备案单证",
+		"url" : "system/beian.html",
+		"leftIcon" : "l fa fa-camera-retro"
+	},
+	
+	
 	{
 		"name" : "统计分析",
 		"url" : "statistics/hetong.html",
 		"leftIcon" : "l fa fa-bar-chart"
 	},
 	{
-		"name" : "预警管理",
+		"name" : "风险预警",
 		"leftIcon" : "l fa fa-exclamation-triangle",
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
@@ -96,7 +118,7 @@
 			},
 			{
 				"id" : "menu_yj_gq",
-				"name" : "工期预警",
+				"name" : "供货商预警",
 				"url" : "yujing/gongqi.html"
 			},
 			{

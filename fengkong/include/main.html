@@ -1,143 +1,61 @@
 <!-- 首页 -->
 <div class="container-fluid" id="include_main_box">
+	
 	<div class="row" style="overflow:hidden;">
 		<div class="col-sm-12">
-			<!-- <div class="panel panel-info daiban">
-				<div class="panel-heading"><a href="javascript:;" id="main_db_title">任务管理</a><span class="badge">8</span></div>
-				<div class="panel-body">
-					<ol class="main_dbrw">
-						<li><a href="javascript:;">上海商品出口合同中货物的分类。</a></li>
-						<li><a href="javascript:;">XX预报关单的申报着手进行。</a></li>
-						<li><a href="javascript:;">手机合同的需要开票通知。</a></li>
-						<li><a href="javascript:;">上海商品出口合同中货物的比较。</a></li>
-						<li><a href="javascript:;">上海商品出口合同中货物的分类。</a></li>
-						<li><a href="javascript:;">手机合同的需要开票通知。</a></li>
-						<li><a href="javascript:;">上海商品出口合同中货物的比较。</a></li>
-						<li><a href="javascript:;">XX预报关单的申报着手进行。</a></li>
-					</ol>
+			<!-- 头部任务 -->
+			<div class="panel panel-info">
+				<div class="panel-heading text-center">任务管理</div>
+				<div class="panel-body" style="padding:0; height:180px;overflow-y:auto;">
+					<table class="table table-striped table-bordered table-condensed" style="margin-bottom:0;">
+						<thead style="background:#e5e6e6;">
+							<tr>
+								<th >任务编号</th>
+								<th >出口国别</th>
+								<th >业务类型</th>
+								<th >出口口岸</th>
+								<th >运输方式</th>
+								<th >当前环节</th>
+								<th >创建人</th>
+								<th >创建时间</th>
+								<th >操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td >CK201709220001</td>
+								<td >美国</td>
+								<td>一般贸易</td>
+								<td>北京机场</td>
+								<td >航空运输</td>
+								<th >预关单审核</th>
+								<td >张三</td>
+								<td >2017-05-12</td>
+								<td>处理</td>
+							</tr>
+							<tr>
+								<td >CK201709220002</td>
+								<td >印度</td>
+								<td >承包合同</td>
+								<td >天津新港</td>
+								<td >水上运输</td>
+								<th >开票通知</th>
+								<td >张三</td>
+								<td >2017-05-18</td>
+								<td >处理</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-			</div> -->
-			<!-- <table id="main_renwujqGrid"></table>
-			<div id="main_renwujqGridPager"></div> -->
-			
-			<!-- <table class="table " style="margin-bottom:0;">
-				<caption style="background:#fff; text-align:center; font-size:16px;"><a href="javascript:;" id="main_db_title">任务管理</a></caption>
-				<thead class="bg-info">
-					<tr>
-						<th width="20%">任务编号</th>
-						<th width="10%">出口国别</th>
-						<th width="10%">业务类型</th>
-						<th width="10%">出口口岸</th>
-						<th width="10%">运输方式</th>
-						<th width="10%">当前环节</th>
-						<th width="10%">创建人</th>
-						<th width="10%">创建时间</th>
-						<th width="10%">操作</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-			</table> -->
-			<div class="text-center" style="font-size:16px; padding:8px 0; background:#fff;">
-				<a href="javascript:;" id="main_db_title">任务管理</a>
 			</div>
-			<div style="height:186px; overflow-y:auto; margin-bottom:15px; background:#fff;">
-				<table class="table table-striped table-condensed" style="margin-bottom:0;">
-					<thead class="bg-info">
-						<tr>
-							<th width="20%">任务编号</th>
-							<th width="10%">出口国别</th>
-							<th width="10%">业务类型</th>
-							<th width="10%">出口口岸</th>
-							<th width="10%">运输方式</th>
-							<th width="10%">当前环节</th>
-							<th width="10%">创建人</th>
-							<th width="10%">创建时间</th>
-							<th width="10%">操作</th>
-							<!-- <th>操作</th> -->
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-						<tr>
-							<td width="20%">RW10762</td>
-							<td width="10%">美国</td>
-							<td width="10%">一般贸易</td>
-							<td width="10%">京国际局</td>
-							<td width="10%">空运</td>
-							<th width="10%">当前环节</th>
-							<td width="10%">张三</td>
-							<td width="10%">2017-02-12</td>
-							<td width="10%">操作</td>
-							<!-- <td></td> -->
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<!-- 头部任务 -->
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;">任务预警</a></div>
+				<div class="panel-heading">任务预警</div>
 				<div class="panel-body">
 					<a class="fa fa-tasks" id="main_rw_title"></a>
 					<span class="font">12</span>
@@ -146,7 +64,7 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" >工期预警</a></div>
+				<div class="panel-heading">供货商预警</div>
 				<div class="panel-body">
 					<a class="fa fa-bell-o" id="main_gq_title"></a>
 					<span class="font">51</span>
@@ -155,7 +73,7 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="panel panel-info">
-				<div class="panel-heading"><a href="javascript:;" >收汇预警</a></div>
+				<div class="panel-heading">收汇预警</div>
 				<div class="panel-body">
 					<a class="fa fa-exchange" id="main_sh_title"></a>
 					<span class="font">36</span>
@@ -163,7 +81,9 @@
 			</div>
 		</div>
 	</div>
+	
 </div>
+<!-- 首页 -->
 <style>
 	#include_main_box .main_dbrw {  /* cursor:pointer; */}
 	#include_main_box .main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }

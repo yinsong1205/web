@@ -22,19 +22,19 @@ $(function(){
 	//加载首页
 	//$('#main .con').eq(0).load('include/main.html');
 	
-	var href = window.location.href;
+	/*//var href = window.location.href;
 	//var menuJsonUrl = 'data/menu.json';
-	if(href.indexOf('zhangsan') != -1){
+	//if(href.indexOf('zhangsan') != -1){
 		//$('#header_dropdown_menu b').text('张三');
 		//menuJsonUrl = 'data/menu_zhangsan.json';
-		$('#main .con').eq(0).load('include/main_zhangsan.html');
-	}else if(href.indexOf('lisi') != -1){
+		//$('#main .con').eq(0).load('include/main_zhangsan.html');
+	//}else if(href.indexOf('lisi') != -1){
 		//$('#header_dropdown_menu b').text('李四');
 		//menuJsonUrl = 'data/menu_lisi.json';
-		$('#main .con').eq(0).load('include/main_lisi.html');
-	}else{
-		$('#main .con').eq(0).load('include/main.html');
-	}
+		//$('#main .con').eq(0).load('include/main_lisi.html');
+	//}else{
+		//$('#main .con').eq(0).load('include/main.html');
+	}*/
 	
 	//$('#main .con').eq(0).load('system/module.html');
 	
