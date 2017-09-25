@@ -948,11 +948,11 @@ $(function(){
 	var colModel = [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
-			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName},
+			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName, searchoptions: { sopt : ['cn']}},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
 },
-			{label : '买方', name : 'company', align: 'center', width:120,search:false},
-			{label : '卖方', name : 'anothorCompany', align: 'center',width:120,search:false},
+			{label : '买方', name : 'company', align: 'center', width:120, searchoptions: { sopt : ['cn']}},
+			{label : '卖方', name : 'anothorCompany', align: 'center',width:120, searchoptions: { sopt : ['cn']}},
 			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
 },
 			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
@@ -1005,7 +1005,6 @@ $(function(){
 	// 	position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
-		//caption: '新增',
 		caption: '',
 		title : '添加',
 		buttonicon : 'glyphicon-plus',

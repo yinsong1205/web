@@ -513,9 +513,11 @@
 		var gridHeight = $('#'+gridBoxId).height()-132;
 		var shenhemodel = 'caigou';
 		var colModel = [
-				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true},
-				{label : '合同名称', name : 'name', align: 'left', width:100 ,formatter: formatName},
-				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, search:false,
+				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true, searchoptions: {sopt : ['cn']}},
+				{label : '合同名称', name : 'name', align: 'center', width:100, 
+					searchoptions: {sopt : ['cn']} ,formatter: formatName},
+				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, 
+					searchoptions: {sopt : ['cn']},
 					searchoptions : {
 						dataInit: function(e){
 							$(e).on('click',function(){
@@ -527,16 +529,19 @@
 						}
 					}
 				},
-				{label : '采购方', name : 'caigouName', align: 'left', width:150, search:false,
-					searchoptions: {
-						sopt : ['cn']
-					}
+				{label : '买方', name : 'caigouName', align: 'center', width:150, 
+					searchoptions: {sopt : ['cn']}
 				},
-				{label : '供货方', name : 'gonghuoName', align: 'left', width:150},
-				{label : '合同金额', name : 'money', align: 'center',width:50, search:false},
-				{label : '物资清单', name : 'list', align: 'center',width:40,search:false},
-				{label : '审核状态', name : 'status', align: 'center',width:40,search:false,formatter:formatStatus},
-				{label : '关联状态', name : 'glStatus', align: 'center',width:40,search:false,formatter: formatGlStatus}
+				{label : '买方', name : 'gonghuoName', align: 'center', width:150, 
+					searchoptions: {sopt : ['cn']}},
+				{label : '合同金额', name : 'money', align: 'center',width:50, 
+					searchoptions: {sopt : ['cn']}},
+				{label : '物资清单', name : 'list', align: 'center',width:40, 
+					searchoptions: {sopt : ['cn']}},
+				{label : '审核状态', name : 'status', align: 'center',width:40, 
+					searchoptions: {sopt : ['cn']},formatter:formatStatus},
+				{label : '关联状态', name : 'glStatus', align: 'center',width:40, 
+					searchoptions: {sopt : ['cn']},formatter: formatGlStatus}
 		]; 
 		/**
 			id:

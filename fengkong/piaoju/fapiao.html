@@ -129,11 +129,11 @@ $(function(){
         hidegrid : false, 
         altRows : true, 
         colModel: [{label : '发票代码', name : 'number', align: 'center', width: 100},
-            {label : '发票号码', name : 'anotherNumber', align: 'center', width:100},
-            {label : '通知单号 ', name : 'tongzhi', align: 'center', width:100},
-            {label : '相关单', name : 'baoguan', align: 'center', width:100},
+            {label : '发票代码', name : 'anotherNumber', align: 'center', width:100},
+            {label : '通知单号 ', name : 'tongzhi', align: 'center', width:100,search:false},
             {label : '销方名称', name : 'company', align: 'center', width:80},
-            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 100}
+            {label : '销方识别号', name : 'lastNumber', align: 'center', width: 100,search:false},
+            {label : '关单号', name : 'baoguan', align: 'center', width:100,search:false},
             ],
 
         viewrecords: true,
@@ -157,25 +157,18 @@ $(function(){
     }).navGrid('#fapiao_jqGridPager',{ // the buttons to appear on the toolbar of the grid
             edit:false,add:false,del:false,search:false,refresh:false
         }).navButtonAdd('#fapiao_jqGridPager',{
-            //caption: '删除',
+            //caption: '导出',
             caption: '',
-            title : '删除',
-            buttonicon : 'glyphicon-trash',
-            onClickButton : fapiao_deleteLayer, //调用删除的函数
-            position : 'last'   
-        }).navButtonAdd('#fapiao_jqGridPager',{
-            //caption: '导入合同',
-            caption: '',
-            title : '导入合同',
-            buttonicon : 'fa fa-upload',
-            onClickButton : fapiao_importLayer, //调用导入合同函数
+            title : '导出',
+            buttonicon : 'fa fa-download',
+            onClickButton : fapiao_importLayer, //调用导出函数
             position : 'last'
         }).navButtonAdd('#fapiao_jqGridPager',{
-            //caption: '统计',
+                //caption: '新增',
             caption: '',
-            title : '报表统计',
-            buttonicon : 'fa fa-bar-chart-o',
-            onClickButton : fapiao_tongjiLayer, //调用报表统计函数
+            title : '打印',
+            buttonicon : 'fa fa-print',
+            onClickButton : fapiao_addLayer, //调用添加的函数
             position : 'last'
         }).navSeparatorAdd("#fapiao_jqGridPager",{
             sepcontent: '',
@@ -203,7 +196,36 @@ $(function(){
             document.getElementById("dd").innerHTML += "<img src='"+reader.result+"'>";
         };
     }
-    
+    //打印按钮
+    function fapiao_addLayer(){
+        var rowIds = getSelectedRow('fapiao_jqGrid');
+        if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+            layer.msg('打印成功!',{time:layerCloseTime});
+        }else{
+            layer.msg('请选择一条记录!',{time:layerCloseTime});
+        }
+    };
+    // 导出函数
+    function fapiao_importLayer(){
+        var rowd = getSelectedRow();
+        var len = rowd.length;
+        if(rowd && $.isArray(rowd) && rowd.length>0){
+            //删除
+            var deletindex = layer.confirm('确定要导出吗？', {
+              btn: ['确定','取消'] //按钮
+            }, function(){
+                /*for(var i=0; i<len; i++){
+                    jQuery("#yulu_jqGrid").delRowData(rowd[0]);  
+                }*/
+                layer.msg('导出成功', {icon: 1});
+            }, function(){
+                layer.close(deletindex);
+            });
+            
+        }else{
+            layer.msg('请选择记录!');
+        }
+    }
     //弹框取消按钮
     $('.qx').on('click',function(){
         layer.close(index);

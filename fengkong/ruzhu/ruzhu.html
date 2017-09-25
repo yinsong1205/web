@@ -4,6 +4,9 @@
 		vertical-align:middle !important; 
 		margin-top: 5px;
 	}
+	#shenheruzhu_history{
+		display: none;
+	}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="ruzhu_gridBox">
@@ -17,15 +20,15 @@
 	<form class="form-horizontal layerForm">
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				企业名称:
+				<span>*</span>供货商名称:
 			</label>
 			<div class="col-xs-7">
-				<input type="text" name="company" class="form-control input-sm"  placeholder="企业名称">
+				<input type="text" name="company" class="form-control input-sm"  placeholder="供货商名称">
 			</div>
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				企业海关代码:
+				<span>*</span>企业海关代码:
 			</label>
 			<div class="col-xs-7">
 				<input type="text" name="seanumber" class="form-control input-sm"  placeholder="企业海关代码">
@@ -33,7 +36,7 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				纳税人识别号:
+				<span>*</span>纳税人识别号:
 			</label>
 			<div class="col-xs-7">
 				<input type="text" name="number" class="form-control input-sm"  placeholder="纳税人识别号">
@@ -41,7 +44,7 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				企业类型:
+				<span>*</span>企业类型:
 			</label>
 			<div class="col-xs-7">
 				<select name="type" class="form-control input-sm">
@@ -52,7 +55,7 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				社会信用代码:
+				<span>*</span>社会信用代码:
 			</label>
 			<div class="col-xs-7">
 				<input type="text" class="form-control input-sm"  placeholder="社会信用代码">
@@ -68,10 +71,10 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				登记机关:
+				等级机关:
 			</label>
 			<div class="col-xs-7">
-				<input type="text" name="source" class="form-control input-sm" placeholder="登记机关">
+				<input type="text" name="source" class="form-control input-sm" placeholder="等级机关">
 			</div>		
 		</div>
 		<div class="form-group col-sm-4">
@@ -84,7 +87,19 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				信用等级:
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
 			</label>
 			<div class="col-xs-7">
 				<select name="level" class="form-control input-sm">
@@ -143,7 +158,7 @@
 		</div>
 		<div class="form-group col-sm-4">
 			<label class="col-xs-5 control-label">
-				手机号:
+				手机:
 			</label>
 			<div class="col-xs-7">
 				<input type="text" class="form-control input-sm"  placeholder="手机号">
@@ -173,6 +188,22 @@
 				<textarea type="text" class="form-control input-sm"  placeholder="备注"></textarea>
 			</div>		
 		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="开户行"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="账户"></textarea>
+			</div>		
+		</div>
 		<!-- 新增导入合同 -->
 		<div id="ruzhu_import_formBox">
 			<div class="col-sm-12">
@@ -180,7 +211,37 @@
 			</div>
 			<form class="form-horizontal zzxx" id="ruzhu_fileupload" method="POST" enctype="multipart/form-data">
 				<div class="form-group col-sm-12">
-					<label class="col-sm-2 control-label text-right"><span>*</span>附件文件:</label>
+					<label class="col-sm-2 control-label text-right">营业执照:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">税务等级证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">组织代码证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
 					<div class="col-sm-8">
 						<span class="btn btn-default btn-sm fileinput-button">
 		                    <i class="glyphicon glyphicon-plus"></i>
@@ -195,6 +256,7 @@
 		</div>
 		
 		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="shenheruzhu_save_btn">审核</button>
 			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_save_btn">
 				保存
 			</button>
@@ -311,6 +373,52 @@
 		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
 	</div>
 </div>
+<!-- 审核 -->
+<div class="layerFormBox" id="shenhe_ruzhu_formBoxId"> 
+	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
+	<div class="col-sm-12" id="shenheruzhu_history"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>审核人</th>
+						<th>审核日期</th>
+						<th>审核状态</th>
+						<th>说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-10</td>
+						<td>已通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-06</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-04</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-02</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
 <script type="text/javascript">
 
 	
@@ -331,11 +439,9 @@ $(function(){
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '企业名称', name : 'company', align: 'center', width: 160},
-			{label : '海关代码', name : 'seanumber', align: 'center', width:80},
+		colModel: [{label : '供货商名称', name : 'company', align: 'center', width: 160},
 			{label : '纳税人识别号', name : 'number', align: 'center', width:140},
 			{label : '企业类型', name : 'type', align: 'center', width:80},
-			{label : '数据来源', name : 'source', align: 'center', width:80},
 			{label : '信用等级', name : 'level', align: 'center', width:80},
 			{label : '黑名单', name : 'black', align: 'center', width:80},
 			{label : '状态', name : 'active', align: 'center', width:120}],
@@ -366,11 +472,27 @@ $(function(){
 		position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '审核',
+		caption: '',
+		title : '审核',
+		buttonicon : 'fa fa-gavel',
+		onClickButton : function(){shenhe();}, //调用审核的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
 		//caption: '审核',
 		caption: '',
 		title : '加入黑名单',
-		buttonicon : 'fa fa-gavel',
-		onClickButton : function(){shenhe();}, //调用审核的函数
+		buttonicon : 'fa fa-black-tie',
+		onClickButton : function(){blacklist();}, //调用审核的函数
 		position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
@@ -381,13 +503,13 @@ $(function(){
 		onClickButton : function(){importLayer();}, //调用导入合同函数
 		position : 'last'
 			
-	}).navButtonAdd('#'+gridPager,{
-		//caption: '统计',
-		caption: '',
-		title : '报表统计',
-		buttonicon : 'fa fa-bar-chart-o',
-		onClickButton : function(){ruzhutongji();}, //调用报表统计的函数
-		position : 'last'
+	// }).navButtonAdd('#'+gridPager,{
+	// 	//caption: '统计',
+	// 	caption: '',
+	// 	title : '报表统计',
+	// 	buttonicon : 'fa fa-bar-chart-o',
+	// 	onClickButton : function(){ruzhutongji();}, //调用报表统计的函数
+	// 	position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '删除',
@@ -460,6 +582,7 @@ $(function(){
 	
 	//左下角新增按钮
 	function addLayer(){
+		$('#shenheruzhu_save_btn').hide();
 		flag = 'add';
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
@@ -469,9 +592,29 @@ $(function(){
 			content: $('#'+formBoxId)
 		});
 	}
+	//黑名单校检
+	function blacklist(){
+		$('#shenheruzhu_save_btn').hide();
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			// commIndex = layer.open({
+			// 	type : 1,
+			// 	title : '加入黑名单',
+			// 	skin: 'layui-layer-rim',
+			// 	shadeClose: true,
+			// 	area : ['30%','40%'],
+			// 	content : $('#shenhe_ruzhu_formBoxId')
+			// });
+			layer.msg('已成功加入黑名单')
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+	}
 	
 	//左下角编辑按钮
 	function updateLayer(){
+		$('#shenheruzhu_save_btn').show();
 		flag = 'update';
 		var setting = {
 			gridId : gridId,
@@ -483,37 +626,50 @@ $(function(){
 	}
 	//审核
 	function shenhe(){
+		$('#shenheruzhu_history').hide();
 		var rowIds = getSelectedRow(gridId);
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
 			commIndex = layer.open({
 				type : 1,
-				title : '加入黑名单',
+				title : '审核',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
 				area : ['30%','40%'],
-				content : '<div class="container-fluid"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline col-sm-4">操作人:</div><label><input type="text" name="a" checked="true" class="col-sm-8" placeholder="操作人"/></label></div><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline col-sm-4">备注:</div><label><textarea type="text" name="a" placeholder="备注" class="col-sm-8"/></textarea></label></div><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div>'
+				content : $('#shenhe_ruzhu_formBoxId')
 			});
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
 		}
 		
 	}
+	//查看审核
+	$(document).on('click','#shenheruzhu_save_btn',function(){
+		$('#shenheruzhu_history').show();
+			commIndex = layer.open({
+				type : 1,
+				title : '审核窗口',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['70%','70%'],
+				content : $('#shenhe_ruzhu_formBoxId')
+		})
+	});
 	//左下角删除按钮
 	function deleteLayer(gridId){
 		deleteGridData(gridId);
 	}
 	//统计
-	function ruzhutongji(){
-		commIndex = layer.open({
-			type : 1,
-			title : '报表统计',
-			skin: 'layui-layer-rim',
-			shadeClose: true,
-			area : ['90%','90%'],
-			content : $('#ruzhu_tongji_formBox')
-		});
-	}
+	// function ruzhutongji(){
+	// 	commIndex = layer.open({
+	// 		type : 1,
+	// 		title : '报表统计',
+	// 		skin: 'layui-layer-rim',
+	// 		shadeClose: true,
+	// 		area : ['90%','90%'],
+	// 		content : $('#ruzhu_tongji_formBox')
+	// 	});
+	// }
 	
 	/*上传文件的表单*/
 		 $("#ruzhu_fileupload").fileupload({

@@ -509,7 +509,7 @@ text-align: left;
 					<span>*</span>金额:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="chukou_relName" name="relName" class="form-control input-sm"  placeholder="金额">
+					<input type="text" id="waihui_relName" name="relName" class="form-control input-sm"  placeholder="金额">
 				</div>
 			</div>
 			<div class="form-group col-xs-4">
@@ -517,7 +517,7 @@ text-align: left;
 					<span>*</span>收汇日期:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="chukou_numBer" name="numBer" class="form-control input-sm"  placeholder="收汇日期">
+					<input type="text" id="waihui_numBer" name="numBer" class="form-control input-sm"  placeholder="收汇日期">
 				</div>
 			</div>
 			<div class="form-group col-xs-4">
@@ -525,7 +525,7 @@ text-align: left;
 					<span>*</span>收汇人:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="chukou_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
+					<input type="text" id="waihui_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
 				</div>
 			</div>
 		</div>
@@ -540,13 +540,13 @@ text-align: left;
 			</div>
 		</div>
 		<p class="text-center col-xs-12">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="chukou_save_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="waihui_save_btn">
 				保存
 			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm" id="chukou_resetBtn">
+			<button type="reset" class="saveBtn btn btn-info btn-sm" id="waihui_resetBtn">
 				重置
 			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="chukou_cacle_btn">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="waihui_cacle_btn">
 				取消
 			</button>
 		</p>
@@ -617,12 +617,12 @@ $(function(){
 	
 	var colModel = [
 		
-			{label : '报关单号', name : 'id', align: 'center', width: 120},
+			{label : '关单号', name : 'id', align: 'center', width: 120,search:false},
 			{label : '出口口岸', name : 'kouan', align: 'center', width: 120,search:false},
-			{label : '抵运国', name : 'dyg', align: 'center', width: 120,search:false},
+			{label : '贸易类型', name : 'type', align: 'center', width:120,search:false},
+			{label : '运抵国', name : 'dyg', align: 'center', width: 120,search:false},
 			{label : '出口日期', name : 'ckDate', align: 'center', width:120},
-			{label : '贸易方式', name : 'type', align: 'center', width:120,search:false},
-			{label : '收汇率', name : 'rate', align: 'center', width:120,search:false},
+			{label : '收汇率', name : 'rate', align: 'center', width:120},
 		
 		];
 /*
@@ -800,7 +800,7 @@ rate: '{{integer(10, 80)}}%'
 	
 	//收汇
 	function shouhui(){
-		
+		flag == 'update';
 		var rowIds = getSelectedRow(gridId);
 		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);

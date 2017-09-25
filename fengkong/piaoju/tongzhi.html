@@ -11,6 +11,86 @@
 		<div id="tongzhi_jqGridPager"></div>
 	</div>
 </div>
+<!-- 新增弹窗 -->
+<div id="guandan_jqGrid_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-xs-6">
+			<label for="inputEmail3" class="col-xs-3 control-label">
+				关单号:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_relName" name="relName" class="form-control input-sm"  placeholder="关单号">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				供货商:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="供货商">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				征税率:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="征税率">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				退税率:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="退税率">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				开票品名:
+			</label>
+			<div class="col-xs-8 col-xs-6">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="开票品名">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				数量:
+			</label>
+			<div class="col-xs-8 col-xs-6">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="数量">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				单位:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="单位">
+			</div>
+		</div>
+		<div class="form-group col-xs-6">
+			<label class="col-xs-3 control-label">
+				金额:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" id="role_name" name="name" class="form-control input-sm"  placeholder="金额">
+			</div>
+		</div>
+		<p class="text-center">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="role_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="role_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
 <script type="text/javascript">
 
 	
@@ -27,18 +107,18 @@ $(function(){
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '开票通知单号', name : 'number', align: 'center', width: 100},
+		colModel: [{label : '关单号', name : 'number', align: 'center', width: 100},
 			{label : '供应商', name : 'company', align: 'center', width:80},
-			{label : '征税率 ', name : 'Tarate', align: 'center', width:80},
-			{label : '退税率', name : 'RefundRate', align: 'center', width:80},
-			{label : '开票品名', name : 'name', align: 'center', width:80},
-			{label : '数量', name : 'quantity', align: 'center', width: 80},
-			{label : '单位', name : 'unit', align: 'center', width:80},
-			{label : '开票金额', name : 'money', align: 'center', width:80},
-			{label : '纸质发票个数', name : 'anotherNumber', align: 'center', width:60},
-			{label : '报关单号', name : 'numbers', align: 'center', width:120, cellattr: function(rowId, tv, rawObject, cm, rdata) {
-                    return 'id=\'numbers' + rowId + "\'";
-                }}
+			{label : '征税率 ', name : 'Tarate', align: 'center', width:80,search:false},
+			{label : '退税率', name : 'RefundRate', align: 'center', width:80,search:false},
+			{label : '开票品名', name : 'name', align: 'center', width:80,search:false},
+			{label : '数量', name : 'quantity', align: 'center', width: 80,search:false},
+			{label : '单位', name : 'unit', align: 'center', width:80,search:false},
+			{label : '金额', name : 'money', align: 'center', width:80,search:false}
+			// {label : '纸质发票个数', name : 'anotherNumber', align: 'center', width:60},
+			// {label : '报关单号', name : 'numbers', align: 'center', width:120, cellattr: function(rowId, tv, rawObject, cm, rdata) {
+   //                  return 'id=\'numbers' + rowId + "\'";
+   //              }}
 			],
 
 		viewrecords: true,
@@ -59,13 +139,21 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
                     //调用合并方法
-		gridComplete: function() {
-            var gridName = "tongzhi_jqGrid";
-            Merger(gridName, 'numbers');
-        }
+		// gridComplete: function() {
+  //           var gridName = "tongzhi_jqGrid";
+  //           Merger(gridName, 'numbers');
+  //       }
 	}).navGrid('#tongzhi_jqGridPager',{ 
 	// the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#tongzhi_jqGridPager',{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
 	}).navButtonAdd('#tongzhi_jqGridPager',{
 			//caption: '导出',
 		caption: '',
@@ -73,6 +161,13 @@ $(function(){
 		buttonicon : 'fa fa-download',
 		onClickButton : tongzhi_importLayer, //调用导出函数
 		position : 'last'
+	}).navButtonAdd('#tongzhi_jqGridPager',{
+				//caption: '新增',
+			caption: '',
+			title : '打印',
+			buttonicon : 'fa fa-print',
+			onClickButton : tongzhi_addLayer, //调用添加的函数
+			position : 'last'
 	}).navSeparatorAdd("#tongzhi_jqGridPager",{
 			sepcontent: '',
 			sepclass : "ui-separator"
@@ -102,6 +197,68 @@ $(function(){
 		}
 	}
 
+	$('.qx').on('click',function(){
+		layer.close(layerIndex);
+	});
+	//弹框保存按钮
+	$(document).on('click','#role_save_btn',function(){
+		if(flag == 'add'){
+			var data = getFormData('guandan_jqGrid_formBox');
+			var currentNumber = uuid.v4();
+			var result = jQuery('#tongzhi_jqGrid').addRowData(currentNumber,data,'first');
+			if(result){
+				layer.msg('添加成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				
+				jQuery('#tongzhi_jqGrid').setSelection(currentNumber,true);
+				
+			}else{
+				layer.msg('添加失败!',{time:layerCloseTime});
+			}
+		}else if(flag == 'update'){
+			
+			//删除
+			var rowIds = getSelectedRow('tongzhi_jqGrid');
+			jQuery('#tongzhi_jqGrid').delRowData(rowIds[0]);
+			//添加
+			var data = getFormData('guandan_jqGrid_formBox');
+			console.log(data);
+			var currentNumber = uuid.v4();
+			var result = jQuery('#tongzhi_jqGrid').addRowData(currentNumber,data,'first');
+			
+			if(result){
+				layer.msg('更新成功',{time:layerCloseTime});
+				layer.close(layerIndex);
+				jQuery('#tongzhi_jqGrid').setSelection(currentNumber,true);
+			}else{
+				layer.msg('更新失败!',{time:layerCloseTime});
+			}
+		}
+		
+	});
+	//左下角编辑按钮
+	function updateLayer(){
+		flag = 'update';
+		var setting = {
+			gridId : 'tongzhi_jqGrid',
+			formBoxId : 'guandan_jqGrid_formBox',
+			title : '修改模块',
+			area : ['98%', '98%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	//打印按钮
+	function tongzhi_addLayer(){
+		var rowIds = getSelectedRow('yulu_jqGrid');
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			layer.msg('打印成功!',{time:layerCloseTime});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+	};
+	$('#yulu_save_btn').on('click',function(){
+		layer.msg('打印成功!',{time:layerCloseTime});
+	});
 	
 	
 	fetchGridData();

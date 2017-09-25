@@ -16,20 +16,21 @@ $(function(){
 	var rowNumber = 1000000;
 
 	//表格数据
-	var gridWidth = $('#renwu_gridBox').width();
-	var gridHeight = $('#renwu_gridBox').height()-150;
+	var gridWidth = $('#renwu_gridBox').width()-2;
+	var gridHeight = $('#renwu_gridBox').height()-118;
 	$("#renwu_jqGrid").jqGrid({
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '任务号', name : 'tasknumber', align: 'center', width: 120},
-			{label : '报关单号', name : 'guandannumber', align: 'center', width:120},
-			{label : '出口国家', name : 'country', align: 'center', width:120},
-			{label : '所在环节', name : 'type', align: 'center', width:120},
-			{label : '开始时间', name : 'startTime', align: 'center', width:120},
-			{label : '结束时间', name : 'endTime', align: 'center', width:120},
-			{label : '预警时间', name : 'yujingnumber', align: 'center', width:120},
-			{label : '实际超出时间', name : 'overTime', align: 'center', width:120}],
+		colModel: [{label : '任务编号', name : 'tasknumber', align: 'center', width: 120},
+			{label : '出口国别', name : 'country', align: 'center', width:120},
+			{label : '业务类型', name : 'guandannumber', align: 'center', width:120},
+			{label : '出口口岸', name : 'guandannumber', align: 'center', width:120},
+			{label : '运输方式', name : 'guandannumber', align: 'center', width:120},
+			{label : '当前环节', name : 'type', align: 'center', width:120},
+			{label : '创建人', name : 'startTime', align: 'center', width:120},
+			{label : '创建时间', name : 'startTime', align: 'center', width:120},
+			{label : '剩余时间', name : 'overTime', align: 'center', width:120}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -45,6 +46,13 @@ $(function(){
 		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>"
 		
+	}).navButtonAdd('#renwu_jqGridPager',{
+		//caption: '查看',
+		caption: '',
+		title : '解除预警',
+		buttonicon : 'fa fa-times',
+		onClickButton : function(){ remove(); }, //调用查看的函数
+		position : 'last'
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
 	$('#renwu_jqGrid').jqGrid('filterToolbar');
@@ -59,7 +67,9 @@ $(function(){
 	$('#renwu_cacle_btn').on('click',function(){
 		layer.close(index);
 	});
-	
+	function remove(){
+		
+	}
 	
 	
 	//弹框保存按钮

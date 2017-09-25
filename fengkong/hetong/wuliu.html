@@ -16,16 +16,16 @@
 	<form class="form-horizontal zzxx">
 			<div class="form-group col-sm-4">
 				<label class="col-sm-6 control-label text-right">
-					<span>*</span>协议编号:
+					<span>*</span>预录入编号:
 				</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" placeholder="协议编号">
+					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" placeholder="预录入编号">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label class="col-sm-6 control-label text-right"><span>*</span>协议名称:</label>
+				<label class="col-sm-6 control-label text-right"><span>*</span>海关编号:</label>
 				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="协议名称 ">
+					<input type="riqi" class="form-control input-sm" placeholder="海关编号 ">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
@@ -406,17 +406,12 @@ $(function(){
 	var shenhemodel = 'wuliu';
 
 	var colModel = [
-		{label : '协议编号', name : 'number', align: 'left', width: 130, formatter: formatName},
-		{label : '委托方', name : 'relName', align: 'left', width:80},
-		{label : '代理方 ', name : 'company', align: 'left', width:60},
-		{label : '运输方式', name : 'bus', align: 'center', width:60},
-		{label : '签订时间', name : 'createTime', align: 'center', width:70},
-		{label : '截止时间', name : 'endTime', align: 'center',width:70},
-		{label : '委托方签订人', name : 'roleName', align: 'center',width:70},
-		{label : '代理方签订人', name : 'anthorName', align: 'center',width:70},
-		{label : '结款状态', name : 'paystatus', align: 'center',width:60},
-		{label : '审核状态', name : 'status', align: 'center',width:60,formatter:formatStatus},
-		{label : '关联状态', name : 'related', align: 'center',width:60,formatter: formatGlStatus}
+		{label : '合同编号', name : 'number', align: 'center', width: 130, formatter: formatName, searchoptions: {sopt : ['cn']}},
+		{label : '合同名称', name : 'relName', align: 'center', width:80, searchoptions: {sopt : ['cn']}},
+		{label : '签订日期', name : 'createTime', align: 'center', width:70, searchoptions: {sopt : ['cn']}},
+		{label : '代理方 ', name : 'company', align: 'center', width:60, searchoptions: {sopt : ['cn']}},
+		{label : '审核状态', name : 'status', align: 'center',width:60,formatter:formatStatus, searchoptions: {sopt : ['cn']}},
+		{label : '关联状态', name : 'related', align: 'center',width:60,formatter: formatGlStatus, searchoptions: {sopt : ['cn']}}
 	];
 	
 	$('#'+gridId).jqGrid({

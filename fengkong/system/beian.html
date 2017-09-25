@@ -261,10 +261,10 @@ $(function(){
 		
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '申请批次', name : 'pici', align: 'center', width: 120},
+		colModel: [{label : '批次', name : 'pici', align: 'center', width: 120},
 			{label : '关联号', name : 'relName', align: 'center', width:120},
 			{label : '所属期', name : 'mydata', align: 'center', width:120},
-			{label : '报关单号', name : 'guandan', align: 'center', width:120},
+			{label : '出口发票号', name : 'guandan', align: 'center', width:120},
 			{label : '退税申报日期', name : 'createTime', align: 'center', width:120},
 			{label : '备案日期', name : 'anotherTime', align: 'center', width:120},
 			{label : '备案单证出处', name : 'provenance', align: 'center', width:120},
@@ -289,20 +289,20 @@ $(function(){
 		
 	}).navGrid('#beian_jqGridPager',{ // the buttons to appear on the toolbar of the grid
 			edit:false,add:false,del:false,search:false,refresh:false
-		}).navButtonAdd('#beian_jqGridPager',{
-				//caption: '生成备案',
-			caption: '',
-			title : '生成备案',
-			buttonicon : 'glyphicon-plus',
-			onClickButton : beian_addLayer, //调用添加的函数
-			position : 'last'
-		}).navButtonAdd('#beian_jqGridPager',{
-			//caption: '导入合同',
-			caption: '',
-			title : '导出备案',
-			buttonicon : 'fa fa-download',
-			onClickButton : beian_importLayer, //调用导入合同函数
-			position : 'last'
+		// }).navButtonAdd('#beian_jqGridPager',{
+		// 		//caption: '生成备案',
+		// 	caption: '',
+		// 	title : '生成备案',
+		// 	buttonicon : 'glyphicon-plus',
+		// 	onClickButton : beian_addLayer, //调用添加的函数
+		// 	position : 'last'
+		// }).navButtonAdd('#beian_jqGridPager',{
+		// 	//caption: '导入合同',
+		// 	caption: '',
+		// 	title : '导出备案',
+		// 	buttonicon : 'fa fa-download',
+		// 	onClickButton : beian_importLayer, //调用导入合同函数
+		// 	position : 'last'
 		}).navSeparatorAdd("#beian_jqGridPager",{
 			sepcontent: '',
 			sepclass : "ui-separator"
