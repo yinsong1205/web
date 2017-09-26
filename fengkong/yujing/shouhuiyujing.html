@@ -5,7 +5,100 @@
 		<div id="shouhuiyujing_jqGridPager"></div>
 	</div>
 </div>
+<!-- 任务详情 -->
+<div id="shouhuiyujing_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-xs-4">
+			<label for="inputEmail3" class="col-xs-4 control-label">
+				<span class="necessary">*</span>关单号:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="1289129891829981">
+			</div>
+		</div>
 
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>出口口岸:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="京调查局">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				贸易类型:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="一般贸易">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>运抵国:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="俄罗斯">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				出口日期:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="2017-01-21">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				收汇状态:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="已收汇">
+			</div>
+		</div>
+		<!-- 操作历史 -->
+	<div class="panel panel-info col-xs-12" style="margin-top:15px;">
+		<div class="panel-heading">历史操作记录</div>
+		<div class="panel-body" style="padding:0; height:180px;overflow-y:auto;">
+			<table class="table table-striped  table-condensed" style="margin-bottom:0;">
+				<thead style="background:#e5e6e6;">
+					<tr>
+						<th >关单号</th>
+						<th >出口口岸</th>
+						<th >贸易类型</th>
+						<th >运抵国</th>
+						<th >出口日期</th>
+						<th >收汇状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td >1289129891829981</td>
+						<td >京调查局</td>
+						<td >一般贸易</td>
+						<td >俄罗斯</td>
+						<td >2017-01-20</td>
+						<td >已收汇</td>
+					</tr>
+					<tr>
+						<td >1289129891829981</td>
+						<td >京调查局</td>
+						<td >一般贸易</td>
+						<td >俄罗斯</td>
+						<td >2017-01-20</td>
+						<td >未收汇</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 操作历史 -->
+		<p class="text-center saveOrCacelBtn">      
+	        <button type="button" class="btn btn-info btn-sm qx">取消</button>        
+	    </p>
+	</form>
+	</div>
 <script type="text/javascript">
 
 	
@@ -22,13 +115,12 @@ $(function(){
 		url: dataUrl,
 		hidegrid : false, 
 		altRows : true, 
-		colModel: [{label : '合同编号', name : 'hetongnumber', align: 'center', width: 120},
-			{label : '合同名称', name : 'hetongname', align: 'center', width:120},
-			{label : '签订时间', name : 'time', align: 'center', width:120},
-			{label : '实际开始时间', name : 'startTime', align: 'center', width:120},
-			{label : '实际结束时间', name : 'endTime', align: 'center', width:120},
-			{label : '预警时间', name : 'dataTime', align: 'center', width:120},
-			{label : '实际超出时间', name : 'overTime', align: 'center', width:120}],
+		colModel: [{label : '关单号', name : 'hetongnumber', align: 'center', width: 120,formatter: formatName},
+			{label : '出口口岸', name : 'hetongname', align: 'center', width:120},
+			{label : '贸易类型', name : 'time', align: 'center', width:120},
+			{label : '运抵国', name : 'startTime', align: 'center', width:120},
+			{label : '出口日期', name : 'endTime', align: 'center', width:120},
+			{label : '收汇状态', name : 'dataTime', align: 'center', width:120}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -46,12 +138,14 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
-	}).navButtonAdd('#shouhuiyujing_jqGridPager',{
+	}).navGrid("#shouhuiyujing_jqGridPager",{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd("#shouhuiyujing_jqGridPager",{
 		//caption: '查看',
 		caption: '',
 		title : '解除预警',
 		buttonicon : 'fa fa-ban',
-		onClickButton : function(){ remove(); }, //调用查看的函数
+		onClickButton : function(){ shouhui_remove(); }, //调用查看的函数
 		position : 'last'
 	}).navSeparatorAdd('#shouhuiyujing_jqGridPager',{
 		sepcontent: '',
@@ -63,14 +157,53 @@ $(function(){
 	fetchGridData();
 	
 	//editGridRow新增记录；viewGridRow查看记录详情；delGridRow删除记录。
-	
+					//格式化标题
+		function formatName(cellValue, options, rowObject) {
+			var len = cellValue.length;
+			if(len>50){
+				cellValue = cellValue.substring(0, 50) + "...";
+			}
+			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		};
 	
 	
 	//弹框取消按钮
 	$('#shouhuiyujing_cacle_btn').on('click',function(){
 		layer.close(index);
 	});
-	
+		// 收汇预警解除
+	function shouhui_remove(){
+		flag == 'update';
+		var rowIds = getSelectedRow();
+		
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			
+			var rowData = $("#shouhuiyujing_jqGrid").getRowData(rowIds[0]);
+			
+			//console.log(rowData);
+			
+			$('#shouhuiyujing_tasknumber').val(rowData.tasknumber),
+		    $('#shouhuiyujing_county').val(rowData.county),
+		    $('#shouhuiyujing_type').val(rowData.type),
+		    $('#shouhuiyujing_kouan').val(rowData.kouan),
+		    $('#shouhuiyujing_bus').val(rowData.bus),
+		    $('#shouhuiyujing_level').val(rowData.level),
+		    $('#shouhuiyujing_createPeople').val(rowData.createPeople),
+		    $('#shouhuiyujing_overTime').val(rowData.overTime),
+		    $('#shouhuiyujing_createTime').val(rowData.createTime),
+		    $('#shouhuiyujing_lastTime').val(rowData.lastTime),
+		    $('#shouhuiyujing_sign').val(rowData.sign);
+			title = '修改模块';
+			index = layer.open({
+				type: 1,
+				title : title,
+				area: ['60%', '80%'], //宽高
+				content: $('#shouhuiyujing_formBox')
+			});
+		}else{
+			layer.msg('同时只能选择一条记录!');
+		}
+	}
 	//表头编辑按钮
 	$(document).on('click','#shouhuiyujing_update_btn',function(){
 		flag = 'update';
@@ -152,7 +285,20 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-
+function lookInfo(gid,rowId){
+	$('#shenhecaigou_save_btn').show();
+	var data = $('#'+gid).getRowData(rowId);
+	data.name = $(data.name).text();
+	data.relName = $(data.relName).text();
+	setFormData(gid+'_formBox',data);
+	title = '查看信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['80%', '80%'], //宽高
+		content: $('#shouhuiyujing_formBox')
+	});
+}
 
 	
 </script>

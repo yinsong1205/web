@@ -16,8 +16,7 @@
 		<div class="form-group col-sm-12">
 			<label class="col-sm-5 control-label text-right"></label>
 			<div class="col-sm-7">
-				<input type="email" class="form-control input-sm" 
-								placeholder="签  订  人 ">
+				<input type="email" class="form-control input-sm" placeholder="签  订  人 ">
 			</div>
 		</div>
 	</form>
@@ -25,28 +24,28 @@
 <!-- 预警 -->
 <div class="layerFormBox" id="renwu_formBox"> 
 	<div class="form-group col-sm-12">
-		<div class="col-sm-3">解除预警</div>
+		<div class="col-sm-3">是否解除预警</div>
 		<label class="col-sm-3">
 			<div>
 				<input type="radio" class="input-sm">
-			</div>已解除
+			</div>是
 		</label> 
 		
 		<label class="col-sm-3">
 			<div>
 				<input type="radio" class="input-sm">
-			</div>未解除
+			</div>否
 		</label>
 		
 	</div>
 	<div class="form-group col-sm-12">
 		<label  class="col-sm-3 control-label">解除说明:</label>
 		<div class="col-sm-6">
-			<textarea class="form-control input-sm" placeholder="解除说明"></textarea>
+			<textarea class="form-control input-sm"></textarea>
 		</div>
 	</div>
 	<p class="text-center saveOrCacelBtn">
-		<button type="button" class="saveBtn btn btn-info btn-sm" id="renwu_save_btn">
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_save_btn">
 			保存
 		</button>
 		<button type="reset" class="saveBtn btn btn-info btn-sm">
@@ -57,6 +56,143 @@
 		</button>
 	</p>
 </div>
+<!-- 任务详情 -->
+<div id="renwu_jqGrid_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-xs-4">
+			<label for="inputEmail3" class="col-xs-4 control-label">
+				<span class="necessary">*</span>任务编号:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="001">
+			</div>
+		</div>
+
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>出口国别:
+			</label>
+			<div class="col-xs-8">
+				<select class="form-control input-sm" value="美国">
+					<option value="美国" selected="selected">美国</option>
+					<option value="英国">英国</option>
+					<option value="法国">法国</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				业务类型:
+			</label>
+			<div class="col-xs-8">
+				<select name="type" class="form-control input-sm">
+					<option value="一般贸易" selected="true">一般贸易</option>
+					<option value="外宗服" >外宗服</option>
+					<option value="承包工程" >承包工程</option>
+					<option value="其他" >其他</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>出口口岸:
+			</label>
+			<div class="col-xs-8">
+				<select class="form-control input-sm" value="美国">
+					<option value="北京机场" selected="true">北京机场</option>
+					<option value="天津新港">天津新港</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				运输方式:
+			</label>
+			<div class="col-xs-8">
+				<select class="form-control input-sm" value="水路">
+					<option value="北京机场">路地</option>
+					<option value="北京机场">空路</option>
+					<option value="天津新港" selected="true">水路</option>
+					
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				当前环节:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" class="form-control input-sm" readonly="readonly" value="创建任务">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>创建人:
+			</label>
+			<div class="col-xs-8">
+				<input type="text" class="form-control input-sm" readonly="readonly" value="张三">
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				<span class="necessary">*</span>创建时间:
+			</label>
+			<div class="col-xs-8">
+				<input type="text"  name="createTime" readonly="readonly" value="2017-8-7"  class="form-control input-sm">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-12">
+				<label class="col-xs-1 control-label">
+					说明:
+				</label>
+				<div class="col-xs-8">
+					<textarea class="form-control input-sm" rows="3"  placeholder="说明"></textarea>
+				</div>
+			</div>
+		</div>
+		<!-- 操作历史 -->
+	<div class="panel panel-info" style="margin-top:15px;">
+		<div class="panel-heading">历史操作记录</div>
+		<div class="panel-body" style="padding:0; height:180px;overflow-y:auto;">
+			<table class="table table-striped  table-condensed" style="margin-bottom:0;">
+				<thead style="background:#e5e6e6;">
+					<tr>
+						<th >任务编号</th>
+						<th >创建人</th>
+						<th >创建时间</th>
+						<th >当前环节</th>
+						<th >操作人</th>
+						<th >操作时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td >107625879564215478</td>
+						<td >张三</td>
+						<td >2017-05-11</td>
+						<th >预关单审核</th>
+						<td >李四</td>
+						<td >2017-05-13</td>
+					</tr>
+					<tr>
+						<td >107625879564215479</td>
+						<td >张三</td>
+						<td >2017-05-12</td>
+						<th >开票通知</th>
+						<td >王五</td>
+						<td >2017-05-19</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 操作历史 -->
+		<p class="text-center saveOrCacelBtn">      
+	        <button type="button" class="btn btn-info btn-sm qx">取消</button>        
+	    </p>
+	</form>
+	</div>
 <script type="text/javascript">
 
 	
@@ -126,6 +262,7 @@ $(function(){
 	$('#renwu_cacle_btn').on('click',function(){
 		layer.close(index);
 	});
+	// 预警解除
 	function remove(){
 		flag == 'update';
 		var rowIds = getSelectedRow();
@@ -136,22 +273,31 @@ $(function(){
 			
 			//console.log(rowData);
 			
-			$('#renwu_name').val(rowData.name),
-		    $('#renwu_relName').val(rowData.relName),
-		    $('#renwu_company').val(rowData.company),
-		    $('#renwu_createTime').val(rowData.createTime)
+			$('#renwu_tasknumber').val(rowData.tasknumber),
+		    $('#renwu_county').val(rowData.county),
+		    $('#renwu_type').val(rowData.type),
+		    $('#renwu_kouan').val(rowData.kouan),
+		    $('#renwu_bus').val(rowData.bus),
+		    $('#renwu_level').val(rowData.level),
+		    $('#renwu_createPeople').val(rowData.createPeople),
+		    $('#renwu_overTime').val(rowData.overTime),
+		    $('#renwu_createTime').val(rowData.createTime),
+		    $('#renwu_lastTime').val(rowData.lastTime),
+		    $('#renwu_sign').val(rowData.sign);
 			title = '修改模块';
 			index = layer.open({
 				type: 1,
 				title : title,
-				area: ['60%', '70%'], //宽高
+				area: ['60%', '80%'], //宽高
 				content: $('#renwu_formBox')
 			});
 		}else{
 			layer.msg('同时只能选择一条记录!');
 		}
 	}
-	
+	$('.qx').on('click',function(){
+        layer.close(index);
+    });
 	
 	//弹框保存按钮
 	$(document).on('click','#renwu_save_btn',function(){
@@ -188,7 +334,7 @@ $(function(){
 		index = parent.layer.open({
 			type: 1,
 			title : '添加模块',
-			area: ['60%', '70%'], //宽高
+			area: ['60%', '80%'], //宽高
 			content: $('#renwu_formBox')
 		});
 	});
@@ -212,7 +358,7 @@ $(function(){
 			index = layer.open({
 				type: 1,
 				title : title,
-				area: ['60%', '70%'], //宽高
+				area: ['60%', '80%'], //宽高
 				content: $('#renwu_formBox')
 			});
 		}else{
@@ -296,8 +442,8 @@ function lookInfo(gid,rowId){
 	commIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['98%', '98%'], //宽高
-		content: $('#'+gid+'_formBox')
+		area: ['80%', '80%'], //宽高
+		content: $('#renwu_jqGrid_formBox')
 	});
 }
 

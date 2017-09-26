@@ -44,6 +44,7 @@ text-align: left;
 	vertical-align:middle !important; 
 	margin-top: 5px;
 }
+.form-group input,.form-group textarea {border: none;outline: none;}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="yulu_gridBox">
@@ -58,11 +59,11 @@ text-align: left;
 		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
 		<div class="col-xs-12 index">
 			<div class="form-group col-xs-6 head">
-				<label for="inputEmail3" class="col-xs-3 control-label">
+				<label class="col-xs-3 control-label">
 					<span class="necessary">*</span>预录入编号:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" id="yulu_number" name="number" class="form-control input-sm"  placeholder="预录入编号">
+					<input type="text" id="yulu_number" name="number" class="form-control input-sm">
 				</div>
 			</div>
 			<div class="form-group col-xs-6 head">
@@ -70,7 +71,7 @@ text-align: left;
 					海关编号:
 				</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+					<input type="text" class="form-control input-sm">
 				</div>
 			</div>
 			<div class="form-group col-xs-3">
@@ -78,7 +79,7 @@ text-align: left;
 					<span class="necessary">*</span>出口口岸
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_type" name="type" class="form-control input-sm"  placeholder="出口口岸">
+					<input type="text" id="yulu_type" name="type" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -86,7 +87,7 @@ text-align: left;
 					备案号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="备案号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -94,7 +95,7 @@ text-align: left;
 					出口日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+					<input type="text" id="yulu_outTime" onclick="WdatePicker();" name="outTime" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -102,7 +103,7 @@ text-align: left;
 					申报日期
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_county" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+					<input type="text" id="yulu_county" onclick="WdatePicker();" name="createTime" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -111,7 +112,7 @@ text-align: left;
 					<span class="necessary">*</span>经营单位
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -119,7 +120,7 @@ text-align: left;
 					运输方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -127,7 +128,7 @@ text-align: left;
 					运输工具
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -135,7 +136,7 @@ text-align: left;
 					提运单号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -144,7 +145,7 @@ text-align: left;
 					<span class="necessary">*</span>发货单位
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -152,7 +153,7 @@ text-align: left;
 					贸易方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -160,7 +161,7 @@ text-align: left;
 					征免性质
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -168,7 +169,7 @@ text-align: left;
 					提运单号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -177,7 +178,7 @@ text-align: left;
 					许可证号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -185,7 +186,7 @@ text-align: left;
 					抵运国（地区）
 				</label>
 				<div class="col-xs-6">
-					<input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）">
+					<input type="text" id="yulu_company" name="company" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -193,7 +194,7 @@ text-align: left;
 					指运港
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_anothertype" name="anothertype" class="form-control input-sm"  placeholder="指运港">
+					<input type="text" id="yulu_anothertype" name="anothertype" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -201,7 +202,7 @@ text-align: left;
 					境内货源地
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -210,7 +211,7 @@ text-align: left;
 					批准文号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -218,7 +219,7 @@ text-align: left;
 					成交方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -226,7 +227,7 @@ text-align: left;
 					运费
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="运费">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -234,7 +235,7 @@ text-align: left;
 					保费
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="保费">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -242,7 +243,7 @@ text-align: left;
 					杂费
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="杂费">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -251,7 +252,7 @@ text-align: left;
 					合同协议号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -259,7 +260,7 @@ text-align: left;
 					件数
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="件数">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -267,7 +268,7 @@ text-align: left;
 					包装种类
 				</label>
 				<div class="col-xs-6">
-					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -275,7 +276,7 @@ text-align: left;
 					毛重（kg）
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-2">
@@ -283,7 +284,7 @@ text-align: left;
 					净重（kg）
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -292,7 +293,7 @@ text-align: left;
 					集装箱号
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-4">
@@ -300,7 +301,7 @@ text-align: left;
 					随附单据
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm">
 				</div>		
 			</div>
 			<div class="form-group col-xs-4">
@@ -308,7 +309,7 @@ text-align: left;
 					生产厂家
 				</label>
 				<div class="col-xs-7">
-					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+					<input type="text" class="form-control input-sm">
 				</div>		
 			</div>
 
@@ -317,7 +318,7 @@ text-align: left;
 					标记码及备注
 				</label>
 				<div class="col-xs-10">
-					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+					<textarea type="text" class="form-control input-sm"></textarea>.
 				</div>		
 			</div>
 			<div id="yulu_ul col-xs-12">
@@ -355,7 +356,7 @@ text-align: left;
 					税费征收情况
 				</label>
 				<div class="col-xs-10">
-					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"  placeholder="税费征收情况"></textarea>.
+					<textarea type="text" id="yulu_createTime" name="createTime" class="form-control input-sm"></textarea>.
 				</div>		
 			</div>
 		</div>
