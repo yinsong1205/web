@@ -616,7 +616,7 @@ $(function(){
 	//关联按钮
 	$(document).on('click','#wuliu_gl_btn',function(){
 		var rowIds = getSelectedRow('wuliu_gl_jqGrid');
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 			showcaigou();
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
@@ -653,7 +653,6 @@ $(function(){
 				]
 			});
 		$('#wuliu_gl_jqGrid').jqGrid('filterToolbar');
-	function showcaigou (){
 		$("#caigouguan_jqGrid").jqGrid({
 			url: 'data/yicaigou.json',
 			editurl: 'clientArray',
@@ -667,10 +666,23 @@ $(function(){
 			colModel: [
 				{label : '合同编号', name : 'id', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 				},
-				{label : '合同名称', name : 'name', align: 'center', width:100}
+				{label : '合同名称', name : 'name', align: 'center', width:100},
+				{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
 			]
 		});
+	// 关联的采购合同清单
+function showcaigou (){
+	var rowIds = getSelectedRow("wuliu_gl_jqGrid");
+	console.log(rowIds)
+	if(rowIds && rowIds.length>0){
+		for(var i=0; i<rowIds.length; i++){
+				var json = $('#wuliu_gl_jqGrid').getRowData(rowIds[i]);
+			$("#caigouguan_jqGrid").addRowData(uuid.v4(),json,'first');
+				$("#caigouguan_jqGrid").addJSONData('status');
+		}
 	}
+
+}
 	/*上传文件的表单*/
 		 $("#wuliu_fileupload").fileupload({
 			maxNumberOfFiles:20,//上传文件的最大数量

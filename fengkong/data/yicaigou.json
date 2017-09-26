@@ -3,14 +3,14 @@
 	"page" : 1,
 	"rows": [
   {
-    "id": "HT1120",
+    "id": "CG1818991184244",
     "name": "HUFF采购合同",
     "qdTime": "2017-03-25",
     "caigouName": "上海NEWCUBE有限责任公司",
     "gonghuoName": "广东GYNKO有限公司",
     "money": 150631,
-    "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
-     "status": 0,
+    "list": "<a href=\"javascript:;\" class=\"chukou_wzqd\"><i class=\"text-info fa glyphicon-trash \"></i></a>",
+     "status": "x",
      "glStatus" : "已关联"
   }]
 }

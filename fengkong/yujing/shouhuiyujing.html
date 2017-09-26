@@ -5,6 +5,41 @@
 		<div id="shouhuiyujing_jqGridPager"></div>
 	</div>
 </div>
+<!-- 预警 -->
+<div class="layerFormBox" id="shouhuiyujing_formBox"> 
+	<div class="form-group col-sm-12">
+		<div class="col-sm-3">是否解除预警</div>
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>是
+		</label> 
+		
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>否
+		</label>
+		
+	</div>
+	<div class="form-group col-sm-12">
+		<label  class="col-sm-3 control-label">解除说明:</label>
+		<div class="col-sm-6">
+			<textarea class="form-control input-sm"></textarea>
+		</div>
+	</div>
+	<p class="text-center saveOrCacelBtn">
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_save_btn">
+			保存
+		</button>
+		<button type="reset" class="saveBtn btn btn-info btn-sm">
+			重置
+		</button>
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_cacle_btn">
+			取消
+		</button>
+	</p>
+</div>
 <!-- 任务详情 -->
 <div id="shouhuiyujing_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
@@ -120,7 +155,8 @@ $(function(){
 			{label : '贸易类型', name : 'time', align: 'center', width:120},
 			{label : '运抵国', name : 'startTime', align: 'center', width:120},
 			{label : '出口日期', name : 'endTime', align: 'center', width:120},
-			{label : '收汇状态', name : 'dataTime', align: 'center', width:120}],
+			{label : '收汇状态', name : 'dataTime', align: 'center', width:120},
+			{label : '剩余天数', name : 'overTime', align: 'center', width:120}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -133,6 +169,7 @@ $(function(){
 		datatype: 'local',
 		pager: "#shouhuiyujing_jqGridPager",
 		rownumbers: true,
+		multiselect: true,
 		rownumWidth: 30,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
@@ -169,6 +206,9 @@ $(function(){
 	
 	//弹框取消按钮
 	$('#shouhuiyujing_cacle_btn').on('click',function(){
+		layer.close(index);
+	});
+	$('.qx').on('click',function(){
 		layer.close(index);
 	});
 		// 收汇预警解除

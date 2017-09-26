@@ -532,9 +532,9 @@
 				{label : '买方', name : 'caigouName', align: 'center', width:150, 
 					searchoptions: {sopt : ['cn']}
 				},
-				{label : '买方', name : 'gonghuoName', align: 'center', width:150, 
+				{label : '卖方', name : 'gonghuoName', align: 'center', width:150, 
 					searchoptions: {sopt : ['cn']}},
-				{label : '合同金额', name : 'money', align: 'center',width:50, 
+				{label : '合同金额(元)', name : 'money', align: 'center',width:50, 
 					searchoptions: {sopt : ['cn']}},
 				{label : '物资清单', name : 'list', align: 'center',width:40, 
 					searchoptions: {sopt : ['cn']}},
@@ -961,13 +961,12 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 	//关联按钮
 	$(document).on('click','#caigou_gl_btn',function(){
 		var rowIds = getSelectedRow('caigou_gl_jqGrid');
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
-			showchukou();
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			showchu();
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
 		}
 	});
-function showchukou (){
 	$("#yichukou_jqGrid").jqGrid({
 		url: 'data/yichukou.json',
 		editurl: 'clientArray',
@@ -980,13 +979,24 @@ function showchukou (){
 		rowNum: 13,
 		colModel: [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
-},
-			{label : '合同名称', name : 'relName', align: 'center', width:100}
-				]
+			}, {
+			label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
+		]
 	});
+// 关联的采购合同清单
+function showchu (){
+	var rowIds = getSelectedRow("caigou_gl_jqGrid");
+	console.log(rowIds)
+	if(rowIds && rowIds.length>0){
+		for(var i=0; i<rowIds.length; i++){
+				var json = $('#caigou_gl_jqGrid').getRowData(rowIds[i]);
+			$("#yichukou_jqGrid").addRowData(uuid.v4(),json,'first');
+				$("#yichukou_jqGrid").addJSONData('status');
+		}
+	}
 
 }
-
 function lookInfo(gid,rowId){
 	$('#shenhecaigou_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);

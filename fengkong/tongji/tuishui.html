@@ -1,0 +1,101 @@
+<!-- 出口退税统计 -->
+<style type="text/css">
+</style>
+<div class="container-fluid tongji">
+	<div class="row">
+		<form class="form-inline">
+			<div class="form-group">
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+			</div>
+			<i class="fa fa-minus"></i>
+			<div class="form-group">
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+			</div>
+			<button type="button" class="btn btn-info btn-sm" id="search">查询</button>
+			<button type="reset" class="btn btn-danger btn-sm">重置</button>
+		</form>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-2" id="he" class="yincang">
+			<div id="shuieChart" style="min-width:1000px;height:400px"></div>
+			
+		</div>
+<!-- 		<div class="col-sm-2" id="cai" class="yincang">
+			<div id="weituiChart" style="min-width:1000px;height:400px"></div>
+		</div> -->
+	</div>
+
+</div>
+<script type="text/javascript"> 
+	// var guandan = 'guandan';
+	// var flag = 'Chart';
+	// var weitui= 'weitui';
+	// var yitui = 'yitui';
+	// $(document).on('click','#search',function(){
+	// 	if ($('#selecter option:selected').text() == '报关单号') {
+	// 		$('#he').show().siblings().hide();
+	// 		hetongchart();
+	// 	}else if($('#selecter option:selected').text() == '贸易方式'){
+	// 		$('#cai').show().siblings().hide();
+	// 		maoyichart();
+	// 	}else if($('#selecter option:selected').text() == '成交方式'){
+	// 		$('#pa').show().siblings().hide();
+	// 		paychart();
+	// 	}
+	// })
+	$(document).on('click','#search',function(){
+		paychart()
+	})
+	
+// 按成交方式
+	function paychart(){
+	 $('#shuieChart').highcharts({
+		title: {
+			text: '退税统计'
+		},
+		subtitle: {
+			text: '数据来源: 退税统计'
+		},
+		xAxis: {
+			categories: ['2003','2004','2005','2006','2007','2008','2009','2010'],
+                plotLines: [{  //plotLines：标示线
+                    value: 2,  //定义在哪个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
+                    width: 2,  //标示线的宽度，2px
+                    dashStyle:'solid',  //默认值是solid实线，这里定义为虚线
+                    color: 'red',//线的颜色，定义为红色
+                }]
+		},
+		yAxis: {
+			title: {
+                    text: '总的统计 ($)'
+            },
+            plotLines: [{  //plotLines：标示线
+                value: 2,  //定义在哪个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
+                width: 1,  //标示线的宽度，2px
+                dashStyle:'solid',  //默认值，这里定义为实线
+                color: '#808080',//线的颜色，定义为灰色
+            }]
+		},
+		legend: {
+			layout: 'vertical',  //图例内容布局方式，有水平布局及垂直布局可选，对应的配置值是： “horizontal(水平)”， “vertical(垂直)”
+            align: 'left',  //图例在图表中的对齐方式，有 “left”, "center", "right" 可选
+            verticalAlign: 'middle',  //垂直对齐方式，有 'top'， 'middle' 及 'bottom' 可选
+            borderWidth: 2 //边框宽度
+		},
+		tooltip: {
+            valueSuffix: '万$',
+        },
+		series: [
+            {  
+            name: '已退税',
+            data: [7, 6, 9, 14, 18, 21, 25, 26]
+            },{
+            name: '未退税',
+            data: [1, 4, 5, 3, 11, 12, 11, 15]
+        }]
+		
+	});
+	
+	}
+</script>

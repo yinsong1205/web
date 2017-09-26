@@ -41,6 +41,10 @@
 		<div id="yiguan_gridBox">
 			<table id="yiguan_jqGrid"></table>
 		</div>
+		<p class="text-center saveOrCacelBtn"> 
+			<button type="button" class="btn btn-info btn-sm qx">确定</button>		
+			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+		</p>
 	</div>
 </div>
 
@@ -1138,7 +1142,7 @@ $(function(){
 	//关联按钮
 	$(document).on('click','#cai_save_btn',function(){
 		var rowIds = getSelectedRow(gird);
-		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
 			showcai();
 		}else{
 			layer.msg('请选择一条记录!',{time:layerCloseTime});
@@ -1167,6 +1171,7 @@ $(function(){
 				viewrecords: true,
 				multiselect: true,
 				altRows : true,
+				rownumbers: true,
 				width: qingdan_gridWidth,
 				height: qingdan_gridHeight,
 				page : 1,
@@ -1223,25 +1228,25 @@ $(function(){
 			
 	});
 
-	//关联采购弹出框
-			
-			$("#"+gird).jqGrid({
-				url: 'data/caigou.json',
-				datatype: "json",
-				loadonce: true,
-				viewrecords: true,
-				multiselect: true,
-				altRows : true,
-				width: cai_gridWidth,
-				height: cai_gridHeight,
-				page : 1,
-				rowNum: 8,
-				colModel: [
-						{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
-				{label : '合同名称', name : 'name', align: 'left', width:10}
-				],
-				pager: ""
-			});
+	//关联采购弹出		
+	$("#"+gird).jqGrid({
+		url: 'data/caigou.json',
+		datatype: "json",
+		loadonce: true,
+		viewrecords: true,
+		multiselect: true,
+		altRows : true,
+		rownumbers: true,
+		width: cai_gridWidth,
+		height: cai_gridHeight,
+		page : 1,
+		rowNum: 8,
+		colModel: [
+			{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
+			{label : '合同名称', name : 'name', align: 'left', width:10}
+		],
+		pager: ""
+	});
 	//左下角新增按钮
 	function addLayer(){
 		$('#shenhe_save_btn').hide();
@@ -1401,6 +1406,40 @@ $(function(){
 		   minFileSize: '文件不能小于5K'
 	   }
 	});
+	 $("#yiguan_jqGrid").jqGrid({
+		url: 'data/yicaigou.json',
+			// we set the changes to be made at client side using predefined word clientArray
+		editurl: 'clientArray',
+		datatype: "json",
+		sortname: 'name',
+		multiselect: true,
+		sortorder: 'asc',
+		loadonce: true,
+		rownumbers: true,
+		width: cai_gridWidth,
+		height: 150,
+		rowNum: 13,
+		colModel: [
+		{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
+				{label : '合同名称', name : 'name', align: 'center', width:10},
+				{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
+				],
+			
+		pager: "#yiguan_jqGridPager"
+	});
+	 // 关联的采购合同清单
+function showcai (){
+	var rowIds = getSelectedRow("cai_jqGrid");
+	console.log(rowIds)
+	if(rowIds && rowIds.length>0){
+		for(var i=0; i<rowIds.length; i++){
+				var json = $('#cai_jqGrid').getRowData(rowIds[i]);
+			$("#yiguan_jqGrid").addRowData(uuid.v4(),json,'first');
+				//$("#liucheng_changeGood_jqGrid").addJSONData(json);
+		}
+	}
+
+}
 });
 
 function lookcai(rowId){
@@ -1408,34 +1447,14 @@ function lookcai(rowId){
 	data.related = $(data.related).text();
 	setFormData('cai_jqGrid',data);
 	title = '信息';
-	commIndex = layer.open({
+	changeIndex = layer.open({
 		type: 1,
 		title : title,
 		area: ['90%', '90%'], //宽高
 		content: $('#guanlian_gridBox')
 	});
 }
-function showcai (){
-	$("#yiguan_jqGrid").jqGrid({
-		url: 'data/yicaigou.json',
-			// we set the changes to be made at client side using predefined word clientArray
-		editurl: 'clientArray',
-		datatype: "json",
-		sortname: 'name',
-		sortorder: 'asc',
-		loadonce: true,
-		width: $('#yiguan_gridBox').width(),
-		height: 150,
-		rowNum: 13,
-		colModel: [
-		{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
-				{label : '合同名称', name : 'name', align: 'left', width:10},
-				{label : '关联方式', name : 'glStatus', align: 'center',width:10, search:false}
-				],
-			
-		pager: "#yiguan_jqGridPager"
-	});
-}
+
 function lookInfo(gid,rowId){
 	$('#shenhe_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);

@@ -5,6 +5,41 @@
 		<div id="gongqi_jqGridPager"></div>
 	</div>
 </div>
+<!-- 预警 -->
+<div class="layerFormBox" id="gongqi_formBox"> 
+	<div class="form-group col-sm-12">
+		<div class="col-sm-3">是否解除预警</div>
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>是
+		</label> 
+		
+		<label class="col-sm-3">
+			<div>
+				<input type="radio" class="input-sm">
+			</div>否
+		</label>
+		
+	</div>
+	<div class="form-group col-sm-12">
+		<label  class="col-sm-3 control-label">解除说明:</label>
+		<div class="col-sm-6">
+			<textarea class="form-control input-sm"></textarea>
+		</div>
+	</div>
+	<p class="text-center saveOrCacelBtn">
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_save_btn">
+			保存
+		</button>
+		<button type="reset" class="saveBtn btn btn-info btn-sm">
+			重置
+		</button>
+		<button type="button" class="saveBtn btn btn-info btn-sm qx" id="renwu_cacle_btn">
+			取消
+		</button>
+	</p>
+</div>
 <!-- 任务详情 -->
 <div id="gonghuo_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm">
@@ -127,6 +162,7 @@ $(function(){
 		pager: "#gongqi_jqGridPager",
 		rownumbers: true,
 		rownumWidth: 30,
+		multiselect: true,
 		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
@@ -164,6 +200,9 @@ $(function(){
 	$('#gongqi_cacle_btn').on('click',function(){
 		layer.close(index);
 	});
+	$('.qx').on('click',function(){
+		layer.close(index);
+	});
 	// 供货预警解除
 	function gonghuo_remove(){
 		flag == 'update';
@@ -191,7 +230,7 @@ $(function(){
 				type: 1,
 				title : title,
 				area: ['60%', '80%'], //宽高
-				content: $('#gonghuo_formBox')
+				content: $('#gongqi_formBox')
 			});
 		}else{
 			layer.msg('同时只能选择一条记录!');

@@ -103,9 +103,9 @@
 			</label>
 			<div class="col-xs-7">
 				<select name="level" class="form-control input-sm">
-					<option value="白" selected="true">白</option>
-					<option value="黑" >黑</option>
-					<option value="灰" >灰</option>
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
 				</select>
 			</div>	
 		</div>
@@ -333,7 +333,7 @@
 							<td>110121390</td>
 							<td>3190203092039</td>
 							<td>贸易</td>
-							<td>黑</td>
+							<td>A</td>
 							<td>2015-01-22</td>
 						</tr>
 						<tr>
@@ -341,7 +341,7 @@
 							<td>118429309</td>
 							<td>3190203092039</td>
 							<td>贸易</td>
-							<td>黑</td>
+							<td>B</td>
 							<td>2015-01-22</td>
 						</tr>
 						<tr>
@@ -350,7 +350,7 @@
 							<td>110121390</td>
 							<td>2129093093010</td>
 							<td>贸易</td>
-							<td>白</td>
+							<td>C</td>
 							<td>2015-01-31</td>
 						</tr>
 						<tr>
@@ -359,7 +359,7 @@
 							<td>128989199</td>
 							<td>2323909020200</td>
 							<td>生产</td>
-							<td>白</td>
+							<td>B</td>
 							<td>2015-02-10</td>
 						</tr>
 						<tr>
@@ -442,9 +442,9 @@ $(function(){
 		colModel: [{label : '供货商名称', name : 'company', align: 'center', width: 160 ,formatter: formatName},
 			{label : '纳税人识别号', name : 'number', align: 'center', width:140},
 			{label : '企业类型', name : 'type', align: 'center', width:80},
-			{label : '纳税信用等级', name : 'level', align: 'center', width:80},
+			{label : '纳税信用等级', name : 'leveler', align: 'center', width:80},
 			{label : '内部评估等级', name : 'level', align: 'center', width:80},
-			{label : '税局信用等级', name : 'level', align: 'center', width:80},
+			{label : '税局信用等级', name : 'leveler', align: 'center', width:80},
 			{label : '审核状态', name : 'active', align: 'center', width:120, formatter:formatStatus}],
 		viewrecords: true,
 		loadonce:true,
@@ -719,7 +719,7 @@ $(function(){
 						type: item.type,
 						source: item.source,
 						level: item.level,
-						black: item.black,
+						leveler: item.leveler,
 						active: item.active
 					});
 
