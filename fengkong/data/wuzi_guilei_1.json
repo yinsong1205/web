@@ -1,0 +1,51 @@
+{
+	"total": 100,
+	"page": 1,
+	"rows": [
+		{
+			"name": "螺栓-WALLACE",
+			"number": 21,
+			"guige": "104*168*107",
+			"danwei": "包",
+			"oneMoney": 215,
+			"totalMoney": 18297,
+			"company": "京中BURNETT建筑公司"
+		},
+		{
+			"name": "电脑-PRESTON",
+			"number": 32,
+			"guige": "198*192*145",
+			"danwei": "件",
+			"oneMoney": 434,
+			"totalMoney": 40178,
+			"company": "京中FRENCH有限公司"
+		},
+		{
+			"name": "香烟-MORRIS",
+			"number": 30,
+			"guige": "103*114*191",
+			"danwei": "包",
+			"oneMoney": 490,
+			"totalMoney": 27239,
+			"company": "京中KEY建筑公司"
+		},
+		{
+			"name": "手机-JARVIS",
+			"number": 22,
+			"guige": "185*169*187",
+			"danwei": "件",
+			"oneMoney": 257,
+			"totalMoney": 30243,
+			"company": "京中GREGORY责任公司"
+		},
+		{
+			"name": "水杯-MONTGOMERY",
+			"number": 20,
+			"guige": "125*200*105",
+			"danwei": "箱",
+			"oneMoney": 352,
+			"totalMoney": 20821,
+			"company": "八里DELANEY有限公司"
+		}
+	]
+}
