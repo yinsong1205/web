@@ -8,8 +8,8 @@
 			"type": "一般贸易",
 			"kouan": "天津新港",
 			"yunshufangshi": "水路运输",
-			"huanjie": "收票确认",
-			"createName": "赵六",
+			"huanjie": "关单审核",
+			"createName": "张三",
 			"createTime": "2017-09-27",
 			"operation" : "未处理"
 		},
@@ -19,8 +19,8 @@
 			"type": "承包工程",
 			"kouan": "北京机场",
 			"yunshufangshi": "航空运输",
-			"huanjie": "发票认证",
-			"createName": "田七",
+			"huanjie": "开票通知",
+			"createName": "张三",
 			"createTime": "2017-06-09",
 			"operation" : "已处理"
 		}

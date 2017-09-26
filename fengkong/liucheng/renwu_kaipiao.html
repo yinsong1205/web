@@ -1,5 +1,94 @@
 <!-- 任务管理 -->
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">任务编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口国别:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="美国">美国</option>
+								<option value="英国">英国</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">业务类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="承包工程">承包工程</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口口岸:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="天津新港">天津新港</option>
+								<option value="北京机场">北京机场</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">运输方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="水路运输">水路运输</option>
+								<option value="航空运输">航空运输</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">当前环节:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option>创建任务</option>
+								<option>预关单审核</option>
+								<option>报关单审核</option>
+								<option>开票通知</option>
+								<option>收票确认</option>
+								<option>发票认证</option>
+								<option>申报</option>
+								<option>备案</option>
+							</select>
+						</div>
+					</div>
+					<!-- <div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">创建人:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div> -->
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-3 text-align:right">创建时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="positon:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 数据 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwugridBox">
 		<table id="renwujqGrid"></table>
 		<div id="renwujqGridPager"></div>
@@ -43,7 +132,7 @@
 				<select  name="guobie" class="form-control input-sm">
 					<option value="美国">美国</option>
 					<option value="英国">英国</option>
-					<option value="法国" selected="true">法国</option>
+					<option value="委内瑞拉" selected="true">委内瑞拉</option>
 				</select>
 			</div>
 		</div>
@@ -54,7 +143,7 @@
 			<div class="col-xs-8">
 				<select  name="type" class="form-control input-sm">
 					<option value="一般贸易" selected="true">一般贸易</option>
-					<option value="外宗服" >外宗服</option>
+					<option value="外综服" >外综服</option>
 					<option value="承包工程" >承包工程</option>
 					<option value="其他" >其他</option>
 				</select>
@@ -231,7 +320,7 @@ $(function(){
 	//-------------------------------//
 	var layerIndex = null; //弹窗id,关闭所用
 	var flag = ''; //添加修改标记
-	var dataUrl = 'data/liucheng_renwu.json';//数据源链接
+	var dataUrl = 'data/liucheng_renwu_kaipiao.json';//数据源链接
 	var gridId = 'renwujqGrid'; //表格id
 	var gridPager = 'renwujqGridPager'; //表格分页id
 	var formBoxId = 'renwujqGrid_formBox'; //添加修改窗口元素id
@@ -252,8 +341,8 @@ $(function(){
 			{label : '出口口岸', name : 'kouan', align: 'center', width:100},
 			{label : '运输方式', name : 'yunshufangshi', align: 'center', width:80},
 			{label : '当前环节', name : 'huanjie', align: 'center', width:80},
-			{label : '创建人', name : 'createName', align: 'center', width:80},
-			{label : '创建时间', name : 'createTime', align: 'center', width:80, search:false},
+			{label : '提交人', name : 'createName', align: 'center', width:80},
+			{label : '提交时间', name : 'createTime', align: 'center', width:80, search:false},
 			{label : '操作', name : 'operation', align: 'center', width:80, search:false, formatter: formatOpe}
 			
 	/* 			
@@ -325,7 +414,7 @@ $(function(){
 	}); */
 	
 	//表格添加搜索框按钮
-	$('#'+gridId).jqGrid('filterToolbar');
+	//$('#'+gridId).jqGrid('filterToolbar');
 	//修改工具条
 	changeSearch(); 
 	
@@ -849,7 +938,7 @@ function formatGd(cellValue, options, rowObject){
 		<div class="row">
 			<div class="col-xs-12">
 				<!-- 左侧关单 -->
-		     		<form class="form-horizontal layerForm col-xs-12">
+		     	<form class="form-horizontal layerForm col-xs-12">
 		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
 		<div class="col-xs-12 index">
 			<div class="form-group col-xs-6 head">
@@ -1326,22 +1415,23 @@ function formatGd(cellValue, options, rowObject){
 
 <!-- 任务详情 -->
 <div id="renwu_detail_info_box" class="layerFormBox">
-	<div class="form-horizontal layerForm">
+	<p style="border-bottom:1px dotted #666; ">基本信息</p>
+	<div class="form-horizontal layerForm clearfix">
 		<div class="form-group col-xs-4">
 			<label for="inputEmail3" class="col-xs-4 control-label">
-				<span class="necessary">*</span>任务编号:
+				任务编号:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  >RW201709202105</p>
+				<p  class="form-control input-sm"  >CK201709220001</p>
 			</div>
 		</div>
 
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口国别:
+				出口国别:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">美国</p>
+				<p  class="form-control input-sm"  >委内瑞拉</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -1349,15 +1439,15 @@ function formatGd(cellValue, options, rowObject){
 				业务类型:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">一般贸易</p>
+				<p  class="form-control input-sm"  >一般贸易</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口口岸:
+				出口口岸:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">天津新港</p>
+				<p  class="form-control input-sm"  >天津新港</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -1365,7 +1455,7 @@ function formatGd(cellValue, options, rowObject){
 				运输方式:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">水运</p>
+				<p  class="form-control input-sm"  >水路运输</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -1373,41 +1463,86 @@ function formatGd(cellValue, options, rowObject){
 				当前环节:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">开票</p>
+				<p  class="form-control input-sm"  >开票通知</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建人:
+				创建人:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">张三</p>
+				<p  class="form-control input-sm"  >张三</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建时间:
+				创建时间:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">2017-8-7</p>
+				<p  class="form-control input-sm"  >2017-09-27</p>
 			</div>
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="form-group col-xs-12">
 				<label class="col-xs-1 control-label">
 					说明:
 				</label>
 				<div class="col-xs-8">
-					<div class="form-control input-sm" rows="3"  placeholder="说明">说明信息。。。</div>
+					<div class="form-control input-sm" rows="3"  ></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
-		<div >
-			<table id="liucheng_info_jqGrid"></table>
-			<div id="liucheng_info_jqGridPager"></div>
-		</div>
+		
 	</div>
+	
+	<div class="row" style="margin-left:0px; padding:0">
+		<p style="border-bottom:1px dotted #666; ">货物清单</p>
+		<table id="liucheng_info_jqGrid"></table>
+		<div id="liucheng_info_jqGridPager"></div>
+	</div>
+	
+	<!-- 操作历史 -->
+		<p style="border-bottom:1px dotted #666; margin-top:30px;">历史记录</p>
+		<div class="panel panel-info" style="margin-top: 15px;">
+			<!-- <div class="panel-heading">历史操作记录</div> -->
+			<div class="panel-body"
+				style="padding: 0; height: 180px; overflow-y: auto;">
+				<table class="table table-striped  table-condensed"
+					style="margin-bottom: 0;">
+					<thead style="background: #e5e6e6;">
+						<tr>
+							<th>操作人</th>
+							<th>历史操作</th>
+							<th>操作时间</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>张三</td>
+							<th>创建任务</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>李四</td>
+							<th>预关单审核</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>王五</td>
+							<th>关单审核</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 操作历史 -->
+	
 </div>
 
 <!-- 任务处理界面 -->
@@ -1419,7 +1554,7 @@ function formatGd(cellValue, options, rowObject){
 				<p><span>任务编号 :</span>CK201709220001</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>出口国别 :</span>法国</p>
+				<p><span>出口国别 :</span>委内瑞拉</p>
 			</div>
 			<div class="col-xs-3">
 				<p><span>业务类型 :</span>一般贸易</p>
@@ -1428,13 +1563,13 @@ function formatGd(cellValue, options, rowObject){
 				<p><span>出口口岸 :</span>天津新港</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>运输方式 :</span>水上运输</p>
+				<p><span>运输方式 :</span>水路运输</p>
 			</div>
 			<div class="col-xs-3">
 				<p><span>创建人 :</span>张三</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>创建时间 :</span>2017-01-28</p>
+				<p><span>创建时间 :</span>2017-09-27</p>
 			</div>
 		</div>
 		<!-- 任务基本信息 -->
@@ -1461,63 +1596,56 @@ function formatGd(cellValue, options, rowObject){
 							<th>关单号</th>
 							<th>供货商</th>
 							<th>通知单号</th>
-							<th>征税率</th>
-							<th>退税率</th>
 							<th>名称</th>
+							<th>单位</th>
+							<th>数量</th>
 							<th>单价</th>
 							<th>金额</th>
+							<th>征税率</th>
+							<th>税额</th>
+							<th>退税率</th>
 						</tr>
 					</thead>
 					<tbody> 
 						<tr>
-							<td rowspan="4">001</td>
-							<td rowspan="3">上海办公用品有限责任公司</td>
-							<td rowspan="2">200120171015142410</td>
-							<td rowspan="2">17%</td>
+							<td rowspan="3">220120090519142814	</td>
+							<td >南京某自动化系统工程有限公司</td>
+							<td><a href="javascript:;" id="lookTongZhiDan_btn">200120171015142410</a></td>
+							<td>液晶显示器</td>
+							<td>台</td>
+							<td>3</td>
+							<td>4896.29</td>
+							<td>9954.71</td>
+							<td >17%</td>
+							<td >1692.30</td>
 							<td>17%</td>
-							<td>办公</td>
-							<td>23</td>
-							<td>4600</td>
 						</tr>
 						<tr>
-							<td>15%</td>
-							<td>服装</td>
-							<td>120</td>
-							<td>6300</td>
-						</tr>
-						<tr>
-							<td>200120171015142411</td>
-							<td>9%</td>
-							<td>0</td>
-							<td>玩具</td>
-							<td>35</td>
-							<td>7000</td>
-						</tr>
-						<tr>
-							<td>广东皮具制造有限公司</td>
+							<td>宝鸡某石油机械厂</td>
 							<td>200120171015142412</td>
+							<td>钻井台防滑板</td>
+							<td>个</td>
+							<td>50</td>
+							<td>1074.23</td>
+							<td>53711.54</td>
 							<td>13%</td>
+							<td >6982.43</td>
 							<td>13%</td>
-							<td>皮具</td>
-							<td>78</td>
-							<td>9600</td>
+						</tr>
+						<tr>
+							<td>扬州某点电缆股份有限公司</td>
+							<td>200120171015142411</td>
+							<td>电缆</td>
+							<td>千米</td>
+							<td>0.8</td>
+							<td>23060.25</td>
+							<td>9667.95</td>
+							<td>17%</td>
+							<td>3920.24</td>
+							<td>17%</td>
 						</tr>
 					</tbody>
 					
-					<!-- 	<td>1.</td>
-				<td>河北电器生产有限公司</td>
-				<td><input type="text" style="width:50px" value="17%" class="form-control input-sm"/></td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td>上海毛绒玩具有限责任公司</td>
-				<td><input type="text" style="width:50px" value="7%" class="form-control input-sm"/></td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td>广东皮具制造有限公司</td>
-				<td><input type="text" style="width:50px" value="19%" class="form-control input-sm"/></td>
-			</tr> -->
 				</table>
 			</div>
 		</div>
@@ -1525,14 +1653,14 @@ function formatGd(cellValue, options, rowObject){
 		
 		<!-- 当前流程 -->
 		<div class="row" style="margin-top:15px; ">
-			<div class="col-xs-12" id="danqian">
+			<div class="col-xs-12 text-center" id="danqian">
 				<button class="btn  btn-sm ">1.创建任务</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
 				<button class="btn btn-sm ">2.预关单审核</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
 				<button class="btn  btn-sm ">3.报关单审核</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
-				<button class="btn  btn-sm btn-info">4.开票通知</button>
+				<button class="btn  btn-sm btn-warning">4.开票通知</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
 				<button class="btn  btn-sm ">5.收票确认</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
@@ -1562,7 +1690,7 @@ function formatGd(cellValue, options, rowObject){
 		<option>预关单审核组</option>
 		<option>报关单审核组</option>
 		<option>开票通知组</option>
-		<option>收票确认组</option>
+		<option selected="selected">收票确认组</option>
 		<option>发票认证组</option>
 		<option>申报组</option>
 		<option>备案组</option>
@@ -1571,28 +1699,14 @@ function formatGd(cellValue, options, rowObject){
 		<div class="col-xs-4">
 			<div class="checkbox">
 			  <label>
-			    <input type="checkbox" value="">张三
+			    <input type="checkbox" value="">田七
 			  </label>
 			</div>
 		</div>
 		<div class="col-xs-4">
 			<div class="checkbox">
 			  <label>
-			    <input type="checkbox" value="">李四
-			  </label>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<div class="checkbox">
-			  <label>
-			    <input type="checkbox" value="">王五
-			  </label>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<div class="checkbox">
-			  <label>
-			    <input type="checkbox" value="">赵六
+			    <input type="checkbox" value="">田小七
 			  </label>
 			</div>
 		</div>
@@ -1724,18 +1838,18 @@ function formatGd(cellValue, options, rowObject){
 		<tbody>
 			<tr>
 				<td>1.</td>
-				<td>河北电器生产有限公司</td>
-				<td><input type="text" style="width:100px" value="1800" class="form-control input-sm"/></td>
+				<td>南京某自动化系统工程有限公司</td>
+				<td><input type="text" style="width:100px" value="100000" class="form-control input-sm"/></td>
 			</tr>
 			<tr>
 				<td>2.</td>
-				<td>上海办公用品有限责任公司</td>
-				<td><input type="text" style="width:100px" value="5400" class="form-control input-sm"/></td>
+				<td>宝鸡某石油机械厂</td>
+				<td><input type="text" style="width:100px" value="100000" class="form-control input-sm"/></td>
 			</tr>
 			<tr>
 				<td>3.</td>
-				<td>广东皮具制造有限公司</td>
-				<td><input type="text" style="width:100px" value="3200" class="form-control input-sm"/></td>
+				<td>扬州某点电缆股份有限公司</td>
+				<td><input type="text" style="width:100px" value="100000" class="form-control input-sm"/></td>
 			</tr>
 		</tbody>
 	</table>
@@ -1804,5 +1918,127 @@ function formatGd(cellValue, options, rowObject){
 			layer.close(exportIndex);
 			
 		});
+		
+		var rewnwu_tongzhi_save_index= null;
+		$('#lookTongZhiDan_btn').click(function(){
+			rewnwu_tongzhi_save_index = layer.open({
+				type :1,
+				title : '通知单详情',
+				area : ["70%","70%"],
+				content : $('#liucheng_tongzhi_formBox')
+			});
+		});
+		
+		$('#rewnwu_tongzhi_save_btn').click(function(){
+			layer.close(rewnwu_tongzhi_save_index);
+		});
+		
 	});
 </script>
+
+<!-- 查看通知单详情 -->
+<div id="liucheng_tongzhi_formBox" class="layerFormBox">
+	<form class="form-horizontal layerForm col-xs-12">
+			<div class="form-group col-xs-12">
+				<p class="text-center">
+					开票通知单
+				</p>
+			</div>
+			<div class="form-group col-xs-12">
+				<div class="col-xs-6">
+					<p class="text-left">
+						通知单号: 200120171015142410
+					</p>
+				</div>
+				<div class="col-xs-6">
+					<p class="text-right">
+						日期: 2017-09-27
+					</p>
+				</div>
+			</div>
+			
+			<div class="form-group col-xs-12">
+				<div class="col-xs-2">
+					<p style="padding-top:45px;">购买方</p>
+				</div>
+				<div class="col-xs-8">
+					<p>名称 : 某集团工程有限公司</p>
+					<p>纳税人识别号： 110105678200970</p>
+					<p>地址，电话： 北京市朝阳区XX路123号  010-56780000</p>
+					<p>开户行及账号：工行北京支行 010020203998009</p>
+				</div>
+			</div>
+			
+			<div class="col-xs-12">
+				<table class="renwu_tzd table table-bordered  table-condensed">
+					<thead class="bg-info">
+						<tr>
+							<th>名称</th>
+							<th>规格型号</th>
+							<th>单位</th>
+							<th>数量</th>
+							<th>单价</th>
+							<th>金额</th>
+							<th>征税率</th>
+							<th>税额</th>
+						</tr>
+					</thead>
+					<tbody> 
+						<tr>
+							<td>液晶显示器</td>
+							<td></td>
+							<td>台</td>
+							<td><input type="text" value="3"/></td>
+							<td><input type="text" value="4896.29"/></td>
+							<td><input type="text" value="9954.71"/></td>
+							<td >17%</td>
+							<td >1692.30</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td ></td>
+							<td ></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td ></td>
+							<td ></td>
+						</tr>
+						<tr>
+							<td >合计:</td>
+							<td colspan="3">9954.71</td>
+							<td >备注:</td>
+							<td colspan="3">通知单号: 200120171015142410 </td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+			<div class="form-group col-xs-12">
+				<div class="col-xs-2">
+					<p style="padding-top:45px;">销售方</p>
+				</div>
+				<div class="col-xs-8">
+					<p>名称 : 南京某自动化系统工程有限公司</p>
+					<p>纳税人识别号：913201059901289019</p>
+					<p>地址，电话： 南京安替大街68号3号楼  025-88908765</p>
+					<p>开户行及账号：农行南京支行 320000199900100900</p>
+				</div>
+			</div>
+			<p class="text-center col-xs-12">
+				<button type="button" class="saveBtn btn btn-info btn-sm" id="rewnwu_tongzhi_save_btn">
+					保存
+				</button>
+			</p>
+	</form>
+</div>

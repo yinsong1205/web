@@ -2,25 +2,25 @@
   "total": 100,
   "page": 1,
   "rows": [
-  {
-    "number": "220120090519145230",
-    "bus": "天津港",
-    "outTime": "2015/07/10",
-    "anotherTime": "2015/07/22",
-    "company": "乌克兰",
-    "anotherBus": "乌克兰港",
-    "pay": "CFI",
-    "property": "对外出口"
+   {
+    "number": "220120090519142814",
+    "bus": "天津新港",
+     "outTime": "2017-09-27",
+    "company": "委内瑞拉",
+    "anotherBus": "拉瓜伊拉",
+    "pay": "FOB",
+    "property": "一般贸易",
+    "gdh": "220120090519145230",
+    "selectgd": "选择"
   },
   {
     "number": "220120090519145235",
     "bus": "深圳港",
-    "outTime": "2017/06/12",
-    "anotherTime": "2015/09/12",
-    "company": "东京",
+    "outTime": "2017-09-27",
+    "company": "日本",
     "anotherBus": "东京港",
-    "pay": "CFI",
-    "property": "对外出口"
+    "pay": "CIF",
+    "property": "一般贸易"
   }
 ]
 }

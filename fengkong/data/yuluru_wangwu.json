@@ -3,27 +3,14 @@
   "page": 1,
   "rows": [
   {
-    "number": "183936071964",
-    "bus": "天津港",
-    "outTime": "2015/07/10",
-    "anotherTime": "2015/07/22",
-    "company": "乌克兰",
-    "anotherBus": "乌克兰港",
-    "pay": "CFI",
-    "property": "对外出口",
-    "gdh": "220120090519145230",
-    "selectgd": "选择"
-  },
-  {
-    "number": "183936071965",
-    "bus": "深圳港",
-    "outTime": "2017/06/12",
-    "anotherTime": "2015/09/12",
-    "company": "东京",
-    "anotherBus": "东京港",
-    "pay": "CFI",
-    "property": "对外出口",
-     "gdh": "220120090519145235",
+    "number": "123123123122312999",
+    "bus": "天津新港",
+    "company": "委内瑞拉",
+    "anotherBus": "拉瓜伊拉",
+    "pay": "FOB",
+    "property": "一般贸易",
+    "status" : "未审核",
+    "gdh": "220120090519142814",
     "selectgd": "选择"
   }
 ]

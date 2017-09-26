@@ -1,5 +1,94 @@
 <!-- 任务管理 -->
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">任务编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口国别:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="美国">美国</option>
+								<option value="英国">英国</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">业务类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="承包工程">承包工程</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口口岸:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="天津新港">天津新港</option>
+								<option value="北京机场">北京机场</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">运输方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="水路运输">水路运输</option>
+								<option value="航空运输">航空运输</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">当前环节:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option>创建任务</option>
+								<option>预关单审核</option>
+								<option>报关单审核</option>
+								<option>开票通知</option>
+								<option>收票确认</option>
+								<option>发票认证</option>
+								<option>申报</option>
+								<option>备案</option>
+							</select>
+						</div>
+					</div>
+					<!-- <div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">创建人:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div> -->
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-3 text-align:right">创建时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="positon:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 数据 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwugridBox">
 		<table id="renwujqGrid"></table>
 		<div id="renwujqGridPager"></div>
@@ -14,7 +103,7 @@
 				<span class="necessary">*</span>任务编号:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" readonly="readonly" value="RW201709202105" name="id" class="form-control input-sm"  placeholder="任务编号">
+				<input type="text" readonly="readonly" value="CK201709220001" name="id" class="form-control input-sm"  placeholder="任务编号">
 			</div>
 		</div>
 
@@ -26,7 +115,7 @@
 				<select  name="guobie" class="form-control input-sm">
 					<option value="美国">美国</option>
 					<option value="英国">英国</option>
-					<option value="法国" selected="true">法国</option>
+					<option value="委内瑞拉" selected="true">委内瑞拉</option>
 				</select>
 			</div>
 		</div>
@@ -63,7 +152,7 @@
 				<select  name="yunshufangshi" class="form-control input-sm">
 					<option value="陆路运输">陆路运输</option>
 					<option value="航空运输">航空运输</option>
-					<option value="水上运输" selected="true">水上运输</option>
+					<option value="水路运输" selected="true">水路运输</option>
 					
 				</select>
 			</div>
@@ -89,7 +178,7 @@
 				<span class="necessary">*</span>创建时间:
 			</label>
 			<div class="col-xs-8">
-				<input type="text"  name="createTime" readonly="readonly" value="2017-8-7"  class="form-control input-sm"  placeholder="出口日期">
+				<input type="text"  name="createTime" readonly="readonly" value="2017-09-27"  class="form-control input-sm"  placeholder="出口日期">
 			</div>
 		</div>
 		<div class="row">
@@ -130,7 +219,7 @@
 		
 		<input type="hidden" name="operation" value="未处理"/>
 		
-		<p class="text-left">
+		<p class="text-center">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="renwusave_btn">
 				保存
 			</button>
@@ -151,7 +240,7 @@ $(function(){
 	//-------------------------------//
 	var layerIndex = null; //弹窗id,关闭所用
 	var flag = ''; //添加修改标记
-	var dataUrl = 'data/liucheng_renwu.json';//数据源链接
+	var dataUrl = 'data/liucheng_renwu_zhangsan.json';//数据源链接
 	var gridId = 'renwujqGrid'; //表格id
 	var gridPager = 'renwujqGridPager'; //表格分页id
 	var formBoxId = 'renwujqGrid_formBox'; //添加修改窗口元素id
@@ -271,7 +360,7 @@ $(function(){
 	});
 	
 	//表格添加搜索框按钮
-	$('#'+gridId).jqGrid('filterToolbar');
+	//$('#'+gridId).jqGrid('filterToolbar');
 	//修改工具条
 	changeSearch(); 
 	
@@ -739,7 +828,7 @@ function formatOpe(cellValue, options, rowObject){
 				运输方式:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm" >水上运输</p>
+				<p  class="form-control input-sm" >水路运输</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -763,7 +852,7 @@ function formatOpe(cellValue, options, rowObject){
 				创建时间:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  >2017-8-7</p>
+				<p  class="form-control input-sm"  >2017-09-27</p>
 			</div>
 		</div>
 		<div class="row">
@@ -831,7 +920,7 @@ function formatOpe(cellValue, options, rowObject){
 				<p><span>任务编号 :</span>CK201709220001</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>出口国别 :</span>法国</p>
+				<p><span>出口国别 :</span>委内瑞拉</p>
 			</div>
 			<div class="col-xs-3">
 				<p><span>业务类型 :</span>一般贸易</p>
@@ -840,13 +929,13 @@ function formatOpe(cellValue, options, rowObject){
 				<p><span>出口口岸 :</span>天津新港</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>运输方式 :</span>水上运输</p>
+				<p><span>运输方式 :</span>水路运输</p>
 			</div>
 			<div class="col-xs-3">
 				<p><span>创建人 :</span>张三</p>
 			</div>
 			<div class="col-xs-3">
-				<p><span>创建时间 :</span>2017-01-28</p>
+				<p><span>创建时间 :</span>2017-09-27</p>
 			</div>
 		</div>
 		<!-- 任务基本信息 -->
@@ -860,8 +949,8 @@ function formatOpe(cellValue, options, rowObject){
 		<!-- 商品 -->
 		<!-- 当前流程 -->
 		<div class="row" style="margin-top:15px; ">
-			<div class="col-xs-12" id="danqian">
-				<button class="btn  btn-sm btn-info">1.创建任务</button>
+			<div class="col-xs-12 text-center" id="danqian">
+				<button class="btn  btn-sm btn-warning">1.创建任务</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
 				<button class="btn btn-sm ">2.预关单审核</button>
 				<i class="glyphicon glyphicon-triangle-right"></i>
@@ -889,7 +978,7 @@ function formatOpe(cellValue, options, rowObject){
 	<p>请选择要提交的用户：</p>
 	<select class="form-control input-sm">
 		<option>创建任务组</option>
-		<option>预关单审核组</option>
+		<option selected="selected">预关单审核组</option>
 		<option>报关单审核组</option>
 		<option>开票通知组</option>
 		<option>收票确认组</option>
@@ -901,13 +990,6 @@ function formatOpe(cellValue, options, rowObject){
 		<div class="col-xs-4">
 			<div class="checkbox">
 			  <label>
-			    <input type="checkbox" value="">张三
-			  </label>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<div class="checkbox">
-			  <label>
 			    <input type="checkbox" value="">李四
 			  </label>
 			</div>
@@ -915,14 +997,7 @@ function formatOpe(cellValue, options, rowObject){
 		<div class="col-xs-4">
 			<div class="checkbox">
 			  <label>
-			    <input type="checkbox" value="">王五
-			  </label>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<div class="checkbox">
-			  <label>
-			    <input type="checkbox" value="">赵六
+			    <input type="checkbox" value="">李小四
 			  </label>
 			</div>
 		</div>

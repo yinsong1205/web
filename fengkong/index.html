@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<title>出口退税风险管理平台</title>
+<title>外贸综合服务企业出口退税风险管控信息系统</title>
 <link rel="stylesheet" type="text/css" href="static/css/component.css" />
 <link rel="stylesheet" type="text/css" href="static/css/demo.css" />
 <!--必要样式-->
@@ -18,19 +18,22 @@
 			<div class="content">
 				<div id="large-header" class="large-header">
 					<canvas id="demo-canvas"></canvas>
-					<div class="logo_box">
-						<h3>出口退税风险管理平台</h3>
-						<form action="#" name="f" method="post">
-							<div class="input_outer">
-								<span class="u_user"></span>
-								<input name="logname" id="index_loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户" onkeydown="keyDown();">
-							</div>
-							<div class="input_outer">
-								<span class="us_uer"></span>
-								<input name="logpass" id="index_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码" onkeydown="keyDown();">
-							</div>
-							<div class="mb2"><a class="act-but submit" id="index_login" href="javascript:;" style="color: #FFFFFF">登录</a></div>
-						</form>
+					
+					<div class="logo_box" style="width:600px; margin-left:-300px;">
+						<h3>外贸综合服务企业出口退税风险管控信息系统</h3>
+						<div style="width:400px;margin-left:75px;">
+							<form action="#" name="f" method="post">
+								<div class="input_outer">
+									<span class="u_user"></span>
+									<input name="logname" id="index_loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户" onkeydown="keyDown();">
+								</div>
+								<div class="input_outer">
+									<span class="us_uer"></span>
+									<input name="logpass" id="index_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码" onkeydown="keyDown();">
+								</div>
+								<div class="mb2"><a class="act-but submit" id="index_login" href="javascript:;" style="color: #FFFFFF">登录</a></div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -83,11 +86,11 @@
 				window.location.href = "index_lisi.html";
 			}else if(name == 'wangwu'){
 				window.location.href = "index_wangwu.html";
-			}else if(name == 'kaipiao'){
+			}else if(name == 'zhaoliu'){
 				window.location.href = "index_kaipiao.html";
-			}else if(name == 'shoupiao'){
+			}else if(name == 'tianqi'){
 				window.location.href = "index_shoupiao.html";
-			}else if(name == 'renzheng'){
+			}else if(name == 'qianba'){
 				window.location.href = "index_renzheng.html";
 			}else{
 				layer.msg('此用户不存在!');
