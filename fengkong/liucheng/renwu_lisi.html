@@ -3,9 +3,9 @@
 <div class="container-fluid">
 	<div class="panel panel-info">
 		<div class="panel-heading" style="padding:7px 15px;">
-			<a href="#collapseOne" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+			<a href="#collapseOne_rw_lisi" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapseOne_rw_lisi" class="panel-collapse collapse in">
 			<div class="panel-body" style="padding:15px 0">
 				<form class="form-horizontal">
 					<div class="form-group col-sm-3">
@@ -66,13 +66,13 @@
 						</div>
 					</div>
 					<!-- <div class="form-group col-sm-3">
-						<label class="control-label col-sm-6 text-align:right">创建人:</label>
+						<label class="control-label col-sm-6 text-align:right">操作人:</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control input-sm" />
 						</div>
 					</div> -->
 					<div class="form-group col-sm-6">
-						<label class="control-label col-sm-3 text-align:right">创建时间:</label>
+						<label class="control-label col-sm-3 text-align:right">操作时间:</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
 						</div>
@@ -181,16 +181,16 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label"> <span
-				class="necessary">*</span>创建人:
+				class="necessary">*</span>操作人:
 			</label>
 			<div class="col-xs-8">
 				<input type="text" name="createName" class="form-control input-sm"
-					readonly="readonly" value="张三" placeholder="创建人">
+					readonly="readonly" value="张三" placeholder="操作人">
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label"> <span
-				class="necessary">*</span>创建时间:
+				class="necessary">*</span>操作时间:
 			</label>
 			<div class="col-xs-8">
 				<input type="text" name="createTime" readonly="readonly"
@@ -322,7 +322,7 @@
 		var gridHeight = $('#' + gridBoxId).height() - 118;
 		//var gridHeight = 370;
 
-		//任务编号、出口国别、业务类型、出口口岸、运输方式、当前环节、创建人、创建时间。
+		//任务编号、出口国别、业务类型、出口口岸、运输方式、当前环节、操作人、操作时间。
 		var colModel = [
 
 		{
@@ -357,12 +357,12 @@
 			align : 'center',
 			width : 80
 		}, {
-			label : '创建人',
+			label : '操作人',
 			name : 'createName',
 			align : 'center',
 			width : 80
 		}, {
-			label : '创建时间',
+			label : '操作时间',
 			name : 'createTime',
 			align : 'center',
 			width : 80,
@@ -1677,7 +1677,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				创建人:
+				操作人:
 			</label>
 			<div class="col-xs-8">
 				<p  class="form-control input-sm"  >张三</p>
@@ -1685,7 +1685,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				创建时间:
+				操作时间:
 			</label>
 			<div class="col-xs-8">
 				<p  class="form-control input-sm"  >2017-09-27</p>
@@ -1776,12 +1776,12 @@
 			</div>
 			<div class="col-xs-3">
 				<p>
-					<span>创建人 :</span>张三
+					<span>操作人 :</span>张三
 				</p>
 			</div>
 			<div class="col-xs-3">
 				<p>
-					<span>创建时间 :</span>2017-01-28
+					<span>操作时间 :</span>2017-01-28
 				</p>
 			</div>
 		</div>
