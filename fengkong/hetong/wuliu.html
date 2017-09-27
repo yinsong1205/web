@@ -3,6 +3,8 @@
 #shenhewuliu_save_btn{display: none;}
 #wuliu_gl_box{display: none;}
 #shenhewuliu_history{display: none;}
+#wuliu_chakan_formBox input,#wuliu_chakan_formBox select,#wuliu_chakan_formBox textarea {border: none;outline: none;}
+.guan{border: 1px solid #000}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="wuliu_gridBox">
@@ -16,22 +18,22 @@
 	<form class="form-horizontal zzxx">
 			<div class="form-group col-sm-4">
 				<label class="col-sm-6 control-label text-right">
-					<span>*</span>预录入编号:
+					<span>*</span>协议编号:
 				</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" placeholder="预录入编号">
+					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label class="col-sm-6 control-label text-right"><span>*</span>海关编号:</label>
+				<label class="col-sm-6 control-label text-right"><span>*</span>协议名称:</label>
 				<div class="col-sm-6">
-					<input type="riqi" class="form-control input-sm" placeholder="海关编号 ">
+					<input type="riqi" class="form-control input-sm">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
-				<label class="col-sm-6 control-label text-right"><span>*</span>签订日期:</label>
+				<label class="col-sm-6 control-label text-right"><span>*</span>签约日期:</label>
 				<div class="col-sm-6">
-					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" placeholder="签订日期 " onClick="WdatePicker()">
+					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" onClick="WdatePicker()">
 				</div>
 			</div>
 			<div class="form-group col-sm-4">
@@ -300,7 +302,6 @@
 					</div> -->
 				</form>
 		<p class="text-center saveOrCacelBtn">
-			<button type="button" class="saveBtn btn-info btn-sm" id="shenhewuliu_save_btn">审核</button>
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="wuliu_save_btn">
 				保存
 			</button>
@@ -311,8 +312,604 @@
 				取消
 			</button>
 		</p>
-		</div>
+		
 	</form>
+</div>
+<!-- 编辑弹窗 -->
+<div id="wuliu_edit_formBox" class="layerFormBox">
+	<form class="form-horizontal zzxx">
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">
+					<span>*</span>协议编号:
+				</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" value="17646366093601500">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>协议名称:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" value="办公用品运输协议">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>签约日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" onClick="WdatePicker()" value="2014-06-26">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>生效日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" onClick="WdatePicker()" value="2014-06-26">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>币制:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="人民币" selected="true">人民币</option>
+						<option value="美元" >美元</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>金额:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" value="400$">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>结汇方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="货到付款" selected="true">货到付款</option>
+						<option value="款到发货" >款到发货</option>
+						<option value="月付" >月付</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>运输方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="水路" selected="true">水路</option>
+						<option value="陆地" >陆地</option>
+						<option value="空路" >空路</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">发运地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">目的地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">付款日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">.
+				</div>
+			</div>
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">截止日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" id="wuliu_endTime"  name="endTime" class="form-control input-sm" placeholder="截止日期 ">
+				</div>
+			</div> -->
+			
+			
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>运输方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm" id="wuliu_bus"  name="bus">
+						<option value="水路" selected="true">水路</option>
+						<option value="空路" >空路</option>
+						<option value="陆路" >陆路</option>
+					</select>
+				</div>
+			</div> -->
+			
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>结款状态:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm" id="wuliu_status"  name="status">
+						<option value="未支付" selected="true">未支付</option>
+						<option value="已结清" >已结清</option>
+					</select>
+				</div>
+			</div> -->
+			
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">保费:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" id="wuliu_relName"  name="relName">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right"><span>*</span>代理方:</label>
+				<div class="col-sm-6">
+					<input type="riqi"  id="wuliu_company"  name="company" class="form-control input-sm" value="蚂蚁物流 ">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方签订人:</label>
+				<div class="col-sm-6">
+					<input type="text" id="wuliu_roleName"  name="roleName" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">代理方签订人:</label>
+				<div class="col-sm-6">
+					<input type="text" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方联系方式:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">代理方联系方式:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">委托方开户行:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">代理方开户行:</label>
+				 <div class="col-sm-6"> 
+				 	<input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">委托方账户:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">代理方账户:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+		<!-- 	<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">传真:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" placeholder="传真">
+				</div>
+			</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right">传真:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" placeholder="传真">
+					</div>
+				</div> -->
+
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right" style="height: 40px;text-align: right">委托方地址:</label>
+					<div class="col-sm-6">
+						<textarea class="form-control input-sm"></textarea>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right">代理方地址:</label>
+					<div class="col-sm-6">
+						<textarea class="form-control input-sm"></textarea>
+					</div>
+				</div>
+				<form class="form-horizontal zzxx" id="wuliu_fileupload" method="POST" enctype="multipart/form-data">
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right"><span>*</span>上传协议:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+			                <span>上传协议.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right"><span>*</span>上传提单:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+			                <span>上传提单.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right"><span>*</span>上传形式发票:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+			                <span>上传形式发票.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传运输单据:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传发票:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传装箱单:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">其他:</label>
+						<div class="col-sm-8">
+							<span class="btn btn-default btn-sm fileinput-button">
+			                    <i class="glyphicon glyphicon-plus"></i>
+			                    <span>添加附件</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+						</div>
+					</div>
+					<!-- 用于显示上传文件的浏览 样式files是必须的-->
+					<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+					<!-- <div class="form-group col-sm-12">
+						<label  class="col-sm-2 control-label text-right"><span>*</span>形式发票:</label>
+						<div class="col-sm-8">
+							<input  value="添加附件" type="file" placeholder="添加附件" />
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-2 control-label text-right"><span>*</span>招标文件:</label>
+						<div class="col-sm-8">
+							<input  value="添加附件" type="file" placeholder="添加附件" />
+						</div>
+					</div> -->
+				</form>
+		<p class="text-center saveOrCacelBtn">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="wuliu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="wuliu_cacle_btn">
+				取消
+			</button>
+		</p>
+		
+	</form>
+</div>
+<!-- 查看弹窗 -->
+<div id="wuliu_chakan_formBox" class="layerFormBox">
+	<form class="form-horizontal zzxx">
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">
+					<span>*</span>协议编号:
+				</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" id="wuliu_numBer" name="numBer" value="17646366093601500">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">协议名称:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" value="办公用品运输协议">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">签约日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" id="wuliu_createTime"  name="createTime" class="form-control input-sm" onClick="WdatePicker()" value="2014-06-26">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">生效日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" onClick="WdatePicker()" value="2014-06-26">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">币制:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="人民币" selected="true">人民币</option>
+						<option value="美元" >美元</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">金额:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm" value="400$">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">结汇方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="货到付款" selected="true">货到付款</option>
+						<option value="款到发货" >款到发货</option>
+						<option value="月付" >月付</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">运输方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm">
+						<option value="水路" selected="true">水路</option>
+						<option value="陆地" >陆地</option>
+						<option value="空路" >空路</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">发运地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">目的地:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">付款日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" class="form-control input-sm">.
+				</div>
+			</div>
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">截止日期:</label>
+				<div class="col-sm-6">
+					<input type="riqi" id="wuliu_endTime"  name="endTime" class="form-control input-sm" placeholder="截止日期 ">
+				</div>
+			</div> -->
+			
+			
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>运输方式:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm" id="wuliu_bus"  name="bus">
+						<option value="水路" selected="true">水路</option>
+						<option value="空路" >空路</option>
+						<option value="陆路" >陆路</option>
+					</select>
+				</div>
+			</div> -->
+			
+			<!-- <div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right"><span>*</span>结款状态:</label>
+				<div class="col-xs-6">
+					<select class="form-control input-sm" id="wuliu_status"  name="status">
+						<option value="未支付" selected="true">未支付</option>
+						<option value="已结清" >已结清</option>
+					</select>
+				</div>
+			</div> -->
+			
+			<div class="form-group col-sm-4">
+				<label class="col-sm-6 control-label text-right">保费:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" id="wuliu_relName"  name="relName">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right">代理方:</label>
+				<div class="col-sm-6">
+					<input type="riqi"  id="wuliu_company"  name="company" class="form-control input-sm" value="蚂蚁物流 ">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方签订人:</label>
+				<div class="col-sm-6">
+					<input type="text" id="wuliu_roleName"  name="roleName" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">代理方签订人:</label>
+				<div class="col-sm-6">
+					<input type="text" id="wuliu_anthorName"  name="anthorName" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">委托方联系方式:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				</div>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">代理方联系方式:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">委托方开户行:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">代理方开户行:</label>
+				 <div class="col-sm-6"> 
+				 	<input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">委托方账户:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+			 <div class="form-group col-sm-6">
+				 <label class="col-sm-6 control-label text-right">代理方账户:</label>
+				 <div class="col-sm-6">
+					 <input type="text" class="form-control input-sm">
+				 </div>
+			 </div>
+		<!-- 	<div class="form-group col-sm-6">
+				<label class="col-sm-6 control-label text-right">传真:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-sm" placeholder="传真">
+				</div>
+			</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right">传真:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" placeholder="传真">
+					</div>
+				</div> -->
+
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right" style="height: 40px;text-align: right">委托方地址:</label>
+					<div class="col-sm-6">
+						<textarea class="form-control input-sm"></textarea>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-6 control-label text-right">代理方地址:</label>
+					<div class="col-sm-6">
+						<textarea class="form-control input-sm"></textarea>
+					</div>
+				</div>
+				<form class="form-horizontal zzxx" id="wuliu_fileupload" method="POST" enctype="multipart/form-data">
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传协议:</label>
+						<div class="col-sm-8">
+			                <span>上传协议.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传提单:</label>
+						<div class="col-sm-8">
+			                <span>上传提单.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传形式发票:</label>
+						<div class="col-sm-8">
+			                <span>上传形式发票.zip</span>
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传运输单据:</label>
+						<div class="col-sm-8">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传发票:</label>
+						<div class="col-sm-8">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">上传装箱单:</label>
+						<div class="col-sm-8">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label class="col-sm-2 control-label text-right">其他:</label>
+						<div class="col-sm-8">
+						</div>
+					</div>
+					<!-- 用于显示上传文件的浏览 样式files是必须的-->
+					<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+					<!-- <div class="form-group col-sm-12">
+						<label  class="col-sm-2 control-label text-right"><span>*</span>形式发票:</label>
+						<div class="col-sm-8">
+							<input  value="添加附件" type="file" placeholder="添加附件" />
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-2 control-label text-right"><span>*</span>招标文件:</label>
+						<div class="col-sm-8">
+							<input  value="添加附件" type="file" placeholder="添加附件" />
+						</div>
+					</div> -->
+				</form>
+				<div class="col-sm-12 text-center" style="margin:20px;margin-left:2%">
+			<form class="guan col-sm-6 text-center">
+				<div class="col-sm-3">
+					已关联的采购合同:
+				</div>
+				<table class="table table-bordered text-center"> 
+						<thead>
+							<tr>
+								<th>合同编号</th>
+								<th>合同名称</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>CG1818991184244	</td>
+								<td>汽车零件合同</td>
+							</tr>
+							<tr>
+								<td>CG1818991184244	</td>
+								<td>钢铁合同</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+		</div>
+		<p class="text-center saveOrCacelBtn">
+			<button type="button" class="saveBtn btn-info btn-sm" id="shenhewuliu_save_btn">审核</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="wuliu_cacle_btn">
+				取消
+			</button>
+		</p>
+		
+	</form>
+</div>
 <!-- 审核 -->
 <div class="layerFormBox" id="shenhe_wuliu_formBoxId"> 
 	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
@@ -431,8 +1028,8 @@ $(function(){
 	var shenhemodel = 'wuliu';
 
 	var colModel = [
-		{label : '合同编号', name : 'number', align: 'center', width: 130, formatter: formatName, searchoptions: {sopt : ['cn']}},
-		{label : '合同名称', name : 'relName', align: 'center', width:80, searchoptions: {sopt : ['cn']}},
+		{label : '协议编号', name : 'number', align: 'center', width: 130, formatter: formatName, searchoptions: {sopt : ['cn']}},
+		{label : '协议名称', name : 'relName', align: 'center', width:80, searchoptions: {sopt : ['cn']}},
 		{label : '签订日期', name : 'createTime', align: 'center', width:70, searchoptions: {sopt : ['cn']}},
 		{label : '代理方 ', name : 'company', align: 'center', width:60, searchoptions: {sopt : ['cn']}},
 		{label : '审核状态', name : 'status', align: 'center',width:60,formatter:formatStatus, searchoptions: {sopt : ['cn']}},
@@ -574,14 +1171,22 @@ $(function(){
 	//左下角编辑按钮
 	function updateLayer(){
 		$('#shenhewuliu_save_btn').hide();
-		flag = 'update';
-		var setting = {
-			gridId : gridId,
-			formBoxId : formBoxId,
-			title : '修改',
-			area : ['98%', '98%']
-		};
-		layerIndex = updateGridData(setting);
+		$('#shenhewuliu_history').hide();
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '编辑',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['98%','98%'],
+				content : $('#wuliu_edit_formBox')
+					// ''
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
 	}
 	
 	//左下角删除按钮
@@ -754,7 +1359,7 @@ function lookInfo(gid,rowId){
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
-		content: $('#'+gid+'_formBox')
+		content: $('#wuliu_chakan_formBox')
 	});
 }
 //格式化状态

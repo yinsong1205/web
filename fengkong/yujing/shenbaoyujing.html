@@ -1,14 +1,14 @@
 <!--申报预警  -->
-<div class="container-fluid" id="shouhuiyujing">
-	<div class="col-sm-12 plr0 height100 gridBox" id="shouhuiyujing_gridBox">
-		<table id="shouhuiyujing_jqGrid"></table>
-		<div id="shouhuiyujing_jqGridPager"></div>
+<div class="container-fluid" id="shenbaoyujing">
+	<div class="col-sm-12 plr0 height100 gridBox" id="shenbaoyujing_gridBox">
+		<table id="shenbaoyujing_jqGrid"></table>
+		<div id="shenbaoyujing_jqGridPager"></div>
 	</div>
 </div>
 
 
 <!-- 新增弹窗 -->
-<div id="shouhuiyujing_formBox" class="layerFormBox">
+<div id="shenbaoyujing_formBox" class="layerFormBox">
 	<form class="form-horizontal layerForm col-xs-12">
 		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
 		<div class="col-xs-12 index">
@@ -325,15 +325,15 @@
 
 	
 $(function(){
-	var dataUrl = 'data/shouhuiyujing.json';
+	var dataUrl = 'data/shenbaoyujing.json';
 	var index = null;
 	var flag = '';
 	var rowNumber = 1000000;
 
 	//表格数据
-	var gridWidth = $('#shouhuiyujing_gridBox').width();
-	var gridHeight = $('#shouhuiyujing_gridBox').height()-118;
-	$("#shouhuiyujing_jqGrid").jqGrid({
+	var gridWidth = $('#shenbaoyujing_gridBox').width();
+	var gridHeight = $('#shenbaoyujing_gridBox').height()-118;
+	$("#shenbaoyujing_jqGrid").jqGrid({
 		url: dataUrl,
 		hidegrid : false, 
 		altRows : true, 
@@ -354,7 +354,7 @@ $(function(){
 		rowNum: 11,
 		rowList:[10,15,20,25],
 		datatype: 'local',
-		pager: "#shouhuiyujing_jqGridPager",
+		pager: "#shenbaoyujing_jqGridPager",
 		rownumbers: true,
 		multiselect: true,
 		rownumWidth: 30,
@@ -362,14 +362,14 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		//loadtext: "Loading...",
 		
-	}).navGrid("#shouhuiyujing_jqGridPager",{ // the buttons to appear on the toolbar of the grid
+	}).navGrid("#shenbaoyujing_jqGridPager",{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
-	}).navSeparatorAdd('#shouhuiyujing_jqGridPager',{
+	}).navSeparatorAdd('#shenbaoyujing_jqGridPager',{
 		sepcontent: '',
 		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#shouhuiyujing_jqGrid').jqGrid('filterToolbar');
+	$('#shenbaoyujing_jqGrid').jqGrid('filterToolbar');
 	
 	fetchGridData();
 	
@@ -385,7 +385,7 @@ $(function(){
 	
 	
 	//弹框取消按钮
-	$('#shouhuiyujing_cacle_btn').on('click',function(){
+	$('#shenbaoyujing_cacle_btn').on('click',function(){
 		layer.close(index);
 	});
 	$('.qx').on('click',function(){
@@ -393,26 +393,26 @@ $(function(){
 	});
 
 	//表头编辑按钮
-	$(document).on('click','#shouhuiyujing_update_btn',function(){
+	$(document).on('click','#shenbaoyujing_update_btn',function(){
 		flag = 'update';
 		var rowIds = getSelectedRow();
 		
 		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
 			
-			var rowData = $("#shouhuiyujing_jqGrid").getRowData(rowIds[0]);
+			var rowData = $("#shenbaoyujing_jqGrid").getRowData(rowIds[0]);
 			
 			//console.log(rowData);
 			
-			$('#shouhuiyujing_name').val(rowData.name),
-		    $('#shouhuiyujing_relName').val(rowData.relName),
-		    $('#shouhuiyujing_company').val(rowData.company),
-		    $('#shouhuiyujing_createTime').val(rowData.createTime)
+			$('#shenbaoyujing_name').val(rowData.name),
+		    $('#shenbaoyujing_relName').val(rowData.relName),
+		    $('#shenbaoyujing_company').val(rowData.company),
+		    $('#shenbaoyujing_createTime').val(rowData.createTime)
 			title = '修改模块';
 			index = layer.open({
 				type: 1,
 				title : title,
 				area: ['60%', '70%'], //宽高
-				content: $('#shouhuiyujing_formBox')
+				content: $('#shenbaoyujing_formBox')
 			});
 		}else{
 			layer.msg('同时只能选择一条记录!');
@@ -424,7 +424,7 @@ $(function(){
 
 		var gridArrayData = [];
 		// show loading message
-		$("#shouhuiyujing_jqGrid")[0].grid.beginReq();
+		$("#shenbaoyujing_jqGrid")[0].grid.beginReq();
 		$.ajax({
 			url: dataUrl,
 			success: function(result) {
@@ -443,13 +443,13 @@ $(function(){
 
 				}
 				// set the new data
-				$("#shouhuiyujing_jqGrid").jqGrid('setGridParam', {
+				$("#shenbaoyujing_jqGrid").jqGrid('setGridParam', {
 					data: gridArrayData
 				});
 				// hide the show message
-				$("#shouhuiyujing_jqGrid")[0].grid.endReq();
+				$("#shenbaoyujing_jqGrid")[0].grid.endReq();
 				// refresh the grid
-				$("#shouhuiyujing_jqGrid").trigger('reloadGrid');
+				$("#shenbaoyujing_jqGrid").trigger('reloadGrid');
 			}
 		});
 	}
@@ -463,7 +463,7 @@ $(function(){
 	};
 	//获取选择的行
 	function getSelectedRow() {
-	    var grid = $("#shouhuiyujing_jqGrid");
+	    var grid = $("#shenbaoyujing_jqGrid");
 	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
 
 	   return rowKeys;
@@ -484,7 +484,7 @@ function lookInfo(gid,rowId){
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
-		content: $('#shouhuiyujing_formBox')
+		content: $('#shenbaoyujing_formBox')
 	});
 }
 

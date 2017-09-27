@@ -4,6 +4,7 @@
 		<table id="caigou_jqGrid"></table>
 		<div id="caigou_jqGridPager"></div>
 	</div>
+	
 </div>
 <style type="text/css"> 
 
@@ -13,6 +14,8 @@
 #caigou_gl_box{display: none;}
 #shenhecaigou_save_btn{display: none;}
 #shenhecaigou_history{display: none;}
+#caigou_chakan_formBox input,#caigou_chakan_formBox select,#caigou_chakan_formBox textarea {border: none;outline: none;}
+.guan{border: 1px solid #000}
 
 </style>
 
@@ -28,48 +31,25 @@
 				<div class="form-group col-sm-4">
 					<label  class="col-sm-6 control-label text-right"><span>*</span>合同名称:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="name"
-							placeholder="合同名称  ">
+						<input type="text" class="form-control input-sm" name="name">
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
 					<label  class="col-sm-6 control-label text-right"><span>*</span>合同编号 :</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control input-sm" name="id"
-							placeholder="合 同 编 号 "  value="59b5e9a8dc254b4cd74a49f2">
+						<input type="text" class="form-control input-sm" name="id"  value="59b5e9a8dc254b4cd74a49f2">
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right"><span>*</span>签订日期:</label>
+					<label  class="col-sm-6 control-label text-right"><span>*</span>签约日期:</label>
 					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" name="qdTime"
-							placeholder="签订日期" onclick="WdatePicker();">
+						<input type="email" class="form-control input-sm" name="qdTime" onclick="WdatePicker();">
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">开始日期 :</label>
+					<label  class="col-sm-6 control-label text-right">生效日期 :</label>
 					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" onClick="WdatePicker()"
-							placeholder="开始日期 " onclick="WdatePicker();">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">截止日期   :</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="截 止 日 期 " onclick="WdatePicker();">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right"><span>*</span>业务类型   :</label>
-					<div class="col-sm-6">
-						<!-- <input type="email" class="form-control input-sm" 
-							placeholder="业务类型   ">-->
-						<select name="" id="" class="form-control input-sm" placeholder="业务类型   "> 
-							<option value="all">外综服务</option>
-							<option value="one">一般贸易</option>
-							<option value="two">承包工程</option>
-						</select>
+						<input type="email" class="form-control input-sm" onClick="WdatePicker()" onclick="WdatePicker();">
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -85,114 +65,20 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">成 交 金 额    :</label>
+					<label  class="col-sm-6 control-label text-right">合 同 金 额    :</label>
 					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" name="money"
-							placeholder="成 交 金 额 ">
+						<input type="email" class="form-control input-sm" name="money">
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right"><span>*</span>目 的 港    :</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="目 的 港    ">
-					</div>
+					<label  class="col-sm-6 control-label text-right"><span>*</span>结汇方式    :</label>
+					<div class="col-xs-6">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">汇付</option>
+						<option value="" >托收</option>
+						<option value="" >信用证</option>
+					</select>
 				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">发货单位:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="发货单位">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">发货单位代码:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="发货单位代码">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right"><span>*</span>出口口岸:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="出口口岸">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">运输方式 :</label>
-					<div class="col-sm-6">
-						<!-- <input type="email" class="form-control input-sm" 
-							placeholder="运输方式 "> -->
-						<select name="" id="" class="form-control input-sm" placeholder="运输方式   "> 
-							<option value="all">海洋运输</option>
-							<option value="one">美元</option>
-							<option value="two">欧元</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">结 汇 方 式:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="结 汇 方 式">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">备       案:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="备       案">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">批准文号:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="批准文号">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">成  交 方 式 :</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="成  交 方 式 ">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">经营单位:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="经营单位">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">装 运  期 :</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="装 运  期 ">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">装   运   港:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="装   运   港">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">许 可 证:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="许 可 证">
-					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<label  class="col-sm-6 control-label text-right">件        数:</label>
-					<div class="col-sm-6">
-						<input type="email" class="form-control input-sm" 
-							placeholder="件        数">
-					</div>
 				</div>
 			</form>
 			<p id="otherInfo" class="text-center"><button class="btn btn-default btn-sm "><i class="fa fa-angle-double-down"></i>&nbsp;更多</button></p>
@@ -206,61 +92,77 @@
 			<form class="form-horizontal zzxx">
 				<div class="col-sm-4 col-sm-offset-1 links">
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right"><span>*</span>外商(甲方):</label>
+						<label  class="col-sm-5 control-label text-right"><span>*</span>买方:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" name="caigouName"
-								placeholder="外商(甲方) ">
+							<input type="email" class="form-control input-sm" name="caigouName">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right"><span>*</span>签  订  人:</label>
+						<label  class="col-sm-5 control-label text-right"><span>*</span>买方签  订  人:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="签  订  人 ">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right">联系电话 :</label>
+						<label  class="col-sm-5 control-label text-right">买方联系电话 :</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="联系电话  ">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right">地         址:</label>
+						<label  class="col-sm-5 control-label text-right">买方地         址:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="地         址 ">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 col-sm-offset-1 links">
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right"><span>*</span>入驻企业:</label>
+						<label  class="col-sm-5 control-label text-right"><span>*</span>卖方:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" name="gonghuoName"
-								placeholder="入驻企业">
+							<input type="email" class="form-control input-sm" name="gonghuoName">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right"><span>*</span>签  订  人:</label>
+						<label  class="col-sm-5 control-label text-right"><span>*</span>卖方签订人:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="签  订  人 ">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right">联系电话 :</label>
+						<label  class="col-sm-5 control-label text-right">卖方联系电话 :</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="联系电话  ">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 					<div class="form-group col-sm-12">
-						<label  class="col-sm-5 control-label text-right">地         址:</label>
+						<label  class="col-sm-5 control-label text-right">卖方地         址:</label>
 						<div class="col-sm-7">
-							<input type="email" class="form-control input-sm" 
-								placeholder="地         址 ">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
 						</div>
 					</div>
 				</div>
@@ -272,11 +174,11 @@
 		<!-- 备注 -->
 		<div class="row kuangLine yincang">
 			<div class="col-sm-12">
-				<p class="titCon">备注信息</p>
+				<p class="titCon">备注</p>
 			</div>
 			<form class="form-horizontal zzxx">
 				<div class="form-group col-sm-12 beizhu">
-					<label  class="col-sm-2 control-label text-right">地         址:</label>
+					<label  class="col-sm-2 control-label text-right"></label>
 					<div class="col-sm-8">
 						<textarea class="form-control" rows="3" placeholder="备注信息"></textarea>
 					</div>
@@ -292,11 +194,21 @@
 			</div>
 			<form class="form-horizontal zzxx" id="caigou_fileupload" method="POST" enctype="multipart/form-data">
 				<div class="form-group col-sm-12">
-					<label class="col-sm-2 control-label text-right"><span>*</span>附件文件:</label>
+					<label class="col-sm-2 control-label text-right"><span>*</span>合同源文件:</label>
 					<div class="col-sm-8">
 						<span class="btn btn-default btn-sm fileinput-button">
 		                    <i class="glyphicon glyphicon-plus"></i>
-		                    <span>添加附件</span>
+		                    <span>添加文件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加文件</span>
 		                    <input type="file" name="files[]" multiple>
 		                </span>
 					</div>
@@ -319,8 +231,7 @@
 		</div>
 		<!-- 附件 -->
 		
-		<p class="text-center saveOrCacelBtn"> 
-		    <button type="button" class="btn btn-info btn-sm" id="shenhecaigou_save_btn">审核</button>	
+		<p class="text-center saveOrCacelBtn">
 			<button type="button" class="btn btn-info btn-sm" id="caigou_save_btn">保存</button>		
 			<button type="button" class="btn btn-info btn-sm" id="caigou_resetBtn">重置</button>		
 			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
@@ -328,7 +239,467 @@
 		
 	</div>
 </div>
-
+<!-- 编辑弹窗 -->
+<div id="caigou_edit_formBox" class="layerFormBox" style="padding:0;">
+	<input type="hidden" name="list"  />
+	<div class="container-fluid">
+		<div class="row kuangLine otherBox">
+			<div class="col-sm-12">
+				<p class="titCon">基本信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>合同名称:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="name" value="HUFF采购合同">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>合同编号 :</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="id" value="CG1818991198833">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>签约日期:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="qdTime" onclick="WdatePicker();" value="2017-07-08">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">生效日期 :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" onClick="WdatePicker()" onclick="WdatePicker();" value="2017-07-08">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">币        制    :</label>
+					<div class="col-sm-6">
+						<!-- <input type="email" class="form-control input-sm" 
+							placeholder="币        制    "> -->
+						<select name="" id="" class="form-control input-sm" placeholder="币        制"> 
+							<option value="all">人民币</option>
+							<option value="one">美元</option>
+							<option value="two">欧元</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">合 同 金 额    :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="money" value="300$">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right"><span>*</span>结汇方式    :</label>
+					<div class="col-xs-6">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">汇付</option>
+						<option value="" >托收</option>
+						<option value="" >信用证</option>
+					</select>
+				</div>
+				</div>
+			</form>
+			<p id="otherInfo" class="text-center"><button class="btn btn-default btn-sm "><i class="fa fa-angle-double-down"></i>&nbsp;更多</button></p>
+		</div>
+		
+		<!-- 联系人信息 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">联系人信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="caigouName" value="进出口贸易公司">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方签  订  人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="gonghuoName" value="广东GYNKO有限公司">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方签订人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+		<!-- 单位信息 -->
+		
+		<!-- 备注 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">备注</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-12 beizhu">
+					<label  class="col-sm-2 control-label text-right"></label>
+					<div class="col-sm-8">
+						<textarea class="form-control" rows="3" placeholder="备注信息"></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 备注 -->
+		
+		<!-- 附件 -->
+		<div class="row yincang">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="caigou_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span>*</span>合同源文件:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加文件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+		                <span>合同源文件.zip</span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加文件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+		                <span>其他.zip</span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+				<!-- <div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>形式发票:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>招标文件:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div> -->
+			</form>
+		</div>
+		<!-- 附件 -->
+		
+		<p class="text-center saveOrCacelBtn">
+			<button type="button" class="btn btn-info btn-sm" id="caigou_save_btn">保存</button>		
+			<button type="button" class="btn btn-info btn-sm" id="caigou_resetBtn">重置</button>		
+			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+		</p>
+		
+	</div>
+</div>
+<!-- 查看弹窗 -->
+<div id="caigou_chakan_formBox" class="layerFormBox" style="padding:0;">
+	<input type="hidden" name="list"  />
+	<div class="container-fluid">
+		<div class="row kuangLine otherBox">
+			<div class="col-sm-12">
+				<p class="titCon">基本信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">合同名称:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="name" value="HUFF采购合同">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">合同编号 :</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="id" value="CG1818991198833">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">签约日期:</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="qdTime" onclick="WdatePicker();" value="2017-07-08">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">生效日期 :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" onClick="WdatePicker()" onclick="WdatePicker();" value="2017-07-08">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">币        制    :</label>
+					<div class="col-sm-6">
+						<!-- <input type="email" class="form-control input-sm" 
+							placeholder="币        制    "> -->
+						<select name="" id="" class="form-control input-sm" placeholder="币        制"> 
+							<option value="all">人民币</option>
+							<option value="one">美元</option>
+							<option value="two">欧元</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">合 同 金 额    :</label>
+					<div class="col-sm-6">
+						<input type="email" class="form-control input-sm" name="money" value="300$">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label  class="col-sm-6 control-label text-right">结汇方式    :</label>
+					<div class="col-xs-6">
+					<select id="" class="form-control input-sm">
+						<option value="" selected="true">汇付</option>
+						<option value="" >托收</option>
+						<option value="" >信用证</option>
+					</select>
+				</div>
+				</div>
+			</form>
+			<p id="otherInfo" class="text-center"><button class="btn btn-default btn-sm "><i class="fa fa-angle-double-down"></i>&nbsp;更多</button></p>
+		</div>
+		
+		<!-- 联系人信息 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">联系人信息</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="caigouName" value="进出口贸易公司">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方签  订  人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">买方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1 links">
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm" name="gonghuoName" value="广东GYNKO有限公司">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方签订人:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方联系电话 :</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方地         址:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方开户行:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+					<div class="form-group col-sm-12">
+						<label  class="col-sm-5 control-label text-right">卖方账号:</label>
+						<div class="col-sm-7">
+							<input type="email" class="form-control input-sm">
+						</div>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+		<!-- 单位信息 -->
+		
+		<!-- 备注 -->
+		<div class="row kuangLine yincang">
+			<div class="col-sm-12">
+				<p class="titCon">备注</p>
+			</div>
+			<form class="form-horizontal zzxx">
+				<div class="form-group col-sm-12 beizhu">
+					<label  class="col-sm-2 control-label text-right"></label>
+					<div class="col-sm-8">
+						<textarea class="form-control" rows="3" placeholder="备注信息"></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 备注 -->
+		
+		<!-- 附件 -->
+		<div class="row yincang">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="caigou_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">合同源文件:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <span>添加文件.zip</span>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <span>其他.zip</span>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+				<!-- <div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>形式发票:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label  class="col-sm-2 control-label text-right"><span>*</span>招标文件:</label>
+					<div class="col-sm-8">
+						<input  value="添加附件" type="file" placeholder="添加附件" />
+					</div>
+				</div> -->
+			</form>
+		</div>
+		<!-- 附件 -->
+		<div class="col-sm-12 text-center" style="margin:20px;margin-left:2%">
+			<form class="guan col-sm-6 text-center">
+				<div class="col-sm-3">
+					已关联的出口合同:
+				</div>
+				<table class="table table-bordered text-center"> 
+						<thead>
+							<tr>
+								<th>合同编号</th>
+								<th>合同名称</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>CK1818991184244	</td>
+								<td>汽车零件合同</td>
+							</tr>
+							<tr>
+								<td>CK1818991184244	</td>
+								<td>钢铁合同</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+		</div>
+		<p class="text-center saveOrCacelBtn"> 
+		    <button type="button" class="btn btn-info btn-sm" id="shenhecaigou_save_btn">审核</button>
+			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+		</p>
+		
+	</div>
+</div>
 <!-- 物资清单 -->
 <div class="layerFormBox" id="caigou_wuzi" style="padding:0; width:100%; height:100%;">
 	<table id="caigou_wz_jqGrid"></table>
@@ -517,9 +888,9 @@
 		var gridHeight = $('#'+gridBoxId).height()-132;
 		var shenhemodel = 'caigou';
 		var colModel = [
-				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true, searchoptions: {sopt : ['cn']}},
+				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true, searchoptions: {sopt : ['cn']} ,formatter: formatName},
 				{label : '合同名称', name : 'name', align: 'center', width:100, 
-					searchoptions: {sopt : ['cn']} ,formatter: formatName},
+					searchoptions: {sopt : ['cn']}},
 				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, 
 					searchoptions: {sopt : ['cn']},
 					searchoptions : {
@@ -699,17 +1070,24 @@
 			});
 		}
 		
-		//左下角编辑按钮
+		//左下角编辑按钮caigou_edit_formBox
 		function updateLayer(){
 			$('#shenhecaigou_save_btn').hide();
-			flag = 'update';
-			var setting = {
-				gridId : gridId,
-				formBoxId : formBoxId,
-				title : '编辑',
-				area : ['98%', '98%']
-			};
-			layerIndex = updateGridData(setting);
+			var rowIds = getSelectedRow(gridId);
+			if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+				var rowData = $('#'+gridId).getRowData(rowIds[0]);
+				commIndex = layer.open({
+					type : 1,
+					title : '编辑',
+					skin: 'layui-layer-rim',
+					shadeClose: true,
+					area : ['98%','98%'],
+					content : $('#caigou_edit_formBox')
+					// ''
+				});
+			}else{
+				layer.msg('请选择一条记录!',{time:layerCloseTime});
+			}
 		}
 		
 		//左下角删除按钮
@@ -1013,7 +1391,7 @@ function lookInfo(gid,rowId){
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
-		content: $('#'+gid+'_formBox')
+		content: $('#caigou_chakan_formBox')
 	});
 }
 //格式化状态

@@ -8,6 +8,7 @@
 	#shenhe_history {display: none;}
 	#zengqingdan_jqGrid_formBox span{color: red;}
 	#chukou_chakan_formBox input,#chukou_chakan_formBox select,#chukou_chakan_formBox textarea {border: none;outline: none;}
+	.guan{border: 1px solid #000}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
@@ -1461,6 +1462,31 @@
 			<!-- 用于显示上传文件的浏览 样式files是必须的-->
 			<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
 		</form>
+		<div class="col-sm-12 text-center" style="margin:20px;margin-left:2%">
+			<form class="guan col-sm-6 text-center">
+				<div class="col-sm-3">
+					已关联的采购合同:
+				</div>
+				<table class="table table-bordered text-center"> 
+						<thead>
+							<tr>
+								<th>合同编号</th>
+								<th>合同名称</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>CG1818991184244	</td>
+								<td>汽车零件合同</td>
+							</tr>
+							<tr>
+								<td>CG1818991184244	</td>
+								<td>钢铁合同</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+		</div>
 		<p class="text-center col-xs-12" id="ctrl">
 			<button type="button" class="saveBtn btn btn-info btn-sm" id="shenhe_save_btn">
 				审核
