@@ -1,0 +1,731 @@
+<!--备案管理  -->
+<style type="text/css">
+	#import_formBox .control-label{
+		vertical-align:middle !important; 
+		margin-top: 5px;
+	}
+	#shenheruzhu_history{
+		display: none;
+	}
+</style>
+<div class="container-fluid">
+	<div class="col-sm-12 plr0 height100 gridBox" id="ruzhu_gridBox">
+		<table id="ruzhu_jqGrid"></table>
+		<div id="ruzhu_jqGridPager"></div>
+	</div>
+</div>
+
+<!-- 新增弹窗 -->
+<div id="ruzhu_formBox" class="layerFormBox zzxx">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>供货商名称:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="company" class="form-control input-sm"  placeholder="供货商名称">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业海关代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="seanumber" class="form-control input-sm"  placeholder="企业海关代码">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>纳税人识别号:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="number" class="form-control input-sm"  placeholder="纳税人识别号">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业类型:
+			</label>
+			<div class="col-xs-7">
+				<select name="type" class="form-control input-sm">
+					<option value="生产企业" selected="true">生产企业</option>
+					<option value="外贸企业" >外贸企业</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>社会信用代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="社会信用代码">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				成立日期:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="成立日期" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				等级机关:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="source" class="form-control input-sm" placeholder="等级机关">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				法人代表:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" placeholder="法人代表">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm">
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				注册资本:
+			</label>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-sm"  placeholder="注册资本">
+			</div>
+			<div class="col-xs-3">
+				<select id="ruzhu_company" name="company" class="form-control input-sm">
+					<option value="美元" selected="true">美元</option>
+					<option value="欧币" >欧元</option>
+					<option value="人民币" >人民币</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				邮编:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="邮编">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				截止期限:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="截止期限" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				联系人:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="联系人">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				固定电话:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="固定电话">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				手机:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm"  placeholder="手机号">
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				注册地址:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="注册地址"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="开户行"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="账户"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				经营范围:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="经营范围"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				备注:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"  placeholder="备注"></textarea>
+			</div>		
+		</div>
+		<!-- 新增导入合同 -->
+		<div id="ruzhu_import_formBox">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="ruzhu_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">营业执照:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">税务等级证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">组织代码证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+		</div>
+		
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="shenheruzhu_save_btn">审核</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 导入合同 -->
+		<div id="import_formBox" class="layerFormBox"> 
+			<form>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+							<i class="glyphicon glyphicon-plus"></i>
+							<span>添加合同附件</span>
+							<input type="file" name="files[]" multiple='multiple'>
+						</span>
+					</div>
+				</div>
+				<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+			<p class="text-center saveOrCacelBtn"> 
+				<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+				<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+			</p>
+		</div>
+<!-- 报表统计 -->
+<div class="layerFormBox" id="ruzhu_tongji_formBox"> 
+	<div class="container-fluid tongji">
+		<div class="row">
+			<form class="form-inline">
+				<div class="form-group">
+					<select name="ywlx" id="" class="form-control input-sm">
+						<option value="" selected="selected">统计方式</option>
+						<option value="">年统计</option>
+						<option value="">月统计</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				</div>
+				<i class="fa fa-minus"></i>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				</div>
+				<button type="button" class="btn btn-info btn-sm">查询</button>
+				<button type="reset" class="btn btn-info btn-sm">重置</button>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered"> 
+					<thead>
+						<tr>
+							<th>日期</th>
+							<th>企业名称</th>
+							<th>海关代码</th>
+							<th>纳税人识别号</th>
+							<th>企业类型</th>
+							<th>信用等级</th>
+							<th>入驻日期</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2015-01</td>
+							<td>顺丰物流运输</td>
+							<td>110121390</td>
+							<td>3190203092039</td>
+							<td>贸易</td>
+							<td>A</td>
+							<td>2015-01-22</td>
+						</tr>
+						<tr>
+							<td>上海全一物流</td>
+							<td>118429309</td>
+							<td>3190203092039</td>
+							<td>贸易</td>
+							<td>B</td>
+							<td>2015-01-22</td>
+						</tr>
+						<tr>
+							<td>2015-03</td>
+							<td>北京爱奇艺影视集团</td>
+							<td>110121390</td>
+							<td>2129093093010</td>
+							<td>贸易</td>
+							<td>C</td>
+							<td>2015-01-31</td>
+						</tr>
+						<tr>
+							<td>2015-04</td>
+							<td>北京京东方国际贸易</td>
+							<td>128989199</td>
+							<td>2323909020200</td>
+							<td>生产</td>
+							<td>B</td>
+							<td>2015-02-10</td>
+						</tr>
+						<tr>
+							<td>合计</td>
+							<td colspan="7" class="text-right">总记录数：4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	
+$(function(){
+	var dataUrl = 'data/ruzhu.json';
+	var index = null;
+	var flag = '';
+	var rowNumber = 1000000;
+	var gridId = 'ruzhu_jqGrid';
+	var gridPager = 'ruzhu_jqGridPager';
+	var formBoxId = 'ruzhu_formBox';
+	var dataSaveBtn = 'ruzhu_save_btn';
+	var layerCloseClassName = 'qx';
+	//表格数据
+	var gridWidth = $('#ruzhu_gridBox').width();
+	var gridHeight = $('#ruzhu_gridBox').height()-122;
+	$("#ruzhu_jqGrid").jqGrid({
+		
+		hidegrid : false, 
+		altRows : true, 
+		colModel: [{label : '供货商名称', name : 'company', align: 'center', width: 160 ,formatter: formatName},
+			{label : '纳税人识别号', name : 'number', align: 'center', width:140},
+			{label : '企业类型', name : 'type', align: 'center', width:80},
+			{label : '纳税信用等级', name : 'leveler', align: 'center', width:80},
+			{label : '内部评估等级', name : 'level', align: 'center', width:80},
+			{label : '税局信用等级', name : 'leveler', align: 'center', width:80},
+			{label : '审核状态', name : 'active', align: 'center', width:120, formatter:formatStatus}],
+		viewrecords: true,
+		loadonce:true,
+		width: gridWidth,
+		//width: 'auto',
+		//width : '100%',
+		height: gridHeight,
+		//height : 'auto',
+		rowNum: 11,
+		rowList:[10,15,20,25],
+		datatype: 'local',
+		pager: '#'+gridPager,
+		multiselect: true,
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+	    //emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '新增',
+		caption: '',
+		title : '新增',
+		buttonicon : 'glyphicon-plus',
+		onClickButton : function(){addLayer();}, //调用添加的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '修改',
+		caption: '',
+		title : '修改',
+		buttonicon : 'glyphicon-edit',
+		onClickButton : function(){updateLayer();}, //调用更新的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '审核',
+		caption: '',
+		title : '审核',
+		buttonicon : 'fa fa-gavel',
+		onClickButton : function(){shenhe();}, //调用审核的函数
+		position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '导入合同',
+		caption: '',
+		title : '导入',
+		buttonicon : 'fa fa-upload',
+		onClickButton : function(){importLayer();}, //调用导入合同函数
+		position : 'last'
+			
+	// }).navButtonAdd('#'+gridPager,{
+	// 	//caption: '统计',
+	// 	caption: '',
+	// 	title : '报表统计',
+	// 	buttonicon : 'fa fa-bar-chart-o',
+	// 	onClickButton : function(){ruzhutongji();}, //调用报表统计的函数
+	// 	position : 'last'
+		
+	}).navButtonAdd('#'+gridPager,{
+		//caption: '删除',
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		//onClickButton : deleteLayer(gridId), //调用删除的函数
+		onClickButton : function(){ deleteLayer(gridId); },
+		position : 'last'
+		
+	}).navSeparatorAdd('#'+gridPager,{
+		sepcontent: '',
+		sepclass : "ui-separator"
+	});
+	//搜索框按钮,开启搜索框需要重新调整高度
+	$('#ruzhu_jqGrid').jqGrid('filterToolbar');
+	
+	fetchGridData();
+	
+	//导入合同
+	function importLayer(){
+		commIndex = layer.open({
+			type: 1,
+			title : "导入企业",
+			area: ['80%', '60%'], //宽高
+			content: $('#import_formBox')
+		});
+	}
+	//格式化标题
+	function formatName(cellValue, options, rowObject) {
+		var len = cellValue.length;
+		if(len>50){
+			cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+	};
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
+	
+	//弹框保存按钮
+	$(document).on('click','#'+dataSaveBtn,function(){
+		if(flag == 'add'){
+				var data = getFormData(formBoxId);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				if(result){
+					layer.msg('添加成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					
+					jQuery('#'+gridId).setSelection(currentNumber,true);
+					
+				}else{
+					layer.msg('添加失败!',{time:layerCloseTime});
+				}
+			}else if(flag == 'update'){
+				
+				//删除
+				var rowIds = getSelectedRow(gridId);
+				jQuery('#'+gridId).delRowData(rowIds[0]);
+				//添加
+				var data = getFormData(formBoxId);
+				console.log(data);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				
+				if(result){
+					layer.msg('更新成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					jQuery('#'+gridId).setSelection(currentNumber,true);
+				}else{
+					layer.msg('更新失败!',{time:layerCloseTime});
+				}
+			}
+	});
+	
+	//左下角新增按钮
+	function addLayer(){
+		$('#shenheruzhu_save_btn').hide();
+		flag = 'add';
+		$('#'+formBoxId+' .form-control:not(select)').val('');
+		layerIndex = layer.open({
+			type: 1,
+			title : '添加模块',
+			area: ['98%', '98%'], //宽高
+			content: $('#'+formBoxId)
+		});
+	}
+	
+	//左下角编辑按钮
+	function updateLayer(){
+		$('#shenheruzhu_save_btn').hide();
+		flag = 'update';
+		var setting = {
+			gridId : gridId,
+			formBoxId : formBoxId,
+			title : '修改模块',
+			area : ['98%', '98%']
+		};
+		layerIndex = updateGridData(setting);
+	}
+	//审核
+	function shenhe(){
+		$('#shenheruzhu_history').hide();
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 2,
+				title : '审核',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['70%','70%'],
+				content : 'ruzhu/operation/examine.html'
+				//content : $('#shenhe_ruzhu_formBoxId')
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+		
+	}
+	//查看审核
+	$(document).on('click','#shenheruzhu_save_btn',function(){
+		$('#shenheruzhu_history').show();
+			commIndex = layer.open({
+				type : 1,
+				title : '审核窗口',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['70%','70%'],
+				content : 'ruzhu/operation/examine.html'
+				//content : $('#shenhe_ruzhu_formBoxId')
+		})
+	});
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		deleteGridData(gridId);
+	}
+	//统计
+	// function ruzhutongji(){
+	// 	commIndex = layer.open({
+	// 		type : 1,
+	// 		title : '报表统计',
+	// 		skin: 'layui-layer-rim',
+	// 		shadeClose: true,
+	// 		area : ['90%','90%'],
+	// 		content : $('#ruzhu_tongji_formBox')
+	// 	});
+	// }
+	
+	/*上传文件的表单*/
+		 $("#ruzhu_fileupload").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+		/*上传文件的表单*/
+		 $("#ruzhu_import_formBox").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+		/*上传文件的表单*/
+		 $("#import_formBox").fileupload({
+			maxNumberOfFiles:20,//上传文件的最大数量
+			maxFileSize : 3000000, //最大3M
+			minFileSize : 5000,//最小5K
+			acceptFileTypes: /(\.|\/)(docx?|xlsx?|pdf|pptx?|gif|jpe?g|png)$/i,//接受的文件类型
+			type : 'post',//客户端的请求方式
+			dataType : 'json',//服务器响应的数据类型
+	        url: 'server/php/',//请求的地址
+	       	messages: {//错误信息的提示
+               maxNumberOfFiles: '最多上传20张图片',
+               acceptFileTypes: '文件类型不允许',
+               maxFileSize: '文件不能大于3M',
+               minFileSize: '文件不能小于5K'
+	       }
+		});
+	//获取json数据
+	function fetchGridData() {
+
+		var gridArrayData = [];
+		// show loading message
+		$("#ruzhu_jqGrid")[0].grid.beginReq();
+		$.ajax({
+			url: dataUrl,
+			success: function(result) {
+				for (var i = 0; i < result.items.length; i++) {
+					var item = result.items[i];
+					
+					gridArrayData.push({
+						company: item.company,
+						seanumber: item.seanumber,
+						number: item.number,
+						type: item.type,
+						source: item.source,
+						level: item.level,
+						leveler: item.leveler,
+						active: item.active
+					});
+
+				}
+				// set the new data
+				$("#ruzhu_jqGrid").jqGrid('setGridParam', {
+					data: gridArrayData
+				});
+				// hide the show message
+				$("#ruzhu_jqGrid")[0].grid.endReq();
+				// refresh the grid
+				$("#ruzhu_jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	//格式化标题
+	function formatTitle(cellValue, options, rowObject) {
+		return cellValue.substring(0, 50) + "...";
+	};
+	//格式化链接
+	function formatLink(cellValue, options, rowObject) {
+		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
+	};
+	//获取选择的行
+	function getSelectedRow() {
+	    var grid = $("#ruzhu_jqGrid");
+	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
+
+	   return rowKeys;
+	}
+	
+	
+	changeSearch(); //修改工具条
+	
+});
+function lookInfo(gid,rowId){
+	$('#shenhecaigou_save_btn').show();
+	var data = $('#'+gid).getRowData(rowId);
+	data.name = $(data.name).text();
+	data.relName = $(data.relName).text();
+	setFormData(gid+'_formBox',data);
+	title = '查看信息';
+	commIndex = layer.open({
+		type: 1,
+		title : title,
+		area: ['98%', '98%'], //宽高
+		content: $('#ruzhu_formBox')
+	});
+}
+
+	
+</script>

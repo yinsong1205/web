@@ -10,30 +10,35 @@
 	<script type="text/javascript" src="../static/plugins/jquery-2.1.1/jquery-2.1.1.js"></script>
 	<script type="text/javascript" src="../static/plugins/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	<script src="../static/plugins/jQuery-slimScroll-1.3.8/jquery.slimscroll.js"></script>
+	
+	<link rel="stylesheet" href="../static/plugins/layer-3.0.3/skin/default/layer.css"/>
+	<script type="text/javascript" src="../static/plugins/layer-3.0.3/layer.js"></script>
+	
 	<style type="text/css">
 		body { background:#ccc; }
 		#abc p { height:50px; background:#fff; }
-	</style>
+	</style> 
 	<script> 
 		$(function(){
-			
+			$(document).on('click','#add',function(){
+				
+				layer.open({
+					type :2,
+					title : false,
+					 closeBtn: 0, //不显示关闭按钮
+					area : ['50%','50%'],
+					offset : 'rb',
+					anim: 2,
+					content : 'a/add.html',
+					time : 1500
+				});
+			});
 		});
 	</script>
 </head>
 <body>
 	
-	<div id="abc">
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>1</p>
-		<p>2</p>
-	</div>
+	<button id="add" class="btn btn-default">add</button>
 	
 </body>
 </html>

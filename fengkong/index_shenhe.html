@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>外贸综合服务企业出口退税风险管控信息系统</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="static/plugins/bootstrap-3.3.7/css/bootstrap.min.css" />
+<script type="text/javascript" src="static/plugins/jquery-2.1.1/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="static/plugins/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="static/plugins/font-awesome-4.7.0/css/font-awesome.css"/>
+
+<link rel="stylesheet" href="static/plugins/jquery-zTree-3.5.23/zTreeStyle.css"/>
+<script type="text/javascript" src="static/plugins/jquery-zTree-3.5.23/js/jquery.ztree.all.js"></script>
+
+<link rel="stylesheet" href="static/plugins/jqGrid_JS_5.2.1/css/ui.jqgrid-bootstrap.css"/>
+<script type="text/javascript" src="static/plugins/jqGrid_JS_5.2.1/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="static/plugins/jqGrid_JS_5.2.1/js/jquery.jqGrid.min.js"></script>
+
+<link rel="stylesheet" href="static/plugins/layer-3.0.3/skin/default/layer.css"/>
+<script type="text/javascript" src="static/plugins/layer-3.0.3/layer.js"></script>
+
+<script type="text/javascript" src="static/plugins/Highcharts-5.0.14/highcharts.js"></script>
+<script type="text/javascript" src="static/plugins/Highcharts-5.0.14/highcharts-3d.js"></script>
+<script type="text/javascript" src="static/plugins/Highcharts-5.0.14/highcharts-more.js"></script>
+<script type="text/javascript" src="static/plugins/Highcharts-5.0.14/modules/solid-gauge.js"></script>
+<script type="text/javascript" src="static/plugins/Highcharts-5.0.14/modules/exporting.js"></script>
+
+<script type="text/javascript" src="static/plugins/My97DatePicker-4.8/WdatePicker.js"></script>
+
+<link rel="stylesheet" href="static/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload.css" />
+<link rel="stylesheet" href="static/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui.css"/>
+
+<script type="text/javascript" src="static/plugins/node-uuid-1.4.8/uuid.min.js"></script>
+
+<script type="text/javascript" src="static/js/comm.js"></script>
+<script type="text/javascript" src="static/js/utils.js"></script>
+<link rel="stylesheet" href="static/css/style.css" />
+
+</head>
+<body>
+	<div id="fkBox">
+		<!-- 头部信息 -->
+		<div id="fkHeader"></div>
+		<!-- 左侧菜单 -->
+		<div id="fkLeft"></div>
+		<!-- 右侧功能 -->
+		<div id="fkRight">
+			<!-- 右侧切换 -->
+			<div id="fkTabs">
+				<!-- <ul class="list-inline" style="width:1341px;height:56px;overflow-x:scroll;overflow-y: hidden;  -->
+				<ul class="list-inline">
+					<li class="active">
+						<a href="javascript:;" data-href="include/main.html">首页</a>
+						<!-- <a href="javascript:;" data-href="system/module.html">模块管理</a> -->
+					</li>
+				</ul>
+			</div>
+			<!-- 主体内容 -->
+			<div id="fkMain">
+				<div id="main">
+					<div class="con active">首页</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部信息 -->
+		<!-- <div id="fkFooter"></div> -->
+	</div>
+	<style type="text/css">
+		.l {
+			font-size: 14px;
+		}
+	</style>
+<!-- 文件上传 -->
+<!-- 可用的模板来显示文件上传 id是必须不可修改 如果不是图片类型的文件显示默认的文件图标-->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+	<li class="col-md-2 template-upload fade" style="padding:10px">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img src="../images/word.png"/>
+				{% } %}
+				{% if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="static/img/xls.png"/>
+				{% } %}
+				{% if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="static/img/pdf.png"/>
+				{% } %}
+				{% if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="static/img/ppt.png"/>
+				{% } %}
+			</span>
+            <div style="margin-bottom:10px;margin-top:8px;" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>	
+		</div>
+		
+		{% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-info btn-sm start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>上传</span>
+                </button>
+        {% } %}
+        {% if (!i) { %}
+             <button class="btn btn-sm btn-warning cancel">
+                 <i class="glyphicon glyphicon-ban-circle"></i>
+                 <span>删除</span>
+             </button>
+        {% } %}		
+	</li>	
+{% } %}
+</script>
+<!-- 模板来显示文件可供下载 -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <li class="col-md-2 template-download fade" style="padding:10px;margin-bottom:10px; margin-left:0">
+		<div style="margin-bottom:15px;">
+			<span class="preview" style="display:block;height:122px;overflow:hidden;"  title="{%=file.name%}" >
+				{% if(file.name.indexOf('doc') != -1) { %}
+					<img width="150" height="150" src="../images/word.png"/>
+				{% }else if(file.name.indexOf('xls') != -1) { %}
+					<img width="150" height="150" src="static/img/xls.png"/>
+				{% }else if(file.name.indexOf('pdf') != -1) { %}
+					<img width="150" height="150" src="static/img/pdf.png"/>
+				{% }else if(file.name.indexOf('ppt') != -1) { %}
+					<img width="150" height="150" src="static/img/ppt.png"/>
+				{% }else { %}
+					<img width="150" height="150" src="{%=file.thumbnailUrl%}">
+				{% } %}
+			</span>
+			<p>{%=(file.name).substring(0,8)%}&bull;&bull;&bull;</p>
+			<p class="errorMsgPosition"><strong class="error text-danger"></strong></p>				
+		</div>
+		
+		<a class="btn btn-info btn-sm " href="{%=file.url%}" download="{%=file.url%}">
+             <i class="glyphicon glyphicon-download"></i>
+             <span>下载</span>
+		</a>
+		{% if (file.deleteUrl) { %}
+            <button class="btn btn-danger btn-sm delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>删除</span>
+            </button>
+            
+        {% } else { %}
+            <button class="btn btn-warning  btn-sm  cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>删除</span>
+            </button>
+        {% } %}
+	</li>
+{% } %}
+</script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/canvas-to-blob.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload-ui.js"></script>
+<!-- The main application script -->
+<!-- <script src="static/plugins/jQuery-File-Upload-9.18.0/js/main.js"></script> -->
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="static/plugins/jQuery-File-Upload-9.18.0/js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+<!-- 文件上传 -->
+</body>
+</html>
