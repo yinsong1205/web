@@ -28,7 +28,7 @@
 		</div> -->
 		<div class="form-group col-xs-4">
 			<label for="inputEmail3" class="col-xs-4 control-label">
-				<span class="necessary">*</span>任务编号:
+				任务编号:
 			</label>
 			<div class="col-xs-8">
 				<input type="text" readonly="readonly" value="RW201709202105" name="id" class="form-control input-sm"  placeholder="任务编号">
@@ -37,7 +37,7 @@
 
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口国别:
+				出口国别:
 			</label>
 			<div class="col-xs-8">
 				<select  name="guobie" class="form-control input-sm">
@@ -54,7 +54,6 @@
 			<div class="col-xs-8">
 				<select  name="type" class="form-control input-sm">
 					<option value="一般贸易" selected="true">一般贸易</option>
-					<option value="外宗服" >外宗服</option>
 					<option value="承包工程" >承包工程</option>
 					<option value="其他" >其他</option>
 				</select>
@@ -62,7 +61,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口口岸:
+				出口口岸:
 			</label>
 			<div class="col-xs-8">
 				<select  name="kouan" class="form-control input-sm">
@@ -78,9 +77,8 @@
 			</label>
 			<div class="col-xs-8">
 				<select  name="yunshufangshi" class="form-control input-sm">
-					<option value="北京机场">路运</option>
-					<option value="北京机场">空运</option>
-					<option value="天津新港" selected="true">水运</option>
+					<option value="航空运输">航空运输</option>
+					<option value="水路运输" selected="true">水路运输</option>
 					
 				</select>
 			</div>
@@ -95,28 +93,18 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建人:
+				操作人:
 			</label>
 			<div class="col-xs-8">
-				<input type="text"  name="createName"  class="form-control input-sm" readonly="readonly" value="张三" placeholder="创建人">
+				<input type="text"  name="createName"  class="form-control input-sm" readonly="readonly" value="张三" placeholder="操作人">
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建时间:
+				操作时间:
 			</label>
 			<div class="col-xs-8">
 				<input type="text"  name="createTime" readonly="readonly" value="2017-8-7"  class="form-control input-sm"  placeholder="出口日期">
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-xs-12">
-				<label class="col-xs-1 control-label">
-					说明:
-				</label>
-				<div class="col-xs-8">
-					<textarea class="form-control input-sm" rows="3"  placeholder="说明"></textarea>
-				</div>
 			</div>
 		</div>
 		
@@ -138,7 +126,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>所属单位:
+				所属单位:
 			</label>
 			<div class="col-xs-8">
 				<select id="renwucompany" name="company" class="form-control input-sm">
@@ -150,7 +138,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>用户状态:
+				用户状态:
 			</label>
 			<div class="col-xs-8">
 				<select id="renwustatus" name="status" class="form-control input-sm">
@@ -161,7 +149,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>权限级别:
+				权限级别:
 			</label>
 			<div class="col-xs-8">
 				
@@ -174,7 +162,7 @@
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>角色:
+				角色:
 			</label>
 			<div class="col-xs-8">
 				<select name="roleName"  class="form-control input-sm">
@@ -243,7 +231,7 @@ $(function(){
 	//var gridHeight = $('#'+gridBoxId).height()-118;
 	var gridHeight = 370;
 
-	//任务编号、出口国别、业务类型、出口口岸、运输方式、当前环节、创建人、创建时间。
+	//任务编号、出口国别、业务类型、出口口岸、运输方式、当前环节、操作人、操作时间。
 	var colModel = [
 			
 			{label : '任务编号', name : 'id', align: 'center', width:100,formatter: formatRwId },
@@ -252,9 +240,9 @@ $(function(){
 			{label : '出口口岸', name : 'kouan', align: 'center', width:100},
 			{label : '运输方式', name : 'yunshufangshi', align: 'center', width:80},
 			{label : '当前环节', name : 'huanjie', align: 'center', width:80},
-			{label : '创建人', name : 'createName', align: 'center', width:80},
-			{label : '创建时间', name : 'createTime', align: 'center', width:80, search:false},
-			{label : '操作', name : 'operation', align: 'center', width:80, search:false, formatter: formatOpe}
+			{label : '操作人', name : 'createName', align: 'center', width:80},
+			{label : '操作时间', name : 'createTime', align: 'center', width:80, search:false},
+			{label : '操作', name : 'operation', align: 'center', width:80, search:false, formatter: formatOpe, hidden:true }
 			
 	/* 			
 	id :
@@ -291,7 +279,7 @@ $(function(){
 		colModel: colModel
 		//jsonReader : jsonReader
 		
-	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+	});/* .navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
 	}).navButtonAdd('#'+gridPager,{
 		//caption: '新增',
@@ -321,7 +309,7 @@ $(function(){
 	}).navSeparatorAdd('#'+gridPager,{
 		sepcontent: '',
 		sepclass : "ui-separator"
-	});
+	}); */
 	
 	//表格添加搜索框按钮
 	$('#'+gridId).jqGrid('filterToolbar');
@@ -677,22 +665,23 @@ function formatOpe(cellValue, options, rowObject){
 
 <!-- 任务详情 -->
 <div id="renwu_detail_info_box" class="layerFormBox">
-	<div class="form-horizontal layerForm">
+	<p style="border-bottom:1px dotted #666; ">基本信息</p>
+	<div class="form-horizontal layerForm clearfix">
 		<div class="form-group col-xs-4">
 			<label for="inputEmail3" class="col-xs-4 control-label">
-				<span class="necessary">*</span>任务编号:
+				任务编号:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  >RW201709202105</p>
+				<p  class="form-control input-sm"  >CK201709220001</p>
 			</div>
 		</div>
 
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口国别:
+				出口国别:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">美国</p>
+				<p  class="form-control input-sm"  >委内瑞拉</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -700,15 +689,15 @@ function formatOpe(cellValue, options, rowObject){
 				业务类型:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">一般贸易</p>
+				<p  class="form-control input-sm"  >一般贸易</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>出口口岸:
+				出口口岸:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">天津新港</p>
+				<p  class="form-control input-sm"  >天津新港</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -716,7 +705,7 @@ function formatOpe(cellValue, options, rowObject){
 				运输方式:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">水运</p>
+				<p  class="form-control input-sm"  >水路运输</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -724,41 +713,75 @@ function formatOpe(cellValue, options, rowObject){
 				当前环节:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">环节1</p>
+				<p  class="form-control input-sm"  >创建任务</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建人:
+				操作人:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">张三</p>
+				<p  class="form-control input-sm"  >张三</p>
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
 			<label class="col-xs-4 control-label">
-				<span class="necessary">*</span>创建时间:
+				操作时间:
 			</label>
 			<div class="col-xs-8">
-				<p  class="form-control input-sm"  placeholder="出口日期">2017-8-7</p>
+				<p  class="form-control input-sm"  >2017-09-27</p>
 			</div>
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="form-group col-xs-12">
 				<label class="col-xs-1 control-label">
 					说明:
 				</label>
 				<div class="col-xs-8">
-					<div class="form-control input-sm" rows="3"  placeholder="说明">说明信息。。。</div>
+					<div class="form-control input-sm" rows="3"  ></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
-		<div >
-			<table id="liucheng_info_jqGrid"></table>
-			<div id="liucheng_info_jqGridPager"></div>
-		</div>
+		
 	</div>
+	
+	<div class="row" style="margin-left:0px; padding:0">
+		<p style="border-bottom:1px dotted #666; ">货物清单</p>
+		<table id="liucheng_info_jqGrid"></table>
+		<div id="liucheng_info_jqGridPager"></div>
+	</div>
+	
+	<!-- 操作历史 -->
+		<p style="border-bottom:1px dotted #666; margin-top:30px;">历史记录</p>
+		<div class="panel panel-info" style="margin-top: 15px;">
+			<!-- <div class="panel-heading">历史操作记录</div> -->
+			<div class="panel-body"
+				style="padding: 0; height: 180px; overflow-y: auto;">
+				<table class="table table-striped  table-condensed"
+					style="margin-bottom: 0;">
+					<thead style="background: #e5e6e6;">
+						<tr>
+							<th>操作人</th>
+							<th>历史操作</th>
+							<th>操作时间</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>张三</td>
+							<th>创建任务</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 操作历史 -->
+	
 </div>
 
 <!-- 任务处理界面 -->

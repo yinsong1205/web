@@ -4,7 +4,7 @@
 	"rows": [
 		{
 			"sbny": "201709",
-			"pici": "<a href='javascript:;' class='yushenbao_sbpc_five'>05</a>",
+			"pici": "<a href='javascript:;' class='yushenbao_sbpc_five text-info'>05</a>",
 			"gljc": "未通过",
 			"hhcb": "未通过",
 			"wcbl": "已通过",
@@ -17,14 +17,14 @@
 		},
 		{
 			"sbny": "201708",
-			"pici": "<a href='javascript:;' class='yushenbao_sbpc_one'>01</a>",
+			"pici": "<a href='javascript:;' class='yushenbao_sbpc_one text-info'>01</a>",
 			"gljc": "已通过",
 			"hhcb": "已通过",
 			"wcbl": "已通过",
 			"sbzt": "已预审报",
 			"scsj": "2017-09-15",
 			"shzt": "审核成功",
-			"shjg": "<a href='javascript:;' class='yushenbao_shjg'>数据已审核完成，请查看反馈信息</a>",
+			"shjg": "<a href='javascript:;' class='yushenbao_shjg text-info'>数据已审核完成，请查看反馈信息</a>",
 			"tjr": "郑九",
 			"tjsj": "2017-09-27"
 		}
