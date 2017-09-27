@@ -107,16 +107,12 @@
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
 			{
-				"name" : "出口退税统计",
+				"name" : "退税额年统计",
 				"url" : "tongji/tuishui.html"
 			},
 			{
-				"name" : "出口国统计",
+				"name" : "按出口国统计",
 				"url" : "statistics/hetong.html"
-			},
-			{
-				"name" : "出口额统计",
-				"url" : "tongji/money.html"
 			}
 		]
 	},
@@ -139,6 +135,11 @@
 				"id" : "menu_yj_sh",
 				"name" : "收汇预警",
 				"url" : "yujing/shouhuiyujing.html"
+			},
+			{
+				"id" : "menu_yj_sh",
+				"name" : "申报预警",
+				"url" : "yujing/shenbao.html"
 			}
 		]
 	},

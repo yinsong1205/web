@@ -359,6 +359,27 @@
 			</table>
 		</div>
 </div>
+<!-- 导入合同 -->
+<div class="layerFormBox import_formBox" id="wuliu_import_formBox"> 
+	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
+		<div class="form-group col-sm-12">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>选择要导入合同:</label>
+			<div class="col-sm-2">
+				<span class="btn btn-default btn-sm fileinput-button">
+					<i class="glyphicon glyphicon-plus"></i>
+					<span>导入合同</span>
+					<input type="file" name="files[]" multiple>
+				</span>
+			</div>
+			<div class="col-sm-12" style="padding-top:7px">支持excel、csv、xml三种文件方式导入。</div>
+		</div>
+		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+	</form>
+	<p class="text-center saveOrCacelBtn"> 
+		<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
+</div>
 <!-- 关联 -->
 <div id="wuliu_gl_box" style="padding:0; width:100%;height:80%;">
 	<div class="col-sm-5">
@@ -372,6 +393,10 @@
 		<p style="margin-top: 20px;">已关联的采购合同</p>
 		<table id="caigouguan_jqGrid"></table>
 	</div>
+	<p class="text-center saveOrCacelBtn col-xs-11"> 
+		<button type="button" class="btn btn-info btn-sm qx">确定</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
 </div>
 <script type="text/javascript">
 
@@ -530,7 +555,7 @@ $(function(){
 	
 	//弹框取消按钮
 	$('.'+layerCloseClassName).on('click',function(){
-		layer.close(layerIndex);
+		layer.closeAll();
 	});
 	
 	//左下角新增按钮
@@ -584,7 +609,6 @@ $(function(){
 	}
 
 	//导入合同
-	$('.fileinput-button')
 	function importLayer(){
 		commIndex = layer.open({
 			type: 1,
@@ -649,7 +673,8 @@ $(function(){
 		colModel: [
 			{label : '合同编号', name : 'id', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 			},
-			{label : '合同名称', name : 'name', align: 'center', width:100}
+			{label : '合同名称', name : 'name', align: 'center', width:100},
+			{label : '取消关联', name : 'active', align: 'center', width:10,hidden: true}
 				]
 			});
 		$('#wuliu_gl_jqGrid').jqGrid('filterToolbar');
@@ -667,7 +692,7 @@ $(function(){
 				{label : '合同编号', name : 'id', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 				},
 				{label : '合同名称', name : 'name', align: 'center', width:100},
-				{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
+				{label : '取消关联', name : 'active', align: 'center', width:50, formatter:formatActi}
 			]
 		});
 	// 关联的采购合同清单
@@ -678,7 +703,6 @@ function showcaigou (){
 		for(var i=0; i<rowIds.length; i++){
 				var json = $('#wuliu_gl_jqGrid').getRowData(rowIds[i]);
 			$("#caigouguan_jqGrid").addRowData(uuid.v4(),json,'first');
-				$("#caigouguan_jqGrid").addJSONData('status');
 		}
 	}
 
@@ -733,6 +757,15 @@ function lookInfo(gid,rowId){
 		content: $('#'+gid+'_formBox')
 	});
 }
-
+//格式化状态
+function formatActi(cellValue, options, rowObject) {
+	var title = '';
+	var className = '';
+	if(cellValue==0){
+		title = '删除';
+		className = 'glyphicon-trash text-danger';
+	}
+	return '<i title="'+title+'" class="glyphicon '+className+'"></i>';
+};
 	
 </script>

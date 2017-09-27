@@ -220,18 +220,9 @@ $(function(){
 		hidegrid : false, 
 		altRows : true, 
 		colModel: [
-			{label : '关单号', name : 'number', align: 'center', width: 100, cellattr: function(rowId, tv, rawObject, cm, rdata) {
-                    return 'id=\'number' + rowId + "\'";
-                }
-		},
-			{label : '供应商', name : 'company', align: 'center', width:80},
 			{label : '通知单号', name : 'numbers', align: 'center', width: 100, formatter: formatName},
-			{label : '征税率 ', name : 'Tarate', align: 'center', width:80,search:false},
-			{label : '退税率', name : 'RefundRate', align: 'center', width:80,search:false},
-			{label : '开票品名', name : 'name', align: 'center', width:80,search:false},
-			{label : '数量', name : 'quantity', align: 'center', width: 80,search:false},
-			{label : '单位', name : 'unit', align: 'center', width:80,search:false},
-			{label : '金额', name : 'money', align: 'center', width:80,search:false},
+			{label : '供应商', name : 'company', align: 'center', width:80},
+			{label : '关单号', name : 'number', align: 'center', width: 100},
 			{label : '任务号', name : 'tongzhi', align: 'center', width: 100}
 			// {label : '纸质发票个数', name : 'anotherNumber', align: 'center', width:60},
 			// {label : '报关单号', name : 'numbers', align: 'center', width:120}
@@ -255,10 +246,10 @@ $(function(){
 	    //emptyrecords: "No records to view",
 		loadtext: "Loading...",
                     // 调用合并方法
-		gridComplete: function() {
-            var gridName = "tongzhi_jqGrid";
-            Merger(gridName, 'number');
-        }
+		// gridComplete: function() {
+  //           var gridName = "tongzhi_jqGrid";
+  //           Merger(gridName, 'number');
+  //       }
 	}).navGrid('#tongzhi_jqGridPager',{ 
 	// the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false

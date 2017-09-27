@@ -10,17 +10,6 @@
 		<div id="renwu_jqGridPager"></div>
 	</div>
 </div>
-<!-- 查看详细 -->
-<div>
-	<form class="form-horizontal zzxx">
-		<div class="form-group col-sm-12">
-			<label class="col-sm-5 control-label text-right"></label>
-			<div class="col-sm-7">
-				<input type="email" class="form-control input-sm" placeholder="签  订  人 ">
-			</div>
-		</div>
-	</form>
-</div>
 <!-- 预警 -->
 <div class="layerFormBox" id="renwu_formBox"> 
 	<div class="form-group col-sm-12">
@@ -64,7 +53,7 @@
 				<span class="necessary">*</span>任务编号:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" readonly="readonly" class="form-control input-sm" value="001">
+				<input type="text" readonly="readonly" class="form-control input-sm" value="CK201709220002">
 			</div>
 		</div>
 
@@ -73,8 +62,8 @@
 				<span class="necessary">*</span>出口国别:
 			</label>
 			<div class="col-xs-8">
-				<select class="form-control input-sm" value="美国">
-					<option value="美国" selected="selected">美国</option>
+				<select class="form-control input-sm" value="日本">
+					<option value="美国" selected="selected">日本</option>
 					<option value="英国">英国</option>
 					<option value="法国">法国</option>
 				</select>
@@ -98,9 +87,9 @@
 				<span class="necessary">*</span>出口口岸:
 			</label>
 			<div class="col-xs-8">
-				<select class="form-control input-sm" value="美国">
-					<option value="北京机场" selected="true">北京机场</option>
-					<option value="天津新港">天津新港</option>
+				<select class="form-control input-sm" value="网走">
+					<option value="北京机场" selected="true">网走</option>
+					<option value="天津新港">阿克拉维克</option>
 				</select>
 			</div>
 		</div>
@@ -109,10 +98,9 @@
 				运输方式:
 			</label>
 			<div class="col-xs-8">
-				<select class="form-control input-sm" value="水路">
-					<option value="北京机场">路地</option>
-					<option value="北京机场">空路</option>
-					<option value="天津新港" selected="true">水路</option>
+				<select class="form-control input-sm" value="水运">
+					<option value="北京机场">水运</option>
+					<option value="北京机场">空运</option>
 					
 				</select>
 			</div>
@@ -130,7 +118,7 @@
 				<span class="necessary">*</span>创建人:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" class="form-control input-sm" readonly="readonly" value="张三">
+				<input type="text" class="form-control input-sm" readonly="readonly" value="admin">
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -215,8 +203,10 @@ $(function(){
 			{label : '出口口岸', name : 'kouan', align: 'center', width:120},
 			{label : '运输方式', name : 'bus', align: 'center', width:120},
 			{label : '当前环节', name : 'level', align: 'center', width:120},
-			{label : '创建人', name : 'createPeople', align: 'center', width:120},
+			{label : '操作人', name : 'createPeople', align: 'center', width:120},
+			{label : '操作时间', name : 'createstatus', align: 'center', width:120},
 			{label : '创建时间', name : 'createTime', align: 'center', width:120},
+			{label : '接收时间', name : 'receiveTime', align: 'center', width:120},
 			{label : '剩余时间', name : 'lastTime', align: 'center', width:120},
 			{label : '截止时间', name : 'overTime', align: 'center', width:120},
 			{label : '说明', name : 'sign', align: 'center', width:120},],
@@ -238,13 +228,6 @@ $(function(){
 		
 	}).navGrid("#renwu_jqGridPager",{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
-	}).navButtonAdd("#renwu_jqGridPager",{
-		//caption: '查看',
-		caption: '',
-		title : '解除预警',
-		buttonicon : 'fa fa-ban',
-		onClickButton : function(){ remove(); }, //调用查看的函数
-		position : 'last'
 	}).navSeparatorAdd('#renwu_jqGridPager',{
 		sepcontent: '',
 		sepclass : "ui-separator"
@@ -397,7 +380,9 @@ $(function(){
 						overTime: item.overTime,
 						createTime: item.createTime,
 						lastTime: item.lastTime,
-						sign: item.sign
+						sign: item.sign,
+						createstatus:item.createstatus,
+						receiveTime: item.receiveTime
 					});
 
 				}
@@ -442,7 +427,7 @@ function lookInfo(gid,rowId){
 	commIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['80%', '80%'], //宽高
+		area: ['98%', '98%'], //宽高
 		content: $('#renwu_jqGrid_formBox')
 	});
 }

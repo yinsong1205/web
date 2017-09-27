@@ -492,6 +492,10 @@
 		<p style="margin-top: 20px;">已关联的出口合同</p>
 		<table id="yichukou_jqGrid"></table>
 	</div>
+	<p class="text-center saveOrCacelBtn col-xs-11"> 
+		<button type="button" class="btn btn-info btn-sm qx">确定</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
 </div>
 <script type="text/javascript">
 	
@@ -982,7 +986,7 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 			}, {
 			label : '合同名称', name : 'relName', align: 'center', width:100},
-			{label : '取消关联', name : 'active', align: 'center', width:10, formatter:formatAct}
+			{label : '取消关联', name : 'active', align: 'center', width:50, formatter:formatAct}
 		]
 	});
 // 关联的采购合同清单

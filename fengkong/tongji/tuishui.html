@@ -5,11 +5,12 @@
 	<div class="row">
 		<form class="form-inline">
 			<div class="form-group">
-				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				<label>起始日期:</label>
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()">
 			</div>
-			<i class="fa fa-minus"></i>
 			<div class="form-group">
-				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				<label>截止日期:</label>
+				<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()">
 			</div>
 			<button type="button" class="btn btn-info btn-sm" id="search">查询</button>
 			<button type="reset" class="btn btn-danger btn-sm">重置</button>
@@ -58,13 +59,7 @@
 			text: '数据来源: 退税统计'
 		},
 		xAxis: {
-			categories: ['2003','2004','2005','2006','2007','2008','2009','2010'],
-                plotLines: [{  //plotLines：标示线
-                    value: 2,  //定义在哪个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
-                    width: 2,  //标示线的宽度，2px
-                    dashStyle:'solid',  //默认值是solid实线，这里定义为虚线
-                    color: 'red',//线的颜色，定义为红色
-                }]
+			categories: ['2003','2004','2005','2006','2007','2008','2009','2010']
 		},
 		yAxis: {
 			title: {
@@ -88,12 +83,9 @@
         },
 		series: [
             {  
-            name: '已退税',
+            name: '已退税额',
             data: [7, 6, 9, 14, 18, 21, 25, 26]
-            },{
-            name: '未退税',
-            data: [1, 4, 5, 3, 11, 12, 11, 15]
-        }]
+            }]
 		
 	});
 	

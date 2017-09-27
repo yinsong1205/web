@@ -7,6 +7,7 @@
 	#shenheruzhu_history{
 		display: none;
 	}
+	#ruzhu_xiangqing_formBox input,#ruzhu_xiangqing_formBox select,#ruzhu_xiangqing_formBox textarea {border: none;outline: none;}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-12 plr0 height100 gridBox" id="ruzhu_gridBox">
@@ -211,12 +212,485 @@
 			</div>
 			<form class="form-horizontal zzxx" id="ruzhu_fileupload" method="POST" enctype="multipart/form-data">
 				<div class="form-group col-sm-12">
-					<label class="col-sm-2 control-label text-right">营业执照:</label>
+					<label class="col-sm-2 control-label text-right"><span>*</span>营业执照:</label>
 					<div class="col-sm-8">
 						<span class="btn btn-default btn-sm fileinput-button">
 		                    <i class="glyphicon glyphicon-plus"></i>
 		                    <span>添加附件</span>
 		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">税务等级证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">组织代码证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+		</div>
+		
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="shenheruzhu_save_btn">审核</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 详情 -->
+<div id="ruzhu_xiangqing_formBox" class="layerFormBox zzxx">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				供货商名称:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="company" class="form-control input-sm"  value="创立信电子厂">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				企业海关代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="seanumber" class="form-control input-sm"  value="4016999090">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税人识别号:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="number" class="form-control input-sm"  value="913201059901675">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				企业类型:
+			</label>
+			<div class="col-xs-7">
+				<select name="type" class="form-control input-sm"  value="生产">
+					<option value="生产企业" selected="true">生产</option>
+					<option value="外贸企业" >外贸</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				社会信用代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" value="12122334523412">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				成立日期:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				等级机关:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="source" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				法人代表:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="灰">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="B">
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				注册资本:
+			</label>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-sm">
+			</div>
+			<div class="col-xs-3">
+				<select id="ruzhu_company" name="company" class="form-control input-sm">
+					<option value="美元" selected="true">美元</option>
+					<option value="欧币" >欧元</option>
+					<option value="人民币" >人民币</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				邮编:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				截止期限:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				联系人:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				固定电话:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				手机:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				注册地址:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				经营范围:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				备注:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<!-- 新增导入合同 -->
+		<div id="ruzhu_import_formBox">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="ruzhu_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">营业执照:</label>
+					<div class="col-sm-8">
+						<span>
+		                    <span><a href="#">营业执照.zip</a></span>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+		</div>
+		
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="ruzhu_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 编辑 -->
+<div id="ruzhu_edit_formBox" class="layerFormBox zzxx">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>供货商名称:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="company" class="form-control input-sm"  value="创立信电子厂">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业海关代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="seanumber" class="form-control input-sm" value="4016999090">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>纳税人识别号:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="number" class="form-control input-sm"  value="913201059901675">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业类型:
+			</label>
+			<div class="col-xs-7">
+				<select name="type" class="form-control input-sm"  value="生产">
+					<option value="生产企业" selected="true">生产</option>
+					<option value="外贸企业" >外贸</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>社会信用代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" value="12122334523412">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				成立日期:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				等级机关:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="source" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				法人代表:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="灰">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="B">
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				注册资本:
+			</label>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-sm">
+			</div>
+			<div class="col-xs-3">
+				<select id="ruzhu_company" name="company" class="form-control input-sm">
+					<option value="美元" selected="true">美元</option>
+					<option value="欧币" >欧元</option>
+					<option value="人民币" >人民币</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				邮编:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				截止期限:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				联系人:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				固定电话:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				手机:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				注册地址:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				经营范围:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				备注:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<!-- 新增导入合同 -->
+		<div id="ruzhu_import_formBox">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="ruzhu_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span>*</span>营业执照:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                    
+		                </span>
+		                <span>
+		                    <span><a href="#">营业执照.zip</a></span>
 		                </span>
 					</div>
 				</div>
@@ -477,7 +951,7 @@ $(function(){
 		caption: '',
 		title : '修改',
 		buttonicon : 'glyphicon-edit',
-		onClickButton : function(){updateLayer();}, //调用更新的函数
+		onClickButton : function(){edit_ryzhu_updateLayer();}, //调用更新的函数
 		position : 'last'
 		
 	}).navButtonAdd('#'+gridPager,{
@@ -561,19 +1035,19 @@ $(function(){
 				}
 			}else if(flag == 'update'){
 				
-				//删除
-				var rowIds = getSelectedRow(gridId);
-				jQuery('#'+gridId).delRowData(rowIds[0]);
+				//删除ruzhu_edit_formBox
+				var rowIds = getSelectedRow('ruzhu_edit_formBox');
+				jQuery('#ruzhu_edit_formBox').delRowData(rowIds[0]);
 				//添加
 				var data = getFormData(formBoxId);
 				console.log(data);
 				var currentNumber = uuid.v4();
-				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				var result = jQuery('#').addRowData(currentNumber,data,'first');
 				
 				if(result){
 					layer.msg('更新成功',{time:layerCloseTime});
 					layer.close(layerIndex);
-					jQuery('#'+gridId).setSelection(currentNumber,true);
+					jQuery('#ruzhu_edit_formBox').setSelection(currentNumber,true);
 				}else{
 					layer.msg('更新失败!',{time:layerCloseTime});
 				}
@@ -594,16 +1068,21 @@ $(function(){
 	}
 	
 	//左下角编辑按钮
-	function updateLayer(){
+	function edit_ryzhu_updateLayer(){
 		$('#shenheruzhu_save_btn').hide();
-		flag = 'update';
-		var setting = {
-			gridId : gridId,
-			formBoxId : formBoxId,
-			title : '修改',
-			area : ['98%', '98%']
-		};
-		layerIndex = updateGridData(setting);
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '编辑',
+				shadeClose: true,
+				area : ['98%','98%'],
+				content : $('#ruzhu_edit_formBox')
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
 	}
 	//审核
 	function shenhe(){
@@ -765,7 +1244,7 @@ function lookInfo(gid,rowId){
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
-		content: $('#ruzhu_formBox')
+		content: $('#ruzhu_xiangqing_formBox')
 	});
 }
 

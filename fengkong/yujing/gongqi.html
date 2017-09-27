@@ -147,8 +147,7 @@ $(function(){
 			{label : '企业类型', name : 'time', align: 'center', width:120},
 			{label : '纳税信用等级', name : 'startTime', align: 'center', width:120},
 			{label : '税局信用等级', name : 'endTime', align: 'center', width:120},
-			{label : '内部评估等级', name : 'dataTime', align: 'center', width:120},
-			{label : '审核状态', name : 'active', align: 'center', width:120, formatter:formatStatus}],
+			{label : '内部评估等级', name : 'dataTime', align: 'center', width:120}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -169,13 +168,6 @@ $(function(){
 		
 	}).navGrid("#gongqi_jqGridPager",{ // the buttons to appear on the toolbar of the grid
 		edit:false,add:false,del:false,search:false,refresh:false
-	}).navButtonAdd("#gongqi_jqGridPager",{
-		//caption: '查看',
-		caption: '',
-		title : '解除预警',
-		buttonicon : 'fa fa-ban',
-		onClickButton : function(){ gonghuo_remove(); }, //调用查看的函数
-		position : 'last'
 	}).navSeparatorAdd('#gongqi_jqGridPager',{
 		sepcontent: '',
 		sepclass : "ui-separator"
@@ -327,7 +319,7 @@ function lookInfo(gid,rowId){
 	commIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['80%', '80%'], //宽高
+		area: ['98%', '98%'], //宽高
 		content: $('#gonghuo_formBox')
 	});
 }

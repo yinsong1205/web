@@ -496,98 +496,13 @@ text-align: left;
 
 
 <div id="waihui_shouhui_formBox" class="layerFormBox">
-	<form class="form-horizontal layerForm zzxx">
-		<div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-5 control-label">
-					<span>*</span>金额:
-				</label>
-				<div class="col-xs-7">
-					<input type="text" id="waihui_relName" name="relName" class="form-control input-sm"  value="200$">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-5 control-label">
-					<span>*</span>收汇日期:
-				</label>
-				<div class="col-xs-7">
-					<input type="text" id="waihui_numBer" name="numBer" class="form-control input-sm"  value="2017-07-08" onclick="WdatePicker();">
-				</div>
-			</div>
-			<div class="form-group col-xs-4">
-				<label class="col-xs-5 control-label">
-					<span>*</span>收汇人:
-				</label>
-				<div class="col-xs-7">
-					<input type="text" id="waihui_creatTime" name="createTime" class="form-control input-sm"  value="lisi">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-xs-4">
-				<label class="col-xs-5 control-label">
-					说明:
-				</label>
-				<div class="col-xs-7">
-					<textarea class="form-control input-sm" row="5" placeholder="备注信息"></textarea>
-				</div>
-			</div>
-		</div>
-		<p class="text-center col-xs-12">
-			<button type="button" class="saveBtn btn btn-info btn-sm" id="waihui_save_btn">
-				保存
-			</button>
-			<button type="reset" class="saveBtn btn btn-info btn-sm" id="waihui_resetBtn">
-				重置
-			</button>
-			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="waihui_cacle_btn">
-				取消
-			</button>
-		</p>
-		<p>&nbsp;</p>
-		<!-- <div class="row">
-			<div class="col-xs-12">
-				<table class="table table-striped table-condensed">
-					<thead class="bg-info">
-						<tr>
-							<th>收汇人</th>
-							<th>操作人</th>
-							<th>收汇日期</th>
-							<th>操作时间</th>
-							<th>金额</th>
-							<th>说明</th>
-						</tr>
-					</thead>
-					<tbody> 
-						<tr>
-							<td>张三</td>
-							<td>王五</td>
-							<td>2017-07-01</td>
-							<td>2017-07-08</td>
-							<td>2785</td>
-							<td>王五帮助张三进行的操作</td>
-						</tr>
-						<tr>
-							<td>王五</td>
-							<td>张三</td>
-							<td>2017-07-01</td>
-							<td>2017-07-08</td>
-							<td>2785</td>
-							<td>王五让张三帮助进行的操作</td>
-						</tr>
-						<tr>
-							<td>张三</td>
-							<td>王五</td>
-							<td>2017-07-01</td>
-							<td>2017-07-08</td>
-							<td>2785</td>
-							<td>王五帮助张三进行的操作</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div> -->
-	</form>
+	<div class="text-center col-xs-12">
+		您确定要收汇吗？
+	</div>
+	<div class="col-xs-12 text-center" style="margin-top: 20px;">
+		<button class="saveBtn btn btn-info btn-sm qx">确定</button>
+		<button class="saveBtn btn btn-info btn-sm qx">取消</button>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -832,7 +747,7 @@ function lookcai(rowId){
 	commIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['80%', '80%'], //宽高
+		area: ['30%', '30%'], //宽高
 		content: $('#waihui_shouhui_formBox')
 	});
 }
