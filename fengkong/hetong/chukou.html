@@ -41,11 +41,12 @@
 		<div id="yiguan_gridBox">
 			<table id="yiguan_jqGrid"></table>
 		</div>
-		<p class="text-center saveOrCacelBtn"> 
-			<button type="button" class="btn btn-info btn-sm qx">确定</button>		
-			<button type="button" class="btn btn-info btn-sm qx">取消</button>		
-		</p>
+		
 	</div>
+	<p class="text-center saveOrCacelBtn col-xs-11"> 
+		<button type="button" class="btn btn-info btn-sm qx">确定</button>		
+		<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+	</p>
 </div>
 
 <!-- 物资增加 -->
@@ -777,11 +778,11 @@
 <div class="layerFormBox import_formBox" id="chukou_import_formBox"> 
 	<form action="" id="chukou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
-			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择文件:</label>
-			<div class="col-sm-8">
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>选择要导入合同:</label>
+			<div class="col-sm-2">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span>添加附件</span>
+					<span>导入合同</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
@@ -950,14 +951,14 @@ $(function(){
 	var cai_gridHeight = 170;
 
 	var colModel = [
-			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
+			{label : '合同编号', name : 'numBer', align: 'center', width: 100, searchoptions: { sopt : ['cn']}
 },
-			{label : '合同名称', name : 'relName', align: 'center', width:100, formatter: formatrelName, searchoptions: { sopt : ['cn']}},
+			{label : '合同名称', name : 'relName', align: 'center', width:90, formatter: formatrelName, searchoptions: { sopt : ['cn']}},
 			{label : '签订日期 ', name : 'createTime', align: 'center', width:60, searchoptions: { sopt : ['cn']}
 },
-			{label : '买方', name : 'company', align: 'center', width:120, searchoptions: { sopt : ['cn']}},
-			{label : '卖方', name : 'anothorCompany', align: 'center',width:120, searchoptions: { sopt : ['cn']}},
-			{label : '出口国别', name : 'county', align: 'center',width:50, searchoptions: { sopt : ['cn']}
+			{label : '买方', name : 'company', align: 'center', width:80, searchoptions: { sopt : ['cn']}},
+			{label : '卖方', name : 'anothorCompany', align: 'center',width:90, searchoptions: { sopt : ['cn']}},
+			{label : '出口国别', name : 'county', align: 'center',width:40, searchoptions: { sopt : ['cn']}
 },
 			{label : '贸易方式', name : 'bus', align: 'center', width:50, searchoptions: { sopt : ['cn']}
 },
@@ -1243,7 +1244,8 @@ $(function(){
 		rowNum: 8,
 		colModel: [
 			{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
-			{label : '合同名称', name : 'name', align: 'left', width:10}
+			{label : '合同名称', name : 'name', align: 'left', width:10},
+			{label : '取消关联', name : 'active', align: 'center', width:0,hidden : true}
 		],
 		pager: ""
 	});
@@ -1254,7 +1256,7 @@ $(function(){
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
 			type: 1,
-			title : '添加模块',
+			title : '新增',
 			area: ['98%', '98%'], //宽高
 			content: $('#'+formBoxId)
 		});
@@ -1265,7 +1267,7 @@ $(function(){
 		$('#qingdan_jqGrid_formBox'+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
 			type: 1,
-			title : '添加模块',
+			title : '新增',
 			area: ['80%', '80%'], //宽高
 			content: $('#zengqingdan_jqGrid_formBox')
 		});
@@ -1289,7 +1291,7 @@ $(function(){
 		var setting = {
 			gridId : gridId,
 			formBoxId : formBoxId,
-			title : '修改模块',
+			title : '编辑',
 			area : ['98%', '98%']
 		};
 		layerIndex = updateGridData(setting);
@@ -1332,10 +1334,9 @@ $(function(){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
 			commIndex = layer.open({
 				type : 1,
-				title : '审核窗口',
-				skin: 'layui-layer-rim',
+				title : '审核',
 				shadeClose: true,
-				area : ['70%','70%'],
+				area : ['50%','50%'],
 				content : $('#'+shenhe_formBoxId)
 				// ''
 			});
@@ -1349,7 +1350,7 @@ $(function(){
 		$('#shenhe_history').show();
 		commIndex = layer.open({
 			type : 1,
-			title : '审核窗口',
+			title : '审核',
 			skin: 'layui-layer-rim',
 			shadeClose: true,
 			area : ['70%','70%'],
@@ -1360,8 +1361,8 @@ $(function(){
 	function importLayer(){
 		commIndex = layer.open({
 			type: 1,
-			title : "批量导入",
-			area: ['80%', '60%'], //宽高
+			title : "导入",
+			area: ['80%', '70%'], //宽高
 			content: $('#chukou_import_formBox')
 		});
 	}
@@ -1420,9 +1421,9 @@ $(function(){
 		height: 150,
 		rowNum: 13,
 		colModel: [
-		{label : '合同编号', name : 'id', align: 'center', width: 10,editable: true},
-				{label : '合同名称', name : 'name', align: 'center', width:10},
-				{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
+		{label : '合同编号', name : 'id', align: 'center', width: 25,editable: true},
+				{label : '合同名称', name : 'name', align: 'center', width:20},
+				{label : '取消关联', name : 'active', align: 'center', width:5, formatter:formatActive}
 				],
 			
 		pager: "#yiguan_jqGridPager"
@@ -1450,7 +1451,7 @@ function lookcai(rowId){
 	changeIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['90%', '90%'], //宽高
+		area: ['98%', '98%'], //宽高
 		content: $('#guanlian_gridBox')
 	});
 }
@@ -1461,7 +1462,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '查看信息';
+	title = '信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,
@@ -1469,4 +1470,14 @@ function lookInfo(gid,rowId){
 		content: $('#'+gid+'_formBox')
 	});
 }
+//格式化状态
+function formatActive(cellValue, options, rowObject) {
+	var title = '';
+	var className = '';
+	if(cellValue==0){
+		title = '删除';
+		className = 'glyphicon-trash text-danger';
+	}
+	return '<i title="'+title+'" class="glyphicon '+className+'"></i>';
+};
 </script>

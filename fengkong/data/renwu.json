@@ -1,10 +1,10 @@
 {
 	"items": [
   {
-    "tasknumber": "001",
-    "county": "乌克兰",
+    "tasknumber": "110320341",
+    "county": "日本",
     "type": "一般贸易",
-    "kouan": "乌克兰港",
+    "kouan": "网走",
     "bus": "空路",
     "level": "创建任务",
     "createPeople": "admin",
@@ -14,10 +14,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "002",
-    "county": "乌克兰",
-    "type": "外综服贸易",
-    "kouan": "乌克兰港",
+    "tasknumber": "110320342",
+    "county": "加拿大",
+    "type": "一般贸易",
+    "kouan": "阿克拉维克",
     "bus": "路地",
     "level": "预关单审核",
     "createPeople": "admin",
@@ -27,10 +27,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "003",
-    "county": "乌克兰",
+    "tasknumber": "110320343",
+    "county": "巴西",
     "type": "一般贸易",
-    "kouan": "乌克兰港",
+    "kouan": "阿拉图",
     "bus": "空路",
     "level": "报关单审核",
     "createPeople": "admin",
@@ -40,10 +40,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "004",
-    "county": "乌克兰",
-    "type": "承包商",
-    "kouan": "乌克兰港",
+    "tasknumber": "110320344",
+    "county": "南非",
+    "type": "一般贸易",
+    "kouan": "贝拉",
     "bus": "空路",
     "level": "开票通知",
     "createPeople": "admin",
@@ -53,10 +53,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "005",
-    "county": "乌克兰",
+    "tasknumber": "110320345",
+    "county": "美国",
     "type": "一般贸易",
-    "kouan": "乌克兰港",
+    "kouan": "波士顿",
     "bus": "空路",
     "level": "收票确认",
     "createPeople": "admin",
@@ -66,10 +66,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "006",
-    "county": "乌克兰",
-    "type": "承包商",
-    "kouan": "乌克兰港",
+    "tasknumber": "110320346",
+    "county": "俄罗斯",
+    "type": "一般贸易",
+    "kouan": "苏维埃港",
     "bus": "空路",
     "level": "发票认证",
     "createPeople": "admin",
@@ -79,10 +79,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "007",
-    "county": "乌克兰",
-    "type": "承包商",
-    "kouan": "乌克兰港",
+    "tasknumber": "110320347",
+    "county": "瑞士",
+    "type": "一般贸易",
+    "kouan": "巴塞尔",
     "bus": "空路",
     "level": "申报",
     "createPeople": "admin",
@@ -92,10 +92,10 @@
     "sign": ""
   },
   {
-    "tasknumber": "008",
-    "county": "乌克兰",
+    "tasknumber": "110320348",
+    "county": "阿富汗",
     "type": "一般贸易",
-    "kouan": "乌克兰港",
+    "kouan": "喀布尔",
     "bus": "空路",
     "level": "备案",
     "createPeople": "admin",

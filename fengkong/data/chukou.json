@@ -12,7 +12,8 @@
     "county": "美国",
     "status": 0,
     "list": "<a href=\"javascript:;\" class=\"chukou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
-    "related": "已关联"
+    "related": "已关联",
+    "active": 0
   },
   {
     "numBer": "HT1818991184283",
@@ -24,7 +25,8 @@
     "county": "德国",
     "status": 1,
     "list": "<a href=\"javascript:;\" class=\"chukou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
-    "related": "未关联"
+    "related": "未关联",
+    "active": 0
   }
 ]
 }

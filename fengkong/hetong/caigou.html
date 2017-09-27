@@ -338,15 +338,15 @@
 <div class="layerFormBox import_formBox" id="caigou_import_formBox"> 
 	<form action="" id="caigou_import_form" method="POST" enctype="multipart/form-data">
 		<div class="form-group col-sm-12">
-			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择:</label>
+			<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>选择要导入合同:</label>
 			<div class="col-sm-2">
 				<span class="btn btn-default btn-sm fileinput-button">
 					<i class="glyphicon glyphicon-plus"></i>
-					<span>浏览...</span>
+					<span>导入合同</span>
 					<input type="file" name="files[]" multiple>
 				</span>
 			</div>
-			<div class="col-sm-8" style="padding-top:7px">支持excel、csv、xml三种文件方式导入。</div>
+			<div class="col-sm-12" style="padding-top:7px">支持excel、csv、xml三种文件方式导入。</div>
 		</div>
 		<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
 	</form>
@@ -689,7 +689,7 @@
 			$('#'+formBoxId+' .form-control:not(select)').val('');
 			layerIndex = layer.open({
 				type: 1,
-				title : '添加采购合同',
+				title : '新增',
 				area: ['98%', '98%'], //宽高
 				content: $('#'+formBoxId)
 			});
@@ -702,7 +702,7 @@
 			var setting = {
 				gridId : gridId,
 				formBoxId : formBoxId,
-				title : '修改采购合同',
+				title : '编辑',
 				area : ['98%', '98%']
 			};
 			layerIndex = updateGridData(setting);
@@ -733,10 +733,10 @@
 				var rowData = $('#'+gridId).getRowData(rowIds[0]);
 				commIndex = layer.open({
 					type : 1,
-					title : '审核窗口',
+					title : '审核',
 					skin: 'layui-layer-rim',
 					shadeClose: true,
-					area : ['70%','70%'],
+					area : ['50%','50%'],
 					content : $('#'+'shenhe_'+shenhemodel+'_formBoxId')
 					// ''
 				});
@@ -750,21 +750,21 @@
 		function importLayer(){
 			commIndex = layer.open({
 				type: 1,
-				title : "批量导入",
-				area: ['60%', '60%'], //宽高
+				title : "导入",
+				area: ['80%', '70%'], //宽高
 				content: $('#caigou_import_formBox')
 			});
 		}
 		
 		//报表统计
-		function tongjiLayer(){
-			commIndex = layer.open({
-				type: 1,
-				title : "报表统计",
-				area: ['80%', '65%'], //宽高
-				content: $('#caigou_tongji_formBox')
-			});
-		}
+		// function tongjiLayer(){
+		// 	commIndex = layer.open({
+		// 		type: 1,
+		// 		title : "报表统计",
+		// 		area: ['80%', '65%'], //宽高
+		// 		content: $('#caigou_tongji_formBox')
+		// 	});
+		// }
 		
 		//重置按钮
 		$('#caigou_resetBtn').on('click',function(){
@@ -827,7 +827,7 @@
 				$('#shenhecaigou_history').show();
 				commIndex = layer.open({
 					type : 1,
-					title : '审核窗口',
+					title : '审核',
 					skin: 'layui-layer-rim',
 					shadeClose: true,
 					area : ['70%','70%'],
@@ -840,7 +840,7 @@
 			
 			commIndex = layer.open({
 				type: 1,
-				title : '物资清单列表',
+				title : '物资清单',
 				area: ['80%', '80%'], //宽高
 				content: $('#caigou_wuzi')
 			});
@@ -954,7 +954,8 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 				colModel: [
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 },
-			{label : '合同名称', name : 'relName', align: 'center', width:100}
+			{label : '合同名称', name : 'relName', align: 'center', width:100},
+			{label : '取消关联', name : 'active', align: 'center', width:0,hidden : true}
 				]
 			});
 			$('#caigou_gl_jqGrid').jqGrid('filterToolbar');
@@ -981,7 +982,7 @@ company:'{{random("平海", "京中", "国际","八里","天津","津京","上�
 			{label : '合同编号', name : 'numBer', align: 'center', width: 50, searchoptions: { sopt : ['cn']}
 			}, {
 			label : '合同名称', name : 'relName', align: 'center', width:100},
-			{label : '取消关联', name : 'list', align: 'center', width:10, formatter:formatStatus}
+			{label : '取消关联', name : 'active', align: 'center', width:10, formatter:formatAct}
 		]
 	});
 // 关联的采购合同清单
@@ -992,7 +993,7 @@ function showchu (){
 		for(var i=0; i<rowIds.length; i++){
 				var json = $('#caigou_gl_jqGrid').getRowData(rowIds[i]);
 			$("#yichukou_jqGrid").addRowData(uuid.v4(),json,'first');
-				$("#yichukou_jqGrid").addJSONData('status');
+				// $("#yichukou_jqGrid").addJSONData('status');
 		}
 	}
 
@@ -1003,7 +1004,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '查看信息';
+	title = '信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,
@@ -1011,6 +1012,16 @@ function lookInfo(gid,rowId){
 		content: $('#'+gid+'_formBox')
 	});
 }
+//格式化状态
+function formatAct(cellValue, options, rowObject) {
+	var title = '';
+	var className = '';
+	if(cellValue==0){
+		title = '删除';
+		className = 'glyphicon-trash text-danger';
+	}
+	return '<i title="'+title+'" class="glyphicon '+className+'"></i>';
+};
 </script>
 
 	

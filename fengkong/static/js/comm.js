@@ -142,6 +142,22 @@ function formatStatus(cellValue, options, rowObject) {
 	return '<i title="'+title+'" class="fa '+className+'"></i>';
 };
 
+//格式化状态
+function formatStatus(cellValue, options, rowObject) {
+	var title = '';
+	var className = '';
+	if(cellValue==0){
+		title = '未审核';
+		className = 'fa-times-circle text-danger';
+	}else if(cellValue==1){
+		title = '已审核';
+		className = 'fa-check-circle-o text-success';
+	}else{
+		title = '正在审核...';
+		className = 'fa-question-circle-o text-warning';	
+	}
+	return '<i title="'+title+'" class="fa '+className+'"></i>';
+};
 
 var commIndex = null;
 

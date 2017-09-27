@@ -148,7 +148,7 @@ $(function(){
 			{label : '纳税信用等级', name : 'startTime', align: 'center', width:120},
 			{label : '税局信用等级', name : 'endTime', align: 'center', width:120},
 			{label : '内部评估等级', name : 'dataTime', align: 'center', width:120},
-			{label : '审核状态', name : 'overTime', align: 'center', width:120}],
+			{label : '审核状态', name : 'active', align: 'center', width:120, formatter:formatStatus}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -282,7 +282,7 @@ $(function(){
 						startTime: item.startTime,
 						endTime: item.endTime,
 						dataTime: item.dataTime,
-						overTime: item.overTime
+						active: item.active
 					});
 
 				}
@@ -331,6 +331,21 @@ function lookInfo(gid,rowId){
 		content: $('#gonghuo_formBox')
 	});
 }
-
+//格式化状态
+function formatStatus(cellValue, options, rowObject) {
+	var title = '';
+	var className = '';
+	if(cellValue==0){
+		title = '未审核';
+		className = 'fa-times-circle text-danger';
+	}else if(cellValue==1){
+		title = '已审核';
+		className = 'fa-check-circle-o text-success';
+	}else{
+		title = '正在审核...';
+		className = 'fa-question-circle-o text-warning';	
+	}
+	return '<i title="'+title+'" class="fa '+className+'"></i>';
+};
 	
 </script>

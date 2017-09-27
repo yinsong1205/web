@@ -540,8 +540,8 @@ $(function(){
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
 			type: 1,
-			title : '添加模块',
-			area: ['70%', '80%'], //宽高
+			title : '新增',
+			area: ['98%', '98%'], //宽高
 			content: $('#'+formBoxId)
 		});
 	}
@@ -553,8 +553,8 @@ $(function(){
 		var setting = {
 			gridId : gridId,
 			formBoxId : formBoxId,
-			title : '修改模块',
-			area : ['70%', '80%']
+			title : '修改',
+			area : ['98%', '98%']
 		};
 		layerIndex = updateGridData(setting);
 	}
@@ -571,10 +571,10 @@ $(function(){
 			var rowData = $('#'+gridId).getRowData(rowIds[0]);
 			commIndex = layer.open({
 				type : 1,
-				title : '审核窗口',
+				title : '审核',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
-				area : ['70%','70%'],
+				area : ['50%','50%'],
 				content : $('#'+'shenhe_'+shenhemodel+'_formBoxId')
 					// ''
 			});
@@ -588,8 +588,8 @@ $(function(){
 	function importLayer(){
 		commIndex = layer.open({
 			type: 1,
-			title : "批量导入",
-			area: ['60%', '60%'], //宽高
+			title : "导入",
+			area: ['80%', '70%'], //宽高
 			content: $('#wuliu_import_formBox')
 		});
 	}
@@ -598,7 +598,7 @@ $(function(){
 		$('#shenhewuliu_history').show();
 			commIndex = layer.open({
 				type : 1,
-				title : '审核窗口',
+				title : '审核',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
 				area : ['70%','70%'],
@@ -725,7 +725,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '查看信息';
+	title = '信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,

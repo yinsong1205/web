@@ -3,17 +3,17 @@
   "page" : 1,
   "rows": [
   {
-    "numBer": "CK1818991184244",
-    "relName": "Luella租赁合同",
-    "createTime": "2015-04-11",
-    "bus": "一般贸易",
-    "company": "美国Kristen公司",
-    "anothorCompany": "英国Deann责任有限公司",
-    "hetongmoney": 1852.92,
-    "county": "英国",
-    "list": "<a href=\"javascript:;\" class=\"chukou_wzqd\"><i class=\"text-info fa glyphicon-trash \"></i></a>",
-     "status": "x",
-    "glStatus": "已关联"
+    // "numBer": "CK1818991184244",
+    // "relName": "Luella租赁合同",
+    // "createTime": "2015-04-11",
+    // "bus": "一般贸易",
+    // "company": "美国Kristen公司",
+    // "anothorCompany": "英国Deann责任有限公司",
+    // "hetongmoney": 1852.92,
+    // "county": "英国",
+    // "list": "<a href=\"javascript:;\" class=\"chukou_wzqd\"><i class=\"text-info fa glyphicon-trash \"></i></a>",
+    //  "status": "0",
+    // "glStatus": "已关联"
   }
 ]
 }

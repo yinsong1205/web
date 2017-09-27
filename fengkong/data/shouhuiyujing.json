@@ -1,57 +1,21 @@
 {
     "items": [
   {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
+    "hetongnumber": "000000000092371271",
+    "hetongname": "天津港",
+    "time": "一般贸易",
+    "startTime": "美国",
     "endTime": "2017-05-24",
-    "dataTime": "30",
+    "dataTime": "已收汇",
     "overTime": "2"
   },
   {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
+    "hetongnumber": "000000000092371232",
+    "hetongname": "天津港",
+    "time": "一般贸易",
+    "startTime": "日本",
     "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "2017030021",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
+    "dataTime": "未收汇",
     "overTime": "2"
   }
 ],

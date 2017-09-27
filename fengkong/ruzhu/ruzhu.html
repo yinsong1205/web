@@ -269,15 +269,15 @@
 		</p>
 	</form>
 </div>
-<!-- 导入合同 -->
+<!-- 导入-->
 		<div id="import_formBox" class="layerFormBox"> 
 			<form>
 				<div class="form-group col-sm-12">
-					<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>合同文件:</label>
+					<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择导入的企业:</label>
 					<div class="col-sm-8">
 						<span class="btn btn-default btn-sm fileinput-button">
 							<i class="glyphicon glyphicon-plus"></i>
-							<span>添加合同附件</span>
+							<span>选择企业</span>
 							<input type="file" name="files[]" multiple='multiple'>
 						</span>
 					</div>
@@ -526,8 +526,8 @@ $(function(){
 	function importLayer(){
 		commIndex = layer.open({
 			type: 1,
-			title : "导入企业",
-			area: ['80%', '60%'], //宽高
+			title : "导入",
+			area: ['80%', '70%'], //宽高
 			content: $('#import_formBox')
 		});
 	}
@@ -587,7 +587,7 @@ $(function(){
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
 			type: 1,
-			title : '添加模块',
+			title : '新增',
 			area: ['98%', '98%'], //宽高
 			content: $('#'+formBoxId)
 		});
@@ -600,7 +600,7 @@ $(function(){
 		var setting = {
 			gridId : gridId,
 			formBoxId : formBoxId,
-			title : '修改模块',
+			title : '修改',
 			area : ['98%', '98%']
 		};
 		layerIndex = updateGridData(setting);
@@ -614,9 +614,8 @@ $(function(){
 			commIndex = layer.open({
 				type : 1,
 				title : '审核',
-				skin: 'layui-layer-rim',
 				shadeClose: true,
-				area : ['30%','40%'],
+				area : ['50%','50%'],
 				content : $('#shenhe_ruzhu_formBoxId')
 			});
 		}else{
@@ -629,7 +628,7 @@ $(function(){
 		$('#shenheruzhu_history').show();
 			commIndex = layer.open({
 				type : 1,
-				title : '审核窗口',
+				title : '审核',
 				skin: 'layui-layer-rim',
 				shadeClose: true,
 				area : ['70%','70%'],
@@ -761,7 +760,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '查看信息';
+	title = '信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,

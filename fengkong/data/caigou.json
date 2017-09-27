@@ -11,7 +11,8 @@
     "money": "15,0631",
     "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
      "status": 0,
-     "glStatus" : "已关联"
+     "glStatus" : "已关联",
+     "active": "0"
   },
   {
     "id": "CG1818991184223",
@@ -22,7 +23,8 @@
     "money": "18,8198",
     "list": "<a href=\"javascript:;\" class=\"caigou_wzqd\"><i class=\"text-info fa fa-search \"></i></a>",
     "status": 1,
-    "glStatus" : "未关联"
+    "glStatus" : "未关联",
+    "active": "0"
   }
 ]
 }

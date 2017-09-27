@@ -1,30 +1,40 @@
 {
     "items": [
   {
-    "number": "201703120022",
-    "tongzhi": 175070607833,
-    "company": "小米科技",
-    "Tarate": "1.87%",
-    "RefundRate": "3.10%",
-    "name": "净水器",
-    "quantity": 79,
+    "number": "000000000092371271",
+    "tongzhi": "110320342",
+    "company": "南京某自动化系统工程有限公司",
+    "Tarate": "17%",
+    "RefundRate": "13%",
+    "name": "液晶显示屏",
+    "quantity": 3,
     "money": 3822.84,
     "unit": "台",
-    "anotherNumber": 12,
-    "numbers": 11032034231
+    "numbers": "20020171021121235"
   },
   {
-    "number": "213139600379",
-    "tongzhi": 114532026027,
-    "company": "vivo",
-    "Tarate": "2.28%",
-    "RefundRate": "3.98%",
-    "name": "净水器",
-    "quantity": 38,
+    "number": "000000000092371271",
+    "tongzhi": "114532026",
+    "company": "宝鸡某石油机械厂",
+    "Tarate": "16%",
+    "RefundRate": "13%",
+    "name": "钻井台防滑板",
+    "quantity": 8,
     "money": 1559.77,
-    "unit": "台",
-    "anotherNumber": 23,
-    "numbers": 11032034232
+    "unit": "个",
+    "numbers": "20020171021121234"
+  },
+  {
+    "number": "000000000092371271",
+    "tongzhi": "114532026",
+    "company": "扬州某点电缆股份有限公司",
+    "Tarate": "11%",
+    "RefundRate": "10%",
+    "name": "电缆",
+    "quantity": 3,
+    "money": 1559.77,
+    "unit": "千米",
+    "numbers": "20020171021121294"
   }
 ]
 }

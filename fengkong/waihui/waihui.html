@@ -499,36 +499,36 @@ text-align: left;
 	<form class="form-horizontal layerForm zzxx">
 		<div class="row">
 			<div class="form-group col-xs-4">
-				<label for="inputEmail3" class="col-xs-4 control-label">
+				<label class="col-xs-5 control-label">
 					<span>*</span>金额:
 				</label>
-				<div class="col-xs-8">
-					<input type="text" id="waihui_relName" name="relName" class="form-control input-sm"  placeholder="金额">
+				<div class="col-xs-7">
+					<input type="text" id="waihui_relName" name="relName" class="form-control input-sm"  value="200$">
 				</div>
 			</div>
 			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
+				<label class="col-xs-5 control-label">
 					<span>*</span>收汇日期:
 				</label>
-				<div class="col-xs-8">
-					<input type="text" id="waihui_numBer" name="numBer" class="form-control input-sm"  placeholder="收汇日期">
+				<div class="col-xs-7">
+					<input type="text" id="waihui_numBer" name="numBer" class="form-control input-sm"  value="2017-07-08" onclick="WdatePicker();">
 				</div>
 			</div>
 			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
+				<label class="col-xs-5 control-label">
 					<span>*</span>收汇人:
 				</label>
-				<div class="col-xs-8">
-					<input type="text" id="waihui_creatTime" onclick="WdatePicker();" name="createTime"  class="form-control input-sm"  placeholder="签订日期">
+				<div class="col-xs-7">
+					<input type="text" id="waihui_creatTime" name="createTime" class="form-control input-sm"  value="lisi">
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-xs-4">
-				<label class="col-xs-4 control-label">
+				<label class="col-xs-5 control-label">
 					说明:
 				</label>
-				<div class="col-xs-8">
+				<div class="col-xs-7">
 					<textarea class="form-control input-sm" row="5" placeholder="备注信息"></textarea>
 				</div>
 			</div>
@@ -754,8 +754,8 @@ rate: '{{integer(10, 80)}}%'
 		$('#'+formBoxId+' .form-control:not(select)').val('');
 		layerIndex = layer.open({
 			type: 1,
-			title : '添加模块',
-			area: ['90%', '90%'], //宽高
+			title : '新增',
+			area: ['98%', '98%'], //宽高
 			content: $('#'+formBoxId)
 		});
 	}
@@ -766,8 +766,8 @@ rate: '{{integer(10, 80)}}%'
 		var setting = {
 			gridId : gridId,
 			formBoxId : formBoxId,
-			title : '修改模块',
-			area : ['90%', '90%']
+			title : '修改',
+			area : ['98%', '98%']
 		};
 		layerIndex = updateGridData(setting);
 	}
@@ -785,7 +785,7 @@ rate: '{{integer(10, 80)}}%'
 		var setting = {
 			gridId : gridId,
 			formBoxId : formBoxId,
-			title : '合同信息',
+			title : '信息',
 			area : ['90%', '90%']
 		};
 		layerIndex = updateGridData(setting);
@@ -816,7 +816,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '查看信息';
+	title = '信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,
@@ -832,7 +832,7 @@ function lookcai(rowId){
 	commIndex = layer.open({
 		type: 1,
 		title : title,
-		area: ['90%', '90%'], //宽高
+		area: ['80%', '80%'], //宽高
 		content: $('#waihui_shouhui_formBox')
 	});
 }

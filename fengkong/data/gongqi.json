@@ -1,58 +1,22 @@
 {
 	"items": [
   {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "石油机械厂采购合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
+    "hetongnumber": "北京某某电子厂",
+    "hetongname": "913201059901675",
+    "time": "生产",
+    "startTime": "A",
+    "endTime": "黑",
+    "dataTime": "B",
+    "active": "0"
   },
   {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "自动化系统工程承包合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "扬州某点电缆采购合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "自动化系统工程承包合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "石油机械厂采购合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
-  },
-  {
-    "hetongnumber": "CK9203920392039",
-    "hetongname": "自动化系统工程承包合同",
-    "time": "2017-01-01",
-    "startTime": "2017-02-01",
-    "endTime": "2017-05-24",
-    "dataTime": "30",
-    "overTime": "2"
+    "hetongnumber": "某集团工程有限公司",
+    "hetongname": "913201059901698",
+    "time": "生产",
+    "startTime": "B",
+    "endTime": "黑",
+    "dataTime": "B",
+    "active": "1"
   }
 ],
 	"has_more": true,
