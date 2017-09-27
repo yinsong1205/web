@@ -3,40 +3,18 @@
 	"page": 1,
 	"rows": [
 		{
-			"number": "010134566010131131",
+			"number": "220120090519142814",
 			"bus": "一般贸易",
 			"pay": "FOB",
-			"outTime": "2017-07-18",
+			"ckgj" : "委内瑞拉",
+			"outTime": "2017-09-27",
 			"active": "未存在",
 			"anotherActive": "未存在",
-			"lastNumber": "10",
-			"fapiao": "10",
-			"ctrol": "admin",
-			"ctrolTime": "2017-09-01"
-		},
-		{
-			"number": "010134566010131131",
-			"bus": "一般贸易",
-			"pay": "FOB",
-			"outTime": "2017-07-18",
-			"active": "未存在",
-			"anotherActive": "未存在",
-			"lastNumber": "10",
-			"fapiao": "10",
-			"ctrol": "admin",
-			"ctrolTime": "2017-09-01"
-		},
-		{
-			"number": "010134566010131131",
-			"bus": "一般贸易",
-			"pay": "FOB",
-			"outTime": "2017-07-18",
-			"active": "未存在",
-			"anotherActive": "未存在",
-			"lastNumber": "10",
-			"fapiao": "10",
-			"ctrol": "admin",
-			"ctrolTime": "2017-09-01"
+			"lastNumber": "3",
+			"fapiao": "3",
+			"ctrol": "钱八",
+			"ctrolTime": "2017-09-27"
 		}
+		
 	]
 }

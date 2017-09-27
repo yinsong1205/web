@@ -49,6 +49,29 @@
 	}
 </style>
 <div class="container-fluid">
+	
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">申报批次:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	<div class="col-sm-12 plr0 height100 gridBox" id="beian_gridBox">
 		<table id="beian_jqGrid"></table>
 		<div id="beian_jqGridPager"></div>
@@ -246,66 +269,73 @@
 <script type="text/javascript">
 
 $(function(){
-	var dataUrl = 'data/beian.json';
-	var caigouUrl = 'data/caigou.json';
-	var index = null;
-	var flag = '';
-	var rowNumber = 1000000;
-	//表格数据
-	var gridWidth = $('#beian_gridBox').width();
-	var gridHeight = $('#beian_gridBox').height()-118;
-
-	var chosen_gridWidth = $('#chosen_gridBox').width();
-	var chosen_gridHeight = $('#chosen_gridBox').height()-118;
-	$("#beian_jqGrid").jqGrid({
+	
+	
+	//-------------------------------//
+	var layerIndex = null; //弹窗id,关闭所用
+	var flag = ''; //添加修改标记
+	var dataUrl = 'data/zhengshi_beian.json';//数据源链接
+	var gridId = 'beian_jqGrid'; //表格id
+	var gridPager = 'beian_jqGridPager'; //表格分页id
+	var formBoxId = 'beian_jqGrid_formBox'; //添加修改窗口元素id
+	var layerCloseClassName = 'qx';
+	var dataSaveBtn = 'beian_save_btn'; //弹窗保存id
+	var gridBoxId = 'beian_gridBox';//表格尺寸
+	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+	var gridWidth = $('#'+gridBoxId).width();
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	
+	var colModel = [
+		{label : '申报年月', name : 'outTime', align: 'center', width: 120},
+		{label : '申报批次', name : 'pici', align: 'center', width:80},
+		{label : '关联检查', name : 'check', align: 'center', width:80,hidden:true},
+		{label : '换汇成本', name : 'chengben', align: 'left', width:80,hidden:true},
+		{label : '误差比例', name : 'wucha', align: 'left', width:80,hidden:true},
+		{label : '备案状态', name : 'active', align: 'center', width: 80},
+		/* {label : '审核状态', name : 'shactive', align: 'center', width: 80},
+		{label : '审核结果信息', name : 'activeCheck', align: 'center', width: 150}, */
+		{label : '退税金额', name : 'money', align: 'center', width: 80},
+		{label : '提交人', name : 'ctrol', align: 'center', width: 80},
+		{label : '提交时间', name : 'ctrolTime', align: 'center', width: 80}
+	];
+	
+	$('#'+gridId).jqGrid({
+		width: gridWidth,
+		height: gridHeight,
+		url: dataUrl,
+		datatype: "json",
+		loadonce: true, //加载到本地操作
+		rownumbers: true, //显示顺序编号
+		multiselect: true, //定义多选
+		viewrecords: true, //显示总记录数
+		sortname: 'name', //排序字段
+		sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+		altRows : true, //设置表格隔行变色
+		rowNum: 12, //每页显示的记录数
+		rowList:[10,12,15,18,20,25], //
+		rownumWidth: 30, 
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+		//emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		pager: '#'+gridPager,
+		colModel: colModel
+		//jsonReader : jsonReader
 		
-		hidegrid : false, 
-		altRows : true, 
-		colModel: [{label : '批次', name : 'pici', align: 'center', width: 120},
+	});
+	
+	
+		/* colModel: [{label : '批次', name : 'pici', align: 'center', width: 120},
 			{label : '关联号', name : 'relName', align: 'center', width:120},
 			{label : '所属期', name : 'mydata', align: 'center', width:120},
 			{label : '出口发票号', name : 'guandan', align: 'center', width:120},
 			{label : '退税申报日期', name : 'createTime', align: 'center', width:120},
 			{label : '备案日期', name : 'anotherTime', align: 'center', width:120},
-			{label : '标志', name : 'sign', align: 'center', width:120}],
-		viewrecords: true,
-		loadonce:true,
-		width: gridWidth,
-		//width: 'auto',
-		//width : '100%',
-		height: gridHeight,
-		//height : 'auto',
-		rowNum: 11,
-		rowList:[10,15,20,25],
-		datatype: 'local',
-		pager: "#beian_jqGridPager",
-		multiselect: true,
-		rownumbers: true,
-		rownumWidth: 30,
-		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
-	    //emptyrecords: "No records to view",
-		//loadtext: "Loading...",
+			{label : '标志', name : 'sign', align: 'center', width:120},
+			{label : '页数', name : 'yeshu', align: 'center', width:80},
+			{label : '备注', name : 'beizhu', align: 'center', width:80},
+			
+			], */
 		
-	}).navGrid('#beian_jqGridPager',{ // the buttons to appear on the toolbar of the grid
-			edit:false,add:false,del:false,search:false,refresh:false
-		// }).navButtonAdd('#beian_jqGridPager',{
-		// 		//caption: '生成备案',
-		// 	caption: '',
-		// 	title : '生成备案',
-		// 	buttonicon : 'glyphicon-plus',
-		// 	onClickButton : beian_addLayer, //调用添加的函数
-		// 	position : 'last'
-		// }).navButtonAdd('#beian_jqGridPager',{
-		// 	//caption: '导入合同',
-		// 	caption: '',
-		// 	title : '导出备案',
-		// 	buttonicon : 'fa fa-download',
-		// 	onClickButton : beian_importLayer, //调用导入合同函数
-		// 	position : 'last'
-		}).navSeparatorAdd("#beian_jqGridPager",{
-			sepcontent: '',
-			sepclass : "ui-separator"
-		});
 		//选择
 	$("#chosen_jqGrid").jqGrid({
 			datatype: 'local',
@@ -348,6 +378,7 @@ $(function(){
 		name: "abc",
 		text: "ddd"
 	}];
+	
 	//查看
 	$("#chakan_jqGrid").jqGrid({
 		data: grid_data, //当 datatype 为"local" 时需填写 

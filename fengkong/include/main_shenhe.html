@@ -1,0 +1,188 @@
+<!-- 首页 -->
+<div class="container-fluid" id="include_main_box">
+	
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">申报预警</div>
+				<div class="panel-body">
+					<a class="fa fa-bell-o" id="main_rw_title" style="font-size:64px;"></a>
+					<span class="font" style="font-size:45px;">6</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">关单发票统计</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="text-center" style="padding-top:28px;font-size:16px;">关单:</p>
+						</div>
+						<div class="col-sm-9">
+							<table class="table"> 
+								<thead>
+									<tr>
+										<th>总数</th>
+										<th>已申报</th>
+										<th>未申报</th>
+									</tr>
+								</thead>
+								<tbody> 
+									<tr>
+										<td>100</td>
+										<td>85</td>
+										<td>15</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="text-center" style="padding-top:28px;font-size:16px;">发票:</p>
+						</div>
+						<div class="col-sm-9">
+							<table class="table"> 
+								<thead>
+									<tr>
+										<th>总数</th>
+										<th>已申报</th>
+										<th>未申报</th>
+									</tr>
+								</thead>
+								<tbody> 
+									<tr>
+										<td>120</td>
+										<td>75</td>
+										<td>45</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="row">
+				<div ></div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">申报统计</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-4">
+							<a class="fa fa-bar-chart"></a>
+							<span class="font">15</span>
+						</div>
+						<div class="col-sm-4">
+							<a class="fa fa-check-square-o"></a>
+							<span class="font">11</span>
+						</div>
+						<div class="col-sm-4">
+							<a class="fa fa-circle-o"></a>
+							<span class="font">4</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	
+</div>
+<!-- 首页 -->
+
+<style>
+	#include_main_box .main_dbrw {  /* cursor:pointer; */}
+	#include_main_box .main_dbrw li {line-height:30px; letter-spacing:1px; padding-left:10px;  }
+	#include_main_box .daiban .panel-body{ height:173px; overflow-y:scroll;  }
+	#include_main_box .daiban .badge { margin-left:8px; }
+	#include_main_box .panel-body .fa {
+		cursor:pointer;
+		padding-top: 20px;
+		display: block;
+		text-align: center;
+		font-size: 50px;
+		color: #666; 
+	}
+	#include_main_box .panel-body .font {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		display: block;
+		text-align: center;
+		font-size: 30px;
+		color: #666; 
+	}
+	#include_main_box .panel-body:hover .fa,#include_main_box .panel-body:hover .font {color:#333; }
+	
+</style>
+
+<script>
+	$(function(){
+		$('#main_db_title, .main_db_name').on('click',function(){
+			$('#menu_rw_gl').trigger('click');
+		});
+		$('#main_rw_title').on('click',function(){
+			$('#menu_yj_renwu').trigger('click');
+		});
+		$('#main_gq_title').on('click',function(){
+			$('#menu_yj_gq').trigger('click');
+		});
+		$('#main_sh_title').on('click',function(){
+			$('#menu_yj_sh').trigger('click');
+		});
+		
+		
+		//-------------------------------//
+		/* var layerIndex = null; //弹窗id,关闭所用
+		var flag = ''; //添加修改标记
+		var dataUrl = 'data/liucheng_renwu.json';//数据源链接
+		var gridId = 'main_renwujqGrid'; //表格id
+		var gridPager = 'main_renwujqGridPager'; //表格分页id
+		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
+		
+		var colModel = [
+				
+				{label : '任务编号', name : 'id', align: 'center', width:100},
+				{label : '任务名称 ', name : 'name', align: 'left', width:150},
+				{label : '出口口岸', name : 'kouan', align: 'center', width:130},
+				{label : '创建日期', name : 'createTime', align: 'center', width:70, search:false},
+				{label : '流程处理', name : 'liucheng', align: 'center',width:80, search:false},
+				{label : '操作', name : 'operation', align: 'center',width:80, search:false}
+		
+		];
+		
+		$('#'+gridId).jqGrid({
+			width: "auto",
+			height: 173,
+			url: dataUrl,
+			datatype: "json",
+			loadonce: true, //加载到本地操作
+			rownumbers: true, //显示顺序编号
+			multiselect: true, //定义多选
+			viewrecords: true, //显示总记录数
+			sortname: 'name', //排序字段
+			sortorder: 'asc', //排序顺序，升序或者降序（asc or desc）
+			altRows : true, //设置表格隔行变色
+			rowNum: 12, //每页显示的记录数
+			rowList:[10,12,15,18,20,25], //
+			rownumWidth: 30, 
+			recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+			//emptyrecords: "No records to view",
+			//loadtext: "Loading...",
+			pager: '#'+gridPager,
+			colModel: colModel
+			//jsonReader : jsonReader
+			
+		}); */
+		
+		
+	});
+</script>
