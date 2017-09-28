@@ -9,8 +9,22 @@
 	},
 	{
 		"name" : "供货商管理",
-		"url" : "ruzhu/ruzhu.html",
-		"leftIcon" : "l fa fa-building"
+		"leftIcon" : "l fa fa-building",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "预警评估",
+				"url" : "gonghuo/pinggu.html"
+			},
+			{
+				"name" : "供货商维护",
+				"url" : "ruzhu/ruzhu.html"
+			},
+			{
+				"name" : "实地核查",
+				"url" : "gonghuo/shidi.html"
+			}
+		]
 	},
 	{
 		"name" : "合同管理",
@@ -123,7 +137,7 @@
 		"children" : [
 			{
 				"id" : "menu_yj_renwu",
-				"name" : "任务预警",
+				"name" : "待办提醒",
 				"url" : "yujing/renwu.html"
 			},
 			{
