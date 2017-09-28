@@ -4,24 +4,24 @@
     "company": "创立信电子厂",
     "number": 913201059901675,
     "type": "生产",
-    "level": "灰",
-    "leveler": "B",
+    "leveler": "白",
+    "level": "B",
     "active": 1
   },
   {
     "company": "某集团工程有限公司",
     "number": 913201059901134,
     "type": "生产",
-    "level": "黑",
-    "leveler": "C",
+    "leveler": "黑",
+    "level": "C",
     "active": 0
   },
   {
     "company": "北京某某电子厂",
     "number": 913201059901422,
     "type": "生产",
-    "level": "白",
-    "leveler": "A",
+    "leveler": "白",
+    "level": "A",
     "active": 1
   }
 ]
