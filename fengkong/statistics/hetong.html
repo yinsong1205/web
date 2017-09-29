@@ -4,22 +4,24 @@
 	#fenlei{display: none;}
 	*{padding:0;margin:0;} 
 #fenlei caption{font-size:14px;font-weight:bold;} 
-#fenlei table{ border-collapse:collapse;border:1px #525152 solid;width:800px;margin:0 auto;} 
+#fenlei table{ border-collapse:collapse;border:1px #525152 solid;width:900px;margin:0 auto;} 
 #fenlei th,#fenlei td{border:1px #525152 solid;text-align:center;font-size:12px;line-height:30px;} 
 
 
 /*模拟对角线*/ 
 .out{ 
-border-top:43px #D6D3D6 solid;/*上边框宽度等于表格第一行行高*/ 
+border-top:45px #D6D3D6 solid;/*上边框宽度等于表格第一行行高*/ 
 width:0px;/*让容器宽度为0*/ 
 height:0px;/*让容器高度为0*/ 
-border-left:98px #BDBABD solid;/*左边框宽度等于表格第一行第一格宽度*/ 
+border-left:199px #BDBABD solid;/*左边框宽度等于表格第一行第一格宽度*/ 
 position:relative;/*让里面的两个子容器绝对定位*/ 
 } 
 .topcolor{background: #D6D3D6;}
 .t1{background: #BDBABD;}
 #fenlei b{font-style:normal;display:block;position:absolute;top:-45px;left:-67px;width:75px;} 
-#fenlei em{font-style:normal;display:block;position:absolute;top:-25px;left:-86px;width:95x;} 
+#fenlei em{font-style:normal;display:block;position:absolute;top:-30px;left:-183px;width:95x;} 
+#fenlei .topcolor{width: 200px;}
+#fenlei td {height: 50px;}
 </style>
 <div class="container-fluid tongji">
 	<div class="row">
@@ -57,21 +59,21 @@ position:relative;/*让里面的两个子容器绝对定位*/
 		<div class="col-sm-2" id="fenlei" class="yincang">
 			<table>
 				<tr> 
-				<th style="width:100px"> 
+				<th style="width:200px"> 
 					<div class="out">
-						<em>海关商品码</em>  
+						<em>商品名称</em>  
 						<b>国家</b> 
 					</div> 
 				</th> 
-				<th class="topcolor">美国</th> 
-				<th class="topcolor">德国</th> 
+				<th class="topcolor" style="width:150px">美国</th> 
+				<th class="topcolor" style="width:150px">德国</th> 
 				<th class="topcolor">意大利</th> 
 				<th class="topcolor">俄罗斯</th>
 				<th class="topcolor">德国</th>
 				<th class="topcolor">合计</th>
 				</tr> 
 				<tr> 
-					<td class="t1">4016999090</td> 
+					<td class="t1">液晶显示器</td> 
 					<td>10</td> 
 					<td>20</td> 
 					<td>30</td> 
@@ -80,7 +82,7 @@ position:relative;/*让里面的两个子容器绝对定位*/
 					<td>150</td>
 				</tr> 
 				<tr> 
-					<td class="t1">8544492100</td> 
+					<td class="t1">华为手机</td> 
 					<td>10</td> 
 					<td>20</td> 
 					<td>30</td> 
@@ -89,7 +91,7 @@ position:relative;/*让里面的两个子容器绝对定位*/
 					<td>150</td>
 				</tr> 
 				<tr> 
-					<td class="t1">8528591090</td> 
+					<td class="t1">控制器内变压器</td> 
 					<td>10</td> 
 					<td>20</td> 
 					<td>30</td> 
@@ -98,7 +100,7 @@ position:relative;/*让里面的两个子容器绝对定位*/
 					<td>150</td>
 				</tr>
 				<tr> 
-					<td class="t1">8599323982</td> 
+					<td class="t1">钻井平台防滑板</td> 
 					<td>10</td> 
 					<td>20</td> 
 					<td>30</td> 

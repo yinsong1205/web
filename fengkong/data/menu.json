@@ -13,7 +13,7 @@
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
 			{
-				"name" : "预警评估",
+				"name" : "评估预警",
 				"url" : "gonghuo/pinggu.html"
 			},
 			{
@@ -21,7 +21,7 @@
 				"url" : "ruzhu/ruzhu.html"
 			},
 			{
-				"name" : "实地核查",
+				"name" : "供货商核查",
 				"url" : "gonghuo/shidi.html"
 			}
 		]
