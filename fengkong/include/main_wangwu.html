@@ -23,7 +23,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td >CK201709220001</td>
+								<td ><a href="javascript:;" class="main_rewu_look_info_btn">CK201709220001</a></td>
 								<td >委内瑞拉</td>
 								<td>一般贸易</td>
 								<td>天津新港</td>
@@ -31,7 +31,7 @@
 								<th >关单审核</th>
 								<td >李四</td>
 								<td >2017-09-27</td>
-								<td>未处理</td>
+								<td><a class="main_rewu_ope_btn" href="javascript:;">未处理</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -163,7 +163,1488 @@
 			//jsonReader : jsonReader
 			
 		}); */
+		//任务详情
+		$(document).on('click','.main_rewu_look_info_btn',function(){
+			commIndex = layer.open({
+				type : 1,
+				title : '任务详情',
+				area : ["90%","90%"],
+				content : $('#main_renwu_detail_info_box'),
+			});
+		});
+		$("#main_liucheng_info_jqGrid").jqGrid({
+			url: 'data/wuzi.json',
+			// we set the changes to be made at client side using predefined word clientArray
+			editurl: 'clientArray',
+			datatype: "json",
+			sortname: 'name',
+			sortorder: 'asc',
+			loadonce: true,
+			viewrecords: true,
+			multiselect: false,
+			rownumbers: true,
+			altRows : true,
+			//width: '100%',
+			width: $('#main_renwu_detail_info_box').width(),
+			height: 300,
+			rowNum: 8,
+			colModel: [{label : '物资名称', name : 'name', align: 'center', width: 100,editable: true},
+				{label : '数量', name : 'number', align: 'center', width:80,search: false},
+				{label : '规格型号 ', name : 'guige', align: 'center', width:80,search: false},
+				{label : '计量单位', name : 'danwei', align: 'center', width:80,search: false},
+				{label : '单价', name : 'oneMoney', align: 'center', width:100,search: false},
+				{label : '总价', name : 'totalMoney', align: 'center',width:120,search: false},
+				{label : '供货方', name : 'company', align: 'center',width:150},
+				],
+			
+			pager: "#main_liucheng_info_jqGridPager"
 		
+		});
+		//任务详情
 		
+		//处理任务
+		$(document).on('click','.main_rewu_ope_btn',function(){
+			commIndex = layer.open({
+				type : 1,
+				title : '操作任务',
+				area : ["90%","80%"],
+				content : $('#main_renwu_ope_box')
+			});
+			
+			$("#main_liucheng_info_jqGrid2").jqGrid({
+				url: 'data/yuluru_wangwu.json',
+				// we set the changes to be made at client side using predefined word clientArray
+				editurl: 'clientArray',
+				datatype: "json",
+				sortname: 'name',
+				sortorder: 'asc',
+				loadonce: true,
+				viewrecords: true,
+				multiselect: false,
+				rownumbers: true,
+				altRows : true,
+				//width: '100%',
+				//width: 'auto',
+				//width: 800,
+				width: $('#main_renwu_ope_box').width()-15,
+				height: 300,
+				rowNum: 8,
+				colModel: [{label : '预录入编号', name : 'number', align: 'center', width: 150, formatter: formatYlrmain},
+					{label : '出口口岸', name : 'bus', align: 'center', width:100},
+					{label : '运抵国', name : 'company', align: 'center', width: 120},
+					{label : '指运港', name : 'anotherBus', align: 'center', width:120},
+					{label : '成交方式 ', name : 'pay', align: 'center', width:80},
+					{label : '贸易性质', name : 'property', align: 'center', width:120},
+					{label : '审核状态', name : 'status', align: 'center', width:120,formatter: formatStatus1main },
+					{label : '关单号', name : 'gdh', align: 'center', width:150},
+					{label : '选择关单', name : 'selectgd', align: 'center', width:100, formatter: formatGdmain}
+					],
+				
+				pager: "#main_liucheng_info_jqGridPager2"
+			
+			});
+			
+			//正在比对
+			$('#main_renwu_bd_load').on('click',function(){
+				/* if ($('#renwu_scygd_box').is(':visible')) {
+					
+				}else {
+					layer.msg('请先对商品进行归类!', {
+						time : 2000
+					});
+				} */
+				
+				layer.load(1,{shade: [0.1,'#333'],time:1500});
+				setTimeout(function(){
+					layer.msg('比对完成!',{time:1500});
+					$('#main_renwu_bd').trigger('click');
+				},2000);
+			});
+			
+			//比对
+			var mainbiduiIndex = null;
+			$(document).on('click','#main_renwu_bd',function(){
+				
+				/* if($('#renwu_scygd_box').is(':visible')){
+					biduiIndex = layer.open({
+						type : 1,
+						title : '关单比对',
+						area : ["100%","100%"],
+						content : $('#renwu_bd_box')
+					});
+				}else{
+					layer.msg('请先对商品进行归类!',{time:2000});
+				} */
+				mainbiduiIndex = layer.open({
+					type : 1,
+					title : '关单比对',
+					area : ["100%","100%"],
+					content : $('#main_renwu_bd_box')
+				});
+			});
+			
+			//查看关单详情
+			$(document).on('click','.main_rewu_look_ygd_btn',function(){
+				
+				layer.open({
+					type : 1,
+					title : "预录入关单信息",
+					area :["100%","100%"],
+					content : $('#main_rewu_look_ygd_info')
+				});
+			});
+			
+			var mainbgdIndex = null;
+			//预关单选择
+			$(document).on('click','.main_rewu_wangwu_gdList_btn',function(){
+				
+				mainbgdIndex = layer.open({
+					type :1,
+					title : '选择关单',
+					area : ["80%","80%"],
+					content : $('#main_rewu_wangwu_gdList')
+				}); 
+				
+				$("#main_liucheng_info_jqGrid3").jqGrid({
+					url: 'data/yuluru_wangwu_guandan.json',
+					// we set the changes to be made at client side using predefined word clientArray
+					editurl: 'clientArray',
+					datatype: "json",
+					sortname: 'name',
+					sortorder: 'asc',
+					loadonce: true,
+					viewrecords: true,
+					multiselect: true,
+					rownumbers: true,
+					altRows : true,
+					//width: '100%',
+					//width: 'auto',
+					//width: 800,
+					width: $('#main_rewu_wangwu_gdList').width()-15,
+					height: 300,
+					rowNum: 8,
+					colModel: [{label : '报关单号', name : 'number', align: 'center', width: 170, formatter: formatYlrmain},
+						{label : '出口口岸', name : 'bus', align: 'center', width:100},
+						{label : '出口日期 ', name : 'outTime', align: 'center', width:120},
+						{label : '运抵国', name : 'company', align: 'center', width: 120},
+						{label : '指运港', name : 'anotherBus', align: 'center', width:120},
+						{label : '成交方式 ', name : 'pay', align: 'center', width:80},
+						{label : '贸易性质', name : 'property', align: 'center', width:120}
+						],
+					
+					pager: "#main_liucheng_info_jqGridPager3"
+				
+				});
+				
+				$('.main_qxbgd').on('click',function(){
+					layer.close(mainbgdIndex);
+					layer.msg('已关联报关单!可以进行比较');
+				});
+			});
+			
+			
+			$('#main_renwu_kan_detail_bd').click(function(){
+				layer.open({
+					type : 1,
+					title : '商品信息',
+					area : ["80%","80%"],
+					content : $('#main_renwu_kan_detail_bd_box')
+				});
+			});
+			
+			//比对确认
+			$('#main_renwu_bidui_hou_btn').on('click',function(){
+				layer.close(mainbiduiIndex);
+				layer.msg('关单比对成功!',{time:2000});
+				
+				//console.log($('#liucheng_info_jqGrid2').getDataIDs());
+				//console.log($('#liucheng_info_jqGrid2').getRowData("1"));
+				
+			});
+			
+			//选择用户处理流程
+			var mainchooseUserLayer = null;
+			$('#main_renwu_choose_user_btn').on('click',function(){
+				mainchooseUserLayer = layer.open({
+						type : 1,
+						title : '选择用户',
+						area : ['25%',"60%"],
+						content : $('#main_renwu_choosen_user_box')
+					});
+				
+			});
+			$('#main_renwu_liucheng_chuli').on('click',function(){
+				layer.close(mainchooseUserLayer);
+				layer.close(commIndex);
+				layer.msg('提交成功!',{time:layerCloseTime})
+			});
+			//选择用户处理流程
+			
+		});
+		function formatYlrmain(cellValue, options, rowObject){
+			return '<a href="javascript:;" class="main_rewu_look_ygd_btn">'+cellValue+'</a>';
+		} 
+		function formatGdmain(cellValue, options, rowObject){
+			return cellValue ? '<a href="javascript:;" class="main_rewu_wangwu_gdList_btn">'+cellValue+'</a>' : '';
+		}
+		function formatStatus1main(cellValue, options, rowObject){
+			return '<a href="javascript:;" id="main_renwu_bd" >'+cellValue+'</a>';
+		} 
+
 	});
 </script>
+
+<!-- 任务详情 -->
+<div id="main_renwu_detail_info_box" class="layerFormBox">
+	<p style="border-bottom:1px dotted #666; ">基本信息</p>
+	<div class="form-horizontal layerForm clearfix">
+		<div class="form-group col-xs-4">
+			<label for="inputEmail3" class="col-xs-4 control-label">
+				任务编号:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >CK201709220001</p>
+			</div>
+		</div>
+
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				出口国别:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >委内瑞拉</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				业务类型:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >一般贸易</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				出口口岸:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >天津新港</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				运输方式:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >水路运输</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				当前环节:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >关单审核</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				操作人:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >王五</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label class="col-xs-4 control-label">
+				操作时间:
+			</label>
+			<div class="col-xs-8">
+				<p  class="form-control input-sm"  >2017-09-27</p>
+			</div>
+		</div>
+		<!-- <div class="row">
+			<div class="form-group col-xs-12">
+				<label class="col-xs-1 control-label">
+					说明:
+				</label>
+				<div class="col-xs-8">
+					<div class="form-control input-sm" rows="3"  ></div>
+				</div>
+			</div>
+		</div> -->
+		
+		
+	</div>
+	
+	<div class="row" style="margin-left:0px; padding:0">
+		<p style="border-bottom:1px dotted #666; ">货物清单</p>
+		<table id="main_liucheng_info_jqGrid"></table>
+		<div id="main_liucheng_info_jqGridPager"></div>
+	</div>
+	
+	<!-- 操作历史 -->
+		<p style="border-bottom:1px dotted #666; margin-top:30px;">历史记录</p>
+		<div class="panel panel-info" style="margin-top: 15px;">
+			<!-- <div class="panel-heading">历史操作记录</div> -->
+			<div class="panel-body"
+				style="padding: 0; height: 180px; overflow-y: auto;">
+				<table class="table table-striped  table-condensed"
+					style="margin-bottom: 0;">
+					<thead style="background: #e5e6e6;">
+						<tr>
+							<th>操作人</th>
+							<th>历史操作</th>
+							<th>操作时间</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>张三</td>
+							<th>创建任务</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>李四</td>
+							<th>预关单审核</th>
+							<td>2017-09-27</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 操作历史 -->
+	
+</div>
+<style>
+	#main_renwu_detail_info_box .form-control { border:none; box-shadow:none; padding-top:7px; }
+	#renwu_ope_box #danqian p { margin-bottom:0; }
+	.layerForm .form-group {margin-bottom:0; }
+	/* .layerForm .topSeven { padding-top:7px; } */
+	#main_renwu_choose_user_btn {margin-top:35px;}
+	.rewwu_base_info p {}
+	.rewwu_base_info p span{ padding:0 10px; font-weight:bold; }
+</style>
+
+<!-- 任务处理界面 -->
+<div id="main_renwu_ope_box" class="layerFormBox">
+	<div class="container-fluid" style="padding:0">
+		<!-- 任务基本信息 -->
+		<div class="row rewwu_base_info" style="margin:0 0 15px 0; padding-top:15px;background:#f4f4f4; ">
+			<div class="col-xs-3">
+				<p><span>任务编号 :</span>CK201709220001</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>出口国别 :</span>委内瑞拉</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>业务类型 :</span>一般贸易</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>出口口岸 :</span>天津新港</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>运输方式 :</span>水路运输</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>操作人 :</span>张三</p>
+			</div>
+			<div class="col-xs-3">
+				<p><span>操作时间 :</span>2017-09-27</p>
+			</div>
+		</div>
+		<!-- 任务基本信息 -->
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- 操作按钮 -->
+				<p style="margin:30px 0">
+					<!-- <button class="btn btn-info btn-sm" id="renwu_scygd">生成预关单</button> -->
+					<!-- <button class="btn btn-info btn-sm" id="renwu_gl">归类</button>
+					<button class="btn btn-info btn-sm">导入</button> -->
+					<button class="btn btn-info btn-sm" id="main_renwu_bd_load">比对</button>
+					<!-- <button class="btn btn-info btn-sm">导出</button> -->
+				</p>
+				<!-- 操作按钮 -->
+			</div>
+		</div>
+		
+		<!-- 预关单列表 -->
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="main_liucheng_info_jqGrid2"></table>
+				<div id="main_liucheng_info_jqGridPager2"></div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- 生成预关单信息 -->
+				<!-- <div id="main_renwu_scygd_box" style=" overflow-y:auto; margin-bottom:15px; background:#fff;">
+					<table class="table table-striped table-condensed" style="margin-bottom:0;">
+						<thead class="bg-info">
+							<tr>
+								<th width="20%">任务编号</th>
+								<th width="10%">出口国别</th>
+								<th width="10%">业务类型</th>
+								<th width="10%">出口口岸</th>
+								<th width="10%">运输方式</th>
+								<th width="10%">当前环节</th>
+								<th width="10%">操作人</th>
+								<th width="10%">操作时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td width="20%">RW10762</td>
+								<td width="10%">美国</td>
+								<td width="10%">一般贸易</td>
+								<td width="10%">京国际局</td>
+								<td width="10%">空运</td>
+								<th width="10%">创建任务</th>
+								<td width="10%">张三</td>
+								<td width="10%">2017-02-12</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div> -->
+				<!-- 生成预关单信息 -->
+			</div>
+		</div>
+		
+		<!-- 当前流程 -->
+		<div class="row" style="margin-top:15px; ">
+			<div class="col-xs-12 text-center" id="danqian">
+				<button class="btn  btn-sm ">1.创建任务</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn btn-sm ">2.预关单审核</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm btn-warning">3.报关单审核</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm ">4.开票通知</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm ">5.收票确认</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm ">6.发票认证</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm ">7.申报</button>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+				<button class="btn  btn-sm ">8.备案</button>
+			</div>
+		</div>
+		<!-- 当前流程 -->
+		<p class="text-center">
+			<button class="btn btn-info btn-sm" style="magin-top:35px;" id="main_renwu_choose_user_btn">提交</button>
+			<button class="btn btn-info btn-sm qx" style="margin-top:35px; margin-left:20px;">退回</button>
+		</p>
+		
+	</div>
+</div>
+<!-- 任务处理界面 -->
+
+<!-- 比对 -->
+<div class="layerFormBox" id="main_renwu_bd_box" style="padding:0">
+	
+	<div class="panel panel-info" style="margin-bottom:0;">
+		<div class="panel-heading" style="font-size: 12px;">
+			说明: <span class="text-danger" style="font-weight: bold;"> 标红的为不一致的项!</span>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-6">
+					<p style="text-align:center; border-bottom: 1px dotted #666; padding-bottom: 5px;margin-bottom:35px;">
+						<span class="bg-info" style="padding: 5px 10px;">系统生成的预报关单</span>
+					</p>
+					<!-- 左侧关单 -->
+					<form class="form-horizontal layerForm col-xs-12">
+						<!-- <h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4> -->
+						<div class="col-xs-12 index">
+							<div class="form-group col-xs-12 head">
+								<label for="inputEmail3" class="col-xs-5 control-label">
+									预录入编号
+								</label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_number" name="number"
+										value="123123123122312999" class="form-control input-sm"
+										placeholder="预录入编号">
+								</div>
+							</div>
+							<div class="form-group col-xs-12 head">
+								<label class="col-xs-5 control-label"> 海关编号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 出口口岸
+								</label>
+								<div class="col-xs-7">
+									<select 
+										class="form-control input-sm">
+										<option selected="true">天津新港</option>
+										<option >北京机场</option>
+									</select>
+									<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 备案号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 经营单位
+								</label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										placeholder="经营单位" value="某集团工程有限公司">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运输方式 </label>
+								<div class="col-xs-7">
+									<select 
+										class="form-control input-sm">
+										<option selected="true">水路运输</option>
+										<option>航空运输</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运输工具 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm" value="">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 提运单号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										placeholder="提运单号" value="">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 发货单位
+								</label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										placeholder="发货单位" value="某集团工程有限公司">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 贸易方式 </label>
+								<div class="col-xs-7">
+									<select class="form-control input-sm">
+										<option value="一般贸易" selected="true">一般贸易</option>
+										<option value="承包工程">承包工程</option>
+										<option value="外综服贸易">外综服贸易</option>
+									</select>
+									<!-- <input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 征免性质 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 许可证号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 抵运国（地区） </label>
+								<div class="col-xs-7">
+									<select 
+										class="form-control input-sm">
+										<option selected="true">委内瑞拉</option>
+										<option >英国</option>
+									</select>
+									<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 指运港 </label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_anotherBus" name="anotherBus"
+										class="form-control input-sm" placeholder="指运港" value="拉瓜伊拉">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 境内货源地 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"  value="朝阳区">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 批准文号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 成交方式 </label>
+								<div class="col-xs-7">
+									<select class="form-control input-sm">
+										<option selected="true">FOB</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm" value="0" placeholder="运费">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 保费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										placeholder="保费" value="0">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 杂费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										placeholder="杂费" value="0">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 合同协议号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										  value="4520000254">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 件数 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										 value="194">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 包装种类 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										  value="其它">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 毛重（kg） </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										  value="43970.7">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 净重（kg） </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										  value="39650.15">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 集装箱号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										  value="TCLU4001889">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 随附单据 </label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_accessory" name="accessory"
+										class="form-control input-sm">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 生产厂家 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label text-center">
+									标记码及备注 </label>
+								<div class="col-xs-7">
+									<textarea type="text" class="form-control input-sm">任务编号 :CK201709220001-01</textarea>
+									.
+								</div>
+							</div>
+							
+
+							<!-- 查看关单比对商品详情信息 -->
+							<!-- <table class="table table-striped col-xs-12" style="margin-top:30px;">
+								<thead class="" style="background: #f4f4f4;">
+									<tr>
+										<th width="60">项号</th>
+										<th>商品编码</th>
+										<th width="160">商品名称、规格型号</th>
+										<th width="100">数量</th>
+										<th width="100">单位</th>
+										<th>最终目的国</th>
+										<th width="100">单价</th>
+										<th width="100">总价</th>
+										<th width="100">币制</th>
+										<th width="100">征免</th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr><td>1</td><td>4016999090</td><td>钻井台防滑板  防护垫|硫化橡胶|不是机器及仪器用|无品牌|无型号</td><td>50</td><td>个</td><td>委内瑞拉</td><td>193.36</td><td>9668.08</td><td>美元</td><td></td>
+								</tr><tr><td>2</td><td>8544492100</td><td>电缆  传输电力|无接头|无品牌|无型号|400伏</td><td>0.8</td><td>千米</td><td>委内瑞拉</td><td>1012.42</td><td>10731.69</td><td>美元</td><td></td></tr>
+								<tr><td>3</td><td>8528591090</td><td>液晶显示器  监视器用|显示影像，LED显示|21.5寸|无品牌|无型号|19</td><td>3</td><td>台</td><td>委内瑞拉</td><td>1739.23</td><td>6956.92</td><td>美元</td><td></td></tr></tbody>
+							</table> -->
+							<!-- 查看关单比对商品详情信息 -->
+
+						</div>
+					</form>
+					<!-- 左侧关单 -->
+				</div>
+				<div class="col-xs-6">
+					<p style="text-align:center; border-bottom: 1px dotted #666; padding-bottom: 5px;margin-bottom:35px;">
+						<span class="bg-info" style="padding: 5px 10px;">海关关单</span>
+					</p>
+					<!-- 右侧关单 -->
+					<form class="form-horizontal layerForm col-xs-12">
+						<!-- <h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4> -->
+						<div class="col-xs-12 index">
+							<div class="form-group col-xs-12 head">
+								<label for="inputEmail3" class="col-xs-5 control-label">
+									预录入编号
+								</label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_number" name="number" readonly="readonly"
+										value="123123123122312999" class="form-control input-sm"
+										placeholder="预录入编号">
+								</div>
+							</div>
+							<div class="form-group col-xs-12 head">
+								<label class="col-xs-5 control-label"> 海关编号</label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										 readonly="readonly" value="220120090519142814">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label">出口口岸
+								</label>
+								<div class="col-xs-7">
+									<select
+										class="form-control input-sm"  disabled="disabled">
+										<option selected="true">天津新港</option>
+										<option>北京机场</option>
+									</select>
+									<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 备案号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 经营单位
+								</label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="某集团工程有限公司">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运输方式 </label>
+								<div class="col-xs-7">
+									<select 
+										class="form-control input-sm"  disabled="disabled">
+										<option selected="true">水路运输</option>
+										<option>航空运输</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运输工具 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 提运单号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 发货单位
+								</label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="某集团工程有限公司">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 贸易方式 </label>
+								<div class="col-xs-7">
+									<select class="form-control input-sm"    disabled="disabled">
+										<option value="一般贸易" selected="true">一般贸易</option>
+										<option value="承包工程" >承包工程</option>
+										<option value="外综服贸易">外综服贸易</option>
+									</select>
+									<!-- <input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 征免性质 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 许可证号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 抵运国（地区） </label>
+								<div class="col-xs-7">
+									<select 
+										class="form-control input-sm" disabled="disabled">
+										<option selected="true">委内瑞拉</option>
+									</select>
+									<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 指运港 </label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_anotherBus" name="anotherBus"
+										class="form-control input-sm" readonly="readonly" value="拉瓜伊拉">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 境内货源地 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm" 
+										readonly="readonly"  value="朝阳区">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 批准文号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 成交方式 </label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_pay" name="pay"
+										class="form-control input-sm" readonly="readonly" value="FOB">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 运费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm" value="0" readonly="readonly">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 保费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="0">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 杂费 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="0">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 合同协议号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly"  value="4520000254">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 件数 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly" value="194">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 包装种类 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly"  value="其它">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 毛重（kg） </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly"  value="43970.7">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 净重（kg） </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly"  value="39650.15">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 集装箱号 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly"  value="TCLU4001889">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 随附单据 </label>
+								<div class="col-xs-7">
+									<input type="text" id="yulu_accessory" name="accessory"
+										class="form-control input-sm" readonly="readonly">
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label"> 生产厂家 </label>
+								<div class="col-xs-7">
+									<input type="text" class="form-control input-sm"
+										readonly="readonly">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12">
+								<label class="col-xs-5 control-label text-center">
+									标记码及备注 </label>
+								<div class="col-xs-7">
+									<textarea type="text" class="form-control input-sm"
+										readonly="readonly">任务编号 :CK201709220001-01</textarea>
+									.
+								</div>
+							</div>
+							
+							<!-- 查看关单比对商品详情信息 -->
+							<!-- <table class="table table-striped col-xs-12" style="margin-top:30px;">
+								<thead class="" style="background: #f4f4f4;">
+									<tr>
+										<th width="60">项号</th>
+										<th>商品编码</th>
+										<th width="160">商品名称、规格型号</th>
+										<th width="100">数量</th>
+										<th width="100">单位</th>
+										<th>最终目的国</th>
+										<th width="100">单价</th>
+										<th width="100">总价</th>
+										<th width="100">币制</th>
+										<th width="100">征免</th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr><td>1</td><td>4016999090</td><td>钻井台防滑板  防护垫|硫化橡胶|不是机器及仪器用|无品牌|无型号</td><td>50</td><td>个</td><td>委内瑞拉</td><td>193.36</td><td>9668.08</td><td>美元</td><td></td>
+								</tr><tr><td>2</td><td>8544492100</td><td>电缆  传输电力|无接头|无品牌|无型号|400伏</td><td>0.8</td><td>千米</td><td>委内瑞拉</td><td>1012.42</td><td>10731.69</td><td>美元</td><td></td></tr>
+								<tr><td>3</td><td>8528591090</td><td>液晶显示器  监视器用|显示影像，LED显示|21.5寸|无品牌|无型号|19</td><td>3</td><td>台</td><td>委内瑞拉</td><td>1739.23</td><td>6956.92</td><td>美元</td><td></td></tr></tbody>
+							</table> -->
+							<!-- 查看关单比对商品详情信息 -->
+
+						</div>
+					</form>
+					<!-- 右侧关单 -->
+				</div>
+			</div>
+			<p class="text-center"><buttn class="btn btn-info btn-sm" id="main_renwu_kan_detail_bd">查看关单比对商品详情信息</buttn></p>
+		</div>
+		<div class="panel-footer text-center">
+			<button class="btn btn-info btn-sm" id="main_renwu_bidui_hou_btn">保存</button>
+		</div>
+	</div>
+	<!-- <div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				    Basic panel example
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="text-center">
+					<button class="btn btn-info" id="renwu_bidui_hou_btn">确定</button>
+				</p>
+			</div>
+		</div>
+	</div> -->
+</div>
+
+
+<!-- 关单性情 -->
+<div id="main_rewu_look_ygd_info" class="layerFormBox">
+	<div class="contaienr-fluid" >
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- 左侧关单 -->
+		     		<form class="form-horizontal layerForm col-xs-12">
+		<h4 class="col-xs-12 text-center">中华人民共和国海关出口报关单</h4>
+		<div class="col-xs-12 index">
+			<div class="form-group col-xs-6 head">
+				<label for="inputEmail3" class="col-xs-3 control-label">
+					<span class="necessary">*</span>预录入编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" id="yulu_number" name="number" value="183936071964" class="form-control input-sm"  placeholder="预录入编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-6 head">
+				<label class="col-xs-3 control-label">
+					海关编号:
+				</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control input-sm"  placeholder="海关编号">
+				</div>
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>出口口岸
+				</label>
+				<div class="col-xs-7">
+					<select  class="form-control input-sm"> 
+						<option>天津新港</option>
+						<option selected="true">北京机场</option>
+					</select>
+					<!-- <input type="text" id="yulu_bus" value="天津新港" name="bus" class="form-control input-sm"  placeholder="出口口岸"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					备案号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="备案号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					出口日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_outTime" name="outTime" class="form-control input-sm"  placeholder="出口日期">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					申报日期
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherTime" name="createTime" class="form-control input-sm"  placeholder="申报日期">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>经营单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="经营单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					运输工具
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="运输工具">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					<span class="necessary">*</span>发货单位
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="发货单位">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					贸易方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					征免性质
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="征免性质">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					提运单号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="提运单号">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					许可证号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="许可证号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					抵运国（地区）
+				</label>
+				<div class="col-xs-6">
+					<select   class="form-control input-sm"> 
+						<option>美国</option>
+						<option selected="true">英国</option>
+					</select>
+					<!-- <input type="text" id="yulu_company" name="company" class="form-control input-sm"  placeholder="抵运国（地区）"> -->
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					指运港
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_anotherBus" name="anotherBus" class="form-control input-sm"  placeholder="指运港">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					境内货源地
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="境内货源地">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					批准文号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="批准文号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					成交方式
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_pay" name="pay" class="form-control input-sm"  placeholder="成交方式">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					运费
+				</label>
+				<div class="col-xs-7">
+					<input type="text"  class="form-control input-sm" value="150"  placeholder="运费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					保费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="保费">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					杂费
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="杂费">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-3">
+				<label class="col-xs-5 control-label">
+					合同协议号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="合同协议号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					件数
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="件数">
+				</div>		
+			</div>
+			<div class="form-group col-xs-3">
+				<label class="col-xs-6 control-label">
+					包装种类
+				</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control input-sm"  placeholder="包装种类">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					毛重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="毛重（kg）">
+				</div>		
+			</div>
+			<div class="form-group col-xs-2">
+				<label class="col-xs-5 control-label">
+					净重（kg）
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="净重（kg）">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					集装箱号
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="集装箱号">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					随附单据
+				</label>
+				<div class="col-xs-7">
+					<input type="text" id="yulu_accessory" name="accessory" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+			<div class="form-group col-xs-4">
+				<label class="col-xs-5 control-label">
+					生产厂家
+				</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm"  placeholder="随附单据">
+				</div>		
+			</div>
+
+			<div class="form-group col-xs-12">
+				<label class="col-xs-2 control-label text-center">
+					标记码及备注
+				</label>
+				<div class="col-xs-10">
+					<textarea type="text" class="form-control input-sm"  placeholder="标记码及备注"></textarea>.
+				</div>		
+			</div>
+			<div id="yulu_ul col-xs-12">
+				<table class="table col-xs-12">
+					<thead class="thead">
+						<tr>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>商品名称 规格型号</th>
+							<th>数量及单位</th>
+							<th>最终目的国（地区）</th>
+							<th>单价</th>
+							<th>总价</th>
+							<th>币值</th>
+							<th>征免</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015</td>
+							<td>汽车零件合同</td>
+							<td>23540</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+							<td>人民币</td>
+							<td>2017-07-08</td>
+							<td>已结清</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>
+		<!-- <p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="yulu_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="yulu_cacle_btn">
+				取消
+			</button>
+		</p> -->
+	</form>
+		     		<!-- 左侧关单 -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 关单列表 -->
+<div id="main_rewu_wangwu_gdList" class="layerFormBox">
+	<div class="container-fluid" style="padding:0">
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="main_liucheng_info_jqGrid3"></table>
+				<div id="main_liucheng_info_jqGridPager3"></div>
+			</div>
+		</div>
+		<p class="text-center" style="margin-top:30px;"><button class="btn btn-sm btn-info main_qxbgd">确定</button></p>
+	</div>
+</div>
+
+<!-- 商品详情比对 -->
+<div id="main_renwu_kan_detail_bd_box" class="layerFormBox">
+	<div class="row">
+		<div class="col-sm-12">
+			<p style="padding-bottom:8px; margin-top:30px; border-bottom:1px dotted #ccc; ">系统生成预关单商品信息</p>
+			<table class="table table-striped col-xs-12" style="margin-top:30px;">
+				<thead class="" style="background: #f4f4f4;">
+					<tr>
+						<th width="60">项号</th>
+						<th>商品编码</th>
+						<th width="160">商品名称、规格型号</th>
+						<th width="100">数量</th>
+						<th width="100">单位</th>
+						<th>最终目的国</th>
+						<th width="100">单价</th>
+						<th width="100">总价</th>
+						<th width="100">币制</th>
+						<th width="100">征免</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr class="bg-danger" style="background:#f2dede;"><td>1</td><td>4016999090</td><td>钻井台防滑板  防护垫|硫化橡胶|不是机器及仪器用|无品牌|无型号</td><td>49</td><td>个</td><td>委内瑞拉</td><td>193.36</td><td>9668.08</td><td>美元</td><td></td>
+				</tr><tr><td>2</td><td>8544492100</td><td>电缆  传输电力|无接头|无品牌|无型号|400伏</td><td>0.8</td><td>千米</td><td>委内瑞拉</td><td>1012.42</td><td>10731.69</td><td>美元</td><td></td></tr>
+				<tr><td>3</td><td>8528591090</td><td>液晶显示器  监视器用|显示影像，LED显示|21.5寸|无品牌|无型号|19</td><td>3</td><td>台</td><td>委内瑞拉</td><td>1739.23</td><td>6956.92</td><td>美元</td><td></td></tr></tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<p style="padding-bottom:8px; margin-top:30px; border-bottom:1px dotted #ccc; ">海关关单商品信息</p>
+			<table class="table table-striped col-xs-12" style="margin-top:30px;">
+				<thead class="" style="background: #f4f4f4;">
+					<tr>
+						<th width="60">项号</th>
+						<th>商品编码</th>
+						<th width="160">商品名称、规格型号</th>
+						<th width="100">数量</th>
+						<th width="100">单位</th>
+						<th>最终目的国</th>
+						<th width="100">单价</th>
+						<th width="100">总价</th>
+						<th width="100">币制</th>
+						<th width="100">征免</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr class="bg-danger" style="background:#f2dede;"><td>1</td><td>4016999090</td><td>钻井台防滑板  防护垫|硫化橡胶|不是机器及仪器用|无品牌|无型号</td><td>50</td><td>个</td><td>委内瑞拉</td><td>193.36</td><td>9668.08</td><td>美元</td><td></td>
+				</tr><tr><td>2</td><td>8544492100</td><td>电缆  传输电力|无接头|无品牌|无型号|400伏</td><td>0.8</td><td>千米</td><td>委内瑞拉</td><td>1012.42</td><td>10731.69</td><td>美元</td><td></td></tr>
+				<tr><td>3</td><td>8528591090</td><td>液晶显示器  监视器用|显示影像，LED显示|21.5寸|无品牌|无型号|19</td><td>3</td><td>台</td><td>委内瑞拉</td><td>1739.23</td><td>6956.92</td><td>美元</td><td></td></tr></tbody>
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+
+<!-- 选择用户处理流程 -->
+<div id="main_renwu_choosen_user_box" class="layerFormBox" >
+	<p>请选择要提交的用户：</p>
+	<select class="form-control input-sm">
+		<option>创建任务组</option>
+		<option>预关单审核组</option>
+		<option>报关单审核组</option>
+		<option selected="selected">开票通知组</option>
+		<option>收票确认组</option>
+		<option>发票认证组</option>
+		<option>申报组</option>
+		<option>备案组</option>
+	</select>
+	<div class="row" style="background:#f4f4f4; margin-left:0; margin-right:0; margin-top:15px;">
+		<div class="col-xs-4">
+			<div class="checkbox">
+			  <label>
+			    <input type="checkbox" value="">赵六
+			  </label>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="checkbox">
+			  <label>
+			    <input type="checkbox" value="">赵小六
+			  </label>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top:15px;">
+		<div class="col-xs-12">
+			<textarea class="form-control input-sm" cols="3" placeholder="意见..."></textarea>
+		</div>
+	</div>
+	<!-- <ul id="renwu_user_Tree" class="ztree" style="background:#f4f4f4; "></ul>-->
+	<p class="text-center"><button class="btn btn-info btn-sm" style="margin-top:35px;" id="main_renwu_liucheng_chuli">确认</button></p> 
+</div>
+<!-- 选择用户处理流程 -->

@@ -13,32 +13,48 @@
 	
 	<link rel="stylesheet" href="../static/plugins/layer-3.0.3/skin/default/layer.css"/>
 	<script type="text/javascript" src="../static/plugins/layer-3.0.3/layer.js"></script>
-	
-	<style type="text/css">
-		body { background:#ccc; }
-		#abc p { height:50px; background:#fff; }
-	</style> 
 	<script> 
 		$(function(){
-			$(document).on('click','#add',function(){
-				
-				layer.open({
-					type :2,
-					title : false,
-					 closeBtn: 0, //不显示关闭按钮
-					area : ['50%','50%'],
-					offset : 'rb',
-					anim: 2,
-					content : 'a/add.html',
-					time : 1500
-				});
-			});
+			var settings = [
+				{label : "出口时间",type : "text",col:3,placehodler:"",name:""},
+				{label : "申报时间",type : "text",col:3,placehodler:"",name:""},
+				{label : "合同编号",type : "text",col:3,placehodler:"",name:""}
+			];
+			
+			 $('#a').append(addForm(settings));
 		});
+		
+		function addForm(settings){
+			/* var settings = [
+					{label : "出口时间",type : "text",col:3,placehodler:"出口时间",name:""}
+				]; */
+			
+			var formEle = '';
+			
+			for(var i=0; i<settings.length; i++){
+				if(type='text'){
+					var inputEle = '<div class="form-group col-xs-'+settings[i].col+'">'+
+										'<label for="inputEmail3" class="col-xs-4 control-label">'+
+											''+settings[i].label+':'+
+										'</label>'+
+										'<div class="col-xs-8">'+
+											'<input type="text"  name="'+settings[i].name+'" class="form-control input-sm"  placeholder="'+settings[i].placehodler+'">'+
+										'</div>'+
+									'</div>';
+					
+					formEle += inputEle;
+				}
+			}
+			
+			return formEle; 
+		}
+		
+		
 	</script>
 </head>
 <body>
 	
-	<button id="add" class="btn btn-default">add</button>
+	<div id="a" class="form-horizontal"></div>
 	
 </body>
 </html>
