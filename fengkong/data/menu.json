@@ -13,8 +13,8 @@
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
 			{
-				"name" : "评估预警",
-				"url" : "gonghuo/pinggu.html"
+				"name" : "风险评估",
+				"url" : "gonghuo/pinggu2.html"
 			},
 			{
 				"name" : "供货商维护",
@@ -127,6 +127,21 @@
 			{
 				"name" : "按出口国统计",
 				"url" : "statistics/hetong.html"
+			}
+		]
+	},
+	{
+		"name" : "待办退税",
+		"leftIcon" : "l fa fa-calendar-plus-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "情况备案表",
+				"url" : "tongji/qingkuang.html"
+			},
+			{
+				"name" : "退税申报表",
+				"url" : "tongji/shenbaobeian.html"
 			}
 		]
 	},

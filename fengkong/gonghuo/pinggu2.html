@@ -1,0 +1,73 @@
+<!-- 评估预警 -->
+<style type="text/css">
+	.container-fluid{display: block;text-align: center;margin: 20px auto;}
+	#result_ctrol{display: none;line-height: 60px;vertical-align:middle !important; }
+	#result_ctrol {}
+	.jindu {border-top: 1px solid #ccc;text-align: center;}
+	.jindu img{width: 610px;height: 340px;}
+	.result_chakan{display: none;}
+</style>
+<div class="container-fluid tongji">
+	<div class="row">
+		<form class="form-inline col-sm-12 text-center">
+			<div class="form-group">
+				<input class="nashui" name="nashui" type="text">
+				<button type="button" class="btn btn-info btn-sm" id="sosuo">风险测评</button>
+			</div>
+		</form>
+		<div class="form-inline col-sm-6 text-right">
+			<input type="radio" name="radio" class="shibie" value="纳税人识别号">
+			<label>纳税人识别号</label>
+		</div>
+		<div class="form-inline col-sm-6 text-left">
+			<input type="radio" name="radio" class="mingcheng" value="纳税人名称">
+			<label>纳税人名称</label>
+		</div>
+		<div class="result_chakan form-inline col-sm-12">
+<!-- 			<div id="result_ctrol">
+				<label class="col-sm-2 text-right">测评结果</label>
+				<span class="result_name col-sm-2 text-left"></span>
+				<span class="result col-sm-2 text-left"></span>
+			</div> -->
+			<div class="jindu">
+				<img src="static/img/pinggu.png" onclick="tanchu()">
+			</div>
+		</div>
+	</div>
+
+	
+</div>
+<div class="layerFormBox" id="fapiao"> 
+	<img src="static/img/pinggu2.jpg">
+</div>
+<script type="text/javascript">
+
+$('#sosuo').click(function(){
+	var val = $('input:radio[name="radio"]:checked').val();
+	var inputval =  $('input:text[name="nashui"]').val();
+	if (val && inputval) {
+		ctrl ()
+	}else{
+		layer.msg('请选择纳税人识别号或纳税人名称')
+	}
+	
+})
+function tanchu(){
+	index = layer.open({
+        type: 1,
+        title : "发票",
+        area: ['98%', '98%'], //宽高
+        content: $('#fapiao')
+    });
+}
+function ctrl (){
+	$('#result_ctrol').show();
+	$('.result_chakan').show();
+	var val = $('input:radio[name="radio"]:checked').val();
+	if (val) {
+		$('.result_name').text(val);
+		$('.result').text($('.nashui').val())
+	}
+}
+
+</script>
