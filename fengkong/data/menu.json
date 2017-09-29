@@ -131,7 +131,7 @@
 		]
 	},
 	{
-		"name" : "待办退税",
+		"name" : "代办退税",
 		"leftIcon" : "l fa fa-calendar-plus-o",
 		"rightIcon" : "r fa fa-angle-right",
 		"children" : [
@@ -141,7 +141,7 @@
 			},
 			{
 				"name" : "退税申报表",
-				"url" : "tongji/shenbaobeian.html"
+				"url" : "tongji/tuibao.html"
 			}
 		]
 	},
