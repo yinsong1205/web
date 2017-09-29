@@ -1,0 +1,1334 @@
+<!--备案管理  -->
+<style type="text/css">
+	#import_formBox .control-label{
+		vertical-align:middle !important; 
+		margin-top: 5px;
+	}
+	#shenheshidi_history{
+		display: none;
+	}
+	#shidi_xiangqing_formBox input,#shidi_xiangqing_formBox select,#shidi_xiangqing_formBox textarea {border: none;outline: none;}
+	
+	.shidi_hc { }
+	.shidi_hc .bgf4{ background:#f4f4f4; padding:15px 0; border-radius:3px; }
+	.shidi_hc .info { padding:0 15px; }
+	.shidi_hc .info:last-child {margin-bottom:0; }
+	.shidi_hc .info span { font-weight:bold; padding-right:15px;  }
+	.shidi_hc .info .number {text-decoration: underline; padding:0 0 0 15px; }
+	.shidi_hc .detail { margin-top:30px; font-size:16px; padding:5px; background:#f4f4f4; }
+	.shidi_hc .detaiList {}
+	.shidi_hc .shidi_chukou_xiang {display:inline-block; width:180px; }
+	.shidi_hc .detaiList  li {margin-bottom:10px;}
+	.shidi_hc .detaiList .fj { display :inline-block; width:150px; padding:0 15px; }
+</style>
+<div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_rw_shidi" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_rw_shidi" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">纳税人识别号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">供货商名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">纳税信用等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">税局信用等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="黑">黑</option>
+								<option value="白">白</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 查询 -->
+	<div class="col-sm-12 plr0 height100 gridBox" id="shidi_gridBox">
+		<table id="shidi_jqGrid"></table>
+		<div id="shidi_jqGridPager"></div>
+	</div>
+</div>
+
+<!-- 新增弹窗 -->
+<div id="shidi_formBox" class="layerFormBox zzxx shidi_hc">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="bgf4">
+					<p class="info">供货商名称：<span>创立信电子厂</span> 纳税人识别号：<span>913201059901675</span></p>
+					<p class="info">2016年度退税额:<span class="number">120</span>万</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="detail">1. 经营情况和生产能力</p>
+				<ul class="detaiList">
+					<li>
+						合同订单： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产设备： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						经营场所： <input type="text"/> <a class="fj" href="javascript:;">经营场所文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						企业人员： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						会计账簿： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+				</ul>
+				<p class="detail">2. 出口货物真实性</p>
+				<ul class="detaiList">
+					<li>
+						出口货物与关单是否一致： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力匹配性： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						经营场所： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						企业人员： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						会计账簿： <input type="text"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力： <input type="text"/> <a class="fj btn btn-info btn-sm" href="javascript:;">上传附件</a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 详情 -->
+<div id="shidi_xiangqing_formBox" class="layerFormBox zzxx">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				供货商名称:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="company" class="form-control input-sm"  value="创立信电子厂">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				企业海关代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="seanumber" class="form-control input-sm"  value="4016999090">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税人识别号:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="number" class="form-control input-sm"  value="913201059901675">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				企业类型:
+			</label>
+			<div class="col-xs-7">
+				<select name="type" class="form-control input-sm"  value="生产">
+					<option value="生产企业" selected="true">生产</option>
+					<option value="外贸企业" >外贸</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				社会信用代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" value="12122334523412">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				成立日期:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				等级机关:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="source" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				法人代表:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="灰">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="B">
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				注册资本:
+			</label>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-sm">
+			</div>
+			<div class="col-xs-3">
+				<select id="shidi_company" name="company" class="form-control input-sm">
+					<option value="美元" selected="true">美元</option>
+					<option value="欧币" >欧元</option>
+					<option value="人民币" >人民币</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				邮编:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				截止期限:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				联系人:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				固定电话:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				手机:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				注册地址:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				经营范围:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				备注:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<!-- 新增导入合同 -->
+		<div id="shidi_import_formBox">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="shidi_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">营业执照:</label>
+					<div class="col-sm-8">
+						<span>
+		                    <span><a href="#">营业执照.zip</a></span>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+		</div>
+		
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="shidi_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 编辑 -->
+<div id="shidi_edit_formBox" class="layerFormBox zzxx">
+	<form class="form-horizontal layerForm">
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>供货商名称:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="company" class="form-control input-sm"  value="创立信电子厂">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业海关代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="seanumber" class="form-control input-sm" value="4016999090">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>纳税人识别号:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="number" class="form-control input-sm"  value="913201059901675">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>企业类型:
+			</label>
+			<div class="col-xs-7">
+				<select name="type" class="form-control input-sm"  value="生产">
+					<option value="生产企业" selected="true">生产</option>
+					<option value="外贸企业" >外贸</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				<span>*</span>社会信用代码:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" value="12122334523412">
+			</div>
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				成立日期:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				等级机关:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" name="source" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				法人代表:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				内部评估等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="灰">
+					<option value="白" selected="true">白</option>
+					<option value="黑" >黑</option>
+					<option value="灰" >灰</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				纳税信用等级:
+			</label>
+			<div class="col-xs-7">
+				<select name="level" class="form-control input-sm" value="B">
+					<option value="A" selected="true">A</option>
+					<option value="B" >B</option>
+					<option value="C" >C</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				注册资本:
+			</label>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-sm">
+			</div>
+			<div class="col-xs-3">
+				<select id="shidi_company" name="company" class="form-control input-sm">
+					<option value="美元" selected="true">美元</option>
+					<option value="欧币" >欧元</option>
+					<option value="人民币" >人民币</option>
+				</select>
+			</div>	
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				邮编:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				截止期限:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm" onclick="WdatePicker();">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				联系人:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				固定电话:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-4">
+			<label class="col-xs-5 control-label">
+				手机:
+			</label>
+			<div class="col-xs-7">
+				<input type="text" class="form-control input-sm">
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				注册地址:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				开户行:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				账户:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				经营范围:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<div class="form-group col-sm-10">
+			<label class="col-xs-2 control-label">
+				备注:
+			</label>
+			<div class="col-xs-10">
+				<textarea type="text" class="form-control input-sm"></textarea>
+			</div>		
+		</div>
+		<!-- 新增导入合同 -->
+		<div id="shidi_import_formBox">
+			<div class="col-sm-12">
+				<p class="titCon">附件信息</p>
+			</div>
+			<form class="form-horizontal zzxx" id="shidi_fileupload" method="POST" enctype="multipart/form-data">
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span>*</span>营业执照:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                    
+		                </span>
+		                <span>
+		                    <span><a href="#">营业执照.zip</a></span>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">税务等级证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">组织代码证:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right">其他:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+		                    <i class="glyphicon glyphicon-plus"></i>
+		                    <span>添加附件</span>
+		                    <input type="file" name="files[]" multiple>
+		                </span>
+					</div>
+				</div>
+				<!-- 用于显示上传文件的浏览 样式files是必须的-->
+				<ul style="text-align:center;margin:10px auto;padding:0;" class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+		</div>
+		
+		<p class="text-center col-xs-12">
+			<button type="button" class="saveBtn btn btn-info btn-sm" id="shenheshidi_save_btn">审核</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="shidi_save_btn">
+				保存
+			</button>
+			<button type="reset" class="saveBtn btn btn-info btn-sm">
+				重置
+			</button>
+			<button type="button" class="saveBtn btn btn-info btn-sm qx" id="shidi_cacle_btn">
+				取消
+			</button>
+		</p>
+	</form>
+</div>
+<!-- 导入-->
+		<div id="import_formBox" class="layerFormBox"> 
+			<form>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label text-right"><span class="necessary">*</span>请选择导入的企业:</label>
+					<div class="col-sm-8">
+						<span class="btn btn-default btn-sm fileinput-button">
+							<i class="glyphicon glyphicon-plus"></i>
+							<span>选择企业</span>
+							<input type="file" name="files[]" multiple='multiple'>
+						</span>
+					</div>
+				</div>
+				<ul style="text-align:center;margin:10px auto;padding:0;"  class="thumbnails list-unstyled clearfix files"></ul>
+			</form>
+			<p class="text-center saveOrCacelBtn"> 
+				<button type="button" class="btn btn-info btn-sm qx">上传</button>		
+				<button type="button" class="btn btn-info btn-sm qx">取消</button>		
+			</p>
+		</div>
+<!-- 报表统计 -->
+<div class="layerFormBox" id="shidi_tongji_formBox"> 
+	<div class="container-fluid tongji">
+		<div class="row">
+			<form class="form-inline">
+				<div class="form-group">
+					<select name="ywlx" id="" class="form-control input-sm">
+						<option value="" selected="selected">统计方式</option>
+						<option value="">年统计</option>
+						<option value="">月统计</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="开始日期 ">
+				</div>
+				<i class="fa fa-minus"></i>
+				<div class="form-group">
+					<input type="riqi" class="form-control input-sm"  onClick="WdatePicker()" placeholder="结束日期 ">
+				</div>
+				<button type="button" class="btn btn-info btn-sm">查询</button>
+				<button type="reset" class="btn btn-info btn-sm">重置</button>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered"> 
+					<thead>
+						<tr>
+							<th>日期</th>
+							<th>企业名称</th>
+							<th>海关代码</th>
+							<th>纳税人识别号</th>
+							<th>企业类型</th>
+							<th>信用等级</th>
+							<th>入驻日期</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align:center; vertical-align:middle;">2015-01</td>
+							<td>顺丰物流运输</td>
+							<td>110121390</td>
+							<td>3190203092039</td>
+							<td>贸易</td>
+							<td>A</td>
+							<td>2015-01-22</td>
+						</tr>
+						<tr>
+							<td>上海全一物流</td>
+							<td>118429309</td>
+							<td>3190203092039</td>
+							<td>贸易</td>
+							<td>B</td>
+							<td>2015-01-22</td>
+						</tr>
+						<tr>
+							<td>2015-03</td>
+							<td>北京爱奇艺影视集团</td>
+							<td>110121390</td>
+							<td>2129093093010</td>
+							<td>贸易</td>
+							<td>C</td>
+							<td>2015-01-31</td>
+						</tr>
+						<tr>
+							<td>2015-04</td>
+							<td>北京京东方国际贸易</td>
+							<td>128989199</td>
+							<td>2323909020200</td>
+							<td>生产</td>
+							<td>B</td>
+							<td>2015-02-10</td>
+						</tr>
+						<tr>
+							<td>合计</td>
+							<td colspan="7" class="text-right">总记录数：4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<p class="text-right"><button class="btn btn-info btn-sm qx">导出</button></p>
+	</div>
+</div>
+<!-- 审核 -->
+<div class="layerFormBox" id="shenhe_shidi_formBoxId"> 
+	<div class="row"><div class="col-sm-12" style="padding-top:15px;"><div class="radio-inline"><label><input type="radio" name="a" checked="true"/>审核不通过</label></div><div class="radio-inline"><label><input type="radio" name="a"/>审核通过</label></div><textarea class="form-control" rows="3" placeholder="审核意见..."></textarea><p class="text-center" style="margin-top:15px;"><button class="btn btn-info btn-sm qx">保存</button></p></div></div>
+	<div class="col-sm-12" id="shenheshidi_history"> 
+			<table id="tj" class="table table-striped table-condensed table-bordered">
+				<thead>
+					<tr class="d9">
+						<th>审核人</th>
+						<th>审核日期</th>
+						<th>审核状态</th>
+						<th>说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-10</td>
+						<td>已通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-06</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-04</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>2015-01-02</td>
+						<td>未通过</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>合计</td>
+						<td colspan="5" class="textRight">总记录 : 4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+<script type="text/javascript">
+
+	
+$(function(){
+	var dataUrl = 'data/ruzhu.json';
+	var index = null;
+	var flag = '';
+	var rowNumber = 1000000;
+	var gridId = 'shidi_jqGrid';
+	var gridPager = 'shidi_jqGridPager';
+	var formBoxId = 'shidi_formBox';
+	var dataSaveBtn = 'shidi_save_btn';
+	var layerCloseClassName = 'qx';
+	//表格数据
+	var gridWidth = $('#shidi_gridBox').width();
+	var gridHeight = $('#shidi_gridBox').height()-122;
+	$("#shidi_jqGrid").jqGrid({
+		
+		hidegrid : false, 
+		altRows : true, 
+		colModel: [{label : '供货商名称', name : 'company', align: 'center', width: 160 ,formatter: formatGhsName},
+			{label : '纳税人识别号', name : 'number', align: 'center', width:140},
+			{label : '企业类型', name : 'type', align: 'center', width:80},
+			{label : '纳税信用等级', name : 'level', align: 'center', width:80},
+			{label : '内部评估等级', name : 'level', align: 'center', width:80},
+			{label : '税局信用等级', name : 'leveler', align: 'center', width:80},
+			{label : '核查状态', name : 'active', align: 'center', width:120, formatter: formatHeChaStatus}],
+		viewrecords: true,
+		loadonce:true,
+		width: gridWidth,
+		//width: 'auto',
+		//width : '100%',
+		height: gridHeight,
+		//height : 'auto',
+		rowNum: 11,
+		rowList:[10,15,20,25],
+		datatype: 'local',
+		pager: '#'+gridPager,
+		multiselect: true,
+		recordtext: "当前显示: <b>{0}</b>至<b>{1}</b> 总数: <b>{2}</b>",
+	    //emptyrecords: "No records to view",
+		//loadtext: "Loading...",
+		
+	}).navGrid('#'+gridPager,{ // the buttons to appear on the toolbar of the grid
+		edit:false,add:false,del:false,search:false,refresh:false
+	}).navButtonAdd('#'+gridPager,{
+		caption: '',
+		title : '删除',
+		buttonicon : 'glyphicon-trash',
+		onClickButton : function(){deleteLayer('shidi_jqGrid');}, //调用核查的函数
+		position : 'last'
+		
+	});
+	//搜索框按钮,开启搜索框需要重新调整高度
+	//$('#shidi_jqGrid').jqGrid('filterToolbar');
+	
+	fetchGridData();
+	
+	//导入合同
+	function importLayer(){
+		commIndex = layer.open({
+			type: 1,
+			title : "导入",
+			area: ['80%', '70%'], //宽高
+			content: $('#import_formBox')
+		});
+	}
+	//格式化标题
+	function formatName(cellValue, options, rowObject) {
+		var len = cellValue.length;
+		if(len>50){
+			cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+	};
+	//弹框取消按钮
+	$('.'+layerCloseClassName).on('click',function(){
+		layer.close(layerIndex);
+	});
+	
+	//弹框保存按钮
+	$(document).on('click','#'+dataSaveBtn,function(){
+		if(flag == 'add'){
+				var data = getFormData(formBoxId);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#'+gridId).addRowData(currentNumber,data,'first');
+				if(result){
+					layer.msg('添加成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					
+					jQuery('#'+gridId).setSelection(currentNumber,true);
+					
+				}else{
+					layer.msg('添加失败!',{time:layerCloseTime});
+				}
+			}else if(flag == 'update'){
+				
+				//删除shidi_edit_formBox
+				var rowIds = getSelectedRow('shidi_edit_formBox');
+				jQuery('#shidi_edit_formBox').delRowData(rowIds[0]);
+				//添加
+				var data = getFormData(formBoxId);
+				console.log(data);
+				var currentNumber = uuid.v4();
+				var result = jQuery('#').addRowData(currentNumber,data,'first');
+				
+				if(result){
+					layer.msg('更新成功',{time:layerCloseTime});
+					layer.close(layerIndex);
+					jQuery('#shidi_edit_formBox').setSelection(currentNumber,true);
+				}else{
+					layer.msg('更新失败!',{time:layerCloseTime});
+				}
+			}
+	});
+	
+	//左下角新增按钮
+	function hechaLayer(){
+		$('#shenheshidi_save_btn').hide();
+		layerIndex = layer.open({
+			type: 1,
+			title : '企业信息完善',
+			area: ['70%', '80%'], //宽高
+			content: $('#'+formBoxId)
+		});
+	}
+	
+	//左下角编辑按钮
+	function edit_ryzhu_updateLayer(){
+		$('#shenheshidi_save_btn').hide();
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length == 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '编辑',
+				shadeClose: true,
+				area : ['98%','98%'],
+				content : $('#shidi_edit_formBox')
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+	}
+	//审核
+	function shenhe(){
+		$('#shenheshidi_history').hide();
+		var rowIds = getSelectedRow(gridId);
+		if(rowIds && $.isArray(rowIds) && rowIds.length >= 1 ){
+			var rowData = $('#'+gridId).getRowData(rowIds[0]);
+			commIndex = layer.open({
+				type : 1,
+				title : '审核',
+				shadeClose: true,
+				area : ['50%','50%'],
+				content : $('#shenhe_shidi_formBoxId')
+			});
+		}else{
+			layer.msg('请选择一条记录!',{time:layerCloseTime});
+		}
+		
+	}
+	//查看审核
+	$(document).on('click','#shenheshidi_save_btn',function(){
+		$('#shenheshidi_history').show();
+			commIndex = layer.open({
+				type : 1,
+				title : '审核',
+				skin: 'layui-layer-rim',
+				shadeClose: true,
+				area : ['70%','70%'],
+				content : $('#shenhe_shidi_formBoxId')
+		})
+	});
+	//左下角删除按钮
+	function deleteLayer(gridId){
+		//alert('shanchu');
+		deleteGridData(gridId);
+	}
+	//统计
+	// function ruzhutongji(){
+	// 	commIndex = layer.open({
+	// 		type : 1,
+	// 		title : '报表统计',
+	// 		skin: 'layui-layer-rim',
+	// 		shadeClose: true,
+	// 		area : ['90%','90%'],
+	// 		content : $('#shidi_tongji_formBox')
+	// 	});
+	// }
+	
+	//获取json数据
+	function fetchGridData() {
+
+		var gridArrayData = [];
+		// show loading message
+		$("#shidi_jqGrid")[0].grid.beginReq();
+		$.ajax({
+			url: dataUrl,
+			success: function(result) {
+				for (var i = 0; i < result.items.length; i++) {
+					var item = result.items[i];
+					
+					gridArrayData.push({
+						company: item.company,
+						seanumber: item.seanumber,
+						number: item.number,
+						type: item.type,
+						source: item.source,
+						level: item.level,
+						leveler: item.leveler,
+						active: item.active
+					});
+
+				}
+				// set the new data
+				$("#shidi_jqGrid").jqGrid('setGridParam', {
+					data: gridArrayData
+				});
+				// hide the show message
+				$("#shidi_jqGrid")[0].grid.endReq();
+				// refresh the grid
+				$("#shidi_jqGrid").trigger('reloadGrid');
+			}
+		});
+	}
+	//格式化标题
+	function formatTitle(cellValue, options, rowObject) {
+		return cellValue.substring(0, 50) + "...";
+	};
+	//格式化链接
+	function formatLink(cellValue, options, rowObject) {
+		return "<a href='" + cellValue + "'>" + cellValue.substring(0, 25) + "..." + "</a>";
+	};
+	//获取选择的行
+	function getSelectedRow() {
+	    var grid = $("#shidi_jqGrid");
+	    var rowKeys = grid.jqGrid('getGridParam',"selarrrow");
+
+	   return rowKeys;
+	}
+	
+	
+	changeSearch(); //修改工具条
+	
+	//核查状态
+	function formatHeChaStatus(cellValue, options, rowObject) {
+		var title = '';
+		var className = '';
+		if(cellValue==0){
+			title = '未核查';
+			className = 'fa-times-circle text-danger shidi_nohecha';
+		}else if(cellValue==1){
+			title = '已核查';
+			className = 'fa-check-circle-o text-success ';
+		}
+		return '<a href="javascript:;"><i title="'+title+'" class="fa '+className+'"></i></a>';
+	};
+	
+	//已核查
+	$(document).on('click','.shidi_yeshecha',function(){
+		commIndex = layer.open({
+			type : 1,
+			title : '核查信息完善',
+			area : ["70%","80%"],
+			content : $('#shidi_yeshecha_formBox')
+		});
+	});
+	//未核查
+	$(document).on('click','.shidi_nohecha',function(){
+		layer.open({
+			type : 1,
+			title : '核查信息完善',
+			area : ["70%","80%"],
+			content : $('#shidi_nohecha_formBox')
+		});
+	});
+	
+	function formatGhsName(cellValue, options, rowObject) {
+		var len = cellValue.length;
+		if(len>50){
+			cellValue = cellValue.substring(0, 50) + "...";
+		}
+		return '<a href="javascript:;" class="shidi_yeshecha">'+cellValue+'</a>';
+	};
+	
+});
+
+	
+</script>
+
+<!-- 已核查-->
+<div id="shidi_yeshecha_formBox" class="layerFormBox zzxx shidi_hc">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="bgf4">
+					<p class="info">供货商名称：<span>创立信电子厂</span> 纳税人识别号：<span>913201059901675</span></p>
+					<p class="info">2016年度退税额:<span class="number">120</span>万</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="detail">1. 经营情况和生产能力</p>
+				<ul class="detaiList">
+					<li>
+						合同订单： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					</li>
+					<li>
+						生产设备： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">生产设备.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						经营场所： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">经营场所.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						企业人员： <input type="text" value="优秀" readonly="readonly"/> <a class="fj" href="javascript:;">企业人员.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						会计账簿： <input type="text" value="正常" readonly="readonly"/> <a class="fj" href="javascript:;">会计账簿.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">生产能力.zip</a>
+						<select disabled="disabled">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+				</ul>
+				<p class="detail">2. 出口货物真实性</p>
+				<ul class="detaiList">
+					<li>
+						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text" value="一致" readonly="readonly"/> 
+						<select disabled="disabled">
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">生产能力匹配性：</span> <input type="text" value="高" readonly="readonly"/>
+						<select disabled="disabled">
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">物流凭证：</span> <input type="text" value="齐全" readonly="readonly"/> 
+						<select disabled="disabled">
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">出口收入凭证：</span> <input type="text" value="齐全" readonly="readonly"/>
+						<select disabled="disabled">
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">核查率：</span> <input type="text" value="75%" readonly="readonly"/> 
+						<select disabled="disabled"> 
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					</li>
+				</ul>
+				
+				<!-- <p class="text-center"><button class="btn btn-info btn-sm qx">保存</button></p> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 未核查-->
+<div id="shidi_nohecha_formBox" class="layerFormBox zzxx shidi_hc">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="bgf4">
+					<p class="info">供货商名称：<span>某集团工程有限公司</span> 纳税人识别号：<span>913201059901134</span></p>
+					<p class="info">2016年度退税额:<span class="number">30</span>万</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="detail">1. 经营情况和生产能力</p>
+				<ul class="detaiList">
+					<li>
+						合同订单： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产设备： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格" selected="true">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						经营场所： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格" selected="true">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						企业人员： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格" selected="true">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						会计账簿： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格" selected="true">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
+						<select>
+							<option value="合格">合格</option>
+							<option value="不合格" selected="true">不合格</option>
+						</select>
+					
+					</li>
+				</ul>
+				<p class="detail">2. 出口货物真实性</p>
+				<ul class="detaiList">
+					<li>
+						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text"/> 
+						<select>
+							<option value="是">是</option>
+							<option value="否" selected="true">否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">生产能力匹配性：</span> <input type="text"/> 
+						<select>
+							<option value="是">是</option>
+							<option value="否" selected="true">否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">物流凭证：</span> <input type="text"/> 
+						<select>
+							<option value="是">是</option>
+							<option value="否" selected="true">否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">出口收入凭证：</span> <input type="text"/> 
+						<select>
+							<option value="是">是</option>
+							<option value="否" selected="true">否</option>
+						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">核查率：</span> <input type="text"/> 
+						<select>
+							<option value="是">是</option>
+							<option value="否" selected="true">否</option>
+						</select>
+					</li>
+				</ul>
+				
+				<p class="text-center"><button class="btn btn-info btn-sm qx">保存</button></p>
+			</div>
+		</div>
+	</div>
+</div>
