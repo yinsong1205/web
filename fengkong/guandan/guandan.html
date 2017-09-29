@@ -456,7 +456,7 @@
 					贸易方式
 				</label>
 				<div class="col-xs-7">
-					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="运输方式">
+					<input type="text" id="yulu_property" name="property" class="form-control input-sm"  placeholder="贸易方式">
 				</div>		
 			</div>
 			<div class="form-group col-xs-3">
@@ -885,7 +885,7 @@ function lookInfo(gid,rowId){
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
-	title = '信息';
+	title = '报关单查看信息';
 	commIndex = layer.open({
 		type: 1,
 		title : title,
