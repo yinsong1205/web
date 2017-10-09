@@ -11,6 +11,59 @@
 	.guan{border: 1px solid #000}
 </style>
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_chukou" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_chukou" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">合同编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">合同名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">签订日期:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();"/>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口国别:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="英国">英国</option>
+								<option value="美国">美国</option>
+								<option value="日本">日本</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">贸易方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="外综服务">外综服务</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+		<!-- 查询 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="chukou_gridBox">
 		<table id="chukou_jqGrid"></table>
 		<div id="chukou_jqGridPager"></div>
@@ -1746,8 +1799,8 @@ $(function(){
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width()-2;
 	// var gridHeight = $('#'+gridBoxId).height()-118;
-	var gridHeight = $('#'+gridBoxId).height()-132;
-
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	console.log($('#'+gridBoxId).height());
 	var qingdan_gridWidth = $('#qingdan_gridBox').width();
 	var qingdan_gridHeight = $('#qingdan_gridBox').height()-132;
 
@@ -1867,7 +1920,7 @@ $(function(){
 	});
 	
 	//表格添加搜索框按钮
-	$('#'+gridId).jqGrid('filterToolbar');
+	//$('#'+gridId).jqGrid('filterToolbar');
 	//修改工具条
 	changeSearch(); 
 	

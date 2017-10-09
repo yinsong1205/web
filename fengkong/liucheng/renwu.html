@@ -1,5 +1,93 @@
 <!-- 任务管理 -->
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_rw_admin" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_rw_admin" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">任务编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口国别:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="美国">美国</option>
+								<option value="英国">英国</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">业务类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="承包工程">承包工程</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口口岸:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="天津新港">天津新港</option>
+								<option value="北京机场">北京机场</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">运输方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="水路运输">水路运输</option>
+								<option value="航空运输">航空运输</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">当前环节:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option>创建任务</option>
+								<option>预关单审核</option>
+								<option>报关单审核</option>
+								<option>开票通知</option>
+								<option>收票确认</option>
+								<option>发票认证</option>
+								<option>申报</option>
+								<option>备案</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">操作时间:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();"/>
+						</div>
+					</div>
+					<!-- <div class="form-group col-sm-6">
+						<label class="control-label col-sm-3 text-align:right">操作时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="positon:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div> -->
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwugridBox">
 		<table id="renwujqGrid"></table>
 		<div id="renwujqGridPager"></div>
@@ -228,8 +316,8 @@ $(function(){
 	var gridBoxId = 'renwugridBox';//表格尺寸
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
-	//var gridHeight = $('#'+gridBoxId).height()-118;
-	var gridHeight = 370;
+	var gridHeight = $('#'+gridBoxId).height()-118;
+	//var gridHeight = 370;
 
 	//任务编号、出口国别、业务类型、出口口岸、运输方式、当前环节、操作人、操作时间。
 	var colModel = [
@@ -312,7 +400,7 @@ $(function(){
 	}); */
 	
 	//表格添加搜索框按钮
-	$('#'+gridId).jqGrid('filterToolbar');
+	//$('#'+gridId).jqGrid('filterToolbar');
 	//修改工具条
 	changeSearch(); 
 	

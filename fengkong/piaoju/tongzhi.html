@@ -99,7 +99,7 @@
 							<td >合计:</td>
 							<td colspan="3">9954.71</td>
 							<td >备注:</td>
-							<td colspan="3">通知单号: 200120171015142410 </td>
+							<td colspan="3">通知单号: 200120171015142410<br/>代办退税专用 </td>
 						</tr>
 					</tbody>
 					
@@ -367,7 +367,7 @@ $(function(){
 		if(len>50){
 			cellValue = cellValue.substring(0, 50) + "...";
 		}
-		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		return '<a href="javascript:;" onclick="lookInfotongzhi(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 	};
 	
 	fetchGridData();
@@ -463,7 +463,7 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-function lookInfo(gid,rowId){
+function lookInfotongzhi(gid,rowId){
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
