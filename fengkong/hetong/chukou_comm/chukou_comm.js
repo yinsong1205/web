@@ -32,7 +32,7 @@ function add_jqGrid_formBox(obj){
 
 
 
-{
+var objs = {
 	container:"",
 	clazz:"",
 	columns:[
@@ -44,7 +44,7 @@ function add_jqGrid_formBox(obj){
 function formGenerator(obj){
 	if(!obj || $.isEmptyObject(obj)) return;
 	//处理容器
-	var container = obj.container;
+	var container = objs.container;
 	if(!container) return;
 	var $container = null;
 	if(typeof container=="string") $container = $("#"+container);
@@ -54,7 +54,7 @@ function formGenerator(obj){
 	if($container.hasClass("layerFormBox")) $container.addClass("layerFormBox");
 	
 	//处理第一个子div
-	var columns = obj.columns;
+	var columns = objs.columns;
 	if(columns==null || !columns || columns.length==0) return;
 	var $firstDiv = $('<div class="form-horizontal layerForm zzxx"></div>').appendTo($container);
 	for(var i=0;i<columns.length;i++){
