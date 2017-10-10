@@ -1,10 +1,72 @@
 <!-- 采购合同管理 -->
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info" id="commSearch">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_caigou" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_caigou" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">合同编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">合同名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<!-- <div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">签订日期:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();"/>
+						</div>
+					</div> -->
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">审核状态:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="已通过">已通过</option>
+								<option value="未通过">未通过</option>
+								<option value="未审核">未审核</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">关联状态:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="已关联">已关联</option>
+								<option value="未关联">未关联</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-6" style="position:relative; left:-8px;">
+						<label class="control-label col-sm-3 text-align:right">签订日期:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="positon:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<!-- 查询 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="caigou_gridBox">
 		<table id="caigou_jqGrid"></table>
 		<div id="caigou_jqGridPager"></div>
 	</div>
-	
 </div>
 <style type="text/css"> 
 
@@ -881,13 +943,13 @@
 		var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 		var gridWidth = $('#'+gridBoxId).width()-2;
 		//var gridHeight = $('#'+gridBoxId).height()-118;
-		var gridHeight = $('#'+gridBoxId).height()-132;
+		var gridHeight = $('#'+gridBoxId).height()-118;
 		var shenhemodel = 'caigou';
 		var colModel = [
-				{label : '合同编号', name : 'id', align: 'center', width: 60,editable: true, searchoptions: {sopt : ['cn']} ,formatter: formatName},
-				{label : '合同名称', name : 'name', align: 'center', width:100, 
+				{label : '合同编号', name : 'id', align: 'center', width:100, editable: true, searchoptions: {sopt : ['cn']} ,formatter: formatName},
+				{label : '合同名称', name : 'name', align: 'center',  width:60,
 					searchoptions: {sopt : ['cn']}},
-				{label : '签订时间 ', name : 'qdTime', align: 'center', width:60, 
+				{label : '签订时间 ', name : 'qdTime', align: 'center',  width:60,
 					searchoptions: {sopt : ['cn']},
 					searchoptions : {
 						dataInit: function(e){
@@ -900,18 +962,18 @@
 						}
 					}
 				},
-				{label : '买方', name : 'caigouName', align: 'center', width:150, 
+				{label : '买方', name : 'caigouName', align: 'center',  width:80,
 					searchoptions: {sopt : ['cn']}
 				},
-				{label : '卖方', name : 'gonghuoName', align: 'center', width:150, 
+				{label : '卖方', name : 'gonghuoName', align: 'center', width:80,
 					searchoptions: {sopt : ['cn']}},
-				{label : '合同金额(元)', name : 'money', align: 'center',width:50, 
+				{label : '合同金额(元)', name : 'money', align: 'center',width:40,
 					searchoptions: {sopt : ['cn']}},
-				{label : '物资清单', name : 'list', align: 'center',width:40, 
+				{label : '物资清单', name : 'list', align: 'center', width:40,
 					searchoptions: {sopt : ['cn']}},
-				{label : '审核状态', name : 'status', align: 'center',width:40, 
+				{label : '审核状态', name : 'status', align: 'center',width:40,
 					searchoptions: {sopt : ['cn']},formatter:formatStatus},
-				{label : '关联状态', name : 'glStatus', align: 'center',width:40, 
+				{label : '关联状态', name : 'glStatus', align: 'center', width:40,
 					searchoptions: {sopt : ['cn']},formatter: formatGlStatus}
 		]; 
 		/**
@@ -1005,7 +1067,7 @@
 		}) */
 		
 		//表格添加搜索框按钮
-		$('#'+gridId).jqGrid('filterToolbar');
+		//$('#'+gridId).jqGrid('filterToolbar');
 		//修改工具条
 		changeSearch(); 
 		
@@ -1100,7 +1162,7 @@
 			if(len>50){
 				cellValue = cellValue.substring(0, 50) + "...";
 			}
-			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+			return '<a href="javascript:;" onclick="lookInfoCaiGou(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 		};
 		
 		//审核
@@ -1376,7 +1438,7 @@ function showchu (){
 	}
 
 }
-function lookInfo(gid,rowId){
+function lookInfoCaiGou(gid,rowId){
 	$('#shenhecaigou_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();

@@ -119,7 +119,7 @@ $(function(){
 	var gridBoxId = 'user_gridBox';//表格尺寸
 	var layerCloseTime = 1200; //1200毫秒提示消息关闭延迟时间
 	var gridWidth = $('#'+gridBoxId).width();
-	var gridHeight = $('#'+gridBoxId).height()-118;
+	var gridHeight = $('#'+gridBoxId).height()-78;
 	
 	var colModel = [
 			{label : '登录名', name : 'name', align: 'center', width: 100,
@@ -212,7 +212,7 @@ $(function(){
 	});
 	
 	//表格添加搜索框按钮
-	$('#'+gridId).jqGrid('filterToolbar');
+	//$('#'+gridId).jqGrid('filterToolbar');
 	//修改工具条
 	changeSearch(); 
 	

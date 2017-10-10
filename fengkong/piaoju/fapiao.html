@@ -7,9 +7,70 @@
         vertical-align:middle !important; 
         margin-top: 5px;
     }
-    .form-horizontal input,.form-horizontal textarea {border: none !important;outline: none !important;border:0 !important;}
+    #fapiao_formBox .form-horizontal input,.form-horizontal textarea {border: none !important;outline: none !important;border:0 !important;}
 </style>
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info" id="commSearch">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_fapiao" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_fapiao" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0 ">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">发票号码:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">发票代码:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">销方名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">销方识别号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-6" style="position:relative; left:-8px;">
+						<label class="control-label col-sm-3 text-align:right">开票日期:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="position:relative; top:12px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="form-group col-sm-6" style="position:relative; left:-39px;">
+						<label class="control-label col-sm-3 text-align:right">认证日期:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="position:relative; top:12px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<!-- 查询 -->
     <div class="col-sm-12 plr0 height100 gridBox" id="fapiao_gridBox">
         <table id="fapiao_jqGrid"></table>
         <div id="fapiao_jqGridPager"></div>
@@ -231,7 +292,7 @@ $(function(){
 
     //表格数据
     var gridWidth = $('#fapiao_gridBox').width();
-    var gridHeight = $('#fapiao_gridBox').height()-122;
+    var gridHeight = $('#fapiao_gridBox').height()-118;
     $("#fapiao_jqGrid").jqGrid({
         
         hidegrid : false, 
@@ -294,7 +355,7 @@ $(function(){
             sepclass : "ui-separator"
         });
     //搜索框按钮,开启搜索框需要重新调整高度
-    $('#fapiao_jqGrid').jqGrid('filterToolbar');
+    //$('#fapiao_jqGrid').jqGrid('filterToolbar');
     
     fetchGridData();
     

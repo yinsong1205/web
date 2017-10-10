@@ -12,12 +12,12 @@
 <div class="container-fluid">
 	
 	<!-- 查询 -->
-	<div class="panel panel-info">
+	<div class="panel panel-info" id="commSearch">
 		<div class="panel-heading" style="padding:7px 15px;">
 			<a href="#collapseOne_ruzhu" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
 		</div>
 		<div id="collapseOne_ruzhu" class="panel-collapse collapse in">
-			<div class="panel-body" style="padding:15px 0">
+			<div class="panel-body" style="padding:15px 0 0 0">
 				<form class="form-horizontal">
 					<div class="form-group col-sm-3">
 						<label class="control-label col-sm-6 text-align:right">纳税人识别号:</label>
@@ -32,12 +32,22 @@
 						</div>
 					</div>
 					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">企业类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="生产">生产</option>
+								<option value="外贸">外贸</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
 						<label class="control-label col-sm-6 text-align:right">纳税信用等级:</label>
 						<div class="col-sm-6">
 							<select class="form-control input-sm">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
+								<option value="D">D</option>
 							</select>
 						</div>
 					</div>
@@ -50,8 +60,19 @@
 							</select>
 						</div>
 					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">内部评估等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+								<option value="D">D</option>
+							</select>
+						</div>
+					</div>
 					<div class="col-sm-12">
-						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
 					</div>
 				</form>
 			</div>
@@ -1059,7 +1080,7 @@ $(function(){
 		if(len>50){
 			cellValue = cellValue.substring(0, 50) + "...";
 		}
-		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		return '<a href="javascript:;" onclick="lookInfoRuzhu(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 	};
 	//弹框取消按钮
 	$('.'+layerCloseClassName).on('click',function(){
@@ -1281,7 +1302,7 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-function lookInfo(gid,rowId){
+function lookInfoRuzhu(gid,rowId){
 	$('#shenhecaigou_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();
