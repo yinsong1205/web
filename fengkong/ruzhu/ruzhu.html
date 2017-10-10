@@ -10,6 +10,55 @@
 	#ruzhu_xiangqing_formBox input,#ruzhu_xiangqing_formBox select,#ruzhu_xiangqing_formBox textarea {border: none;outline: none;}
 </style>
 <div class="container-fluid">
+	
+	<!-- 查询 -->
+	<div class="panel panel-info">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_ruzhu" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_ruzhu" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">纳税人识别号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">供货商名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">纳税信用等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">税局信用等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="黑">黑</option>
+								<option value="白">白</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 查询 -->
+	
 	<div class="col-sm-12 plr0 height100 gridBox" id="ruzhu_gridBox">
 		<table id="ruzhu_jqGrid"></table>
 		<div id="ruzhu_jqGridPager"></div>
@@ -907,7 +956,7 @@ $(function(){
 	var layerCloseClassName = 'qx';
 	//表格数据
 	var gridWidth = $('#ruzhu_gridBox').width();
-	var gridHeight = $('#ruzhu_gridBox').height()-122;
+	var gridHeight = $('#ruzhu_gridBox').height()-118;
 	$("#ruzhu_jqGrid").jqGrid({
 		
 		hidegrid : false, 
@@ -991,7 +1040,7 @@ $(function(){
 		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#ruzhu_jqGrid').jqGrid('filterToolbar');
+	//$('#ruzhu_jqGrid').jqGrid('filterToolbar');
 	
 	fetchGridData();
 	

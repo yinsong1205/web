@@ -17,7 +17,8 @@
 </div>
 <!-- 查看通知单详情 -->
 <div id="fapiao_formBox" class="layerFormBox">
-    <form class="form-horizontal layerForm col-xs-12">
+	<p class="text-center"><img src="static/img/zzszyfp.jpg" class="img-responsive"/></p>
+    <!-- <form class="form-horizontal layerForm col-xs-12">
             <div class="form-group col-xs-12">
                 <p class="text-center" style="font-size:20px;">
                     增值税专用发票
@@ -97,7 +98,7 @@
                             <td >合计:</td>
                             <td colspan="3">9954.71</td>
                             <td >备注:</td>
-                            <td colspan="3">通知单号: 200120171015142410 </td>
+                            <td colspan="3">通知单号: 200120171015142410 <br/>代办退税专用</td>
                         </tr>
                     </tbody>
                     
@@ -119,7 +120,7 @@
                     取消
                 </button>
             </p>
-    </form>
+    </form> -->
 </div>
 <!-- 导入 -->
 <div class="layerFormBox" id="fapiao_import_formBox"> 
@@ -354,7 +355,7 @@ $(function(){
         if(len>50){
             cellValue = cellValue.substring(0, 50) + "...";
         }
-        return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+        return '<a href="javascript:;" onclick="lookInfofapiao(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
     };
     
     
@@ -537,7 +538,7 @@ $(function(){
     changeSearch(); //修改工具条
     
 });
-function lookInfo(gid,rowId){
+function lookInfofapiao(gid,rowId){
     var data = $('#'+gid).getRowData(rowId);
     data.name = $(data.name).text();
     data.relName = $(data.relName).text();
@@ -546,7 +547,7 @@ function lookInfo(gid,rowId){
     commIndex = layer.open({
         type: 1,
         title : title,
-        area: ['98%', '98%'], //宽高
+        area: ['70%', '90%'], //宽高
         content: $('#fapiao_formBox')
     });
 }

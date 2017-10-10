@@ -106,7 +106,21 @@
 				}
 		]
 	},
-	
+	{
+		"name" : "代办退税",
+		"leftIcon" : "l fa fa-calendar-plus-o",
+		"rightIcon" : "r fa fa-angle-right",
+		"children" : [
+			{
+				"name" : "情况备案表",
+				"url" : "tongji/qingkuang.html"
+			},
+			{
+				"name" : "退税申报表",
+				"url" : "tongji/tuibao.html"
+			}
+		]
+	},
 	
 	{
 		"name" : "备案单证",
@@ -130,21 +144,7 @@
 			}
 		]
 	},
-	{
-		"name" : "代办退税",
-		"leftIcon" : "l fa fa-calendar-plus-o",
-		"rightIcon" : "r fa fa-angle-right",
-		"children" : [
-			{
-				"name" : "情况备案表",
-				"url" : "tongji/qingkuang.html"
-			},
-			{
-				"name" : "退税申报表",
-				"url" : "tongji/tuibao.html"
-			}
-		]
-	},
+	
 	{
 		"name" : "风险预警",
 		"leftIcon" : "l fa fa-exclamation-triangle",

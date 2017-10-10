@@ -886,11 +886,17 @@ function lookInfo(gid,rowId){
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
 	title = '报关单查看信息';
-	commIndex = layer.open({
+	/* commIndex = layer.open({
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
 		content: $('#guandan_formBox')
+	}); */
+	commIndex = layer.open({
+		type: 2,
+		title : title,
+		area: ['80%', '90%'], //宽高
+		content: 'guandan/baoGuanDanTemp.html'
 	});
 }
 
