@@ -23,12 +23,12 @@
 </style>
 <div class="container-fluid">
 	<!-- 查询 -->
-	<div class="panel panel-info">
+	<div class="panel panel-info" id="commSearch">
 		<div class="panel-heading" style="padding:7px 15px;">
-			<a href="#collapseOne_rw_shidi" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+			<a href="#collapseOne_ruzhu" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
 		</div>
-		<div id="collapseOne_rw_shidi" class="panel-collapse collapse in">
-			<div class="panel-body" style="padding:15px 0">
+		<div id="collapseOne_ruzhu" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0">
 				<form class="form-horizontal">
 					<div class="form-group col-sm-3">
 						<label class="control-label col-sm-6 text-align:right">纳税人识别号:</label>
@@ -43,12 +43,22 @@
 						</div>
 					</div>
 					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">企业类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="生产">生产</option>
+								<option value="外贸">外贸</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
 						<label class="control-label col-sm-6 text-align:right">纳税信用等级:</label>
 						<div class="col-sm-6">
 							<select class="form-control input-sm">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
+								<option value="D">D</option>
 							</select>
 						</div>
 					</div>
@@ -61,8 +71,19 @@
 							</select>
 						</div>
 					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">内部评估等级:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+								<option value="D">D</option>
+							</select>
+						</div>
+					</div>
 					<div class="col-sm-12">
-						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
 					</div>
 				</form>
 			</div>
@@ -890,7 +911,7 @@ $(function(){
 		if(len>50){
 			cellValue = cellValue.substring(0, 50) + "...";
 		}
-		return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+		return '<a href="javascript:;" onclick="lookInfoShiDi(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 	};
 	//弹框取消按钮
 	$('.'+layerCloseClassName).on('click',function(){
@@ -979,6 +1000,8 @@ $(function(){
 		}
 		
 	}
+	
+	$(document).off('click',"#shenheshidi_save_btn");
 	//查看审核
 	$(document).on('click','#shenheshidi_save_btn',function(){
 		$('#shenheshidi_history').show();
@@ -1071,10 +1094,13 @@ $(function(){
 			className = 'fa-times-circle text-danger shidi_nohecha';
 		}else if(cellValue==1){
 			title = '已核查';
-			className = 'fa-check-circle-o text-success shidi_yehecha';
+			className = 'fa-check-circle-o text-success shidi_yeshecha';
 		}
 		return '<a href="javascript:;"><i title="'+title+'" class="fa '+className+'"></i></a>';
 	};
+	
+	
+	$(document).off('click',".shidi_yeshecha");
 	
 	//已核查
 	$(document).on('click','.shidi_yeshecha',function(){
@@ -1085,9 +1111,10 @@ $(function(){
 			content : $('#shidi_yeshecha_formBox')
 		});
 	});
+	$(document).off('click',".shidi_nohecha");
 	//未核查
 	$(document).on('click','.shidi_nohecha',function(){
-		layer.open({
+		commIndex = layer.open({
 			type : 1,
 			title : '核查信息完善',
 			area : ["70%","80%"],
@@ -1121,100 +1148,116 @@ $(function(){
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="detail">1. 经营情况和生产能力</p>
+				<p class="detail">1. 经营情况和生产能力核查</p>
 				<ul class="detaiList">
 					<li>
-						合同订单： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">订单文件.zip</a>
-						<select disabled="disabled">
+						合同订单： <input type="text" value="良好" /> <a class="fj" href="javascript:;">订单文件.zip</a>
+						<select >
 							<option value="合格">合格</option>
 							<option value="不合格">不合格</option>
 						</select>
 					</li>
 					<li>
-						生产设备： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">生产设备.zip</a>
-						<select disabled="disabled">
-							<option value="合格">合格</option>
-							<option value="不合格">不合格</option>
-						</select>
-					
-					</li>
-					<li>
-						经营场所： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">经营场所.zip</a>
-						<select disabled="disabled">
+						生产设备： <input type="text" value="良好" /> <a class="fj" href="javascript:;">生产设备.zip</a>
+						<select >
 							<option value="合格">合格</option>
 							<option value="不合格">不合格</option>
 						</select>
 					
 					</li>
 					<li>
-						企业人员： <input type="text" value="优秀" readonly="readonly"/> <a class="fj" href="javascript:;">企业人员.zip</a>
-						<select disabled="disabled">
+						经营场所： <input type="text" value="良好" /> <a class="fj" href="javascript:;">经营场所.zip</a>
+						<select >
 							<option value="合格">合格</option>
 							<option value="不合格">不合格</option>
 						</select>
 					
 					</li>
 					<li>
-						会计账簿： <input type="text" value="正常" readonly="readonly"/> <a class="fj" href="javascript:;">会计账簿.zip</a>
-						<select disabled="disabled">
+						企业人员： <input type="text" value="优秀" /> <a class="fj" href="javascript:;">企业人员.zip</a>
+						<select >
 							<option value="合格">合格</option>
 							<option value="不合格">不合格</option>
 						</select>
 					
 					</li>
 					<li>
-						生产能力： <input type="text" value="良好" readonly="readonly"/> <a class="fj" href="javascript:;">生产能力.zip</a>
-						<select disabled="disabled">
+						会计账簿： <input type="text" value="正常" /> <a class="fj" href="javascript:;">会计账簿.zip</a>
+						<select >
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					
+					</li>
+					<li>
+						生产能力： <input type="text" value="良好" /> <a class="fj" href="javascript:;">生产能力.zip</a>
+						<select >
 							<option value="合格">合格</option>
 							<option value="不合格">不合格</option>
 						</select>
 					
 					</li>
 				</ul>
-				<p class="detail">2. 出口货物真实性</p>
+				<p class="detail">2. 出口货物真实性核查</p>
 				<ul class="detaiList">
 					<li>
-						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text" value="一致" readonly="readonly"/> 
-						<select disabled="disabled">
+						<span class="shidi_chukou_xiang">出口货物是否真实：</span> <input type="text" value="" /> 
+						<select >
 							<option value="是" selected="true">是</option>
 							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">生产能力匹配性：</span> <input type="text" value="高" readonly="readonly"/>
-						<select disabled="disabled">
+						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text" value="一致" /> 
+						<select >
 							<option value="是" selected="true">是</option>
 							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">物流凭证：</span> <input type="text" value="齐全" readonly="readonly"/> 
-						<select disabled="disabled">
+						<span class="shidi_chukou_xiang">生产能力是否匹配：</span> <input type="text" value="高" />
+						<select >
 							<option value="是" selected="true">是</option>
 							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">出口收入凭证：</span> <input type="text" value="齐全" readonly="readonly"/>
-						<select disabled="disabled">
+						<span class="shidi_chukou_xiang">物流凭证是否齐全：</span> <input type="text" value="齐全" /> 
+						<select >
 							<option value="是" selected="true">是</option>
 							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">核查率：</span> <input type="text" value="75%" readonly="readonly"/> 
-						<select disabled="disabled"> 
+						<span class="shidi_chukou_xiang">出口收入凭证是否齐全：</span> <input type="text" value="齐全" />
+						<select >
 							<option value="是" selected="true">是</option>
 							<option value="否" >否</option>
 						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">核查率是否大于75%：</span> <input type="text" value="" /> 
+						<select > 
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">留存核查记录和相关资料：</span> <input type="text" value="" />
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
 					</li>
 				</ul>
 				
-				<!-- <p class="text-center"><button class="btn btn-info btn-sm qx">保存</button></p> -->
+				<p class="text-center"><button class="btn btn-info btn-sm qx">保存</button></p>
 			</div>
 		</div>
 	</div>
@@ -1227,19 +1270,19 @@ $(function(){
 			<div class="col-sm-12">
 				<div class="bgf4">
 					<p class="info">供货商名称：<span>某集团工程有限公司</span> 纳税人识别号：<span>913201059901134</span></p>
-					<p class="info">2016年度退税额:<span class="number">30</span>万</p>
+					<p class="info">2016年度退税额:<span class="number">130</span>万</p>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="detail">1. 经营情况和生产能力</p>
+				<p class="detail">1. 经营情况和生产能力核查</p>
 				<ul class="detaiList">
 					<li>
 						合同订单： <input type="text"/> <a class="fj" href="javascript:;"><span class="btn btn-default btn-sm">上传附件</span></a>
 						<select>
 							<option value="合格">合格</option>
-							<option value="不合格">不合格</option>
+							<option value="不合格" selected="true">不合格</option>
 						</select>
 					
 					</li>
@@ -1284,46 +1327,62 @@ $(function(){
 					
 					</li>
 				</ul>
-				<p class="detail">2. 出口货物真实性</p>
+				<p class="detail">2. 出口货物真实性核查</p>
 				<ul class="detaiList">
 					<li>
-						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text"/> 
-						<select>
-							<option value="是">是</option>
-							<option value="否" selected="true">否</option>
+						<span class="shidi_chukou_xiang">出口货物是否真实：</span> <input type="text" value="" /> 
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">生产能力匹配性：</span> <input type="text"/> 
-						<select>
-							<option value="是">是</option>
-							<option value="否" selected="true">否</option>
+						<span class="shidi_chukou_xiang">出口货物与关单是否一致：</span> <input type="text" value="" /> 
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">物流凭证：</span> <input type="text"/> 
-						<select>
-							<option value="是">是</option>
-							<option value="否" selected="true">否</option>
+						<span class="shidi_chukou_xiang">生产能力是否匹配：</span> <input type="text" value="" />
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">出口收入凭证：</span> <input type="text"/> 
-						<select>
-							<option value="是">是</option>
-							<option value="否" selected="true">否</option>
+						<span class="shidi_chukou_xiang">物流凭证是否齐全：</span> <input type="text" value="" /> 
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
 						</select>
 					
 					</li>
 					<li>
-						<span class="shidi_chukou_xiang">核查率：</span> <input type="text"/> 
-						<select>
-							<option value="是">是</option>
-							<option value="否" selected="true">否</option>
+						<span class="shidi_chukou_xiang">出口收入凭证是否齐全：</span> <input type="text" value="" />
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
 						</select>
+					
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">核查率是否大于75%：</span> <input type="text" value="" /> 
+						<select > 
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					</li>
+					<li>
+						<span class="shidi_chukou_xiang">留存核查记录和相关资料：</span> <input type="text" value="" />
+						<select >
+							<option value="是" selected="true">是</option>
+							<option value="否" >否</option>
+						</select>
+					
 					</li>
 				</ul>
 				

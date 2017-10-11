@@ -1,5 +1,76 @@
 <!--工期预警  -->
 <div class="container-fluid" id="shenbaoyujing">
+	<!-- 查询 -->
+	<div class="panel panel-info" id="commSearch">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_yj_shouhui" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_yj_shouhui" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">关单号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口口岸:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="天津新港">北京机场</option>
+								<option value="北京机场">北京机场</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">运抵国:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="英国">英国</option>
+								<option value="美国">美国</option>
+								<option value="日本">日本</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">贸易方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="承包工程">承包工程</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">收汇状态:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="已收汇">已收汇</option>
+								<option value="未收汇">未收汇</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group col-sm-6" style="position:relative; left:-8px;">
+						<label class="control-label col-sm-3 text-align:right">出口日期:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="position:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<!-- 查询 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="shenbaoyujing_gridBox">
 		<table id="shenbaoyujing_jqGrid"></table>
 		<div id="shenbaoyujing_jqGridPager"></div>
@@ -375,7 +446,7 @@ $(function(){
 		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#shenbaoyujing_jqGrid').jqGrid('filterToolbar');
+	//$('#shenbaoyujing_jqGrid').jqGrid('filterToolbar');
 	
 	fetchGridData();
 	
@@ -386,7 +457,7 @@ $(function(){
 			if(len>50){
 				cellValue = cellValue.substring(0, 50) + "...";
 			}
-			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+			return '<a href="javascript:;" onclick="lookInfoShenBaoYj(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 		};
 	
 	
@@ -479,18 +550,24 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-function lookInfo(gid,rowId){
+function lookInfoShenBaoYj(gid,rowId){
 	$('#shenhecaigou_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();
 	data.relName = $(data.relName).text();
 	setFormData(gid+'_formBox',data);
 	title = '报关单查看信息';
-	commIndex = layer.open({
+	/* commIndex = layer.open({
 		type: 1,
 		title : title,
 		area: ['98%', '98%'], //宽高
 		content: $('#shenbaoyujing_formBox')
+	}); */
+	commIndex = layer.open({
+		type: 2,
+		title : title,
+		area: ['80%', '100%'], //宽高
+		content: 'guandan/baoGuanDanTemp.html'
 	});
 }
 

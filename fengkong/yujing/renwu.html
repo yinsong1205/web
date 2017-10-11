@@ -5,6 +5,98 @@
 	}
 </style>
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info" id="commSearch">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_yj_rw_admin" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_yj_rw_admin" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">任务编号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口国别:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="美国">美国</option>
+								<option value="英国">英国</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">业务类型:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="一般贸易">一般贸易</option>
+								<option value="承包工程">承包工程</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">出口口岸:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="天津新港">天津新港</option>
+								<option value="北京机场">北京机场</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">运输方式:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option value="水路运输">水路运输</option>
+								<option value="航空运输">航空运输</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">当前环节:</label>
+						<div class="col-sm-6">
+							<select class="form-control input-sm">
+								<option>创建任务</option>
+								<option>预关单审核</option>
+								<option>报关单审核</option>
+								<option>开票通知</option>
+								<option>收票确认</option>
+								<option>发票认证</option>
+								<option>申报</option>
+								<option>备案</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-6" style="position:relative; left:-8px;">
+						<label class="control-label col-sm-3 text-align:right">操作时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="position:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div>
+					<!-- <div class="form-group col-sm-6">
+						<label class="control-label col-sm-3 text-align:right">操作时间:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="positon:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker();" />
+						</div>
+					</div> -->
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="col-sm-12 plr0 height100 gridBox" id="renwu_gridBox">
 		<table id="renwu_jqGrid"></table>
 		<div id="renwu_jqGridPager"></div>
@@ -62,8 +154,7 @@
 				<span class="necessary">*</span>出口国别:
 			</label>
 			<div class="col-xs-8">
-				<select class="form-control input-sm" value="日本">
-					<option value="美国" selected="selected">日本</option>
+				<select class="form-control input-sm">
 					<option value="英国">英国</option>
 					<option value="法国">法国</option>
 				</select>
@@ -87,9 +178,9 @@
 				<span class="necessary">*</span>出口口岸:
 			</label>
 			<div class="col-xs-8">
-				<select class="form-control input-sm" value="网走">
-					<option value="网走" selected="true">网走</option>
-					<option value="阿克拉维克">阿克拉维克</option>
+				<select class="form-control input-sm">
+					<option value="天津新港" selected="true">天津新港</option>
+					<option value="北京机场">北京机场</option>
 				</select>
 			</div>
 		</div>
@@ -118,7 +209,7 @@
 				<span class="necessary">*</span>创建人:
 			</label>
 			<div class="col-xs-8">
-				<input type="text" class="form-control input-sm" readonly="readonly" value="admin">
+				<input type="text" class="form-control input-sm" readonly="readonly" value="张三">
 			</div>
 		</div>
 		<div class="form-group col-xs-4">
@@ -156,8 +247,8 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td >107625879564215478</td>
-						<td >admin</td>
+						<td >CK201709220002</td>
+						<td >张三</td>
 						<td >2017-05-11</td>
 						<th >预关单审核</th>
 						<td >王五</td>
@@ -183,23 +274,23 @@ $(function(){
 	var rowNumber = 1000000;
 
 	//表格数据
-	var gridWidth = $('#renwu_gridBox').width()-2;
+	var gridWidth = $('#renwu_gridBox').width();
 	var gridHeight = $('#renwu_gridBox').height()-118;
 	$("#renwu_jqGrid").jqGrid({
 		
 		hidegrid : false, 
 		altRows : true, 
 		colModel: [{label : '任务编号', name : 'tasknumber', align: 'center', width: 120 ,formatter: formatName},
-			{label : '出口国别', name : 'county', align: 'center', width:120},
-			{label : '业务类型', name : 'type', align: 'center', width:120},
-			{label : '出口口岸', name : 'kouan', align: 'center', width:120},
-			{label : '运输方式', name : 'bus', align: 'center', width:120},
-			{label : '当前环节', name : 'level', align: 'center', width:120},
-			{label : '操作人', name : 'createPeople', align: 'center', width:120},
-			{label : '操作时间', name : 'createstatus', align: 'center', width:120},
-			{label : '剩余时间', name : 'lastTime', align: 'center', width:120},
-			{label : '截止时间', name : 'overTime', align: 'center', width:120},
-			{label : '说明', name : 'sign', align: 'center', width:120},],
+			{label : '出口国别', name : 'county', align: 'center', width:80},
+			{label : '业务类型', name : 'type', align: 'center', width:80},
+			{label : '出口口岸', name : 'kouan', align: 'center', width:80},
+			{label : '运输方式', name : 'bus', align: 'center', width:80},
+			{label : '当前环节', name : 'level', align: 'center', width:80},
+			{label : '操作人', name : 'createPeople', align: 'center', width:80},
+			{label : '操作时间', name : 'createstatus', align: 'center', width:80},
+			{label : '剩余时间', name : 'lastTime', align: 'center', width:60},
+			{label : '截止时间', name : 'overTime', align: 'center', width:80},
+			{label : '说明', name : 'sign', align: 'center', width:60}],
 		viewrecords: true,
 		loadonce:true,
 		width: gridWidth,
@@ -223,7 +314,7 @@ $(function(){
 		sepclass : "ui-separator"
 	});
 	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#renwu_jqGrid').jqGrid('filterToolbar');
+	//$('#renwu_jqGrid').jqGrid('filterToolbar');
 	
 	fetchGridData();
 	
@@ -344,7 +435,7 @@ $(function(){
 			if(len>50){
 				cellValue = cellValue.substring(0, 50) + "...";
 			}
-			return '<a href="javascript:;" onclick="lookInfo(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
+			return '<a href="javascript:;" onclick="lookInfoRenWuYj(\''+options.gid+'\',\''+options.rowId+'\')">'+cellValue+'</a>';
 		};
 	
 	//获取json数据
@@ -407,7 +498,7 @@ $(function(){
 	changeSearch(); //修改工具条
 	
 });
-function lookInfo(gid,rowId){
+function lookInfoRenWuYj(gid,rowId){
 	$('#shenhecaigou_save_btn').show();
 	var data = $('#'+gid).getRowData(rowId);
 	data.name = $(data.name).text();

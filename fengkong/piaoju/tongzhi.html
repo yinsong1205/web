@@ -5,13 +5,53 @@
 	}*/
 	h4{margin-right: 64px;}
 	.form-group .text-center,.col-xs-4{text-align: center; vertical-align:middle !important}
-	.form-horizontal input,.form-horizontal textarea {border: none !important;outline: none !important;border:0 !important;}
+	#tongzhi_formBox .form-horizontal input,.form-horizontal textarea {border: none !important;outline: none !important;border:0 !important;}
 	.goumai{width: 30px;text-decoration: row;height: 150px;line-height: 50px;}
 	#tongzhi_jqGrid td{text-align: center; vertical-align:middle !important}
 	.text-left{text-align: left !important;}
 	#tongzhi_qingdan{margin: }
 </style>
 <div class="container-fluid">
+	<!-- 查询 -->
+	<div class="panel panel-info" id="commSearch">
+		<div class="panel-heading" style="padding:7px 15px;">
+			<a href="#collapseOne_tongzhi" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
+		</div>
+		<div id="collapseOne_tongzhi" class="panel-collapse collapse in">
+			<div class="panel-body" style="padding:15px 0 0 0 ">
+				<form class="form-horizontal">
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">通知单号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">供应商名称:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">关单号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="form-group col-sm-3">
+						<label class="control-label col-sm-6 text-align:right">任务号:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control input-sm" />
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<!-- 查询 -->
 	<div class="col-sm-12 plr0 height100 gridBox" id="tongzhi_gridBox">
 		<table id="tongzhi_jqGrid"></table>
 		<div id="tongzhi_jqGridPager"></div>
@@ -214,7 +254,7 @@ $(function(){
 
 	//表格数据
 	var gridWidth = $('#tongzhi_gridBox').width();
-	var gridHeight = $('#tongzhi_gridBox').height()-122;
+	var gridHeight = $('#tongzhi_gridBox').height()-118;
 	$("#tongzhi_jqGrid").jqGrid({
 		
 		hidegrid : false, 
@@ -273,7 +313,7 @@ $(function(){
 	});
 
 	//搜索框按钮,开启搜索框需要重新调整高度
-	$('#tongzhi_jqGrid').jqGrid('filterToolbar');
+	//$('#tongzhi_jqGrid').jqGrid('filterToolbar');
 	// 导出函数
 	function tongzhi_importLayer(){
 		var rowd = getSelectedRow();

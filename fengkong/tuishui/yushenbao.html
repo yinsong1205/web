@@ -7,7 +7,7 @@
 			<a href="#collapseOne_yushenbao" data-toggle="collapse" class="center-block">查询<i class="pull-right glyphicon glyphicon-menu-down"></i></a>
 		</div>
 		<div id="collapseOne_yushenbao" class="panel-collapse collapse in">
-			<div class="panel-body" style="padding:15px 0">
+			<div class="panel-body" style="padding:15px 0 0 0">
 				<form class="form-horizontal">
 					<div class="form-group col-sm-3">
 						<label class="control-label col-sm-6 text-align:right">申报批次:</label>
@@ -15,14 +15,18 @@
 							<input type="text" class="form-control input-sm" />
 						</div>
 					</div>
-					<div class="form-group col-sm-3">
-						<label class="control-label col-sm-6 text-align:right">申报年月:</label>
-						<div class="col-sm-6">
+					<div class="form-group col-sm-6" style="position:relative; left:-8px;">
+						<label class="control-label col-sm-3 text-align:right">申报年月:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control input-sm" onclick="WdatePicker({dateFmt:'yyyyMM'})" />
+						</div>
+						<i class="glyphicon glyphicon-minus pull-left" style="position:relative; top:6px;color:#666;"></i>
+						<div class="col-sm-4">
 							<input type="text" class="form-control input-sm" onclick="WdatePicker({dateFmt:'yyyyMM'})" />
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<p class="text-right"><button class="btn btn-info btn-sm" type="button">查询</button></p>
+					<div class="col-sm-12">
+						<p class="text-right" style="height:0;margin-bottom:0"><button style="position:relative;top:-54px;" class="btn btn-info btn-sm" type="button">查询</button></p>
 					</div>
 				</form>
 			</div>
@@ -126,9 +130,9 @@ $(function(){
 		{label : '申报年月', name : 'sbny', align: 'center', width:80},
 		{label : '申报批次', name : 'pici', align: 'center', width: 120},
 		{label : '关联检查', name : 'gljc', align: 'center', width:80},
-		{label : '换汇成本 ', name : 'hhcb', align: 'left', width:80},
-		{label : '误差比例', name : 'wcbl', align: 'left', width:80},
-		{label : '申报状态', name : 'sbzt', align: 'left', width:80},
+		{label : '换汇成本 ', name : 'hhcb', align: 'center', width:80},
+		{label : '误差比例', name : 'wcbl', align: 'center', width:80},
+		{label : '申报状态', name : 'sbzt', align: 'center', width:80},
 		{label : '上传时间', name : 'scsj', align: 'center', width: 80},
 		{label : '审核状态', name : 'shzt', align: 'center', width: 80},
 		{label : '审核结果信息', name : 'shjg', align: 'center', width: 80},
